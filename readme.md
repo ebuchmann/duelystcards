@@ -20,4 +20,3 @@
 
 ### Decks to add
 - Add in all the generals
-- Add in neutral cards
