@@ -16,6 +16,4 @@
 - Add link at top to select a different faction after selecting one, will reset all card data
 - Check MECHAZ0R name for a zero?
 - Add faction icon to navigation
-
-### Decks to add
-- Add in all the generals
+- Add bold to card text

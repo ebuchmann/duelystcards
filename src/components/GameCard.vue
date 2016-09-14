@@ -6,7 +6,7 @@
     <div class="rarity" :class="[card.rarity]"></div>
     <div v-if="card.attack" class="attack">{{ card.attack }}</div>
     <div v-if="card.health" class="health">{{ card.health }}</div>
-    <div class="text">{{ card.text }}</div>
+    <div class="text" v-html="card.text"></div>
     <div class="qty">{{ inDeck }}</div>
   </div>
 </template>
