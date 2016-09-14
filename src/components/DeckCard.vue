@@ -22,6 +22,8 @@
 </script>
 
 <style lang="sass">
+  @import '../css/includes';
+
   .deck-card {
     background-image: url(https://dl.dropboxusercontent.com/u/24984522/deck_builder_card_bg.png);
     width: 243px;

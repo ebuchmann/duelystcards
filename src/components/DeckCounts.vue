@@ -31,6 +31,8 @@
 </script>
 
 <style lang="sass">
+  @import '../css/includes';
+
   .deck-counts {
     > .count {
       width: 32%;

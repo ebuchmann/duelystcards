@@ -39,6 +39,8 @@
 </script>
 
 <style lang="sass">
+  @import '../css/includes';
+
   .card-pagination {
     color: #fff;
     text-align: center;

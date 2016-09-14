@@ -43,6 +43,8 @@ export default {
 </script>
 
 <style lang="sass">
+  @import '../css/includes';
+  
   .game-card {
     max-width: 224px;
     height: 296px;
@@ -145,9 +147,9 @@ export default {
 
     > .qty {
       position: absolute;
-      bottom: -1px;
+      bottom: 0;
       width: 100%;
-      font-size: .7rem;
+      font-size: .65rem;
     }
   }
 </style>

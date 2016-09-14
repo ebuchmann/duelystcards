@@ -1,6 +1,6 @@
 <template>
   <div class="top-nav container">
-    <h2>Deck Builder</h2>
+    <h2 class="logo"><router-link to="/">Deck Builder</router-link></h2>
     <faction-navigation></faction-navigation>
   </div>
 </template>
@@ -16,7 +16,13 @@
 </script>
 
 <style lang="sass">
-  .top-nav {
+  @import '../css/includes';
 
+  .top-nav {
+    @include clearfix;
+
+    > .logo {
+      float: left;
+    }
   }
 </style>

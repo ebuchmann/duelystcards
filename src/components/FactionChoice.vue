@@ -29,5 +29,5 @@
 </script>
 
 <style lang="sass">
-
+  @import '../css/includes';
 </style>

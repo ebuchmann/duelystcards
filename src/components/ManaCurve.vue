@@ -2,7 +2,7 @@
   <div class="mana-curve">
     <div class="card-counts">
       <span class="mana" v-for="item in curve">
-        <div class="bar" :style="{ height: percentage(item, highestValue) + 'px' }">
+        <div class="bar" :style="{ height: `${percentage(item, highestValue)}%` }">
           <div class="count">{{ item }}</div>
         </div>
       </span>
@@ -52,12 +52,14 @@
 </script>
 
 <style lang="sass">
+  @import '../css/includes';
+  
   .mana-curve {
     position: relative;
   }
 
   .card-counts {
-    height: 100px;
+    height: 70px;
     position: relative;
 
     > .mana {
@@ -84,12 +86,14 @@
     border-top: 1px solid #90cacf;
     border-bottom: 1px solid #90cacf;
     width: 100%;
+    @include clearfix;
 
     > .number {
-      width: calc((100% / 10) - 5px);
+      width: 10%;
       display: inline-block;
       text-align: center;
       font-size: .8rem;
+      float: left;
     }
   }
 </style>
