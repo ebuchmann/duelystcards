@@ -1,0 +1,14 @@
+/* Includes */
+@import 'includes';
+
+/* Files */
+@import 'reboot';
+
+.container {
+    max-width: 1570px;
+    margin: 0 15px;
+
+    @include breakpoint(vl) {
+        margin: 0 auto;
+    }
+}

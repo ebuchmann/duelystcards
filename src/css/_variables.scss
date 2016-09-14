@@ -1,0 +1,80 @@
+// Colors
+
+$dark:                      #222222 !default;
+$gray-dark:                 #373a3c !default;
+$gray:                      #55595c !default;
+$gray-light:                #818a91 !default;
+$gray-lighter:              #eceeef !default;
+$gray-lightest:             #f7f7f9 !default;
+
+$brand-primary:             #0275d8 !default;
+$brand-success:             #5cb85c !default;
+$brand-info:                #5bc0de !default;
+$brand-warning:             #f0ad4e !default;
+$brand-danger:              #d9534f !default;
+
+$blue:                      #01afee !default;
+$blue-highlight:            rgba($blue, .15);
+$blue-dark:                 #06637c !default;
+$green:                     #5ad195 !default;
+$green-highlight:           rgba($green, .15);
+$red:                       #ee4025 !default;
+$yellow:                    #fdd900 !default;
+
+$twitch-color:              #6441A5;
+$facebook-color:            #3b5998;
+$twitter-color:             #55acee;
+
+$font-size-root:            18px !default;
+$font-family-sans-serif:    'Open Sans', sans-serif !default;
+$font-family-base:          $font-family-sans-serif !default;
+$font-size-base:            1rem !default;
+$line-height-base:          1.5 !default;
+$body-color:                $gray-dark !default;
+$body-bg:                   $gray-lightest !default;
+$abbr-border-color:         $gray-dark !default;
+$dt-font-weight:            bold !default;
+$link-color:                $brand-primary !default;
+$link-decoration:           none !default;
+$link-hover-color:          darken($link-color, 15%) !default;
+$link-hover-decoration:     none !default;
+$table-bg:                  transparent !default;
+$table-cell-padding:        .75rem !default;
+$text-muted:                $gray-light !default;
+
+$spacing-vert:              30px;
+$spacing-horz:              30px;
+
+// Shadows
+$light-shadow:              0px 0px 8px 0px rgba(200,200,200,1) !default;
+$medium-shadow:             0px 0px 8px 0px rgba(125,125,125,1) !default;
+
+// Transitions
+$all-fast:                  all .2s ease-out;
+$all-medium:                all .4s ease-out;
+$all-slow:                  all .6s ease-out;
+
+// Icons
+$icon-finished:             '\f05d';
+$icon-unfinished:           '\f06a';
+$icon-abandoned:            '\f057';
+$icon-inprogress:           '\f11b';
+$icon-upnext:               '\f093';
+$icon-caret-down:           '\f0d7';
+$icon-caret-up:             '\f0d8';
+
+$icon-twitch:                '\f1e8';
+$icon-facebook:              '\f230';
+$icon-twitter:               '\f081';
+
+// Game status
+$statuses: (
+    finished:    (color: $green, icon: $icon-finished),
+    unfinished:  (color: $yellow, icon: $icon-unfinished),
+    abandoned:   (color: $red, icon: $icon-abandoned),
+    inprogress:  (color: $blue, icon: $icon-inprogress),
+    upnext:      (color: $blue-dark, icon: $icon-upnext)
+);
+
+// Z-Index
+$faction-navigation: 10;
