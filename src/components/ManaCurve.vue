@@ -38,7 +38,9 @@
       curve() {
         const arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         this.$store.state.deck.cards.forEach(card => {
-          arr[card.cost] += card.qty
+          card.cost > 8
+            ? arr[9] += card.qty
+            : arr[card.cost] += card.qty
         })
 
         return arr
