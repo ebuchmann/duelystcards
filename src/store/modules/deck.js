@@ -5,6 +5,7 @@ import {
   REMOVE_CARD,
   INCREMENT_CARD,
   DECREMENT_CARD,
+  CLEAR_DECK,
 } from '../mutation-types'
 
 const state = {
@@ -50,6 +51,13 @@ const mutations = {
     state.cards[index].qty--
     state.totalCards--
     if (state.cards[index].rarity) state.spirit -= spiritCosts[state.cards[index].rarity]
+  },
+
+  [CLEAR_DECK] (state) {
+    state.general = null
+    state.cards = []
+    state.totalCards = 0
+    state.spirit = 0
   }
 }
 

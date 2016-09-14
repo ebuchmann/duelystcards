@@ -35,3 +35,7 @@ export const setCardList = ({ commit }, cards) => {
 export const setPage = ({ commit }, pageNumber) => {
   commit(types.SET_PAGE, pageNumber)
 }
+
+export const clearDeck = ({ commit }) => {
+  commit(types.CLEAR_DECK)
+}

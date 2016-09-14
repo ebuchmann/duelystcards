@@ -1,15 +1,15 @@
 <template>
-  <div :class="['faction-navigation', { 'opened': opened }]">
-    <div class="menu">
+  <div :class="['faction-navigation', { 'opened': opened }]" tabindex="0" @blur="close()" ref="nav">
+    <div class="menu" @click="open()">
       <div class="current">{{ faction }}</div>
     </div>
     <div class="links">
-      <router-link class="link" to="/deck/lyonar">Lyonar</router-link>
-      <router-link class="link" to="/deck/songhai">Songhai</router-link>
-      <router-link class="link" to="/deck/vetruvian">Vetruvian</router-link>
-      <router-link class="link" to="/deck/abyssian">Abyssian</router-link>
-      <router-link class="link" to="/deck/magmar">Magmar</router-link>
-      <router-link class="link" to="/deck/vanar">Vanar</router-link>
+      <span class="link" @click="navigate('/deck/lyonar')">Lyonar</span>
+      <span class="link" @click="navigate('/deck/songhai')">Songhai</span>
+      <span class="link" @click="navigate('/deck/vetruvian')">Vetruvian</span>
+      <span class="link" @click="navigate('/deck/abyssian')">Abyssian</span>
+      <span class="link" @click="navigate('/deck/magmar')">Magmar</span>
+      <span class="link" @click="navigate('/deck/vanar')">Vanar</span>
     </div>
   </div>
 </template>
@@ -36,8 +36,14 @@
         this.opened = true
       },
 
-      close (event) {
+      close () {
         this.opened = false
+      },
+
+      navigate (path) {
+        this.$router.push({ path })
+        this.$store.dispatch('clearDeck')
+        this.$refs.nav.blur()
       }
     },
   }
@@ -65,9 +71,11 @@
       position: absolute;
       right: 0;
       z-index: $faction-navigation;
+      background: #eee;
 
       > .link {
         padding: 5px 10px;
+        cursor: pointer;
 
         &:hover {
           background: darken(white, 10%);
