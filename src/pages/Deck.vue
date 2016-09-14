@@ -19,10 +19,10 @@
 
 <script>
   import generals from '../cards/generals'
-  import lyonar from '../cards/lyonar'
-  import GameCard from '../components/GameCard'
-  import DeckList from '../components/DeckList'
-  import CardPagination from '../components/CardPagination'
+  import cards from '../cards'
+  import GameCard from 'components/GameCard'
+  import DeckList from 'components/DeckList'
+  import CardPagination from 'components/CardPagination'
 
   export default {
     computed: {
@@ -42,14 +42,8 @@
 
     watch: {
       general() {
-        this.$store.dispatch('setCardList', this.lyonar)
+        if (this.general) this.$store.dispatch('setCardList', [...cards[this.general.faction], ...cards.neutral])
       },
-    },
-
-    data() {
-      return {
-        lyonar,
-      }
     },
 
     components: {
