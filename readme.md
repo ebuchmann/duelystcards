@@ -15,7 +15,6 @@
 - Add disabled state to card if you have three in the deck (needs graphic)
 - Add link at top to select a different faction after selecting one, will reset all card data
 - Check MECHAZ0R name for a zero?
-- Prevent just the /deck/ route without a faction choosen
 - Add faction icon to navigation
 
 ### Decks to add

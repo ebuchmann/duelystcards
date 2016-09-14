@@ -8,6 +8,7 @@ export const router = new VueRouter({
   base: __dirname,
   routes: [
     { path: '/', component: Home },
+    { path: '/deck', component: Home },
     { path: '/deck/:faction', component: Deck },
   ],
 })
