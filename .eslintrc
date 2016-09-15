@@ -2,5 +2,9 @@
   "extends": "standard",
   "rules": {
     "comma-dangle": ["error", "only-multiline"]
+  },
+  "globals": {
+    "atob": true,
+    "btoa": true
   }
 }
