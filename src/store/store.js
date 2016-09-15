@@ -6,8 +6,6 @@ import * as actions from './actions'
 
 Vue.use(Vuex)
 
-console.log(actions)
-
 export default new Vuex.Store({
   actions,
   modules: {

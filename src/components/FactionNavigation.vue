@@ -44,7 +44,7 @@
         this.$router.push({ path })
         this.$store.dispatch('clearDeck')
         this.$refs.nav.blur()
-      }
+      },
     },
   }
 </script>

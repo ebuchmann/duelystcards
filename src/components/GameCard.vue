@@ -2,7 +2,7 @@
   <div class="game-card" :class="[cardType, { 'disabled': inDeck === 'X 3' }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
     <div class="cost" v-show="cardType !== 'general'">{{ card.cost }}</div>
     <div class="name">{{ card.name }}</div>
-    <div class="type">{{ card.type }}</div>
+    <div class="type" :class="card.type">{{ card.type }}</div>
     <div class="rarity" :class="[card.rarity]"></div>
     <div v-if="card.attack" class="attack">{{ card.attack }}</div>
     <div v-if="card.health" class="health">{{ card.health }}</div>
@@ -94,7 +94,11 @@ export default {
       text-align: center;
       width: 100%;
       top: 130px;
-      font-size: .75rem;
+      font-size: .65rem;
+
+      &.artifact {
+        color: #edd144;
+      }
     }
 
     > .rarity {
