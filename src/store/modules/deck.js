@@ -28,11 +28,11 @@ const mutations = {
     state.general = general
   },
 
-  [SELECT_CARD] (state, card) {
-    Vue.set(card, 'qty', 1)
+  [SELECT_CARD] (state, { card, qty }) {
+    Vue.set(card, 'qty', qty)
     state.cards.push(card)
-    state.totalCards++
-    if (card.rarity) state.spirit += spiritCosts[card.rarity]
+    state.totalCards += qty
+    if (card.rarity) state.spirit += (spiritCosts[card.rarity] * qty)
   },
 
   [REMOVE_CARD] (state, index) {

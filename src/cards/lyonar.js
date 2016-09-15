@@ -3,7 +3,7 @@ const lyonar = [
   { id: 26, name: 'Slo', type: 'battle pet', cost: 0, rarity: 'common', attack: 1, health: 4, faction: 'lyonar', text: '<b>Provoke</b>' },
   { id: 30004, name: 'Sunstone Bracers', type: 'artifact', cost: 0, rarity: 'core', faction: 'lyonar', text: 'Your General gains +1 Attack.' },
   { id: 20120, name: 'Aegis Barrier', type: 'spell', cost: 1, rarity: 'legendary', faction: 'lyonar', text: 'Choose a friendly minion. It can\'t be targeted by enemy spells. Draw a card.' },
-  { id: 20158, name: 'Aerial Rift', type: 'spell', cost: 1, rarity: 'rare', faction: 'lyonar', text: 'Give your minions <b>Airdrop</b> this turn. Draw a card.' },
+  { id: 20158, name: 'Aerial Rift', type: 'spell', cost: 1, rarity: 'epic', faction: 'lyonar', text: 'Give your minions <b>Airdrop</b> this turn. Draw a card.' },
   { id: 20045, name: 'Auryn Nexus', type: 'spell', cost: 1, rarity: 'common', faction: 'lyonar', text: 'Give a friendly minion +3 Health' },
   { id: 20189, name: 'Fighting Spirit', type: 'spell', cost: 1, rarity: 'epic', faction: 'lyonar', text: 'Give all friendly minions +1 Health. Put a random Battle Pet into your action bar.' },
   { id: 20062, name: 'Lionheart Blessing', type: 'spell', cost: 1, rarity: 'rare', faction: 'lyonar', text: 'Give a friendly minion, "<b>Zeal</b>: Whenever this minion deals damage, draw a card."' },

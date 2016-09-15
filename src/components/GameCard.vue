@@ -32,7 +32,7 @@ export default {
     selectCard(card) {
       card.type === 'general'
         ? this.$store.dispatch('selectGeneral', card)
-        : this.$store.dispatch('selectCard', card)
+        : this.$store.dispatch('selectCard', { card, qty: 1 })
     },
 
     removeCard(card) {
@@ -115,7 +115,7 @@ export default {
         background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_epic.png)
       }
       &.legendary {
-        background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_epic.png)
+        background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_legendary.png)
       }
       &.rare {
         background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_rare.png)

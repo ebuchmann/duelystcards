@@ -46,6 +46,24 @@
       },
     },
 
+    methods: {
+      async loadDeck (hash) {
+        const deck = atob(hash.slice(1)).split(',')
+        const general = deck.splice(0, 1)[0]
+
+        const [qty, id] = general.split(':')
+        await this.$store.dispatch('selectGeneral', generals.find(general => general.id === Number(id)))
+        deck.forEach(card => {
+          const [qty, id] = card.split(':')
+          this.$store.dispatch('selectCard', { card: this.$store.state.cardList.cards.find(c => c.id === Number(id)), qty: Number(qty) })
+        })
+      }
+    },
+
+    created () {
+      if (this.$route.hash) this.loadDeck(this.$route.hash)
+    },
+
     components: {
       GameCard,
       DeckList,

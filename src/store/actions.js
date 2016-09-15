@@ -1,18 +1,23 @@
 import * as types from './mutation-types'
 
-export const selectGeneral = ({ commit }, general) => {
+export const selectGeneral = ({ commit, state }, general) => new Promise(resolve => {
   commit(types.SELECT_GENERAL, general)
-}
+  resolve()
 
-export const selectCard = ({ commit, state }, card) => {
+  updateHash(state.deck)
+})
+
+export const selectCard = ({ commit, state }, { card, qty }) => {
   const cards = state.deck.cards
   const matchingCard = cards.find(c => c.name === card.name)
 
   if (matchingCard) {
-    if (matchingCard.qty < 3) commit(types.INCREMENT_CARD, cards.indexOf(matchingCard))
+    if (matchingCard.qty < 3 && qty === 1) commit(types.INCREMENT_CARD, cards.indexOf(matchingCard))
   } else {
-    commit(types.SELECT_CARD, card)
+    commit(types.SELECT_CARD, { card, qty })
   }
+
+  updateHash(state.deck)
 }
 
 export const removeCard = ({ commit, state }, card) => {
@@ -38,4 +43,13 @@ export const setPage = ({ commit }, pageNumber) => {
 
 export const clearDeck = ({ commit }) => {
   commit(types.CLEAR_DECK)
+}
+
+const updateHash = ({ general, cards }) => {
+  const hash = []
+  hash.push(`1:${general.id}`)
+  cards.forEach(card => {
+    hash.push(`${card.qty}:${card.id}`)
+  })
+  window.location.hash = btoa(hash.join(','))
 }
