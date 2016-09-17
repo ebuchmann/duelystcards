@@ -3,7 +3,7 @@
     <div class="card-counts">
       <span class="mana" v-for="item in curve">
         <div class="bar" :style="{ height: `${percentage(item, highestValue)}%` }">
-          <div class="count">{{ item }}</div>
+          <div class="count" v-show="item > 0">{{ item }}</div>
         </div>
       </span>
     </div>
@@ -71,13 +71,14 @@
       > .bar {
         background: #01d6f3;
         position: absolute;
-        bottom: 0;
+        bottom: 2px;
         width: calc(10% - 2px);
         transition: all .3s ease-out;
 
         > .count {
           text-align: center;
           margin-top: -25px;
+          font-size: .9rem;
         }
       }
 

@@ -4,11 +4,16 @@
 /* Files */
 @import 'reboot';
 
-.container {
-    max-width: 1570px;
-    margin: 0 15px;
+@font-face {
+  font-family: LatoRegular;
+  src: url(https://dl.dropboxusercontent.com/u/24984522/Lato-Regular.woff);
+}
 
-    @include breakpoint(vl) {
-        margin: 0 auto;
-    }
+.container {
+  max-width: 1570px;
+  margin: 0 15px;
+
+  @include breakpoint(vl) {
+    margin: 0 auto;
+  }
 }

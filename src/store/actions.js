@@ -1,4 +1,5 @@
 import * as types from './mutation-types'
+import { totalPages } from './getters'
 
 export const selectGeneral = ({ commit, state }, general) => new Promise(resolve => {
   commit(types.SELECT_GENERAL, general)
@@ -39,10 +40,6 @@ export const setCardList = ({ commit }, cards) => {
   commit(types.SET_CARDS, cards)
 }
 
-export const setPage = ({ commit }, pageNumber) => {
-  commit(types.SET_PAGE, pageNumber)
-}
-
 export const clearDeck = ({ commit, state }) => {
   commit(types.CLEAR_DECK)
   updateHash(state.deck)
@@ -73,4 +70,10 @@ const updateHash = ({ general, cards }) => {
     hash.push(`${card.qty}:${card.id}`)
   })
   window.location.hash = btoa(hash.join(','))
+}
+
+export const goToPage = ({ commit, state }, direction) => {
+  const currentPage = state.cardList.currentPage
+  if (direction === -1 && currentPage > 1) commit(types.SET_PAGE, currentPage + direction)
+  else if (direction === 1 && currentPage < totalPages(state)) commit(types.SET_PAGE, currentPage + direction)
 }

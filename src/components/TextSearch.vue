@@ -1,15 +1,49 @@
 <template>
   <div class="text-search">
-    <input ref="search" type="text" @keyup="$store.dispatch('textSearch', $refs.search.value)" />
+    <input class="search" ref="search" type="text" :value="searchText" @keyup="textSearch($refs.search.value)" placeholder="Search..." />
+    <div @click="textSearch('')" class="clear">X</div>
   </div>
 </template>
 
 <script>
-  export default {
+  import { mapGetters, mapActions } from 'vuex'
 
+  export default {
+    computed: mapGetters({
+      searchText: 'searchText',
+    }),
+
+    methods: mapActions({
+      textSearch: 'textSearch',
+    }),
   }
 </script>
 
 <style lang="sass">
+  @import '../css/includes';
 
+  .text-search {
+    position: relative;
+    @include clearfix;
+
+    > .search {
+      background: #104365;
+      border: none;
+      padding: 10px;
+      width: 100%;
+
+      &:active, &:focus {
+        outline: none;
+      }
+    }
+
+    > .clear {
+      position: absolute;
+      right: 0;
+      top: 0;
+      background: red;
+      height: 100%;
+      width: 30px;
+    }
+  }
 </style>

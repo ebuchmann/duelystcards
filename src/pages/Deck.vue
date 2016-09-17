@@ -1,17 +1,21 @@
 <template>
   <div class="deck-page">
     <div class="top">
-      <text-search></text-search>
-      <type-select></type-select>
-      <rarity-select></rarity-select>
+      <div class="medium">
+        <text-search></text-search>
+      </div>
+      <div class="small">
+        <type-select></type-select>
+      </div>
+      <div class="small">
+        <rarity-select></rarity-select>
+      </div>
     </div>
     <div class="left-column">
-
-    <div class="card-grid">
-      <game-card v-for="card in filteredCards" :card="card">{{ card.name }}</game-card>
-    </div>
-    <card-pagination></card-pagination>
-
+      <div class="card-grid" @mousewheel="swapPage($event)">
+        <game-card v-for="card in visibleCards" :card="card">{{ card.name }}</game-card>
+      </div>
+      <card-pagination></card-pagination>
     </div>
     <div class="right-column">
       <deck-list></deck-list>
@@ -32,7 +36,7 @@
 
   export default {
     computed: mapGetters({
-      filteredCards: 'filteredCards',
+      visibleCards: 'visibleCards',
       general: 'general'
     }),
 
@@ -53,6 +57,13 @@
           const [qty, id] = card.split(':')
           this.$store.dispatch('selectCard', { card: this.$store.state.cardList.cards.find(c => c.id === Number(id)), qty: Number(qty) })
         })
+      },
+
+      swapPage (event) {
+        event.preventDefault()
+        event.wheelDelta > 0
+          ? this.$store.dispatch('goToPage', -1)
+          : this.$store.dispatch('goToPage', 1)
       }
     },
 
@@ -88,6 +99,16 @@
 
   .deck-page {
     @include clearfix;
+
+    > .top {
+      > .medium {
+        @include span (4 of 12)
+      }
+
+      > .small {
+        @include span (2 of 12)
+      }
+    }
   }
   
 </style>

@@ -9,6 +9,7 @@ export const CLEAR_DECK = 'CLEAR_DECK'
 // cardList
 export const SET_CARDS = 'SET_CARDS'
 export const SET_PAGE = 'SET_PAGE'
+export const SET_PER_PAGE = 'SET_PER_PAGE'
 export const TEXT_SEARCH = 'TEXT_SEARCH'
 export const SELECT_TYPE = 'SELECT_TYPE'
 export const SELECT_RARITY = 'SELECT_RARITY'

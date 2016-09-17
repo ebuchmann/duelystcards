@@ -19,14 +19,4 @@
 
 <style lang="sass">
   @import './css/app';
-
-  @font-face {
-    font-family: LatoRegular;
-    src: url(https://dl.dropboxusercontent.com/u/24984522/Lato-Regular.woff);
-  }
-
-  .app-page {
-    background-image: url(https://dl.dropboxusercontent.com/u/24984522/background.jpg);
-    background-size: cover;
-  }
 </style>
