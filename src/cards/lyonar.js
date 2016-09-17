@@ -21,7 +21,7 @@ const lyonar = [
   { id: 10, name: 'Sunstone Templar', type: 'minion', cost: 2, rarity: 'epic', attack: 1, health: 4, faction: 'lyonar', text: 'Whenever this attacks or counterattacks, it dispels that enemy.' },
   { id: 20044, name: 'Tempest', type: 'spell', cost: 2, rarity: 'basic', faction: 'lyonar', text: 'Deal 2 damage to ALL minions and Generals.' },
   { id: 20047, name: 'War Surge', type: 'spell', cost: 2, rarity: 'basic', faction: 'lyonar', text: 'Give all friendly minions +1/+1' },
-  { id: 9, name: 'Windblade Adept', type: 'minon', cost: 2, rarity: 'basic', attack: 2, health: 3, faction: 'lyonar', text: '<b>Zeal</b>: Gain +2 Attack.' },
+  { id: 9, name: 'Windblade Adept', type: 'minion', cost: 2, rarity: 'basic', attack: 2, health: 3, faction: 'lyonar', text: '<b>Zeal</b>: Gain +2 Attack.' },
   { id: 20188, name: 'Afterblaze', type: 'spell', cost: 3, rarity: 'common', faction: 'lyonar', text: 'Give a friendly minion +2/+4. If that minion has <b>Zeal</b>, draw a card.' },
   { id: 12, name: 'Arclyte Sentinel', type: 'minion', cost: 3, rarity: 'rare', attack: 2, health: 4, faction: 'lyonar', text: '<b>Opening Gambit</b>: Give ANY nearby minion +2 Attack, but -2 Health.' },
   { id: 20068, name: 'Divine Bond', type: 'spell', cost: 3, rarity: 'basic', faction: 'lyonar', text: 'Give a minion +Attack equal to its Health.' },

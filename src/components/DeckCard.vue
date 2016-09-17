@@ -1,5 +1,5 @@
 <template>
-  <div class="deck-card" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
+  <div :class="['deck-card', { 'flash': flash, 'dull': dull }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
     <div class="cost">{{ card.cost }}</div>
     <div class="name">{{ card.name }} x{{ card.qty }}</div>
   </div>
@@ -8,10 +8,21 @@
 <script>
   export default {
     props: ['card'],
+    
+    data () {
+      return {
+        flash: false,
+        dull: false,
+      }
+    },
 
     methods: {
       selectCard(card) {
-        this.$store.dispatch('selectCard', card)
+        this.flash = true
+        this.timeout = setTimeout(() => {
+          this.flash = false
+        }, 200)
+        this.$store.dispatch('selectCard', { card, qty: 1 })
       },
 
       removeCard(card) {

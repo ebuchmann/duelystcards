@@ -25,10 +25,6 @@
     src: url(https://dl.dropboxusercontent.com/u/24984522/Lato-Regular.woff);
   }
 
-  html, body, .app-page {
-    height: 100%;
-  }
-
   .app-page {
     background-image: url(https://dl.dropboxusercontent.com/u/24984522/background.jpg);
     background-size: cover;

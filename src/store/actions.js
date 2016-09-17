@@ -58,6 +58,12 @@ export const typeSelect = ({ commit, state }, type) => {
   commit(types.SELECT_TYPE, typeSelect)
 }
 
+export const raritySelect = ({ commit, state }, rarity) => {
+  const raritySelect = [...state.cardList.raritySelect]
+  raritySelect.includes(rarity) ? raritySelect.splice(raritySelect.indexOf(rarity), 1) : raritySelect.push(rarity)
+  commit(types.SELECT_RARITY, raritySelect)
+}
+
 const updateHash = ({ general, cards }) => {
   if (!general || !cards) return
 

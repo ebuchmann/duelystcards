@@ -3,13 +3,14 @@
     <div class="top">
       <text-search></text-search>
       <type-select></type-select>
+      <rarity-select></rarity-select>
     </div>
     <div class="left-column">
 
-        <div class="card-grid">
-          <game-card v-for="card in filteredCards" :card="card">{{ card.name }}</game-card>
-        </div>
-        <card-pagination></card-pagination>
+    <div class="card-grid">
+      <game-card v-for="card in filteredCards" :card="card">{{ card.name }}</game-card>
+    </div>
+    <card-pagination></card-pagination>
 
     </div>
     <div class="right-column">
@@ -26,6 +27,7 @@
   import CardPagination from 'components/CardPagination'
   import TextSearch from 'components/TextSearch'
   import TypeSelect from 'components/TypeSelect'
+  import RaritySelect from 'components/RaritySelect'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
@@ -64,6 +66,7 @@
       CardPagination,
       TextSearch,
       TypeSelect,
+      RaritySelect,
     },
   }
 </script>
@@ -81,10 +84,10 @@
 
   .card-grid {
     @include clearfix;
-  
-    > .game-card {
-      @include gallery(3 of 12)
-    }
+  }
+
+  .deck-page {
+    @include clearfix;
   }
   
 </style>

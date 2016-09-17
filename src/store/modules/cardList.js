@@ -3,6 +3,7 @@ import {
   SET_PAGE,
   TEXT_SEARCH,
   SELECT_TYPE,
+  SELECT_RARITY,
 } from '../mutation-types'
 
 const state = {
@@ -10,6 +11,7 @@ const state = {
   currentPage: 1,
   textSearch: '',
   typeSelect: [],
+  raritySelect: [],
 }
 
 const mutations = {
@@ -27,6 +29,10 @@ const mutations = {
 
   [SELECT_TYPE] (state, typeSelect) {
     state.typeSelect = typeSelect
+  },
+
+  [SELECT_RARITY] (state, raritySelect) {
+    state.raritySelect = raritySelect
   },
 }
 
