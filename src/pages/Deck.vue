@@ -1,16 +1,17 @@
 <template>
   <div class="deck-page">
+    <div class="top">
+      <text-search></text-search>
+      <type-select></type-select>
+    </div>
     <div class="left-column">
-      <template v-if="!$store.state.deck.general">
-        <game-card v-for="general in factionGenerals" :card="general"></game-card>
-      </template>
-      <template v-else>
+
         <div class="card-grid">
-          <game-card v-for="card in cards" :card="card">{{ card.name }}</game-card>
+          <game-card v-for="card in filteredCards" :card="card">{{ card.name }}</game-card>
         </div>
         <card-pagination></card-pagination>
-      </template>
-      </div>
+
+    </div>
     <div class="right-column">
       <deck-list></deck-list>
     </div>
@@ -23,26 +24,19 @@
   import GameCard from 'components/GameCard'
   import DeckList from 'components/DeckList'
   import CardPagination from 'components/CardPagination'
+  import TextSearch from 'components/TextSearch'
+  import TypeSelect from 'components/TypeSelect'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
-    computed: {
-      cards() {
-        const { currentPage, cards } = this.$store.state.cardList
-        return cards.slice((currentPage - 1) * 8, currentPage * 8)
-      },
-
-      general() {
-        return this.$store.state.deck.general
-      },
-
-      factionGenerals() {
-        return generals.filter(general => general.faction === this.$route.params.faction)
-      },
-    },
+    computed: mapGetters({
+      filteredCards: 'filteredCards',
+      general: 'general'
+    }),
 
     watch: {
       general() {
-        if (this.general) this.$store.dispatch('setCardList', [...cards[this.general.faction], ...cards.neutral])
+        if (this.general) this.$store.dispatch('setCardList', [...cards[this.$route.params.faction], ...cards.neutral])
       },
     },
 
@@ -68,6 +62,8 @@
       GameCard,
       DeckList,
       CardPagination,
+      TextSearch,
+      TypeSelect,
     },
   }
 </script>

@@ -1,8 +1,8 @@
 <template>
-  <div class="game-card" :class="[cardType, { 'disabled': inDeck === 'X 3' }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
-    <div class="cost" v-show="cardType !== 'general'">{{ card.cost }}</div>
+  <div class="game-card" :class="[card.type, { 'disabled': inDeck === 'X 3' }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
+    <div class="cost" v-show="card.type !== 'general'">{{ card.cost }}</div>
     <div class="name">{{ card.name }}</div>
-    <div class="type" :class="card.type">{{ card.type }}</div>
+    <div class="type" :class="card.type">{{ card.race || card.type }}</div>
     <div class="rarity" :class="[card.rarity]"></div>
     <div v-if="card.attack" class="attack">{{ card.attack }}</div>
     <div v-if="card.health" class="health">{{ card.health }}</div>
@@ -16,12 +16,6 @@ export default {
   props: ['card'],
 
   computed: {
-    cardType() {
-      return ['general', 'artifact', 'spell'].includes(this.card.type)
-        ? this.card.type
-        : 'minion'
-    },
-
     inDeck() {
       const matchingCard = this.$store.state.deck.cards.find(card => card.name === this.card.name)
       if (matchingCard) return `X ${matchingCard.qty}`

@@ -31,6 +31,8 @@ export const removeCard = ({ commit, state }, card) => {
       commit(types.DECREMENT_CARD, cards.indexOf(matchingCard))
     }
   }
+
+  updateHash(state.deck)
 }
 
 export const setCardList = ({ commit }, cards) => {
@@ -41,11 +43,24 @@ export const setPage = ({ commit }, pageNumber) => {
   commit(types.SET_PAGE, pageNumber)
 }
 
-export const clearDeck = ({ commit }) => {
+export const clearDeck = ({ commit, state }) => {
   commit(types.CLEAR_DECK)
+  updateHash(state.deck)
+}
+
+export const textSearch = ({ commit }, text) => {
+  commit(types.TEXT_SEARCH, text)
+}
+
+export const typeSelect = ({ commit, state }, type) => {
+  const typeSelect = [...state.cardList.typeSelect]
+  typeSelect.includes(type) ? typeSelect.splice(typeSelect.indexOf(type), 1) : typeSelect.push(type)
+  commit(types.SELECT_TYPE, typeSelect)
 }
 
 const updateHash = ({ general, cards }) => {
+  if (!general || !cards) return
+
   const hash = []
   hash.push(`1:${general.id}`)
   cards.forEach(card => {

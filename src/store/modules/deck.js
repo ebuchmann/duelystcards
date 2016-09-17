@@ -16,7 +16,7 @@ const state = {
 }
 
 const spiritCosts = {
-  core: 0,
+  basic: 0,
   common: 40,
   rare: 100,
   epic: 350,
