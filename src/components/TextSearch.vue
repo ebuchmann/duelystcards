@@ -27,7 +27,7 @@
     @include clearfix;
 
     > .search {
-      background: #104365;
+      background: $blue;
       border: none;
       padding: 10px;
       width: 100%;
@@ -41,7 +41,7 @@
       position: absolute;
       right: 0;
       top: 0;
-      background: red;
+      color: $blue-dark;
       height: 100%;
       width: 30px;
     }

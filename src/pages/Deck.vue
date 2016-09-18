@@ -1,19 +1,12 @@
 <template>
   <div class="deck-page">
-    <div class="top">
-      <div class="medium">
-        <text-search></text-search>
-      </div>
-      <div class="small">
-        <type-select></type-select>
-      </div>
-      <div class="small">
-        <rarity-select></rarity-select>
-      </div>
-    </div>
+    <filter-area></filter-area>
     <div class="left-column">
       <div class="card-grid" @mousewheel="swapPage($event)">
-        <game-card v-for="card in visibleCards" :card="card">{{ card.name }}</game-card>
+        <template v-for="card in visibleCards">
+          <game-card v-if="card.type !== 'general'" :card="card"></game-card>
+          <general-card v-else :card="card"></general-card>
+        </template>
       </div>
       <card-pagination></card-pagination>
     </div>
@@ -27,11 +20,10 @@
   import generals from '../cards/generals'
   import cards from '../cards'
   import GameCard from 'components/GameCard'
+  import GeneralCard from 'components/GeneralCard'
   import DeckList from 'components/DeckList'
   import CardPagination from 'components/CardPagination'
-  import TextSearch from 'components/TextSearch'
-  import TypeSelect from 'components/TypeSelect'
-  import RaritySelect from 'components/RaritySelect'
+  import FilterArea from 'components/FilterArea'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
@@ -73,11 +65,10 @@
 
     components: {
       GameCard,
+      GeneralCard,
       DeckList,
       CardPagination,
-      TextSearch,
-      TypeSelect,
-      RaritySelect,
+      FilterArea,
     },
   }
 </script>
@@ -99,16 +90,6 @@
 
   .deck-page {
     @include clearfix;
-
-    > .top {
-      > .medium {
-        @include span (4 of 12)
-      }
-
-      > .small {
-        @include span (2 of 12)
-      }
-    }
   }
   
 </style>

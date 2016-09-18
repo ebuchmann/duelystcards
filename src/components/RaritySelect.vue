@@ -1,16 +1,31 @@
 <template>
-  <div class="rarity-select">
-    <input type="checkbox" value="artifact" @change="$store.dispatch('raritySelect', 'basic')"> Basic<br>
-    <input type="checkbox" value="minion" @change="$store.dispatch('raritySelect', 'common')"> Common<br>
-    <input type="checkbox" value="spell" @change="$store.dispatch('raritySelect', 'rare')"> Rare<br>
-    <input type="checkbox" value="spell" @change="$store.dispatch('raritySelect', 'epic')"> Epic<br>
-    <input type="checkbox" value="spell" @change="$store.dispatch('raritySelect', 'legendary')"> Legendary<br>
-  </div>
+  <dropdown-wrapper>
+    <div class="menu">{{ labelText }}</div>
+    <ul class="options">
+      <li :class="{ 'selected': $store.state.cardList.raritySelect.includes('basic') }" @click="$store.dispatch('raritySelect', 'basic')"> Basic</li>
+      <li :class="{ 'selected': $store.state.cardList.raritySelect.includes('common') }" @click="$store.dispatch('raritySelect', 'common')"> Common</li>
+      <li :class="{ 'selected': $store.state.cardList.raritySelect.includes('rare') }" @click="$store.dispatch('raritySelect', 'rare')"> Rare</li>
+      <li :class="{ 'selected': $store.state.cardList.raritySelect.includes('epic') }" @click="$store.dispatch('raritySelect', 'epic')"> Epic</li>
+      <li :class="{ 'selected': $store.state.cardList.raritySelect.includes('legendary') }" @click="$store.dispatch('raritySelect', 'legendary')"> Legendary</li>
+    </ul>
+  </dropdown-wrapper>
 </template>
 
 <script>
-  export default {
+  import DropdownWrapper from 'components/DropdownWrapper'
 
+  export default {
+    computed: {
+      labelText () {
+        return this.$store.state.cardList.raritySelect.length
+          ? this.$store.state.cardList.raritySelect.join(', ')
+          : 'Select rarity'
+      },
+    },
+
+    components: {
+      DropdownWrapper,
+    },
   }
 </script>
 

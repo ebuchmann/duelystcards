@@ -8,3 +8,5 @@
 - Add keyboard shortcuts like left / right to move through pagination
 - Add disabled state to card if you have three in the deck (needs graphic)
 - Add faction icon to navigation
+- Create a card component wrapper to share functions between a general card and other cards
+- Add media query triggers to change # of visible cards

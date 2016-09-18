@@ -8,7 +8,7 @@
 <script>
   export default {
     props: ['card'],
-    
+
     data () {
       return {
         flash: false,
@@ -17,7 +17,7 @@
     },
 
     methods: {
-      selectCard(card) {
+      selectCard (card) {
         this.flash = true
         this.timeout = setTimeout(() => {
           this.flash = false
@@ -25,7 +25,7 @@
         this.$store.dispatch('selectCard', { card, qty: 1 })
       },
 
-      removeCard(card) {
+      removeCard (card) {
         this.$store.dispatch('removeCard', card)
       }
     },
@@ -36,7 +36,7 @@
   @import '../css/includes';
 
   .deck-card {
-    background: #104365;
+    background: $blue;
     height: 40px;
     margin: 3px 0;
     font-family: LatoRegular;

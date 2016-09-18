@@ -1,41 +1,33 @@
 <template>
-  <div class="type-select" tabindex="1">
-    <div class="menu">Any type</div>
+  <dropdown-wrapper>
+    <div class="menu">{{ labelText }}</div>
     <ul class="options">
       <li :class="{ 'selected': $store.state.cardList.typeSelect.includes('artifact')}" @click="$store.dispatch('typeSelect', 'artifact')">Artifact</li>
       <li :class="{ 'selected': $store.state.cardList.typeSelect.includes('minion')}" @click="$store.dispatch('typeSelect', 'minion')">Minion</li>
       <li :class="{ 'selected': $store.state.cardList.typeSelect.includes('spell')}" @click="$store.dispatch('typeSelect', 'spell')">Spell</li>
       <li :class="{ 'selected': $store.state.cardList.typeSelect.includes('general')}" @click="$store.dispatch('typeSelect', 'general')">General</li>
     </ul>
-  </div>
+  </dropdown-wrapper>
 </template>
 
 <script>
-  export default {
+  import DropdownWrapper from 'components/DropdownWrapper'
 
+  export default {
+    computed: {
+      labelText () {
+        return this.$store.state.cardList.typeSelect.length
+          ? this.$store.state.cardList.typeSelect.join(', ')
+          : 'Select type'
+      },
+    },
+
+    components: {
+      DropdownWrapper,
+    },
   }
 </script>
 
 <style lang="sass">
-  .type-select {
-    background: #104365;
-
-    > .menu {
- 
-    }
-
-    > .options {
-      list-style: none;
-      padding: 0;
-      display: none;
-
-      > .selected {
-        background: green;
-      }
-    }
-  }
-
-  .type-select:focus > .options {
-    display: block;
-  }
+  @import '../css/includes';
 </style>

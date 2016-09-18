@@ -53,13 +53,17 @@
   @import '../css/includes';
 
   .faction-navigation {
-    background: rgba(#fff, .75);
+    background: $blue;
     display: inline-block;
+    position: relative;
     float: right;
-    padding: 8px;
 
-    &.opened {
-      background: #fff;
+    &:active, &:focus {
+      outline: none;
+    }
+
+    > .menu {
+      padding: 8px;
     }
 
     &.opened > .links {
@@ -71,14 +75,16 @@
       position: absolute;
       right: 0;
       z-index: $faction-navigation;
-      background: #eee;
+      background: $blue;
 
       > .link {
         padding: 5px 10px;
         cursor: pointer;
+        display: block;
+        min-width: 120px;
 
         &:hover {
-          background: darken(white, 10%);
+          background: darken($blue, 10%)
         }
       }
     }

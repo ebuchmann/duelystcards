@@ -1,6 +1,6 @@
 <template>
   <div class="card-container">
-    <div :class="['game-card', card.type, { 'disabled': inDeck === 'X 3', 'flash': flash, 'dull': dull }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
+    <div :class="['game-card', card.type, { 'disabled': inDeck, 'flash': flash, 'dull': dull }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
       <div class="cost" v-show="card.type !== 'general'">{{ card.cost }}</div>
       <div class="name">{{ card.name }}</div>
       <div class="type" :class="card.type">{{ card.race || card.type }}</div>
@@ -8,7 +8,7 @@
       <div v-if="card.attack" class="attack">{{ card.attack }}</div>
       <div v-if="card.health" class="health">{{ card.health }}</div>
       <div class="text" v-html="card.text"></div>
-      <div class="qty">{{ inDeck }}</div>
+      <div class="qty">{{ inDeck ? 'X 1' : '' }}</div>
     </div>
   </div>
 </template>
@@ -27,20 +27,14 @@ export default {
 
   computed: {
     inDeck () {
-      const matchingCard = this.$store.state.deck.cards.find(card => card.name === this.card.name)
-      if (matchingCard) return `X ${matchingCard.qty}`
+      if (this.$store.state.deck.general) return this.$store.state.deck.general.id === this.card.id
     }
   },
 
   methods: {
     selectCard (card) {
-      if (this.inDeck === 'X 3') return
-
       this.flashCard()
-
-      card.type === 'general'
-        ? this.$store.dispatch('selectGeneral', card)
-        : this.$store.dispatch('selectCard', { card, qty: 1 })
+      this.$store.dispatch('selectGeneral', card)
     },
 
     removeCard (card) {
@@ -102,6 +96,7 @@ export default {
     width: 224px;
     height: 296px;
     background-image: url(https://dl.dropboxusercontent.com/u/24984522/spritesheet.png);
+    color: #fff;
     position: relative;
     text-align: center;
     user-select: none;
@@ -129,6 +124,10 @@ export default {
       &.disabled {
         background-position: -949px -2px;
       }
+    }
+
+    &:hover {
+
     }
 
     > .cost {

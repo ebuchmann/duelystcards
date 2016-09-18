@@ -6,5 +6,8 @@
   "globals": {
     "atob": true,
     "btoa": true
-  }
+  },
+  "plugins": [
+    "vue"
+  ]
 }

@@ -15,15 +15,15 @@
 <script>
   export default {
     computed: {
-      minionCount() {
+      minionCount () {
         return this.$store.state.deck.cards.filter(card => !['spell', 'artifact'].includes(card.type)).reduce((prev, curr) => prev + curr.qty, 0)
       },
 
-      spellCount() {
+      spellCount () {
         return this.$store.state.deck.cards.filter(card => card.type === 'spell').reduce((prev, curr) => prev + curr.qty, 0)
       },
 
-      artifactCount() {
+      artifactCount () {
         return this.$store.state.deck.cards.filter(card => card.type === 'artifact').reduce((prev, curr) => prev + curr.qty, 0)
       },
     },

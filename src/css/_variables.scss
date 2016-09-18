@@ -7,23 +7,13 @@ $gray-light:                #818a91 !default;
 $gray-lighter:              #eceeef !default;
 $gray-lightest:             #f7f7f9 !default;
 
-$brand-primary:             #0275d8 !default;
-$brand-success:             #5cb85c !default;
-$brand-info:                #5bc0de !default;
-$brand-warning:             #f0ad4e !default;
-$brand-danger:              #d9534f !default;
-
-$blue:                      #01afee !default;
-$blue-highlight:            rgba($blue, .15);
-$blue-dark:                 #06637c !default;
-$green:                     #5ad195 !default;
-$green-highlight:           rgba($green, .15);
-$red:                       #ee4025 !default;
-$yellow:                    #fdd900 !default;
-
 $twitch-color:              #6441A5;
 $facebook-color:            #3b5998;
 $twitter-color:             #55acee;
+
+$blue:                      #104365;
+$blue-dark:                 #0b1c27;
+$blue-light:                #01d6f3;
 
 $font-size-root:            16px !default;
 $font-family-sans-serif:    LatoRegular, sans-serif !default;
@@ -34,7 +24,7 @@ $body-color:                #e9e9e9 !default;
 $body-bg:                   #0b1c27 !default;
 $abbr-border-color:         $gray-dark !default;
 $dt-font-weight:            bold !default;
-$link-color:                $brand-primary !default;
+$link-color:                #01afee !default;
 $link-decoration:           none !default;
 $link-hover-color:          darken($link-color, 15%) !default;
 $link-hover-decoration:     none !default;
@@ -54,27 +44,6 @@ $all-fast:                  all .2s ease-out;
 $all-medium:                all .4s ease-out;
 $all-slow:                  all .6s ease-out;
 
-// Icons
-$icon-finished:             '\f05d';
-$icon-unfinished:           '\f06a';
-$icon-abandoned:            '\f057';
-$icon-inprogress:           '\f11b';
-$icon-upnext:               '\f093';
-$icon-caret-down:           '\f0d7';
-$icon-caret-up:             '\f0d8';
-
-$icon-twitch:                '\f1e8';
-$icon-facebook:              '\f230';
-$icon-twitter:               '\f081';
-
-// Game status
-$statuses: (
-    finished:    (color: $green, icon: $icon-finished),
-    unfinished:  (color: $yellow, icon: $icon-unfinished),
-    abandoned:   (color: $red, icon: $icon-abandoned),
-    inprogress:  (color: $blue, icon: $icon-inprogress),
-    upnext:      (color: $blue-dark, icon: $icon-upnext)
-);
-
 // Z-Index
 $faction-navigation: 10;
+$filter-area: 10;

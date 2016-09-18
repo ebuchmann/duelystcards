@@ -25,17 +25,17 @@
 <script>
   export default {
     methods: {
-      percentage(value, highestValue) {
+      percentage (value, highestValue) {
         return value > 0 ? ((value / highestValue) * 100).toFixed(0) : 0
       },
     },
 
     computed: {
-      totalCards() {
+      totalCards () {
         return this.$store.state.deck.totalCards
       },
 
-      curve() {
+      curve () {
         const arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         this.$store.state.deck.cards.forEach(card => {
           card.cost > 8
@@ -69,7 +69,7 @@
       display: inline-block;
 
       > .bar {
-        background: #01d6f3;
+        background: $blue-light;
         position: absolute;
         bottom: 2px;
         width: calc(10% - 2px);
@@ -86,8 +86,8 @@
   }
 
   .mana-numbers {
-    border-top: 1px solid #90cacf;
-    border-bottom: 1px solid #90cacf;
+    border-top: 1px solid $blue-light;
+    border-bottom: 1px solid $blue-light;
     width: 100%;
     @include clearfix;
 
