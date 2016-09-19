@@ -1,16 +1,21 @@
 <template>
-  <div class="top-nav container">
-    <h2 class="logo"><router-link to="/">Deck Builder</router-link></h2>
-    <faction-navigation></faction-navigation>
+  <div class="top-nav">
+    <div class="container">
+      <h2 class="logo"><router-link to="/">Deck Builder</router-link></h2>
+      <faction-navigation></faction-navigation>
+      <import-deck-button></import-deck-button>
+    </div>
   </div>
 </template>
 
 <script>
   import FactionNavigation from './FactionNavigation'
+  import ImportDeckButton from './ImportDeckButton'
 
   export default {
     components: {
-      FactionNavigation
+      FactionNavigation,
+      ImportDeckButton,
     }
   }
 </script>
@@ -19,9 +24,13 @@
   @import '../css/includes';
 
   .top-nav {
+    background: #070e13;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
     @include clearfix;
 
-    > .logo {
+    > .container > .logo {
       float: left;
     }
   }

@@ -1,15 +1,15 @@
 <template>
-  <div :class="['faction-navigation', { 'opened': opened }]" tabindex="0" @blur="close()" ref="nav">
-    <div class="menu" @click="open()">
+  <div :class="['faction-navigation', 'dd-arrow', { 'opened': opened }]" tabindex="0" @click="open()" @blur="close()" ref="nav">
+    <div class="menu">
       <div class="current">{{ faction }}</div>
     </div>
     <div class="links">
-      <span class="link" @click="navigate('/deck/lyonar')">Lyonar</span>
-      <span class="link" @click="navigate('/deck/songhai')">Songhai</span>
-      <span class="link" @click="navigate('/deck/vetruvian')">Vetruvian</span>
-      <span class="link" @click="navigate('/deck/abyssian')">Abyssian</span>
-      <span class="link" @click="navigate('/deck/magmar')">Magmar</span>
-      <span class="link" @click="navigate('/deck/vanar')">Vanar</span>
+      <span class="link" @click.stop="navigate('/deck/lyonar')">Lyonar</span>
+      <span class="link" @click.stop="navigate('/deck/songhai')">Songhai</span>
+      <span class="link" @click.stop="navigate('/deck/vetruvian')">Vetruvian</span>
+      <span class="link" @click.stop="navigate('/deck/abyssian')">Abyssian</span>
+      <span class="link" @click.stop="navigate('/deck/magmar')">Magmar</span>
+      <span class="link" @click.stop="navigate('/deck/vanar')">Vanar</span>
     </div>
   </div>
 </template>
@@ -33,7 +33,7 @@
 
     methods: {
       open () {
-        this.opened = true
+        if (!this.opened) this.opened = true
       },
 
       close () {
@@ -52,18 +52,32 @@
 <style lang="sass">
   @import '../css/includes';
 
+  .dd-arrow {
+    padding-right: 30px;
+
+    &::after {
+      font-family: 'Material Icons';
+      content: '\e313';
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
   .faction-navigation {
     background: $blue;
     display: inline-block;
     position: relative;
     float: right;
+    min-width: 140px;
 
     &:active, &:focus {
       outline: none;
     }
 
     > .menu {
-      padding: 8px;
+      padding: 8px 15px;
     }
 
     &.opened > .links {
@@ -76,12 +90,13 @@
       right: 0;
       z-index: $faction-navigation;
       background: $blue;
+      min-width: 140px;
+      width: 100%;
 
       > .link {
         padding: 5px 10px;
         cursor: pointer;
         display: block;
-        min-width: 120px;
 
         &:hover {
           background: darken($blue, 10%)

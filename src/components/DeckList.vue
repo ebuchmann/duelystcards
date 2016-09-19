@@ -18,11 +18,11 @@
   import DeckCounts from './DeckCounts'
   import DeckGeneral from './DeckGeneral'
   import DeckCard from './DeckCard'
-  import domtoimage from 'dom-to-image';
+  import domtoimage from 'dom-to-image'
 
   export default {
     computed: {
-      cardList() {
+      cardList () {
         return this.$store.state.deck.cards.sort((a, b) => a.name > b.name).sort((a, b) => a.cost > b.cost)
       },
     },
@@ -30,10 +30,10 @@
     methods: {
       async save () {
         const dataUrl = await domtoimage.toJpeg(this.$refs.test)
-        const link = document.createElement('a');
-        link.download = 'my-image-name.jpeg';
-        link.href = dataUrl;
-        link.click();
+        const link = document.createElement('a')
+        link.download = 'my-image-name.jpeg'
+        link.href = dataUrl
+        link.click()
       },
     },
 

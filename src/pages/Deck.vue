@@ -24,7 +24,7 @@
   import DeckList from 'components/DeckList'
   import CardPagination from 'components/CardPagination'
   import FilterArea from 'components/FilterArea'
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapGetters } from 'vuex'
 
   export default {
     computed: mapGetters({
@@ -33,7 +33,7 @@
     }),
 
     watch: {
-      general() {
+      general () {
         if (this.general) this.$store.dispatch('setCardList', [...cards[this.$route.params.faction], ...cards.neutral])
       },
     },
@@ -43,7 +43,7 @@
         const deck = atob(hash.slice(1)).split(',')
         const general = deck.splice(0, 1)[0]
 
-        const [qty, id] = general.split(':')
+        const [, id] = general.split(':')
         await this.$store.dispatch('selectGeneral', generals.find(general => general.id === Number(id)))
         deck.forEach(card => {
           const [qty, id] = card.split(':')
