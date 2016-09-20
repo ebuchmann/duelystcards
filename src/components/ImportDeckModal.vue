@@ -3,8 +3,9 @@
     <div class="import-deck-modal">
       <h1>Import Deck</h1>
       <p>Paste the URL of the deck you want to import</p>
-      <input class="input" ref="url" type="text" />
-      <button @click="handleImport()">Import</button>
+      <input class="input" ref="url" type="text" placeholder="Insert URL" />
+      <button class="success" @click="handleImport()">Import</button>
+      <button class="cancel" @click="closeModal()">Cancel</button>
     </div>
   </general-modal>
 </template>
@@ -32,15 +33,23 @@
         }
       },
 
-      handleImport () {
+      closeModal () {
+        this.modal = false
+        this.$refs.url.value = ''
+      },
+
+      async handleImport () {
         const url = this.$refs.url.value
         if (!url) return
-        
-        const hash = url.substring(url.indexOf('#') + 1)
 
-        this.$router.push({ path: `/deck/lyonar/#${hash}`} )
-        this.modal = false;
-      }
+        const hash = url.substring(url.indexOf('#'))
+
+        await this.$store.dispatch('clearDeck')
+        const faction = await this.$store.dispatch('loadDeck', hash)
+
+        this.$router.push({ path: `/deck/${faction}/${hash}`} )
+        this.closeModal()
+      },
     },
 
     created () {
@@ -61,9 +70,26 @@
     padding: 30px;
 
     > .input {
-      background: $blue-light;
+      background: $blue-dark;
       border: none;
-      color: black;
+      color: $light;
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
     }
+  }
+
+  button {
+    border: none;
+    padding: 8px;
+    color: $light;
+  }
+
+  button.success {
+    background: $blue-light;
+  }
+
+  button.cancel {
+    background: $gray-dark;
   }
 </style>

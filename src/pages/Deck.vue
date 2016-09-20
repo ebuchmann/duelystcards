@@ -17,8 +17,6 @@
 </template>
 
 <script>
-  import generals from '../cards/generals'
-  import cards from '../cards'
   import GameCard from 'components/GameCard'
   import GeneralCard from 'components/GeneralCard'
   import DeckList from 'components/DeckList'
@@ -29,38 +27,23 @@
   export default {
     computed: mapGetters({
       visibleCards: 'visibleCards',
-      general: 'general'
     }),
 
-    watch: {
-      general () {
-        if (this.general) this.$store.dispatch('setCardList', [...cards[this.$route.params.faction], ...cards.neutral])
-      },
-    },
-
     methods: {
-      async loadDeck (hash) {
-        const deck = atob(hash.slice(1)).split(',')
-        const general = deck.splice(0, 1)[0]
-
-        const [, id] = general.split(':')
-        await this.$store.dispatch('selectGeneral', generals.find(general => general.id === Number(id)))
-        deck.forEach(card => {
-          const [qty, id] = card.split(':')
-          this.$store.dispatch('selectCard', { card: this.$store.state.cardList.cards.find(c => c.id === Number(id)), qty: Number(qty) })
-        })
-      },
-
       swapPage (event) {
         event.preventDefault()
         event.wheelDelta > 0
           ? this.$store.dispatch('goToPage', -1)
           : this.$store.dispatch('goToPage', 1)
-      }
+      },
     },
 
-    created () {
-      if (this.$route.hash) this.loadDeck(this.$route.hash)
+    // watch: {
+    //   '$route': 'test'
+    // },
+
+    created() {
+      if (this.$store.state.route.hash) this.$store.dispatch('loadDeck', this.$store.state.route.hash)
     },
 
     components: {

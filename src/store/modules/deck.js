@@ -6,6 +6,7 @@ import {
   INCREMENT_CARD,
   DECREMENT_CARD,
   CLEAR_DECK,
+  SET_FACTION,
 } from '../mutation-types'
 
 const state = {
@@ -13,6 +14,7 @@ const state = {
   cards: [],
   totalCards: 0,
   spirit: 0,
+  faction: '',
 }
 
 const spiritCosts = {
@@ -33,6 +35,10 @@ const mutations = {
     state.cards.push(card)
     state.totalCards += qty
     if (card.rarity) state.spirit += (spiritCosts[card.rarity] * qty)
+  },
+
+  [SET_FACTION] (state, faction) {
+    state.faction = faction
   },
 
   [REMOVE_CARD] (state, index) {

@@ -38,8 +38,6 @@
 
   .modal-container {
     margin: 0 auto;
-    box-shadow: $light-shadow;
-    transition: $all-fast;
   }
 
   .modal-enter, .modal-leave {

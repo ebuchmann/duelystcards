@@ -14,56 +14,60 @@
 </template>
 
 <script>
-export default {
-  props: ['card'],
+  import updateHash from 'utils/updateHash'
 
-  data () {
-    return {
-      flash: false,
-      dull: false,
-      timeout: null,
-    }
-  },
+  export default {
+    props: ['card'],
 
-  computed: {
-    inDeck () {
-      const matchingCard = this.$store.state.deck.cards.find(card => card.name === this.card.name)
-      if (matchingCard) return `X ${matchingCard.qty}`
-    }
-  },
-
-  methods: {
-    selectCard (card) {
-      if (this.inDeck === 'X 3') return
-
-      this.flashCard()
-
-      card.type === 'general'
-        ? this.$store.dispatch('selectGeneral', card)
-        : this.$store.dispatch('selectCard', { card, qty: 1 })
+    data () {
+      return {
+        flash: false,
+        dull: false,
+        timeout: null,
+      }
     },
 
-    removeCard (card) {
-      this.flashDull()
-      this.$store.dispatch('removeCard', card)
+    computed: {
+      inDeck () {
+        const matchingCard = this.$store.state.deck.cards.find(card => card.name === this.card.name)
+        if (matchingCard) return `X ${matchingCard.qty}`
+      }
     },
 
-    flashCard () {
-      clearTimeout(this.timeout)
-      this.flash = true
-      this.timeout = setTimeout(() => {
-        this.flash = false
-      }, 200)
-    },
+    methods: {
+      selectCard (card) {
+        if (this.inDeck === 'X 3') return
 
-    flashDull () {
-      this.dull = true
-      setTimeout(() => {
-        this.dull = false
-      }, 200)
-    }
-  },
-}
+        this.flashCard()
+
+        this.$store.dispatch('selectCard', { card, qty: 1 })
+        updateHash(this.$store.state.deck)
+      },
+
+      removeCard (card) {
+        if (!this.inDeck) return
+
+        this.flashDull()
+        this.$store.dispatch('removeCard', card)
+        updateHash(this.$store.state.deck)
+      },
+
+      flashCard () {
+        clearTimeout(this.timeout)
+        this.flash = true
+        this.timeout = setTimeout(() => {
+          this.flash = false
+        }, 200)
+      },
+
+      flashDull () {
+        this.dull = true
+        setTimeout(() => {
+          this.dull = false
+        }, 200)
+      }
+    },
+  }
 </script>
 
 <style lang="sass">
