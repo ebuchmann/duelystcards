@@ -64,18 +64,21 @@ export const loadDeck = async ({ commit, dispatch, state }, hash) => {
 
 export const textSearch = ({ commit }, text) => {
   commit(types.TEXT_SEARCH, text)
+  commit(types.SET_PAGE, 1)
 }
 
 export const typeSelect = ({ commit, state }, type) => {
   const typeSelect = [...state.cardList.typeSelect]
   typeSelect.includes(type) ? typeSelect.splice(typeSelect.indexOf(type), 1) : typeSelect.push(type)
   commit(types.SELECT_TYPE, typeSelect)
+  commit(types.SET_PAGE, 1)
 }
 
 export const raritySelect = ({ commit, state }, rarity) => {
   const raritySelect = [...state.cardList.raritySelect]
   raritySelect.includes(rarity) ? raritySelect.splice(raritySelect.indexOf(rarity), 1) : raritySelect.push(rarity)
   commit(types.SELECT_RARITY, raritySelect)
+  commit(types.SET_PAGE, 1)
 }
 
 export const goToPage = ({ commit, state }, direction) => {
