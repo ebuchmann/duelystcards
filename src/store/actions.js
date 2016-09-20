@@ -35,7 +35,6 @@ export const removeCard = ({ commit, state }, card) => {
 
 export const clearDeck = ({ commit, state, dispatch }) => new Promise(resolve => {
   commit(types.CLEAR_DECK)
-  dispatch('updateHash')
   resolve()
 })
 

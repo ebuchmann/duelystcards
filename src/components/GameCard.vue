@@ -5,7 +5,7 @@
       <div class="name">{{ card.name }}</div>
       <div class="type" :class="card.type">{{ card.race || card.type }}</div>
       <div class="rarity" :class="[card.rarity]"></div>
-      <div v-if="card.attack" class="attack">{{ card.attack }}</div>
+      <div v-if="card.attack || card.attack >= 0" class="attack">{{ card.attack }}</div>
       <div v-if="card.health" class="health">{{ card.health }}</div>
       <div class="text" v-html="card.text"></div>
       <div class="qty">{{ inDeck }}</div>
@@ -192,20 +192,20 @@
       }
     }
 
-    > .attack {
+    > .attack, > .health {
       position: absolute;
-      top: 168px;
-      left: 27px;
       width: 50px;
       text-align: center;
+      font-size: 1.2rem;
+      top: 166px;
+    }
+
+    > .attack {
+      left: 27px;
     }
 
     > .health {
-      position: absolute;
-      top: 168px;
       left: 148px;
-      width: 50px;
-      text-align: center;
     }
 
     > .text {

@@ -29,12 +29,25 @@
       visibleCards: 'visibleCards',
     }),
 
+    data () {
+      return {
+        scrolling: false,
+      }
+    },
+
     methods: {
       swapPage (event) {
         event.preventDefault()
+        if (this.scrolling) return
+
+        this.scrolling = true
         event.wheelDelta > 0
           ? this.$store.dispatch('goToPage', -1)
           : this.$store.dispatch('goToPage', 1)
+
+        setTimeout(() => {
+          this.scrolling = false
+        }, 100)
       },
     },
 

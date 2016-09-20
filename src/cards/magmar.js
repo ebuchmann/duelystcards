@@ -15,7 +15,7 @@ const magmar = [
   { id: 406, name: 'Phalanxar', type: 'minion', cost: 2, rarity: 'basic', attack: 6, health: 1, faction: 'magmar', text: '' },
   { id: 20114, name: 'Tremor', type: 'spell', cost: 2, rarity: 'common', faction: 'magmar', text: '<b>Stun</b> enemy minions in a 2x2 area.' },
   { id: 412, name: 'Young Silithar', type: 'minion', cost: 2, rarity: 'common', attack: 2, health: 3, faction: 'magmar', text: '<b>Rebirth</b>' },
-  { id: 402, name: 'Earth Walker', type: 'minion', cost: 3, rarity: 'basic', faction: 'magmar', text: '<b>Grow</b>: +1/+1.' },
+  { id: 402, name: 'Earth Walker', type: 'minion', cost: 3, rarity: 'basic', attack: 3, health: 3, faction: 'magmar', text: '<b>Grow</b>: +1/+1.' },
   { id: 20162, name: 'Kinetic Equilibrium', type: 'spell', cost: 3, rarity: 'rare', faction: 'magmar', text: 'Deal 2 damage to ALL minion in a 3x3 area. Friendly minions in the area also gain +2 Attack.' },
   { id: 423, name: 'Moloki Huntress', type: 'minion', cost: 3, rarity: 'epic', attack: 1, health: 2, faction: 'magmar', text: '<b>Grow</b>: +1/+1. Friendly minions grow at the start of BOTH player\'s turns.' },
   { id: 410, name: 'Primordial Gazer', type: 'minion', cost: 3, rarity: 'basic', attack: 2, health: 2, faction: 'magmar', text: '<b>Opening Gambit</b>: Give a nearby friendly minion +2/+2.' },

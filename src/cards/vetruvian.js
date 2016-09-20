@@ -31,7 +31,7 @@ const vetruvian = [
   { id: 20078, name: 'Time Maelstrom', type: 'spell', cost: 3, rarity: 'legendary', faction: 'vetruvian', text: 'Reactivate your General.' },
   { id: 30008, name: 'Wildfire Ankh', type: 'artifact', cost: 3, rarity: 'epic', faction: 'vetruvian', text: 'Your General gains <b>Blast</b>.' },
   { id: 216, name: 'Windstorm Obelysk', type: 'minion', race: 'structure', cost: 3, rarity: 'common', attack: 0, health: 6, faction: 'vetruvian', text: '<b>Summon Dervish</b><br> Your Dervishes have +1 Health.' },
-  { id: 231, name: 'Allomancer', type: 'minion', cost: 4, rarity: 'epic', faction: 'vetruvian', text: '<b>Dying Wish</b>: Summon a random Obelysk on this space.' },
+  { id: 231, name: 'Allomancer', type: 'minion', cost: 4, rarity: 'epic', attack: 4, health: 3, faction: 'vetruvian', text: '<b>Dying Wish</b>: Summon a random Obelysk on this space.' },
   { id: 20077, name: 'Entropic Decay', type: 'spell', cost: 4, rarity: 'basic', faction: 'vetruvian', text: 'Destroy an enemy minion nearby your General.' },
   { id: 30011, name: 'Hexblade', type: 'artifact', cost: 4, rarity: 'legendary', faction: 'vetruvian', text: 'Your General gains +3 Attack. Whenever your General damages an enemy minion, it\'s Attack becomes 1.' },
   { id: 219, name: 'Mirage Master', type: 'minion', cost: 4, rarity: 'epic', attack: 1, health: 1, faction: 'vetruvian', text: '<b>Opening Gambit</b>: This minion transforms into a copy of an enemy minion.' },

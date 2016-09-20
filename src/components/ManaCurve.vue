@@ -97,6 +97,7 @@
       text-align: center;
       font-size: .8rem;
       float: left;
+      padding-top: 2px;
     }
   }
 </style>

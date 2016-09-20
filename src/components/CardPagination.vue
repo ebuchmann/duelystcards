@@ -23,22 +23,25 @@
   .card-pagination {
     text-align: center;
 
-    > .next {
-      background-image: url(https://dl.dropboxusercontent.com/u/24984522/dialogue_carat.png);
+    > .next, > .prev {
       background-repeat: no-repeat;
       width: 32px;
       height: 40px;
       display: inline-block;
+    }
+
+    > .next {
+      background-image: url(https://dl.dropboxusercontent.com/u/24984522/dialogue_carat.png);
       float: right;
     }
 
     > .prev {
       background-image: url(https://dl.dropboxusercontent.com/u/24984522/dialogue_carat_left.png);
-      background-repeat: no-repeat;
-      width: 32px;
-      height: 40px;
-      display: inline-block;
       float: left;
+    }
+
+    > .text {
+      padding-top: 8px;
     }
   }
 

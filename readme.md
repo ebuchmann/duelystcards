@@ -2,11 +2,26 @@
 ## by ebuchmann
 
 ### TODO
-- Add Search and filtering options
-- Add set/expansion info to cards
+- Add set/expansion info to card data
 - Prevent free unlocked cards from costing spirit (probably spirit: 0 and check for that before applying regular spirit)
-- Add keyboard shortcuts like left / right to move through pagination
-- Add disabled state to card if you have three in the deck (needs graphic)
-- Add faction icon to navigation
+- Add faction icon to navigation (if there is one)
 - Create a card component wrapper to share functions between a general card and other cards
+- Warn about no general on imports (catch thrown error)
+- Card spell/unit images
+- Reset to page 1 when swapping factions
+- Add some footer info, github link, etc.
+
+### Improvements
+- Icon on "import deck" button
+- Icon on "save deck" button
+- Attempt to find faction from import if general is missing
 - Add media query triggers to change # of visible cards
+- Add background behind faction text on faction select screen
+- Hide "save deck" button if the deck is empty
+- Sprite maps for all small icons
+
+### Beta
+- Server or host on GitHub
+- Add Google Analytics
+- Move images off dropbox
+- Webpack deploy scripts
