@@ -46,7 +46,7 @@
   top: -80px;
   right: -40px;
   z-index: 2;
-  transform: scale(.5);
+  transform: scaleX(-0.5) scaleY(0.5);
   width: 160px;
   height: 160px;
 }

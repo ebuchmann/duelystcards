@@ -9,8 +9,6 @@
 - Warn about no general on imports (catch thrown error)
 - Add some footer info, github link, etc.
 - Fix deck list (side) sorting
-- Count general as a card in the 40 count
-- Limit deck to 40 cards
 
 ### Improvements
 - Icon on "import deck" button

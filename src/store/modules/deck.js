@@ -27,6 +27,7 @@ const spiritCosts = {
 
 const mutations = {
   [SELECT_GENERAL] (state, general) {
+    if (state.general === null) state.totalCards++
     state.general = general
   },
 
