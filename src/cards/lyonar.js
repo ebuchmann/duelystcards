@@ -34,7 +34,7 @@ const lyonar = [
   { id: 30018, name: 'Arclyte Regalia', type: 'artifact', cost: 4, rarity: 'legendary', faction: 'lyonar', text: 'Your General gains +2 Attack. The first time your General takes damage each turn, prevent 2 of it.' },
   { id: 20128, name: 'Decimate', type: 'spell', cost: 4, rarity: 'legendary', faction: 'lyonar', text: 'Destroy ALL minions that are not nearby any General.' },
   { id: 20067, name: 'Holy Immolation', type: 'spell', cost: 4, rarity: 'epic', faction: 'lyonar', text: 'Restore 4 Health to a friendly minon. Deal 4 damage to enemy minions and Generals around it.' },
-  { id: 20186, name: 'Ironcliffe Heart', type: 'spell', cost: 4, rarity: 'ecpi', faction: 'lyonar', text: 'Transform a friendly minion into an Ironcliffe Guardian' },
+  { id: 20186, name: 'Ironcliffe Heart', type: 'spell', cost: 4, rarity: 'epic', faction: 'lyonar', text: 'Transform a friendly minion into an Ironcliffe Guardian' },
   { id: 8, name: 'Lysian Brawler', type: 'minion', cost: 4, rarity: 'basic', attack: 4, health: 4, faction: 'lyonar', text: '<b>Celerity</b>' },
   { id: 24, name: 'Sun Sister Sterope', type: 'minion', cost: 4, rarity: 'legendary', attack: 4, health: 4, faction: 'lyonar', text: 'Whenever ANY minion or General is healed, put a True Strike into your action bar.' },
   { id: 22, name: 'Sunriser', type: 'minion', cost: 4, rarity: 'epic', attack: 3, health: 4, faction: 'lyonar', text: 'Whenever ANY minion or General is healed, deal 2 damage to all nearby enemies.' },

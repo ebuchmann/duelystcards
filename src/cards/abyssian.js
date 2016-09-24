@@ -37,7 +37,7 @@ const abyssian = [
   { id: 324, name: 'Shadow Sister Kelaino', type: 'minion', cost: 4, rarity: 'legendary', attack: 2, health: 5, faction: 'abyssian', text: 'Whenever an enemy minion or General takes damage, restore 1 Health to your General.' },
   { id: 321, name: 'Black Solus', type: 'minion', cost: 5, rarity: 'epic', attack: 4, health: 7, faction: 'abyssian', text: 'Whenever you summon a Wraithling, this gains +2 Attack.' },
   { id: 20061, name: 'Dark Transformation', type: 'spell', cost: 5, rarity: 'basic', faction: 'abyssian', text: 'Destroy an enemy minion and summon a 1/1 Wraithling on that space.' },
-  { id: 20050, name: 'Nether Summoning', type: 'spell', cost: 5, rarity: 'artifact', faction: 'abyssian', text: 'Summon 2 non-token minions destroyed since the end of your last turn nearby.' },
+  { id: 20050, name: 'Nether Summoning', type: 'spell', cost: 5, rarity: 'legendary', faction: 'abyssian', text: 'Summon 2 non-token minions destroyed since the end of your last turn nearby.' },
   { id: 325, name: 'Night Fiend', type: 'minion', cost: 5, rarity: 'common', attack: 3, health: 3, faction: 'abyssian', text: '<b>Opening Gambit</b>: Deal 2 damage to each enemy on or near friendly <b>Shadow Creep</b>.' },
   { id: 322, name: 'Reaper of the Nine Moons', type: 'minion', cost: 5, rarity: 'epic', attack: 5, health: 3, faction: 'abyssian', text: '<b>Flying</b><br> <b>Dying Wish</b>: Summon a random minion from the opponent\'s deck on this space.' },
   { id: 20154, name: 'Rite Of The Undervault', type: 'spell', cost: 5, rarity: 'epic', faction: 'abyssian', text: 'Draw to fill your action bar.' },
