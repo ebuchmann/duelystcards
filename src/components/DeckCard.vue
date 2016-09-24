@@ -2,6 +2,7 @@
   <div :class="['deck-card', { 'flash': flash, 'dull': dull }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
     <div class="cost">{{ card.cost }}</div>
     <div class="name">{{ card.name }} x{{ card.qty }}</div>
+    <div :class="spriteClass"></div>
   </div>
 </template>
 
@@ -14,6 +15,12 @@
         flash: false,
         dull: false,
       }
+    },
+
+    computed: {
+      spriteClass () {
+        return `sprite ${this.card.type}-sm ${this.card.faction}-sprite ${this.card.faction}-${this.card.id}`
+      },
     },
 
     methods: {
@@ -37,9 +44,10 @@
 
   .deck-card {
     background: $blue;
-    height: 40px;
+    height: 44px;
     margin: 3px 0;
-    font-family: LatoRegular;
+    position: relative;
+    overflow: hidden;
 
     > .cost {
       line-height: 40px;

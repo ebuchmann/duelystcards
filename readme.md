@@ -7,9 +7,8 @@
 - Add faction icon to navigation (if there is one)
 - Create a card component wrapper to share functions between a general card and other cards
 - Warn about no general on imports (catch thrown error)
-- Card spell/unit images
-- Reset to page 1 when swapping factions
 - Add some footer info, github link, etc.
+- Fix deck list (side) sorting
 
 ### Improvements
 - Icon on "import deck" button

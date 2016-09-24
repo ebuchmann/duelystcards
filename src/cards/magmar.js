@@ -8,7 +8,7 @@ const magmar = [
   { id: 20202, name: 'Razor Skin', type: 'spell', cost: 1, rarity: 'common', faction: 'magmar', text: 'Give all friendly minions +1 Attack. Put a random Battle Pet into your action bar.' },
   { id: 421, name: 'Rex', type: 'minion', race: 'battle pet', cost: 1, rarity: 'common', attack: 3, health: 1, faction: 'magmar', text: '<b>Rebirth</b>' },
   { id: 20113, name: 'Diretide Frenzy', type: 'spell', cost: 2, rarity: 'spell', faction: 'magmar', text: 'Give a friendly minion +1 Attack and <b>Frenzy</b>.' },
-  { id: 133720, name: 'Gro', type: 'minion', race: 'battle pet', cost: 2, rarity: 'rare', attack: 2, health: 4, faction: 'magmar', text: '<b>Grow</b>: +1/+1.' },
+  { id: 420, name: 'Gro', type: 'minion', race: 'battle pet', cost: 2, rarity: 'rare', attack: 2, health: 4, faction: 'magmar', text: '<b>Grow</b>: +1/+1.' },
   { id: 30013, name: 'Iridium Scale', type: 'artifact', cost: 2, rarity: 'epic', faction: 'magmar', text: 'Your General gains <b>Frenzy</b>.' },
   { id: 409, name: 'Kujata', type: 'minion', cost: 2, rarity: 'epic', attack: 2, health: 2, faction: 'magmar', text: 'Your minions cost 1 less to summon and take 1 damage when summoned from your action bar.' },
   { id: 20125, name: 'Natural Selection', type: 'spell', cost: 2, rarity: 'basic', faction: 'magmar', text: 'Destroy ANY minion with the lowest Attack or tied for the lowest Attack.' },

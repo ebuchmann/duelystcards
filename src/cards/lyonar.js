@@ -10,7 +10,7 @@ const lyonar = [
   { id: 20161, name: 'Magnetize', type: 'spell', cost: 1, rarity: 'rare', faction: 'lyonar', text: 'Pull ANY minion to the space in front of your General.' },
   { id: 14, name: 'Silverguard Squire', type: 'minion', cost: 1, rarity: 'common', attack: 1, health: 4, faction: 'lyonar', text: '' },
   { id: 20043, name: 'Sundrop Elixir', type: 'spell', cost: 1, rarity: 'common', faction: 'lyonar', text: 'Restore 5 Health to a minion or General.' },
-  { id: 233713, name: 'True Strike', type: 'spell', cost: 1, rarity: 'basic', faction: 'lyonar', text: 'Deal 2 damage to a minion.' },
+  { id: 20066, name: 'True Strike', type: 'spell', cost: 1, rarity: 'basic', faction: 'lyonar', text: 'Deal 2 damage to a minion.' },
   { id: 21, name: 'Azurite Lion', type: 'minion', cost: 2, rarity: 'common', attack: 2, health: 3, faction: 'lyonar', text: '<b>Celerity</b>' },
   { id: 25, name: 'Fiz', type: 'minion', race: 'battle pet', cost: 2, rarity: 'rare', attack: 3, health: 3, faction: 'lyonar', text: '<b>Opening Gambit</b>: Restore 2 Health to a minion or General.' },
   { id: 20046, name: 'Lasting Judgement', type: 'spell', cost: 2, rarity: 'rare', faction: 'lyonar', text: 'Give ANY minion +3 Attack, but -3 Health.' },

@@ -1,6 +1,7 @@
 <template>
   <div class="card-container">
     <div :class="['game-card', card.type, { 'disabled': inDeck, 'flash': flash, 'dull': dull }]" @click="selectCard(card)" @contextmenu.prevent>
+      <div :class="['sprite', spriteClass]"></div>
       <div class="cost" v-show="card.type !== 'general'">{{ card.cost }}</div>
       <div class="name">{{ card.name }}</div>
       <div class="type" :class="card.type">{{ card.race || card.type }}</div>
@@ -30,6 +31,10 @@
     computed: {
       inDeck () {
         if (this.$store.state.deck.general) return this.$store.state.deck.general.id === this.card.id
+      },
+
+      spriteClass () {
+        return `${this.card.type} ${this.card.type}-sprite ${this.card.type}-${this.card.id}`
       }
     },
 
@@ -55,4 +60,8 @@
 
 <style lang="sass">
   @import '../css/includes';
+
+  .game-card {
+
+  }
 </style>

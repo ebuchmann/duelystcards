@@ -43,6 +43,7 @@
       navigate (path) {
         this.$router.push({ path })
         this.$store.dispatch('clearDeck')
+        this.$store.commit('SET_PAGE', 1)
         this.$refs.nav.blur()
       },
     },

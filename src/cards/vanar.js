@@ -44,7 +44,7 @@ const vanar = [
   { id: 532, name: 'Huldra', type: 'minion', cost: 5, rarity: 'rare', attack: 3, health: 4, faction: 'vanar', text: '<b>Opening Gambit</b>: Give a friendly Vespyr minion <b>Celerity</b>.' },
   { id: 20163, name: 'Spirit of the Wild', type: 'spell', cost: 5, rarity: 'epic', faction: 'vanar', text: 'Reactivate friendly minions on your opponent\'s starting side of the battlefield.' },
   { id: 20146, name: 'Aspect of the Mountains', type: 'spell', cost: 6, rarity: 'legendary', faction: 'vanar', text: 'Transform ANY minion into a 5/5 Seismic Elemental. Deal 5 damage to enemy minions around it.' },
-  { id: 133742, name: 'Draugar Lord', type: 'minion', race: 'vespyr', cost: 6, rarity: 'epic', attack: 4, health: 8, faction: 'vanar', text: '<b>Dying Wish</b>: Summon a 4/8 Ice Drake on this space.' },
+  { id: 508, name: 'Draugar Lord', type: 'minion', race: 'vespyr', cost: 6, rarity: 'epic', attack: 4, health: 8, faction: 'vanar', text: '<b>Dying Wish</b>: Summon a 4/8 Ice Drake on this space.' },
   { id: 514, name: 'Ancient Grove', type: 'minion', race: 'vespyr', cost: 7, rarity: 'legendary', attack: 7, health: 7, faction: 'vanar', text: '<b>Provoke</b><br> <b>Opening Gambit</b>: You rminions gain "<b>Dying Wish</b>: Summon a 1/1 Treant with <b>Provoke</b>."' },
   { id: 20212, name: `Winter's Wake`, type: 'spell', cost: 8, rarity: 'legendary', faction: 'vanar', text: 'Give all friendly Wall minions +4/+4. Those minions can now move.' },
 ]

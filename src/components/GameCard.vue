@@ -1,6 +1,7 @@
 <template>
   <div class="card-container">
     <div :class="['game-card', card.type, { 'disabled': inDeck === 'X 3', 'flash': flash, 'dull': dull }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
+      <div :class="['sprite', spriteClass]"></div>
       <div class="cost" v-show="card.type !== 'general'">{{ card.cost }}</div>
       <div class="name">{{ card.name }}</div>
       <div class="type" :class="card.type">{{ card.race || card.type }}</div>
@@ -31,6 +32,10 @@
       inDeck () {
         const matchingCard = this.$store.state.deck.cards.find(card => card.name === this.card.name)
         if (matchingCard) return `X ${matchingCard.qty}`
+      },
+
+      spriteClass () {
+        return `${this.card.type} ${this.card.faction}-sprite ${this.card.faction}-${this.card.id}`
       }
     },
 

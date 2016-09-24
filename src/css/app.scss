@@ -4,6 +4,16 @@
 /* Files */
 @import 'reboot';
 
+/* Sprites */
+@import 'sprites/abyssian';
+@import 'sprites/generals';
+@import 'sprites/lyonar';
+@import 'sprites/songhai';
+@import 'sprites/magmar';
+@import 'sprites/neutral';
+@import 'sprites/vanar';
+@import 'sprites/vetruvian';
+
 @font-face {
   font-family: LatoRegular;
   src: url(https://dl.dropboxusercontent.com/u/24984522/Lato-Regular.woff);
@@ -16,4 +26,35 @@
   @include breakpoint(vl) {
     margin: 0 auto;
   }
+}
+
+.sprite.minion, .sprite.general {
+  top: -54px;
+  left: 34px;
+  width: 160px;
+  height: 160px;
+}
+
+.sprite.spell, .sprite.artifact {
+  top: 24px;
+  left: 64px;
+  width: 96px;
+  height: 96px;
+}
+
+.sprite.minion-sm, .sprite.general-sm {
+  top: -80px;
+  right: -40px;
+  z-index: 2;
+  transform: scale(.5);
+  width: 160px;
+  height: 160px;
+}
+
+.sprite.spell-sm, .sprite-general-sm {
+  top: -28px;
+  right: -10px;
+  transform: scale(.6);
+  width: 96px;
+  height: 96px;
 }
