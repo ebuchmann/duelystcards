@@ -1,7 +1,7 @@
 import generals from '../cards/generals'
 import allCards from '../cards'
 
-export const filteredCards = ({ route, cardList }) => {
+export const filteredCards = ({ route, deck, cardList }) => {
   const faction = route.params.faction
 
   let cards = [...generals.filter(card => card.faction === faction), ...allCards[faction], ...allCards.neutral]
@@ -11,6 +11,7 @@ export const filteredCards = ({ route, cardList }) => {
   if (typeSelect.length) cards = cards.filter(card => typeSelect.includes(card.type))
   if (raritySelect.length) cards = cards.filter(card => raritySelect.includes(card.rarity))
   if (factionSelect.length) cards = cards.filter(card => factionSelect.includes(card.faction))
+  if (!deck.general) cards = cards.filter(card => card.type === 'general')
 
   return cards
 }

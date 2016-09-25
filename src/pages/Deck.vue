@@ -79,6 +79,7 @@
 
   .right-column {
     @include span(3 of 12 last)
+    margin-top: 60px;
   }
 
   .card-grid {

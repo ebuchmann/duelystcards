@@ -8,7 +8,6 @@
 - Warn about no general on imports (catch thrown error)
 - Add some footer info, github link, etc.
 - Fix deck list (side) sorting
-- Add general graphic to deck list
 - Fix spacing between cards and filter options
 
 ### Improvements
