@@ -9,6 +9,9 @@
     <div class="small">
       <rarity-select></rarity-select>
     </div>
+    <div class="small">
+      <filter-faction></filter-faction>
+    </div>
   </div>
 </template>
 
@@ -16,12 +19,14 @@
   import TextSearch from 'components/TextSearch'
   import TypeSelect from 'components/TypeSelect'
   import RaritySelect from 'components/RaritySelect'
+  import FilterFaction from 'components/FilterFaction'
 
   export default {
     components: {
       TextSearch,
       TypeSelect,
       RaritySelect,
+      FilterFaction,
     }
   }
 </script>
@@ -31,6 +36,7 @@
 
   .filter-area {
     height: 40px;
+    position: relative;
     z-index: $filter-area;
 
     > .medium {

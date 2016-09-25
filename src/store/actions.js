@@ -83,6 +83,13 @@ export const raritySelect = ({ commit, state }, rarity) => {
   commit(types.SET_PAGE, 1)
 }
 
+export const factionSelect = ({ commit, state }, faction) => {
+  const factionSelect = [...state.cardList.factionSelect]
+  factionSelect.includes(faction) ? factionSelect.splice(factionSelect.indexOf(faction), 1) : factionSelect.push(faction)
+  commit(types.SELECT_FACTION, factionSelect)
+  commit(types.SET_PAGE, 1)
+}
+
 export const goToPage = ({ commit, state }, direction) => {
   const currentPage = state.cardList.currentPage
   if (direction === -1 && currentPage > 1) commit(types.SET_PAGE, currentPage + direction)

@@ -5,6 +5,7 @@ import {
   TEXT_SEARCH,
   SELECT_TYPE,
   SELECT_RARITY,
+  SELECT_FACTION,
 } from '../mutation-types'
 
 const state = {
@@ -14,6 +15,7 @@ const state = {
   textSearch: '',
   typeSelect: [],
   raritySelect: [],
+  factionSelect: [],
 }
 
 const mutations = {
@@ -39,6 +41,10 @@ const mutations = {
 
   [SELECT_RARITY] (state, raritySelect) {
     state.raritySelect = raritySelect
+  },
+
+  [SELECT_FACTION] (state, factionSelect) {
+    state.factionSelect = factionSelect
   },
 }
 
