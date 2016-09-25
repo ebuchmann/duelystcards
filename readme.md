@@ -7,7 +7,6 @@
 - Create a card component wrapper to share functions between a general card and other cards
 - Warn about no general on imports (catch thrown error)
 - Add some footer info, github link, etc.
-- Fix deck list (side) sorting
 - Fix spacing between cards and filter options
 
 ### Improvements

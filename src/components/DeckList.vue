@@ -16,11 +16,12 @@
   import DeckGeneral from './DeckGeneral'
   import DeckCard from './DeckCard'
   import domtoimage from 'dom-to-image'
+  import sortBy from 'lodash.sortby'
 
   export default {
     computed: {
       cardList () {
-        return this.$store.state.deck.cards.sort((a, b) => a.name > b.name).sort((a, b) => a.cost > b.cost)
+        return sortBy(this.$store.state.deck.cards, ['cost', 'name'])
       },
     },
 
