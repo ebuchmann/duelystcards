@@ -6,7 +6,7 @@
     <div class="cards">
       <deck-card v-for="card in cardList" :card="card"></deck-card>
     </div>
-    <button class="save-deck" @click="save()" :disabled="saving">Save Deck</button>
+    <button v-if="$store.state.deck.cards.length" class="save-deck" @click="save()" :disabled="saving">Save Deck</button>
   </div>
 </template>
 

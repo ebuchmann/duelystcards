@@ -17,7 +17,6 @@
 - Attempt to find faction from import if general is missing
 - Add media query triggers to change # of visible cards
 - Add background behind faction text on faction select screen
-- Hide "save deck" button if the deck is empty
 - Sprite maps for all small icons
 
 ### Beta
