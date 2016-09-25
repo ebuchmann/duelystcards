@@ -3,6 +3,7 @@
     <div class="import-deck-modal">
       <h1>Import Deck</h1>
       <p>Paste the URL of the deck you want to import</p>
+      <p v-if="error">There was an issue importing the deck. Please make sure the URL is correct and that the exported deck has a general.</p>
       <input class="input" ref="url" type="text" placeholder="Insert URL" />
       <button class="success" @click="handleImport()">Import</button>
       <button class="cancel" @click="closeModal()">Cancel</button>
@@ -18,6 +19,7 @@
     data () {
       return {
         modal: false,
+        error: false,
       }
     },
 
@@ -39,16 +41,21 @@
       },
 
       async handleImport () {
-        const url = this.$refs.url.value
-        if (!url) return
+        try {
+          this.error = false
+          const url = this.$refs.url.value
+          if (!url) return
 
-        const hash = url.substring(url.indexOf('#'))
+          const hash = url.substring(url.indexOf('#'))
 
-        await this.$store.dispatch('clearDeck')
-        const faction = await this.$store.dispatch('loadDeck', hash)
+          await this.$store.dispatch('clearDeck')
+          const faction = await this.$store.dispatch('loadDeck', hash)
 
-        this.$router.push({ path: `/deck/${faction}/${hash}`} )
-        this.closeModal()
+          this.$router.push({ path: `/deck/${faction}/${hash}`} )
+          this.closeModal()
+        } catch (e) {
+          this.error = true
+        }
       },
     },
 
@@ -77,12 +84,6 @@
       padding: 8px;
       margin-bottom: 15px;
     }
-  }
-
-  button {
-    border: none;
-    padding: 8px;
-    color: $light;
   }
 
   button.success {

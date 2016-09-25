@@ -2,11 +2,11 @@
   <dropdown-wrapper>
     <div class="menu">{{ labelText }}</div>
     <ul class="options">
-      <li :class="{ 'selected': $store.state.cardList.raritySelect.includes('basic') }" @click="$store.dispatch('raritySelect', 'basic')"> Basic</li>
-      <li :class="{ 'selected': $store.state.cardList.raritySelect.includes('common') }" @click="$store.dispatch('raritySelect', 'common')"> Common</li>
-      <li :class="{ 'selected': $store.state.cardList.raritySelect.includes('rare') }" @click="$store.dispatch('raritySelect', 'rare')"> Rare</li>
-      <li :class="{ 'selected': $store.state.cardList.raritySelect.includes('epic') }" @click="$store.dispatch('raritySelect', 'epic')"> Epic</li>
-      <li :class="{ 'selected': $store.state.cardList.raritySelect.includes('legendary') }" @click="$store.dispatch('raritySelect', 'legendary')"> Legendary</li>
+      <li :class="['option', { 'selected': $store.state.cardList.raritySelect.includes('basic') }]" @click="$store.dispatch('raritySelect', 'basic')"> Basic</li>
+      <li :class="['option', { 'selected': $store.state.cardList.raritySelect.includes('common') }]" @click="$store.dispatch('raritySelect', 'common')"> Common</li>
+      <li :class="['option', { 'selected': $store.state.cardList.raritySelect.includes('rare') }]" @click="$store.dispatch('raritySelect', 'rare')"> Rare</li>
+      <li :class="['option', { 'selected': $store.state.cardList.raritySelect.includes('epic') }]" @click="$store.dispatch('raritySelect', 'epic')"> Epic</li>
+      <li :class="['option', { 'selected': $store.state.cardList.raritySelect.includes('legendary') }]" @click="$store.dispatch('raritySelect', 'legendary')"> Legendary</li>
     </ul>
   </dropdown-wrapper>
 </template>

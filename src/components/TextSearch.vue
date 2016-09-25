@@ -1,7 +1,7 @@
 <template>
   <div class="text-search">
     <input class="search" ref="search" type="text" :value="searchText" @keyup="textSearch($refs.search.value)" placeholder="Search..." />
-    <div @click="textSearch('')" class="clear">X</div>
+    <div v-show="searchText.length" @click="textSearch('')" class="clear"></div>
   </div>
 </template>
 
@@ -41,9 +41,18 @@
       position: absolute;
       right: 0;
       top: 0;
-      color: $blue-dark;
+      color: #3c77a0;
       height: 100%;
       width: 30px;
+      font-size: 1.5rem;
+
+      &:hover {
+        color: $blue-light;
+      }
+
+      &::before {
+        @include font-icon($icon-clear);
+      }
     }
   }
 </style>

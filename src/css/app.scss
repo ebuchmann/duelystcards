@@ -28,6 +28,13 @@
   }
 }
 
+button {
+  background: $blue;
+  border: none;
+  padding: 8px;
+  color: $light;
+}
+
 .sprite.minion, .sprite.general {
   top: -54px;
   left: 34px;
@@ -42,8 +49,8 @@
   height: 96px;
 }
 
-.sprite.minion-sm, .sprite.general-sm {
-  top: -75px;
+.sprite.minion-sm {
+  top: -77px;
   right: -40px;
   z-index: 2;
   transform: scaleX(-0.5) scaleY(0.5);
@@ -60,9 +67,9 @@
 }
 
 .sprite.general-md {
-  top: -30px;
+  top: -43px;
   left: -20px;
   width: 160px;
   height: 160px;
-  transform: scale(0.75)
+  transform: scale(0.8)
 }

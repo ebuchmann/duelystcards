@@ -24,5 +24,9 @@
     float: right;
     margin-right: 30px;
     padding: 8px 15px;
+
+    &::before {
+      @include font-icon($icon-upload);
+    }
   }
 </style>

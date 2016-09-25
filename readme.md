@@ -5,9 +5,11 @@
 - Add set/expansion info to card data
 - Add faction icon to navigation (if there is one)
 - Create a card component wrapper to share functions between a general card and other cards
-- Warn about no general on imports (catch thrown error)
 - Add some footer info, github link, etc.
-- Fix spacing between cards and filter options
+- Add general spell icon to card
+- Style save deck button, and only show when some cards are selected
+- Remove save deck button from saved jpg
+- Add icon to import deck
 
 ### Improvements
 - Icon on "import deck" button

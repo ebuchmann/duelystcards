@@ -39,7 +39,7 @@
       text-align: center;
       display: inline-block;
       font-size: .9rem;
-      margin-top: 15px;
+      margin-top: 8px;
     }
   }
 </style>

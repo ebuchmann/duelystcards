@@ -46,6 +46,14 @@ $all-medium:                all .4s ease-out;
 $all-slow:                  all .6s ease-out;
 
 // Z-Index
-$faction-navigation: 10;
+$faction-navigation: 12;
 $filter-area: 10;
 $faction-select-image: 2;
+
+// Icons
+$icon-clear: '\e14c';
+$icon-checkbox-empty: '\e835';
+$icon-checkbox: '\e834';
+$icon-download: '\e2c4';
+$icon-down-arrow: '\e313';
+$icon-upload: '\e2c6';

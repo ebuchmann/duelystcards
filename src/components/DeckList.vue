@@ -6,7 +6,7 @@
     <div class="cards">
       <deck-card v-for="card in cardList" :card="card"></deck-card>
     </div>
-    <button @click="save()">Save Test</button>
+    <button class="save-deck" @click="save()" :disabled="saving">Save Deck</button>
   </div>
 </template>
 
@@ -19,6 +19,12 @@
   import sortBy from 'lodash.sortby'
 
   export default {
+    data () {
+      return {
+        saving: false
+      }
+    },
+
     computed: {
       cardList () {
         return sortBy(this.$store.state.deck.cards, ['cost', 'name'])
@@ -27,11 +33,13 @@
 
     methods: {
       async save () {
+        this.saving = true
         const dataUrl = await domtoimage.toJpeg(this.$refs.test)
         const link = document.createElement('a')
-        link.download = 'my-image-name.jpeg'
+        link.download = `${this.$store.state.route.params.faction}-deck.jpeg`
         link.href = dataUrl
         link.click()
+        this.saving = false
       },
     },
 
@@ -46,4 +54,10 @@
 
 <style lang="sass">
   @import '../css/includes';
+
+  .save-deck {
+    &::before {
+      @include font-icon($icon-download)
+    }
+  }
 </style>

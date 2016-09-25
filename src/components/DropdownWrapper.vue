@@ -41,11 +41,18 @@
       z-index: $filter-area;
       top: 42px;
 
-      > li {
+      > .option {
         padding: 10px;
 
-        &.selected {
-          background: darken($blue, 10%)
+        &::before {
+          @include font-icon($icon-checkbox-empty);
+          position: relative;
+          top: 2px;
+          margin-right: 10px;
+        }
+
+        &.selected::before {
+          @include font-icon($icon-checkbox);
         }
 
         &:hover {

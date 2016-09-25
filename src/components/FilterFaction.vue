@@ -2,8 +2,8 @@
   <dropdown-wrapper>
     <div class="menu">{{ labelText }}</div>
     <ul class="options">
-      <li :class="{ 'selected': $store.state.cardList.factionSelect.includes('neutral') }" @click="$store.dispatch('factionSelect', 'neutral')"> Neutral</li>
-      <li :class="{ 'selected': $store.state.cardList.factionSelect.includes(currentFaction) }" @click="$store.dispatch('factionSelect', currentFaction)"> {{ currentFaction }}</li>
+      <li :class="['option', { 'selected': $store.state.cardList.factionSelect.includes('neutral') }]" @click="$store.dispatch('factionSelect', 'neutral')"> Neutral</li>
+      <li :class="['option', { 'selected': $store.state.cardList.factionSelect.includes(currentFaction) }]" @click="$store.dispatch('factionSelect', currentFaction)"> {{ currentFaction }}</li>
     </ul>
   </dropdown-wrapper>
 </template>

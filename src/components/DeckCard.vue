@@ -47,20 +47,24 @@
     height: 44px;
     margin: 3px 0;
     position: relative;
-    overflow: hidden;
 
     > .cost {
-      line-height: 40px;
+      line-height: 63px;
       text-align: center;
       font-weight: bold;
-      width: 40px;
-      float: left;
+      width: 57px;
+      height: 63px;
+      background-image: url(https://dl.dropboxusercontent.com/u/24984522/icon_mana.png);
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      transform: scale(0.75);
+      color: $dark;
     }
 
     > .name {
-      color: #fff;
-      line-height: 40px;
-      text-indent: 10px;
+      line-height: 44px;
+      text-indent: 45px;
     }
   }
 </style>
