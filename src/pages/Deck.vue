@@ -74,6 +74,7 @@
 
   .left-column {
     @include span(9 of 12)
+    margin-top: 20px;
   }
 
   .right-column {

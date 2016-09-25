@@ -101,6 +101,7 @@
     height: 320px;
     float: left;
     padding: 16px 15px;
+    margin-bottom: 15px;
 
     &:hover {
       background-image: url(https://dl.dropboxusercontent.com/u/24984522/spritesheet.png);

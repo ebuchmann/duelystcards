@@ -35,7 +35,7 @@ const vanar = [
   { id: 515, name: 'Voice of the Wind', type: 'minion', cost: 4, rarity: 'legendary', attack: 4, health: 4, faction: 'vanar', text: 'Whenever you summon a minion from your action bar, summon a 2/2 Vespyr Winter Maerid bnearby.' },
   { id: 20208, name: 'Wailing Overdrive', type: 'spell', cost: 4, rarity: 'common', faction: 'vanar', text: `Give a friendly minion on your opponent's starting side of the battlefield +5/+5.` },
   { id: 30021, name: 'White Asp', type: 'artifact', cost: 4, rarity: 'legendary', faction: 'vanar', text: 'Your General gains +3 Attack. Whenever your General destroys a minion, summon a 3/3 Balzing Spine Wall on that space.' },
-  { id: 528, name: 'Wind Sister Maia', type: 'minion', cost: 4, rarity: 'legendary', attack: 4, health: 5, faction: 'vanar', text: 'Whenever you summon a minion with <b>Infiltrate</b>, give it +1/+1.' },
+  { id: 528, name: 'Wind Sister Maia', type: 'minion', cost: 4, rarity: 'legendary', attack: 4, health: 5, spirit: 0, faction: 'vanar', text: 'Whenever you summon a minion with <b>Infiltrate</b>, give it +1/+1.' },
   { id: 30019, name: 'Winterblade', type: 'artifact', cost: 4, rarity: 'epic', faction: 'vanar', text: 'Your General gains +2 Attack. Enemy minions damaged by your General are <b>Stunned</b>.' },
   { id: 526, name: 'Arctic Displacer', type: 'minion', race: 'vespyr', cost: 5, rarity: 'basic', attack: 10, health: 4, faction: 'vanar', text: '<b>Airdrop</b>' },
   { id: 20207, name: 'Frostburn', type: 'spell', cost: 5, rarity: 'rare', faction: 'vanar', text: 'Deal 3 damage to all enemy minions.' },

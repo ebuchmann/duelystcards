@@ -3,12 +3,13 @@
 
 ### TODO
 - Add set/expansion info to card data
-- Prevent free unlocked cards from costing spirit (probably spirit: 0 and check for that before applying regular spirit)
 - Add faction icon to navigation (if there is one)
 - Create a card component wrapper to share functions between a general card and other cards
 - Warn about no general on imports (catch thrown error)
 - Add some footer info, github link, etc.
 - Fix deck list (side) sorting
+- Add general graphic to deck list
+- Fix spacing between cards and filter options
 
 ### Improvements
 - Icon on "import deck" button

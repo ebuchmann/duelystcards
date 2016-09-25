@@ -95,7 +95,7 @@ const neutral = [
   { id: 11078, name: 'Sphynx', type: 'minion', cost: 4, rarity: 'legendary', attack: 5, health: 4, faction: 'neutral', text: '<b>Opening Gambit</b>: Put a Riddle in your opponent\'s action bar.' },
   { id: 11015, name: 'Sun Elemental', type: 'minion', cost: 4, rarity: 'common', attack: 3, health: 3, faction: 'neutral', text: '<b>Opening Gambit</b>: Give two random friendly minions +2 Health.' },
   { id: 11028, name: 'Sunsteel Defender', type: 'minion', cost: 4, rarity: 'rare', attack: 4, health: 3, faction: 'neutral', text: '<b>Forcefield</b>' },
-  { id: 11041, name: `Sworn Sister L'Kian`, type: 'minion', cost: 4, rarity: 'legendary', attack: 2, health: 4, faction: 'neutral', text: '<b>Opening Gambit</b>: Add 2 random cards from your Faction to your action bar.' },
+  { id: 11041, name: `Sworn Sister L'Kian`, type: 'minion', cost: 4, rarity: 'legendary', attack: 2, health: 4, spirit: 0, faction: 'neutral', text: '<b>Opening Gambit</b>: Add 2 random cards from your Faction to your action bar.' },
   { id: 11025, name: 'Tethermancer', type: 'minion', cost: 4, rarity: 'rare', attack: 1, health: 6, faction: 'neutral', text: '<b>Provoke</b><br> Dispel any minion that deals damage to this one.' },
   { id: 19031, name: 'Thorn Needler', type: 'minion', cost: 4, rarity: 'basic', attack: 6, health: 4, faction: 'neutral', text: '' },
   { id: 11036, name: 'Unseven', type: 'minion', race: 'warmaster', cost: 4, rarity: 'legendary', attack: 2, health: 4, faction: 'neutral', text: '<b>Dying Wish</b>: Summon a minion with <b>Dying Wish</b> from your action bar.' },

@@ -31,6 +31,7 @@
 
   .filter-area {
     height: 40px;
+    z-index: $filter-area;
 
     > .medium {
       height: 100%;

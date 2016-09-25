@@ -34,7 +34,7 @@ const abyssian = [
   { id: 312, name: 'Deepfire Devourer', type: 'minion', cost: 4, rarity: 'common', attack: 4, health: 4, faction: 'abyssian', text: '<b>Frenzy</b><br> <b>Opening Gambit</b>: Destroy friendly minions around it and gain +2/+2 for each minion.' },
   { id: 30020, name: 'Ghost Azalea', type: 'artifact', cost: 4, rarity: 'legendary', faction: 'abyssian', text: 'Your General gains +1 Attack for each friendly <b>Shadow Creep</b>.' },
   { id: 20051, name: 'Shadow Nova', type: 'spell', cost: 4, rarity: 'basic', faction: 'abyssian', text: 'Turn a 2x2 area into <b>Shadow Creep</b>.' },
-  { id: 324, name: 'Shadow Sister Kelaino', type: 'minion', cost: 4, rarity: 'legendary', attack: 2, health: 5, faction: 'abyssian', text: 'Whenever an enemy minion or General takes damage, restore 1 Health to your General.' },
+  { id: 324, name: 'Shadow Sister Kelaino', type: 'minion', cost: 4, rarity: 'legendary', attack: 2, health: 5, spirit: 0, faction: 'abyssian', text: 'Whenever an enemy minion or General takes damage, restore 1 Health to your General.' },
   { id: 321, name: 'Black Solus', type: 'minion', cost: 5, rarity: 'epic', attack: 4, health: 7, faction: 'abyssian', text: 'Whenever you summon a Wraithling, this gains +2 Attack.' },
   { id: 20061, name: 'Dark Transformation', type: 'spell', cost: 5, rarity: 'basic', faction: 'abyssian', text: 'Destroy an enemy minion and summon a 1/1 Wraithling on that space.' },
   { id: 20050, name: 'Nether Summoning', type: 'spell', cost: 5, rarity: 'legendary', faction: 'abyssian', text: 'Summon 2 non-token minions destroyed since the end of your last turn nearby.' },

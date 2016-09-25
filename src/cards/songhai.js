@@ -38,7 +38,7 @@ const songhai = [
   { id: 116, name: 'Four Winds Magi', type: 'minion', race: 'arcanyst', cost: 4, rarity: 'rare', attack: 4, health: 4, faction: 'songhai', text: 'Whenever you cast a spell, deal 1 damage to enemy General and restore 1 Health to your General.' },
   { id: 120, name: 'Keshrai Fanblade', type: 'minion', cost: 4, rarity: 'common', attack: 5, health: 3, faction: 'songhai', text: '<b>Opening Gambit</b>: Next turn, opponent\'s spells cost 2 more to cast.' },
   { id: 20193, name: 'Pandamonium', type: 'spell', cost: 4, rarity: 'epic', faction: 'songhai', text: 'Transform ALL minions into 0/2 Panddo that cannot be attacked until end of turn.' },
-  { id: 124, name: 'Storm Sister Alkyone', type: 'minion', cost: 4, rarity: 'legendary', attack: 3, health: 5, faction: 'songhai', text: 'Spells you cast that deal damage deal +1 damage.' },
+  { id: 124, name: 'Storm Sister Alkyone', type: 'minion', cost: 4, rarity: 'legendary', attack: 3, health: 5, spirit: 0, faction: 'songhai', text: 'Spells you cast that deal damage deal +1 damage.' },
   { id: 119, name: 'Hamon Bladeseeker', type: 'minion', cost: 5, rarity: 'epic', attack: 8, health: 8, faction: 'songhai', text: 'At the start of your turn, deal 2 damage to your General.' },
   { id: 20155, name: `Heaven's Eclipse`, type: 'spell', cost: 5, rarity: 'legendary', faction: 'songhai', text: 'Draw 3 spell cards from your deck.' },
   { id: 127, name: 'Onyx Jaguar', type: 'minion', cost: 5, rarity: 'epic', attack: 3, health: 3, faction: 'songhai', text: 'Whenever a friendly minion is moved for any reason, give it +1/+1.' },

@@ -10,7 +10,7 @@ export const selectGeneral = ({ commit, state }, general) => new Promise(resolve
 })
 
 export const selectCard = ({ commit, state }, { card, qty }) => {
-  if (state.deck.totalCards >= 39) return
+  if (state.deck.totalCards >= 40) return
 
   const cards = state.deck.cards
   const matchingCard = cards.find(c => c.name === card.name)

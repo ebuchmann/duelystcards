@@ -3,9 +3,6 @@
     <mana-curve></mana-curve>
     <deck-counts></deck-counts>
     <deck-general></deck-general>
-    <div class="general" v-if="$store.state.deck.general">
-      {{ $store.state.deck.general.name }}
-    </div>
     <div class="cards">
       <deck-card v-for="card in cardList" :card="card"></deck-card>
     </div>

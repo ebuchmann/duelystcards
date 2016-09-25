@@ -35,7 +35,7 @@ const vetruvian = [
   { id: 20077, name: 'Entropic Decay', type: 'spell', cost: 4, rarity: 'basic', faction: 'vetruvian', text: 'Destroy an enemy minion nearby your General.' },
   { id: 30011, name: 'Hexblade', type: 'artifact', cost: 4, rarity: 'legendary', faction: 'vetruvian', text: 'Your General gains +3 Attack. Whenever your General damages an enemy minion, it\'s Attack becomes 1.' },
   { id: 219, name: 'Mirage Master', type: 'minion', cost: 4, rarity: 'epic', attack: 1, health: 1, faction: 'vetruvian', text: '<b>Opening Gambit</b>: This minion transforms into a copy of an enemy minion.' },
-  { id: 224, name: 'Sand Sister Saon', type: 'minion', cost: 4, rarity: 'legendary', attack: 3, health: 4, faction: 'vetruvian', text: 'Your General has +1 Attack.' },
+  { id: 224, name: 'Sand Sister Saon', type: 'minion', cost: 4, rarity: 'legendary', attack: 3, health: 4, spirit: 0, faction: 'vetruvian', text: 'Your General has +1 Attack.' },
   { id: 208, name: 'Wind Shrike', type: 'minion', cost: 4, rarity: 'basic', attack: 4, health: 3, faction: 'vetruvian', text: '<b>Flying</b><br> <b>Dying Wish</b>: Draw a card.' },
   { id: 20198, name: 'Corpse Combustion', type: 'spell', cost: 5, rarity: 'epic', faction: 'vetruvian', text: 'Summon all friendly minions with Dying Wish destroyed since your last turn on random spaces.' },
   { id: 232, name: 'Nimbus', type: 'minion', cost: 5, rarity: 'legendary', attack: 3, health: 8, faction: 'vetruvian', text: 'Whenever this minion takes damage, summon a Soulburn Obelysk nearby.' },

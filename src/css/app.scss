@@ -43,7 +43,7 @@
 }
 
 .sprite.minion-sm, .sprite.general-sm {
-  top: -80px;
+  top: -75px;
   right: -40px;
   z-index: 2;
   transform: scaleX(-0.5) scaleY(0.5);
@@ -52,9 +52,17 @@
 }
 
 .sprite.spell-sm, .sprite.artifact-sm {
-  top: -28px;
+  top: -26px;
   right: -10px;
-  transform: scale(.6);
+  transform: scale(0.6);
   width: 96px;
   height: 96px;
+}
+
+.sprite.general-md {
+  top: -30px;
+  left: -20px;
+  width: 160px;
+  height: 160px;
+  transform: scale(0.75)
 }

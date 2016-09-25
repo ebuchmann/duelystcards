@@ -35,7 +35,7 @@ const mutations = {
     Vue.set(card, 'qty', qty)
     state.cards.push(card)
     state.totalCards += qty
-    if (card.rarity) state.spirit += (spiritCosts[card.rarity] * qty)
+    if (card.rarity && card.spirit !== 0) state.spirit += (spiritCosts[card.rarity] * qty)
   },
 
   [SET_FACTION] (state, faction) {
@@ -43,7 +43,7 @@ const mutations = {
   },
 
   [REMOVE_CARD] (state, index) {
-    if (state.cards[index].rarity) state.spirit -= spiritCosts[state.cards[index].rarity]
+    if (state.cards[index].rarity && state.cards[index].spirit !== 0) state.spirit -= spiritCosts[state.cards[index].rarity]
     state.cards.splice(index, 1)
     state.totalCards--
   },
@@ -51,13 +51,13 @@ const mutations = {
   [INCREMENT_CARD] (state, index) {
     state.cards[index].qty++
     state.totalCards++
-    if (state.cards[index].rarity) state.spirit += spiritCosts[state.cards[index].rarity]
+    if (state.cards[index].rarity && state.cards[index].spirit !== 0) state.spirit += spiritCosts[state.cards[index].rarity]
   },
 
   [DECREMENT_CARD] (state, index) {
     state.cards[index].qty--
     state.totalCards--
-    if (state.cards[index].rarity) state.spirit -= spiritCosts[state.cards[index].rarity]
+    if (state.cards[index].rarity && state.cards[index].spirit !== 0) state.spirit -= spiritCosts[state.cards[index].rarity]
   },
 
   [CLEAR_DECK] (state) {

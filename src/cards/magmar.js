@@ -24,7 +24,7 @@ const magmar = [
   { id: 417, name: 'Vindicator', type: 'minion', cost: 3, rarity: 'legendary', attack: 1, health: 3, faction: 'magmar', text: 'Whenever your opponent draws a card, this minion gains +2/+2.' },
   { id: 30012, name: 'Adamantite Claws', type: 'artifact', cost: 4, rarity: 'basic', faction: 'magmar', text: 'Your General gains +4 Attack.' },
   { id: 20124, name: 'Chrysalis Burst', type: 'spell', cost: 4, rarity: 'legendary', faction: 'magmar', text: 'Summon a random Egg in 4 random spaces on the battlefield.' },
-  { id: 419, name: 'Earth Sister Taygete', type: 'minion', cost: 4, rarity: 'legendary', attack: 3, health: 4, faction: 'magmar', text: 'Whenever this minion takes damage, deal that much damage to all nearby enemies.' },
+  { id: 419, name: 'Earth Sister Taygete', type: 'minion', cost: 4, rarity: 'legendary', attack: 3, health: 4, spirit: 0, faction: 'magmar', text: 'Whenever this minion takes damage, deal that much damage to all nearby enemies.' },
   { id: 20117, name: 'Earth Sphere', type: 'spell', cost: 4, rarity: 'common', faction: 'magmar', text: 'Restore 8 Health to your General.' },
   { id: 20157, name: 'Egg Morph', type: 'spell', cost: 4, rarity: 'rare', faction: 'magmar', text: 'Turn a non-Egg minion into an Egg, or hatch an Egg.' },
   { id: 407, name: 'Elucidator', type: 'minion', cost: 4, rarity: 'rare', attack: 5, health: 4, faction: 'magmar', text: '<b>Rush</b><br> <b>Opening Gambit</b>: Deal 4 damage to your General.' },
