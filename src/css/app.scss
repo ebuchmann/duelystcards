@@ -1,0 +1,75 @@
+/* Includes */
+@import 'includes';
+
+/* Files */
+@import 'reboot';
+
+/* Sprites */
+@import 'sprites/abyssian';
+@import 'sprites/generals';
+@import 'sprites/lyonar';
+@import 'sprites/songhai';
+@import 'sprites/magmar';
+@import 'sprites/neutral';
+@import 'sprites/vanar';
+@import 'sprites/vetruvian';
+
+@font-face {
+  font-family: LatoRegular;
+  src: url(https://dl.dropboxusercontent.com/u/24984522/Lato-Regular.woff);
+}
+
+.container {
+  max-width: 1570px;
+  margin: 0 15px;
+
+  @include breakpoint(vl) {
+    margin: 0 auto;
+  }
+}
+
+button {
+  background: $blue;
+  border: none;
+  padding: 8px;
+  color: $light;
+}
+
+.sprite.minion, .sprite.general {
+  top: -54px;
+  left: 34px;
+  width: 160px;
+  height: 160px;
+}
+
+.sprite.spell, .sprite.artifact {
+  top: 24px;
+  left: 64px;
+  width: 96px;
+  height: 96px;
+}
+
+.sprite.minion-sm {
+  top: -77px;
+  right: -40px;
+  z-index: 2;
+  transform: scaleX(-0.5) scaleY(0.5);
+  width: 160px;
+  height: 160px;
+}
+
+.sprite.spell-sm, .sprite.artifact-sm {
+  top: -26px;
+  right: -10px;
+  transform: scale(0.6);
+  width: 96px;
+  height: 96px;
+}
+
+.sprite.general-md {
+  top: -43px;
+  left: -20px;
+  width: 160px;
+  height: 160px;
+  transform: scale(0.8)
+}

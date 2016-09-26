@@ -1,0 +1,57 @@
+/*
+    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/
+
+    Usage:
+    @include breakpoint(md) {
+        ...
+    }
+*/
+
+$breakpoints: (
+  xs: 0,
+  sm: 480px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px,
+  vl: 1600px
+);
+
+@mixin breakpoint($name) {
+    @if not map-has-key($breakpoints, $name) {
+        @warn "Warning: `#{$name}` is not a valid breakpoint name.";
+    } @else {
+        @media (min-width: map-get($breakpoints, $name)) {
+            @content;
+        }
+    }
+}
+
+@mixin breakpoint-xs-only() {
+    @media screen and (max-width: map-get($breakpoints, sm) - 1) {
+        @content;
+    }
+}
+
+@mixin breakpoint-sm-only() {
+    @media screen and (min-width: map-get($breakpoints, sm) + 1) and (max-width: map-get($breakpoints, md) - 1) {
+        @content;
+    }
+}
+
+@mixin breakpoint-md-only() {
+    @media screen and (min-width: map-get($breakpoints, md) + 1) and (max-width: map-get($breakpoints, lg) - 1) {
+        @content;
+    }
+}
+
+@mixin breakpoint-lg-only() {
+    @media screen and (min-width: map-get($breakpoints, lg) + 1) and (max-width: map-get($breakpoints, xl) - 1) {
+        @content;
+    }
+}
+
+@mixin breakpoint-xl-only() {
+    @media screen and (min-width: map-get($breakpoints, xl)) {
+        @content;
+    }
+}

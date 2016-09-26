@@ -1,0 +1,59 @@
+// Colors
+
+$light:                     #e1e1e1 !default;
+$dark:                      #222222 !default;
+$gray-dark:                 #373a3c !default;
+$gray:                      #55595c !default;
+$gray-light:                #818a91 !default;
+$gray-lighter:              #eceeef !default;
+$gray-lightest:             #f7f7f9 !default;
+
+$twitch-color:              #6441A5;
+$facebook-color:            #3b5998;
+$twitter-color:             #55acee;
+
+$blue:                      #104365;
+$blue-dark:                 #0b1c27;
+$blue-light:                #01d6f3;
+
+$font-size-root:            16px !default;
+$font-family-sans-serif:    LatoRegular, sans-serif !default;
+$font-family-base:          $font-family-sans-serif !default;
+$font-size-base:            1rem !default;
+$line-height-base:          1.5 !default;
+$body-color:                #e9e9e9 !default;
+$body-bg:                   #0b1c27 !default;
+$abbr-border-color:         $gray-dark !default;
+$dt-font-weight:            bold !default;
+$link-color:                #01afee !default;
+$link-decoration:           none !default;
+$link-hover-color:          darken($link-color, 15%) !default;
+$link-hover-decoration:     none !default;
+$table-bg:                  transparent !default;
+$table-cell-padding:        .75rem !default;
+$text-muted:                $gray-light !default;
+
+$spacing-vert:              30px;
+$spacing-horz:              30px;
+
+// Shadows
+$light-shadow:              0px 0px 8px 0px rgba(200,200,200,1) !default;
+$medium-shadow:             0px 0px 8px 0px rgba(125,125,125,1) !default;
+
+// Transitions
+$all-fast:                  all .2s ease-out;
+$all-medium:                all .4s ease-out;
+$all-slow:                  all .6s ease-out;
+
+// Z-Index
+$faction-navigation: 12;
+$filter-area: 10;
+$faction-select-image: 2;
+
+// Icons
+$icon-clear: '\e14c';
+$icon-checkbox-empty: '\e835';
+$icon-checkbox: '\e834';
+$icon-download: '\e2c4';
+$icon-down-arrow: '\e313';
+$icon-upload: '\e2c6';

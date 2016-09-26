@@ -1,0 +1,12 @@
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin font-icon($icon) {
+  font-family: 'Material Icons';
+  content: $icon;
+}
