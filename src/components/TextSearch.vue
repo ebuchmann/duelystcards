@@ -1,7 +1,7 @@
 <template>
   <div class="text-search">
     <input class="search" ref="search" type="text" :value="searchText" @keyup="textSearch($refs.search.value)" placeholder="Search..." />
-    <div v-show="searchText.length" @click="textSearch('')" class="clear"></div>
+    <div v-show="searchText.length" @click="clearSearch()" class="clear"></div>
   </div>
 </template>
 
@@ -13,9 +13,14 @@
       searchText: 'searchText',
     }),
 
-    methods: mapActions({
-      textSearch: 'textSearch',
-    }),
+    methods: {
+      ...mapActions(['textSearch']),
+
+      clearSearch () {
+        this.textSearch('')
+        this.$refs.search.focus()
+      },
+    },
   }
 </script>
 

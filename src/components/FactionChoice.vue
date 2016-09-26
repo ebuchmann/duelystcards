@@ -75,14 +75,13 @@
       padding: 30px 10px 10px;
       text-align: center;
       font-size: 1.5rem;
-      color: #e1e1e1;
+      color: $light;
       position: relative;
 
       &::before, &::after {
         position: absolute;
         content: '';
         bottom: 0;
-        
         border-style: solid;
       }
 

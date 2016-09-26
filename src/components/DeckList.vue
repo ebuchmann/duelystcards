@@ -56,6 +56,8 @@
   @import '../css/includes';
 
   .save-deck {
+    margin-top: 15px;
+
     &::before {
       @include font-icon($icon-download)
     }

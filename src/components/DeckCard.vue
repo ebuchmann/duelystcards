@@ -60,11 +60,33 @@
       left: -10px;
       transform: scale(0.75);
       color: $dark;
+      z-index: 4;
     }
 
     > .name {
       line-height: 44px;
       text-indent: 45px;
+    }
+
+    &::before, &::after {
+      position: absolute;
+      content: '';
+      bottom: 0;
+      border-style: solid;
+    }
+
+    &::before {
+      left: 0;
+      border-width: 0 22px 22px 0;
+      border-color: $blue-dark $blue;
+    }
+
+    &::after {
+      left: 0;
+      top: 0;
+      height: 22px;
+      border-width: 22px 22px 0 0;
+      border-color: $blue-dark $blue;
     }
   }
 </style>
