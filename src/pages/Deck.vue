@@ -51,6 +51,12 @@
       },
     },
 
+    beforeRouteLeave (route, redirect, next) {
+      this.$store.dispatch('clearDeck')
+      this.$store.commit('SET_PAGE', 1)
+      next()
+    },
+
     // watch: {
     //   '$route': 'test'
     // },
