@@ -258,8 +258,8 @@
 	 * Merge an Array of Objects into a single Object.
 	 */
 	function toObject (arr) {
-	  var res = arr[0] || {}
-	  for (var i = 1; i < arr.length; i++) {
+	  var res = {}
+	  for (var i = 0; i < arr.length; i++) {
 	    if (arr[i]) {
 	      extend(res, arr[i])
 	    }
@@ -284,6 +284,27 @@
 	  return modules.reduce(function (keys, m) {
 	    return keys.concat(m.staticKeys || [])
 	  }, []).join(',')
+	}
+
+	/**
+	 * Check if two values are loosely equal - that is,
+	 * if they are plain objects, do they have the same shape?
+	 */
+	function looseEqual (a, b) {
+	  /* eslint-disable eqeqeq */
+	  return a == b || (
+	    isObject(a) && isObject(b)
+	      ? JSON.stringify(a) === JSON.stringify(b)
+	      : false
+	  )
+	  /* eslint-enable eqeqeq */
+	}
+
+	function looseIndexOf (arr, val) {
+	  for (var i = 0; i < arr.length; i++) {
+	    if (looseEqual(arr[i], val)) { return i }
+	  }
+	  return -1
 	}
 
 	/*  */
@@ -411,7 +432,7 @@
 	    var segments = path.split('.')
 	    return function (obj) {
 	      for (var i = 0; i < segments.length; i++) {
-	        if (!obj) return
+	        if (!obj) { return }
 	        obj = obj[segments[i]]
 	      }
 	      return obj
@@ -421,7 +442,6 @@
 
 	/*  */
 
-	/* global MutationObserver */
 	// can we use __proto__?
 	var hasProto = '__proto__' in {}
 
@@ -430,37 +450,25 @@
 	  typeof window !== 'undefined' &&
 	  Object.prototype.toString.call(window) !== '[object Object]'
 
+	var UA = inBrowser && window.navigator.userAgent.toLowerCase()
+	var isIE = UA && /msie|trident/.test(UA)
+	var isIE9 = UA && UA.indexOf('msie 9.0') > 0
+	var isEdge = UA && UA.indexOf('edge/') > 0
+	var isAndroid = UA && UA.indexOf('android') > 0
+
 	// detect devtools
 	var devtools = inBrowser && window.__VUE_DEVTOOLS_GLOBAL_HOOK__
 
-	// UA sniffing for working around browser-specific quirks
-	var UA = inBrowser && window.navigator.userAgent.toLowerCase()
-	var isIos = UA && /(iphone|ipad|ipod|ios)/i.test(UA)
-	var iosVersionMatch = UA && isIos && UA.match(/os ([\d_]+)/)
-	var iosVersion = iosVersionMatch && iosVersionMatch[1].split('_')
-
-	// MutationObserver is unreliable in iOS 9.3 UIWebView
-	// detecting it by checking presence of IndexedDB
-	// ref #3027
-	var hasMutationObserverBug =
-	  iosVersion &&
-	  Number(iosVersion[0]) >= 9 &&
-	  Number(iosVersion[1]) >= 3 &&
-	  !window.indexedDB
-
 	/**
 	 * Defer a task to execute it asynchronously. Ideally this
-	 * should be executed as a microtask, so we leverage
-	 * MutationObserver if it's available, and fallback to
-	 * setTimeout(0).
-	 *
-	 * @param {Function} cb
-	 * @param {Object} ctx
+	 * should be executed as a microtask, but MutationObserver is unreliable
+	 * in iOS UIWebView so we use a setImmediate shim and fallback to setTimeout.
 	 */
 	var nextTick = (function () {
 	  var callbacks = []
 	  var pending = false
 	  var timerFunc
+
 	  function nextTickHandler () {
 	    pending = false
 	    var copies = callbacks.slice(0)
@@ -471,32 +479,29 @@
 	  }
 
 	  /* istanbul ignore else */
-	  if (typeof MutationObserver !== 'undefined' && !hasMutationObserverBug) {
-	    var counter = 1
-	    var observer = new MutationObserver(nextTickHandler)
-	    var textNode = document.createTextNode(String(counter))
-	    observer.observe(textNode, {
-	      characterData: true
+	  if (inBrowser && window.postMessage &&
+	    !window.importScripts && // not in WebWorker
+	    !(isAndroid && !window.requestAnimationFrame) // not in Android <= 4.3
+	  ) {
+	    var NEXT_TICK_TOKEN = '__vue__nextTick__'
+	    window.addEventListener('message', function (e) {
+	      if (e.source === window && e.data === NEXT_TICK_TOKEN) {
+	        nextTickHandler()
+	      }
 	    })
 	    timerFunc = function () {
-	      counter = (counter + 1) % 2
-	      textNode.data = String(counter)
+	      window.postMessage(NEXT_TICK_TOKEN, '*')
 	    }
 	  } else {
-	    // webpack attempts to inject a shim for setImmediate
-	    // if it is used as a global, so we have to work around that to
-	    // avoid bundling unnecessary code.
-	    var context = inBrowser
-	      ? window
-	      : typeof global !== 'undefined' ? global : {}
-	    timerFunc = context.setImmediate || setTimeout
+	    timerFunc = (typeof global !== 'undefined' && global.setImmediate) || setTimeout
 	  }
-	  return function (cb, ctx) {
+
+	  return function queueNextTick (cb, ctx) {
 	    var func = ctx
 	      ? function () { cb.call(ctx) }
 	      : cb
 	    callbacks.push(func)
-	    if (pending) return
+	    if (pending) { return }
 	    pending = true
 	    timerFunc(nextTickHandler, 0)
 	  }
@@ -612,7 +617,7 @@
 	var targetStack = []
 
 	function pushTarget (_target) {
-	  if (Dep.target) targetStack.push(Dep.target)
+	  if (Dep.target) { targetStack.push(Dep.target) }
 	  Dep.target = _target
 	}
 
@@ -948,11 +953,11 @@
 	    }
 	    if (isA) {
 	      i = val.length
-	      while (i--) traverse(val[i], seen)
+	      while (i--) { traverse(val[i], seen) }
 	    } else if (isO) {
 	      keys = Object.keys(val)
 	      i = keys.length
-	      while (i--) traverse(val[keys[i]], seen)
+	      while (i--) { traverse(val[keys[i]], seen) }
 	    }
 	  }
 	}
@@ -1004,7 +1009,7 @@
 	        inserted = args.slice(2)
 	        break
 	    }
-	    if (inserted) ob.observeArray(inserted)
+	    if (inserted) { ob.observeArray(inserted) }
 	    // notify change
 	    ob.dep.notify()
 	    return result
@@ -1054,9 +1059,9 @@
 	 * value type is Object.
 	 */
 	Observer.prototype.walk = function walk (obj) {
-	  var val = this.value
-	  for (var key in obj) {
-	    defineReactive(val, key, obj[key])
+	  var keys = Object.keys(obj)
+	  for (var i = 0; i < keys.length; i++) {
+	    defineReactive(obj, keys[i], obj[keys[i]])
 	  }
 	};
 
@@ -1150,7 +1155,7 @@
 	          childOb.dep.depend()
 	        }
 	        if (Array.isArray(value)) {
-	          for (var e, i = 0, l = value.length; i < l; i++) {
+	          for (var e = void 0, i = 0, l = value.length; i < l; i++) {
 	            e = value[i]
 	            e && e.__ob__ && e.__ob__.dep.depend()
 	          }
@@ -1243,8 +1248,8 @@
 
 	function initProps (vm) {
 	  var props = vm.$options.props
-	  var propsData = vm.$options.propsData
 	  if (props) {
+	    var propsData = vm.$options.propsData || {}
 	    var keys = vm.$options._propKeys = Object.keys(props)
 	    var isRoot = !vm.$parent
 	    // root instance props should be converted
@@ -1355,7 +1360,11 @@
 	  var methods = vm.$options.methods
 	  if (methods) {
 	    for (var key in methods) {
-	      vm[key] = bind(methods[key], vm)
+	      if (methods[key] != null) {
+	        vm[key] = bind(methods[key], vm)
+	      } else if (process.env.NODE_ENV !== 'production') {
+	        warn(("Method \"" + key + "\" is undefined in options."), vm)
+	      }
 	    }
 	  }
 	}
@@ -1471,13 +1480,6 @@
 	  this.isRootInsert = true
 	  this.isComment = false
 	  this.isCloned = false
-	  // apply construct hook.
-	  // this is applied during render, before patch happens.
-	  // unlike other hooks, this is applied on both client and server.
-	  var constructHook = data && data.hook && data.hook.construct
-	  if (constructHook) {
-	    constructHook(this)
-	  }
 	};
 
 	var emptyVNode = function () {
@@ -1520,7 +1522,8 @@
 
 	function normalizeChildren (
 	  children,
-	  ns
+	  ns,
+	  nestedIndex
 	) {
 	  if (isPrimitive(children)) {
 	    return [createTextVNode(children)]
@@ -1532,7 +1535,7 @@
 	      var last = res[res.length - 1]
 	      //  nested
 	      if (Array.isArray(c)) {
-	        res.push.apply(res, normalizeChildren(c, ns))
+	        res.push.apply(res, normalizeChildren(c, ns, i))
 	      } else if (isPrimitive(c)) {
 	        if (last && last.text) {
 	          last.text += String(c)
@@ -1547,6 +1550,10 @@
 	          // inherit parent namespace
 	          if (ns) {
 	            applyNS(c, ns)
+	          }
+	          // default key for nested array children (likely generated by v-for)
+	          if (c.key == null && nestedIndex != null) {
+	            c.key = "__vlist_" + nestedIndex + "_" + i + "__"
 	          }
 	          res.push(c)
 	        }
@@ -1619,13 +1626,15 @@
 	        }
 	        add(event, cur.invoker, capture)
 	      }
-	    } else if (Array.isArray(old)) {
-	      old.length = cur.length
-	      for (var i = 0; i < old.length; i++) old[i] = cur[i]
-	      on[name] = old
-	    } else {
-	      old.fn = cur
-	      on[name] = old
+	    } else if (cur !== old) {
+	      if (Array.isArray(old)) {
+	        old.length = cur.length
+	        for (var i = 0; i < old.length; i++) { old[i] = cur[i] }
+	        on[name] = old
+	      } else {
+	        old.fn = cur
+	        on[name] = old
+	      }
 	    }
 	  }
 	  for (name in oldOn) {
@@ -2286,6 +2295,10 @@
 	  Vue.prototype._n = toNumber
 	  // empty vnode
 	  Vue.prototype._e = emptyVNode
+	  // loose equal
+	  Vue.prototype._q = looseEqual
+	  // loose indexOf
+	  Vue.prototype._i = looseIndexOf
 
 	  // render static tree by index
 	  Vue.prototype._m = function renderStatic (
@@ -2347,11 +2360,30 @@
 	    return ret
 	  }
 
+	  // renderSlot
+	  Vue.prototype._t = function (
+	    name,
+	    fallback
+	  ) {
+	    var slotNodes = this.$slots[name]
+	    // warn duplicate slot usage
+	    if (slotNodes && process.env.NODE_ENV !== 'production') {
+	      slotNodes._rendered && warn(
+	        "Duplicate presence of slot \"" + name + "\" found in the same render tree " +
+	        "- this will likely cause render errors.",
+	        this
+	      )
+	      slotNodes._rendered = true
+	    }
+	    return slotNodes || fallback
+	  }
+
 	  // apply v-bind object
 	  Vue.prototype._b = function bindProps (
-	    vnode,
+	    data,
 	    value,
-	    asProp) {
+	    asProp
+	  ) {
 	    if (value) {
 	      if (!isObject(value)) {
 	        process.env.NODE_ENV !== 'production' && warn(
@@ -2362,7 +2394,6 @@
 	        if (Array.isArray(value)) {
 	          value = toObject(value)
 	        }
-	        var data = vnode.data
 	        for (var key in value) {
 	          if (key === 'class' || key === 'style') {
 	            data[key] = value[key]
@@ -2375,6 +2406,7 @@
 	        }
 	      }
 	    }
+	    return data
 	  }
 
 	  // expose v-on keyCodes
@@ -2578,7 +2610,7 @@
 	lifecycleMixin(Vue)
 	renderMixin(Vue)
 
-	var warn
+	var warn = noop
 	var formatComponentName
 
 	if (process.env.NODE_ENV !== 'production') {
@@ -2761,8 +2793,8 @@
 	 */
 	strats.watch = function (parentVal, childVal) {
 	  /* istanbul ignore if */
-	  if (!childVal) return parentVal
-	  if (!parentVal) return childVal
+	  if (!childVal) { return parentVal }
+	  if (!parentVal) { return childVal }
 	  var ret = {}
 	  extend(ret, parentVal)
 	  for (var key in childVal) {
@@ -2784,8 +2816,8 @@
 	strats.props =
 	strats.methods =
 	strats.computed = function (parentVal, childVal) {
-	  if (!childVal) return parentVal
-	  if (!parentVal) return childVal
+	  if (!childVal) { return parentVal }
+	  if (!parentVal) { return childVal }
 	  var ret = Object.create(null)
 	  extend(ret, parentVal)
 	  extend(ret, childVal)
@@ -2832,7 +2864,7 @@
 	 */
 	function normalizeProps (options) {
 	  var props = options.props
-	  if (!props) return
+	  if (!props) { return }
 	  var res = {}
 	  var i, val, name
 	  if (Array.isArray(props)) {
@@ -2955,8 +2987,6 @@
 	  propsData,
 	  vm
 	) {
-	  /* istanbul ignore if */
-	  if (!propsData) return
 	  var prop = propOptions[key]
 	  var absent = !hasOwn(propsData, key)
 	  var value = propsData[key]
@@ -3029,7 +3059,7 @@
 	    return
 	  }
 	  var type = prop.type
-	  var valid = !type
+	  var valid = !type || type === true
 	  var expectedTypes = []
 	  if (type) {
 	    if (!Array.isArray(type)) {
@@ -3122,13 +3152,19 @@
 		noop: noop,
 		no: no,
 		genStaticKeys: genStaticKeys,
+		looseEqual: looseEqual,
+		looseIndexOf: looseIndexOf,
 		isReserved: isReserved,
 		def: def,
 		parsePath: parsePath,
 		hasProto: hasProto,
 		inBrowser: inBrowser,
-		devtools: devtools,
 		UA: UA,
+		isIE: isIE,
+		isIE9: isIE9,
+		isEdge: isEdge,
+		isAndroid: isAndroid,
+		devtools: devtools,
 		nextTick: nextTick,
 		get _Set () { return _Set; },
 		mergeOptions: mergeOptions,
@@ -3347,7 +3383,7 @@
 	  get: function () { return config._isServer; }
 	})
 
-	Vue.version = '2.0.0-rc.4'
+	Vue.version = '2.0.0-rc.7'
 
 	/*  */
 
@@ -3459,7 +3495,7 @@
 	  }
 	  if (isObject(value)) {
 	    for (var key in value) {
-	      if (value[key]) res += key + ' '
+	      if (value[key]) { res += key + ' ' }
 	    }
 	    return res.slice(0, -1)
 	  }
@@ -3563,22 +3599,6 @@
 	}
 
 	/*  */
-
-	var UA$1 = inBrowser && window.navigator.userAgent.toLowerCase()
-	var isIE = UA$1 && /msie|trident/.test(UA$1)
-	var isIE9 = UA$1 && UA$1.indexOf('msie 9.0') > 0
-	var isAndroid = UA$1 && UA$1.indexOf('android') > 0
-
-	// According to
-	// https://w3c.github.io/DOM-Parsing/#dfn-serializing-an-attribute-value
-	// when serializing innerHTML, <, >, ", & should be encoded as entities.
-	// However, only some browsers, e.g. PhantomJS, encodes < and >.
-	// this causes problems with the in-browser parser.
-	var shouldDecodeTags = inBrowser ? (function () {
-	  var div = document.createElement('div')
-	  div.innerHTML = '<div a=">">'
-	  return div.innerHTML.indexOf('&gt;') > 0
-	})() : false
 
 	/**
 	 * Query an element selector if it's not an element already.
@@ -3687,7 +3707,7 @@
 
 	function registerRef (vnode, isRemoval) {
 	  var key = vnode.data.ref
-	  if (!key) return
+	  if (!key) { return }
 
 	  var vm = vnode.context
 	  var ref = vnode.child || vnode.elm
@@ -3751,7 +3771,7 @@
 	  var map = {}
 	  for (i = beginIdx; i <= endIdx; ++i) {
 	    key = children[i].key
-	    if (isDef(key)) map[key] = i
+	    if (isDef(key)) { map[key] = i }
 	  }
 	  return map
 	}
@@ -3766,7 +3786,7 @@
 	  for (i = 0; i < hooks$1.length; ++i) {
 	    cbs[hooks$1[i]] = []
 	    for (j = 0; j < modules.length; ++j) {
-	      if (modules[j][hooks$1[i]] !== undefined) cbs[hooks$1[i]].push(modules[j][hooks$1[i]])
+	      if (modules[j][hooks$1[i]] !== undefined) { cbs[hooks$1[i]].push(modules[j][hooks$1[i]]) }
 	    }
 	  }
 
@@ -3790,11 +3810,11 @@
 	  }
 
 	  function createElm (vnode, insertedVnodeQueue, nested) {
-	    var i, elm
+	    var i
 	    var data = vnode.data
 	    vnode.isRootInsert = !nested
 	    if (isDef(data)) {
-	      if (isDef(i = data.hook) && isDef(i = i.init)) i(vnode)
+	      if (isDef(i = data.hook) && isDef(i = i.init)) { i(vnode) }
 	      // after calling the init hook, if the vnode is a child component
 	      // it should've created a child instance and mounted it. the child
 	      // component also has set the placeholder vnode's elm.
@@ -3821,26 +3841,30 @@
 	          )
 	        }
 	      }
-	      elm = vnode.elm = vnode.ns
+	      vnode.elm = vnode.ns
 	        ? nodeOps.createElementNS(vnode.ns, tag)
 	        : nodeOps.createElement(tag)
 	      setScope(vnode)
-	      if (Array.isArray(children)) {
-	        for (i = 0; i < children.length; ++i) {
-	          nodeOps.appendChild(elm, createElm(children[i], insertedVnodeQueue, true))
-	        }
-	      } else if (isPrimitive(vnode.text)) {
-	        nodeOps.appendChild(elm, nodeOps.createTextNode(vnode.text))
-	      }
+	      createChildren(vnode, children, insertedVnodeQueue)
 	      if (isDef(data)) {
 	        invokeCreateHooks(vnode, insertedVnodeQueue)
 	      }
 	    } else if (vnode.isComment) {
-	      elm = vnode.elm = nodeOps.createComment(vnode.text)
+	      vnode.elm = nodeOps.createComment(vnode.text)
 	    } else {
-	      elm = vnode.elm = nodeOps.createTextNode(vnode.text)
+	      vnode.elm = nodeOps.createTextNode(vnode.text)
 	    }
 	    return vnode.elm
+	  }
+
+	  function createChildren (vnode, children, insertedVnodeQueue) {
+	    if (Array.isArray(children)) {
+	      for (var i = 0; i < children.length; ++i) {
+	        nodeOps.appendChild(vnode.elm, createElm(children[i], insertedVnodeQueue, true))
+	      }
+	    } else if (isPrimitive(vnode.text)) {
+	      nodeOps.appendChild(vnode.elm, nodeOps.createTextNode(vnode.text))
+	    }
 	  }
 
 	  function isPatchable (vnode) {
@@ -3856,8 +3880,8 @@
 	    }
 	    i = vnode.data.hook // Reuse variable
 	    if (isDef(i)) {
-	      if (i.create) i.create(emptyNode, vnode)
-	      if (i.insert) insertedVnodeQueue.push(vnode)
+	      if (i.create) { i.create(emptyNode, vnode) }
+	      if (i.insert) { insertedVnodeQueue.push(vnode) }
 	    }
 	  }
 
@@ -3903,8 +3927,8 @@
 	    var i, j
 	    var data = vnode.data
 	    if (isDef(data)) {
-	      if (isDef(i = data.hook) && isDef(i = i.destroy)) i(vnode)
-	      for (i = 0; i < cbs.destroy.length; ++i) cbs.destroy[i](vnode)
+	      if (isDef(i = data.hook) && isDef(i = i.destroy)) { i(vnode) }
+	      for (i = 0; i < cbs.destroy.length; ++i) { cbs.destroy[i](vnode) }
 	    }
 	    if (isDef(i = vnode.child) && !data.keepAlive) {
 	      invokeDestroyHook(i._vnode)
@@ -3998,7 +4022,7 @@
 	        oldEndVnode = oldCh[--oldEndIdx]
 	        newStartVnode = newCh[++newStartIdx]
 	      } else {
-	        if (isUndef(oldKeyToIdx)) oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx)
+	        if (isUndef(oldKeyToIdx)) { oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx) }
 	        idxInOld = isDef(newStartVnode.key) ? oldKeyToIdx[newStartVnode.key] : null
 	        if (isUndef(idxInOld)) { // New element
 	          nodeOps.insertBefore(parentElm, createElm(newStartVnode, insertedVnodeQueue), oldStartVnode.elm)
@@ -4040,7 +4064,7 @@
 	    // reuse element for static trees.
 	    // note we only do this if the vnode is cloned -
 	    // if the new node is not cloned it means the render functions have been
-	    // reset by the hot-reload-api and we need to a proper re-render.
+	    // reset by the hot-reload-api and we need to do a proper re-render.
 	    if (vnode.isStatic &&
 	        oldVnode.isStatic &&
 	        vnode.key === oldVnode.key &&
@@ -4057,14 +4081,14 @@
 	    var oldCh = oldVnode.children
 	    var ch = vnode.children
 	    if (hasData && isPatchable(vnode)) {
-	      for (i = 0; i < cbs.update.length; ++i) cbs.update[i](oldVnode, vnode)
-	      if (isDef(hook) && isDef(i = hook.update)) i(oldVnode, vnode)
+	      for (i = 0; i < cbs.update.length; ++i) { cbs.update[i](oldVnode, vnode) }
+	      if (isDef(hook) && isDef(i = hook.update)) { i(oldVnode, vnode) }
 	    }
 	    if (isUndef(vnode.text)) {
 	      if (isDef(oldCh) && isDef(ch)) {
-	        if (oldCh !== ch) updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly)
+	        if (oldCh !== ch) { updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly) }
 	      } else if (isDef(ch)) {
-	        if (isDef(oldVnode.text)) nodeOps.setTextContent(elm, '')
+	        if (isDef(oldVnode.text)) { nodeOps.setTextContent(elm, '') }
 	        addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue)
 	      } else if (isDef(oldCh)) {
 	        removeVnodes(elm, oldCh, 0, oldCh.length - 1)
@@ -4075,8 +4099,8 @@
 	      nodeOps.setTextContent(elm, vnode.text)
 	    }
 	    if (hasData) {
-	      for (i = 0; i < cbs.postpatch.length; ++i) cbs.postpatch[i](oldVnode, vnode)
-	      if (isDef(hook) && isDef(i = hook.postpatch)) i(oldVnode, vnode)
+	      for (i = 0; i < cbs.postpatch.length; ++i) { cbs.postpatch[i](oldVnode, vnode) }
+	      if (isDef(hook) && isDef(i = hook.postpatch)) { i(oldVnode, vnode) }
 	    }
 	  }
 
@@ -4104,7 +4128,7 @@
 	    var data = vnode.data;
 	    var children = vnode.children;
 	    if (isDef(data)) {
-	      if (isDef(i = data.hook) && isDef(i = i.init)) i(vnode, true /* hydrating */)
+	      if (isDef(i = data.hook) && isDef(i = i.init)) { i(vnode, true /* hydrating */) }
 	      if (isDef(i = vnode.child)) {
 	        // child component. it should have hydrated its own tree.
 	        initComponent(vnode, insertedVnodeQueue)
@@ -4114,26 +4138,31 @@
 	    if (isDef(tag)) {
 	      if (isDef(children)) {
 	        var childNodes = nodeOps.childNodes(elm)
-	        var childrenMatch = true
-	        if (childNodes.length !== children.length) {
-	          childrenMatch = false
+	        // empty element, allow client to pick up and populate children
+	        if (!childNodes.length) {
+	          createChildren(vnode, children, insertedVnodeQueue)
 	        } else {
-	          for (var i$1 = 0; i$1 < children.length; i$1++) {
-	            if (!hydrate(childNodes[i$1], children[i$1], insertedVnodeQueue)) {
-	              childrenMatch = false
-	              break
+	          var childrenMatch = true
+	          if (childNodes.length !== children.length) {
+	            childrenMatch = false
+	          } else {
+	            for (var i$1 = 0; i$1 < children.length; i$1++) {
+	              if (!hydrate(childNodes[i$1], children[i$1], insertedVnodeQueue)) {
+	                childrenMatch = false
+	                break
+	              }
 	            }
 	          }
-	        }
-	        if (!childrenMatch) {
-	          if (process.env.NODE_ENV !== 'production' &&
-	              typeof console !== 'undefined' &&
-	              !bailed) {
-	            bailed = true
-	            console.warn('Parent: ', elm)
-	            console.warn('Mismatching childNodes vs. VNodes: ', childNodes, children)
+	          if (!childrenMatch) {
+	            if (process.env.NODE_ENV !== 'production' &&
+	                typeof console !== 'undefined' &&
+	                !bailed) {
+	              bailed = true
+	              console.warn('Parent: ', elm)
+	              console.warn('Mismatching childNodes vs. VNodes: ', childNodes, children)
+	            }
+	            return false
 	          }
-	          return false
 	        }
 	      }
 	      if (isDef(data)) {
@@ -4228,9 +4257,18 @@
 
 	var directives = {
 	  create: function bindDirectives (oldVnode, vnode) {
-	    mergeVNodeHook(vnode.data.hook || (vnode.data.hook = {}), 'insert', function () {
-	      applyDirectives(oldVnode, vnode, 'bind')
+	    var hasInsert = false
+	    forEachDirective(oldVnode, vnode, function (def, dir) {
+	      callHook$1(def, dir, 'bind', vnode, oldVnode)
+	      if (def.inserted) {
+	        hasInsert = true
+	      }
 	    })
+	    if (hasInsert) {
+	      mergeVNodeHook(vnode.data.hook || (vnode.data.hook = {}), 'insert', function () {
+	        applyDirectives(oldVnode, vnode, 'inserted')
+	      })
+	    }
 	  },
 	  update: function updateDirectives (oldVnode, vnode) {
 	    applyDirectives(oldVnode, vnode, 'update')
@@ -4250,29 +4288,44 @@
 
 	var emptyModifiers = Object.create(null)
 
-	function applyDirectives (
+	function forEachDirective (
 	  oldVnode,
 	  vnode,
-	  hook
+	  fn
 	) {
 	  var dirs = vnode.data.directives
 	  if (dirs) {
-	    var oldDirs = oldVnode.data.directives
-	    var isUpdate = hook === 'update' || hook === 'componentUpdated'
 	    for (var i = 0; i < dirs.length; i++) {
 	      var dir = dirs[i]
 	      var def = resolveAsset(vnode.context.$options, 'directives', dir.name, true)
-	      var fn = def && def[hook]
-	      if (fn) {
-	        if (isUpdate && oldDirs) {
+	      if (def) {
+	        var oldDirs = oldVnode && oldVnode.data.directives
+	        if (oldDirs) {
 	          dir.oldValue = oldDirs[i].value
 	        }
 	        if (!dir.modifiers) {
 	          dir.modifiers = emptyModifiers
 	        }
-	        fn(vnode.elm, dir, vnode, oldVnode)
+	        fn(def, dir)
 	      }
 	    }
+	  }
+	}
+
+	function applyDirectives (
+	  oldVnode,
+	  vnode,
+	  hook
+	) {
+	  forEachDirective(oldVnode, vnode, function (def, dir) {
+	    callHook$1(def, dir, hook, vnode, oldVnode)
+	  })
+	}
+
+	function callHook$1 (def, dir, hook, vnode, oldVnode) {
+	  var fn = def && def[hook]
+	  if (fn) {
+	    fn(vnode.elm, dir, vnode, oldVnode)
 	  }
 	}
 
@@ -4611,7 +4664,7 @@
 	  var type = ref.type;
 	  var timeout = ref.timeout;
 	  var propCount = ref.propCount;
-	  if (!type) return cb()
+	  if (!type) { return cb() }
 	  var event = type === TRANSITION ? transitionEndEvent : animationEndEvent
 	  var ended = 0
 	  var end = function () {
@@ -4999,7 +5052,13 @@
 	    }
 	    if (vnode.tag === 'select') {
 	      setSelected(el, binding, vnode.context)
-	    } else {
+	      /* istanbul ignore if */
+	      if (isIE || isEdge) {
+	        nextTick(function () {
+	          setSelected(el, binding, vnode.context)
+	        })
+	      }
+	    } else if (vnode.tag === 'textarea' || el.type === 'text') {
 	      if (!isAndroid) {
 	        el.addEventListener('compositionstart', onCompositionStart)
 	        el.addEventListener('compositionend', onCompositionEnd)
@@ -5042,12 +5101,12 @@
 	  for (var i = 0, l = el.options.length; i < l; i++) {
 	    option = el.options[i]
 	    if (isMultiple) {
-	      selected = value.indexOf(getValue(option)) > -1
+	      selected = looseIndexOf(value, getValue(option)) > -1
 	      if (option.selected !== selected) {
 	        option.selected = selected
 	      }
 	    } else {
-	      if (getValue(option) === value) {
+	      if (looseEqual(getValue(option), value)) {
 	        if (el.selectedIndex !== i) {
 	          el.selectedIndex = i
 	        }
@@ -5062,7 +5121,7 @@
 
 	function hasNoMatchingOption (value, options) {
 	  for (var i = 0, l = options.length; i < l; i++) {
-	    if (getValue(options[i]) === value) {
+	    if (looseEqual(getValue(options[i]), value)) {
 	      return false
 	    }
 	  }
@@ -5072,7 +5131,7 @@
 	function getValue (option) {
 	  return '_value' in option
 	    ? option._value
-	    : option.value || option.text
+	    : option.value
 	}
 
 	function onCompositionStart (e) {
@@ -5105,7 +5164,7 @@
 
 	    vnode = locateNode(vnode)
 	    var transition = vnode.data && vnode.data.transition
-	    if (value && transition && transition.appear && !isIE9) {
+	    if (value && transition && !isIE9) {
 	      enter(vnode)
 	    }
 	    var originalDisplay = el.style.display === 'none' ? '' : el.style.display
@@ -5117,7 +5176,7 @@
 	    var oldValue = ref.oldValue;
 
 	    /* istanbul ignore if */
-	    if (value === oldValue) return
+	    if (value === oldValue) { return }
 	    vnode = locateNode(vnode)
 	    var transition = vnode.data && vnode.data.transition
 	    if (transition && !isIE9) {
@@ -5259,7 +5318,7 @@
 	      return placeholder(h, rawChild)
 	    }
 
-	    child.key = child.key == null
+	    child.key = child.key == null || child.isStatic
 	      ? ("__v" + (child.tag + this._uid) + "__")
 	      : child.key
 	    var data = (child.data || (child.data = {})).transition = extractTransitionData(this)
@@ -5335,7 +5394,7 @@
 	    for (var i = 0; i < rawChildren.length; i++) {
 	      var c = rawChildren[i]
 	      if (c.tag) {
-	        if (c.key != null) {
+	        if (c.key != null && String(c.key).indexOf('__vlist') !== 0) {
 	          children.push(c)
 	          map[c.key] = c
 	          ;(c.data || (c.data = {})).transition = transitionData
@@ -5387,26 +5446,11 @@
 	      return
 	    }
 
-	    children.forEach(function (c) {
-	      /* istanbul ignore if */
-	      if (c.elm._moveCb) {
-	        c.elm._moveCb()
-	      }
-	      /* istanbul ignore if */
-	      if (c.elm._enterCb) {
-	        c.elm._enterCb()
-	      }
-	      var oldPos = c.data.pos
-	      var newPos = c.data.pos = c.elm.getBoundingClientRect()
-	      var dx = oldPos.left - newPos.left
-	      var dy = oldPos.top - newPos.top
-	      if (dx || dy) {
-	        c.data.moved = true
-	        var s = c.elm.style
-	        s.transform = s.WebkitTransform = "translate(" + dx + "px," + dy + "px)"
-	        s.transitionDuration = '0s'
-	      }
-	    })
+	    // we divide the work into three loops to avoid mixing DOM reads and writes
+	    // in each iteration - which helps prevent layout thrashing.
+	    children.forEach(callPendingCbs)
+	    children.forEach(recordPosition)
+	    children.forEach(applyTranslation)
 
 	    // force reflow to put everything in position
 	    var f = document.body.offsetHeight // eslint-disable-line
@@ -5417,7 +5461,6 @@
 	        var s = el.style
 	        addTransitionClass(el, moveClass)
 	        s.transform = s.WebkitTransform = s.transitionDuration = ''
-	        el._moveDest = c.data.pos
 	        el.addEventListener(transitionEndEvent, el._moveCb = function cb (e) {
 	          if (!e || /transform$/.test(e.propertyName)) {
 	            el.removeEventListener(transitionEndEvent, cb)
@@ -5443,6 +5486,34 @@
 	      removeTransitionClass(el, moveClass)
 	      return (this._hasMove = info.hasTransform)
 	    }
+	  }
+	}
+
+	function callPendingCbs (c) {
+	  /* istanbul ignore if */
+	  if (c.elm._moveCb) {
+	    c.elm._moveCb()
+	  }
+	  /* istanbul ignore if */
+	  if (c.elm._enterCb) {
+	    c.elm._enterCb()
+	  }
+	}
+
+	function recordPosition (c) {
+	  c.data.newPos = c.elm.getBoundingClientRect()
+	}
+
+	function applyTranslation (c) {
+	  var oldPos = c.data.pos
+	  var newPos = c.data.newPos
+	  var dx = oldPos.left - newPos.left
+	  var dy = oldPos.top - newPos.top
+	  if (dx || dy) {
+	    c.data.moved = true
+	    var s = c.elm.style
+	    s.transform = s.WebkitTransform = "translate(" + dx + "px," + dy + "px)"
+	    s.transitionDuration = '0s'
 	  }
 	}
 
@@ -5687,7 +5758,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
-	 * vue-router v2.0.0-rc.4
+	 * vue-router v2.0.0-rc.5
 	 * (c) 2016 Evan You
 	 * @license MIT
 	 */
@@ -5739,12 +5810,13 @@
 	      ? cache[props.name]
 	      : (cache[props.name] = matched.components[props.name])
 
-	    var vnode = h(component, data, children)
 	    if (!inactive) {
-	      matched.instances[props.name] = vnode
+	      (data.hook || (data.hook = {})).init = function (vnode) {
+	        matched.instances[props.name] = vnode.child
+	      }
 	    }
 
-	    return vnode
+	    return h(component, data, children)
 	  }
 	}
 
@@ -5822,58 +5894,6 @@
 
 	function cleanPath (path        )         {
 	  return path.replace(/\/\//g, '/')
-	}
-
-	/*       */
-
-	function isSameRoute (a       , b        )          {
-	  if (!b) {
-	    return false
-	  } else if (a.path && b.path) {
-	    return (
-	      a.path === b.path &&
-	      a.hash === b.hash &&
-	      isObjectEqual(a.query, b.query)
-	    )
-	  } else if (a.name && b.name) {
-	    return (
-	      a.name === b.name &&
-	      a.hash === b.hash &&
-	      isObjectEqual(a.query, b.query) &&
-	      isObjectEqual(a.params, b.params)
-	    )
-	  } else {
-	    return false
-	  }
-	}
-
-	function isObjectEqual (a, b)          {
-	  if ( a === void 0 ) a = {};
-	  if ( b === void 0 ) b = {};
-
-	  var aKeys = Object.keys(a)
-	  var bKeys = Object.keys(b)
-	  if (aKeys.length !== bKeys.length) {
-	    return false
-	  }
-	  return aKeys.every(function (key) { return String(a[key]) === String(b[key]); })
-	}
-
-	function isIncludedRoute (current       , target       )          {
-	  return (
-	    current.path.indexOf(target.path) === 0 &&
-	    (!target.hash || current.hash === target.hash) &&
-	    queryIncludes(current.query, target.query)
-	  )
-	}
-
-	function queryIncludes (current            , target            )          {
-	  for (var key in target) {
-	    if (!(key in current)) {
-	      return false
-	    }
-	  }
-	  return true
 	}
 
 	/*       */
@@ -5980,6 +6000,97 @@
 
 	/*       */
 
+	function createRoute (
+	  record              ,
+	  location          ,
+	  redirectedFrom           
+	)        {
+	  var route        = {
+	    name: location.name || (record && record.name),
+	    meta: (record && record.meta) || {},
+	    path: location.path || '/',
+	    hash: location.hash || '',
+	    query: location.query || {},
+	    params: location.params || {},
+	    fullPath: getFullPath(location),
+	    matched: record ? formatMatch(record) : []
+	  }
+	  if (redirectedFrom) {
+	    route.redirectedFrom = getFullPath(redirectedFrom)
+	  }
+	  return Object.freeze(route)
+	}
+
+	function formatMatch (record              )                     {
+	  var res = []
+	  while (record) {
+	    res.unshift(record)
+	    record = record.parent
+	  }
+	  return res
+	}
+
+	function getFullPath (ref) {
+	  var path = ref.path;
+	  var query = ref.query; if ( query === void 0 ) query = {};
+	  var hash = ref.hash; if ( hash === void 0 ) hash = '';
+
+	  return (path || '/') + stringifyQuery(query) + hash
+	}
+
+	var trailingSlashRE = /\/$/
+	function isSameRoute (a       , b        )          {
+	  if (!b) {
+	    return false
+	  } else if (a.path && b.path) {
+	    return (
+	      a.path.replace(trailingSlashRE, '') === b.path.replace(trailingSlashRE, '') &&
+	      a.hash === b.hash &&
+	      isObjectEqual(a.query, b.query)
+	    )
+	  } else if (a.name && b.name) {
+	    return (
+	      a.name === b.name &&
+	      a.hash === b.hash &&
+	      isObjectEqual(a.query, b.query) &&
+	      isObjectEqual(a.params, b.params)
+	    )
+	  } else {
+	    return false
+	  }
+	}
+
+	function isObjectEqual (a, b)          {
+	  if ( a === void 0 ) a = {};
+	  if ( b === void 0 ) b = {};
+
+	  var aKeys = Object.keys(a)
+	  var bKeys = Object.keys(b)
+	  if (aKeys.length !== bKeys.length) {
+	    return false
+	  }
+	  return aKeys.every(function (key) { return String(a[key]) === String(b[key]); })
+	}
+
+	function isIncludedRoute (current       , target       )          {
+	  return (
+	    current.path.indexOf(target.path) === 0 &&
+	    (!target.hash || current.hash === target.hash) &&
+	    queryIncludes(current.query, target.query)
+	  )
+	}
+
+	function queryIncludes (current            , target            )          {
+	  for (var key in target) {
+	    if (!(key in current)) {
+	      return false
+	    }
+	  }
+	  return true
+	}
+
+	/*       */
+
 	function normalizeLocation (
 	  raw             ,
 	  current        ,
@@ -6009,11 +6120,16 @@
 	  }
 	}
 
+	/*       */
+
+	// work around weird flow bug
+	var toTypes                  = [String, Object]
+
 	var Link = {
 	  name: 'router-link',
 	  props: {
 	    to: {
-	      type: [String, Object],
+	      type: toTypes,
 	      required: true
 	    },
 	    tag: {
@@ -6025,7 +6141,7 @@
 	    replace: Boolean,
 	    activeClass: String
 	  },
-	  render: function render (h) {
+	  render: function render (h          ) {
 	    var this$1 = this;
 
 	    var router = this.$router
@@ -6037,12 +6153,12 @@
 	    var href = base ? cleanPath(base + fullPath) : fullPath
 	    var classes = {}
 	    var activeClass = this.activeClass || router.options.linkActiveClass || 'router-link-active'
-	    var compareTarget = to.path ? to : resolved
+	    var compareTarget = to.path ? createRoute(null, to) : resolved
 	    classes[activeClass] = this.exact
 	      ? isSameRoute(current, compareTarget)
 	      : isIncludedRoute(current, compareTarget)
 
-	    var data = {
+	    var data      = {
 	      class: classes,
 	      on: {
 	        click: function (e) {
@@ -6608,6 +6724,10 @@
 	  }
 
 	  if (route.children) {
+	    // Warn if route is named and has a default child route.
+	    // If users navigate to this route by name, the default child will
+	    // not be rendered (GH Issue #629)
+	    if (false) {}
 	    route.children.forEach(function (child) {
 	      addRouteRecord(pathMap, nameMap, child, record)
 	    })
@@ -6682,11 +6802,30 @@
 	    record             ,
 	    location          
 	  )        {
+	    var originalRedirect = record.redirect
+	    var redirect = typeof originalRedirect === 'function'
+	        ? originalRedirect(createRoute(record, location))
+	        : originalRedirect
+
+	    if (typeof redirect === 'string') {
+	      redirect = { path: redirect }
+	    }
+
+	    if (!redirect || typeof redirect !== 'object') {
+	      warn(false, ("invalid redirect option: " + (JSON.stringify(redirect))))
+	      return _createRoute(null, location)
+	    }
+
+	    var re         = redirect
+	    var name = re.name;
+	    var path = re.path;
 	    var query = location.query;
 	    var hash = location.hash;
 	    var params = location.params;
-	    var redirect = record.redirect;
-	    var name = redirect && typeof redirect === 'object' && redirect.name
+	    query = re.hasOwnProperty('query') ? re.query : query
+	    hash = re.hasOwnProperty('hash') ? re.hash : hash
+	    params = re.hasOwnProperty('params') ? re.params : params
+
 	    if (name) {
 	      // resolved named direct
 	      var targetRecord = nameMap[name]
@@ -6698,15 +6837,15 @@
 	        hash: hash,
 	        params: params
 	      }, undefined, location)
-	    } else if (typeof redirect === 'string') {
+	    } else if (path) {
 	      // 1. resolve relative redirect
-	      var rawPath = resolveRecordPath(redirect, record)
+	      var rawPath = resolveRecordPath(path, record)
 	      // 2. resolve params
-	      var path = fillParams(rawPath, params, ("redirect route with path \"" + rawPath + "\""))
+	      var resolvedPath = fillParams(rawPath, params, ("redirect route with path \"" + rawPath + "\""))
 	      // 3. rematch with existing query and hash
 	      return match({
 	        _normalized: true,
-	        path: path,
+	        path: resolvedPath,
 	        query: query,
 	        hash: hash
 	      }, undefined, location)
@@ -6750,27 +6889,6 @@
 	  }
 
 	  return match
-	}
-
-	function createRoute (
-	  record              ,
-	  location          ,
-	  redirectedFrom           
-	)        {
-	  var route        = {
-	    name: location.name || (record && record.name),
-	    meta: (record && record.meta) || {},
-	    path: location.path || '/',
-	    hash: location.hash || '',
-	    query: location.query || {},
-	    params: location.params || {},
-	    fullPath: getFullPath(location),
-	    matched: record ? formatMatch(record) : []
-	  }
-	  if (redirectedFrom) {
-	    route.redirectedFrom = getFullPath(redirectedFrom)
-	  }
-	  return Object.freeze(route)
 	}
 
 	function matchRoute (
@@ -6821,25 +6939,8 @@
 	  }
 	}
 
-	function formatMatch (record              )                     {
-	  var res = []
-	  while (record) {
-	    res.unshift(record)
-	    record = record.parent
-	  }
-	  return res
-	}
-
 	function resolveRecordPath (path        , record             )         {
 	  return resolvePath(path, record.parent ? record.parent.path : '/', true)
-	}
-
-	function getFullPath (ref) {
-	  var path = ref.path;
-	  var query = ref.query; if ( query === void 0 ) query = {};
-	  var hash = ref.hash; if ( hash === void 0 ) hash = '';
-
-	  return (path || '/') + stringifyQuery(query) + hash
 	}
 
 	/*       */
@@ -6868,9 +6969,13 @@
 	    if (index >= queue.length) {
 	      cb()
 	    } else {
-	      fn(queue[index], function () {
+	      if (queue[index]) {
+	        fn(queue[index], function () {
+	          step(index + 1)
+	        })
+	      } else {
 	        step(index + 1)
-	      })
+	      }
 	    }
 	  }
 	  step(0)
@@ -6914,7 +7019,6 @@
 	    var deactivated = ref.deactivated;
 	    var activated = ref.activated;
 
-	  var postEnterCbs = []
 	  var queue = [].concat(
 	    // in-component leave guards
 	    extractLeaveGuards(deactivated),
@@ -6923,18 +7027,18 @@
 	    // enter guards
 	    activated.map(function (m) { return m.beforeEnter; }),
 	    // async components
-	    resolveAsyncComponents(activated),
-	    // in-component enter guards
-	    extractEnterGuards(activated, postEnterCbs)
-	  ).filter(function (_) { return _; })
+	    resolveAsyncComponents(activated)
+	  )
 
 	  this.pending = route
 	  var redirect = function (location) { return this$1.push(location); }
+	  var iterator = function (hook, next) { return hook(route, redirect, next); }
 
-	  runQueue(
-	    queue,
-	    function (hook, next) { hook(route, redirect, next) },
-	    function () {
+	  runQueue(queue, iterator, function () {
+	    var postEnterCbs = []
+	    // wait until async components are resolved before
+	    // extracting in-component enter guards
+	    runQueue(extractEnterGuards(activated, postEnterCbs), iterator, function () {
 	      if (isSameRoute(route, this$1.pending)) {
 	        this$1.pending = null
 	        cb(route)
@@ -6942,8 +7046,8 @@
 	          postEnterCbs.forEach(function (cb) { return cb(); })
 	        })
 	      }
-	    }
-	  )
+	    })
+	  })
 	};
 
 	History.prototype.updateRoute = function updateRoute (route     ) {
@@ -7011,7 +7115,7 @@
 	        return guard(route, redirect, function (cb) {
 	          next()
 	          cb && cbs.push(function () {
-	            cb(match.instances[key] && match.instances[key].child)
+	            cb(match.instances[key])
 	          })
 	        })
 	      }
@@ -7053,7 +7157,7 @@
 	  return Array.prototype.concat.apply([], matched.map(function (m) {
 	    return Object.keys(m.components).map(function (key) { return fn(
 	      m.components[key],
-	      m.instances[key] && m.instances[key].child,
+	      m.instances[key],
 	      m, key
 	    ); })
 	  }))
@@ -7366,7 +7470,6 @@
 	    var this$1 = this;
 
 	    var targetIndex = this.index + n
-	    if (!this.stack) debugger
 	    if (targetIndex < 0 || targetIndex >= this.stack.length) {
 	      return
 	    }
@@ -7497,7 +7600,7 @@
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(__dirname) {'use strict';
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -7520,10 +7623,9 @@
 
 	var router = exports.router = new _vueRouter2.default({
 	  mode: 'history',
-	  base: __dirname,
+	  base: 'deckbuilder',
 	  routes: [{ path: '/', component: _Home2.default }, { path: '/deck', component: _Home2.default }, { path: '/deck/:faction', component: _Deck2.default }]
 	});
-	/* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ },
 /* 5 */
@@ -7540,7 +7642,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(16)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -7922,7 +8027,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(15)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -7939,9 +8047,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-8", __vue_options__)
+	    hotAPI.createRecord("data-v-10", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-8", __vue_options__)
+	    hotAPI.reload("data-v-10", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] FactionChoice.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -7965,8 +8073,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FactionChoice.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FactionChoice.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FactionChoice.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FactionChoice.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -7984,7 +8092,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.faction-choice-component {\n  width: 1200px;\n  margin: 0 auto;\n}\n.faction-choice-component:after {\n    content: \"\";\n    display: table;\n    clear: both;\n}\n.faction-choice-component > .wrapper {\n    width: calc(100% / 3);\n    float: left;\n    display: flex;\n}\n.faction-choice {\n  width: 254px;\n  margin: 0 auto 45px;\n}\n.faction-choice > .image {\n    margin-bottom: -32px;\n    position: relative;\n    z-index: 2;\n}\n.faction-choice > .text {\n    background: #104365;\n    padding: 30px 10px 10px;\n    text-align: center;\n    font-size: 1.5rem;\n    color: #e1e1e1;\n    position: relative;\n}\n.faction-choice > .text::before, .faction-choice > .text::after {\n      position: absolute;\n      content: '';\n      bottom: 0;\n      border-style: solid;\n}\n.faction-choice > .text::before {\n      left: 0;\n      border-width: 0 22px 22px 0;\n      border-color: #0b1c27 #104365;\n}\n.faction-choice > .text::after {\n      right: 0;\n      border-width: 22px 22px 0 0;\n      border-color: #104365 #0b1c27;\n}\n.faction-choice:hover > .text {\n  text-shadow: 0px 0px 16px rgba(255, 255, 255, 0.75);\n}\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.faction-choice-component {\n  width: 1200px;\n  margin: 0 auto;\n}\n.faction-choice-component:after {\n    content: \"\";\n    display: table;\n    clear: both;\n}\n.faction-choice-component > .wrapper {\n    width: calc(100% / 3);\n    float: left;\n    display: flex;\n}\n.faction-choice {\n  width: 254px;\n  margin: 0 auto 45px;\n}\n.faction-choice > .image {\n    margin-bottom: -32px;\n    position: relative;\n    z-index: 2;\n}\n.faction-choice > .text {\n    background: #104365;\n    padding: 30px 10px 10px;\n    text-align: center;\n    font-size: 1.5rem;\n    color: #e1e1e1;\n    position: relative;\n}\n.faction-choice > .text::before, .faction-choice > .text::after {\n      position: absolute;\n      content: '';\n      bottom: 0;\n      border-style: solid;\n}\n.faction-choice > .text::before {\n      left: 0;\n      border-width: 0 22px 22px 0;\n      border-color: #0b1c27 #104365;\n}\n.faction-choice > .text::after {\n      right: 0;\n      border-width: 22px 22px 0 0;\n      border-color: #104365 #0b1c27;\n}\n.faction-choice:hover > .text {\n  text-shadow: 0px 0px 16px rgba(255, 255, 255, 0.75);\n}\n", ""]);
 
 	// exports
 
@@ -8126,7 +8234,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-8", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-10", module.exports)
 	  }
 	}
 
@@ -8161,7 +8269,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(172)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -8223,7 +8334,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.left-column {\n  width: 74.57627%;\n  float: left;\n  margin-right: 1.69492%;\n  margin-top: 20px;\n}\n.right-column {\n  width: 23.72881%;\n  float: right;\n  margin-right: 0;\n  margin-top: 60px;\n}\n.card-grid:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n.deck-page:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.left-column {\n  width: 74.57627%;\n  float: left;\n  margin-right: 1.69492%;\n  margin-top: 20px;\n}\n.right-column {\n  width: 23.72881%;\n  float: right;\n  margin-right: 0;\n  margin-top: 60px;\n}\n.card-grid:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n.deck-page:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n", ""]);
 
 	// exports
 
@@ -8319,7 +8430,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(26)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -8336,9 +8450,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-4", __vue_options__)
+	    hotAPI.createRecord("data-v-6", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-4", __vue_options__)
+	    hotAPI.reload("data-v-6", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] GameCard.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -8362,8 +8476,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-4!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GameCard.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-4!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GameCard.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GameCard.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GameCard.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -8381,7 +8495,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n@keyframes flashBrightness {\nfrom {\n    -webkit-filter: brightness(5);\n    filter: brightness(5);\n}\nto {\n    -webkit-filter: brightness(1);\n    filter: brightness(1);\n}\n}\n@keyframes flashDull {\nfrom {\n    -webkit-filter: brightness(2);\n    filter: brightness(2);\n}\nto {\n    -webkit-filter: brightness(1);\n    filter: brightness(1);\n}\n}\n.flash {\n  animation: flashBrightness .2s;\n}\n.dull {\n  animation: flashDull .2s;\n}\n.card-container {\n  width: 253px;\n  height: 320px;\n  float: left;\n  padding: 16px 15px;\n  margin-bottom: 15px;\n}\n.card-container:hover {\n    background-image: url(https://dl.dropboxusercontent.com/u/24984522/spritesheet.png);\n}\n.game-card {\n  width: 224px;\n  height: 296px;\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/spritesheet.png);\n  position: relative;\n  text-align: center;\n  user-select: none;\n  -webkit-user-select: none;\n}\n.game-card.minion, .game-card.general {\n    background-position: -719px -2px;\n}\n.game-card.minion.disabled, .game-card.general.disabled {\n      background-position: -1409px -2px;\n}\n.game-card.spell {\n    background-position: -489px -2px;\n}\n.game-card.spell.disabled {\n      background-position: -1179px -2px;\n}\n.game-card.artifact {\n    background-position: -259px -2px;\n}\n.game-card.artifact.disabled {\n      background-position: -949px -2px;\n}\n.game-card > .cost {\n    width: 57px;\n    height: 63px;\n    font-size: 22px;\n    background-image: url(https://dl.dropboxusercontent.com/u/24984522/icon_mana.png);\n    position: absolute;\n    top: -16px;\n    left: -16px;\n    line-height: 63px;\n    color: #00213b;\n    font-weight: bold;\n}\n.game-card > .name {\n    text-transform: uppercase;\n    position: absolute;\n    text-align: center;\n    width: 100%;\n    top: 112px;\n    font-size: .8rem;\n}\n.game-card > .type {\n    color: #90cacf;\n    text-transform: uppercase;\n    position: absolute;\n    text-align: center;\n    width: 100%;\n    top: 130px;\n    font-size: .65rem;\n}\n.game-card > .type.artifact {\n      color: #edd144;\n}\n.game-card > .rarity {\n    width: 44px;\n    height: 44px;\n    position: absolute;\n    top: 151px;\n    left: 89px;\n}\n.game-card > .rarity.common {\n      background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_common.png);\n}\n.game-card > .rarity.epic {\n      background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_epic.png);\n}\n.game-card > .rarity.legendary {\n      background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_legendary.png);\n}\n.game-card > .rarity.rare {\n      background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_rare.png);\n}\n.game-card > .attack, .game-card > .health {\n    position: absolute;\n    width: 50px;\n    text-align: center;\n    font-size: 1.2rem;\n    top: 166px;\n}\n.game-card > .attack {\n    left: 27px;\n}\n.game-card > .health {\n    left: 148px;\n}\n.game-card > .text {\n    color: #90cacf;\n    line-height: 1.2;\n    text-align: center;\n    position: absolute;\n    top: 215px;\n    width: 90%;\n    left: 5%;\n    font-size: .75rem;\n}\n.game-card > .qty {\n    position: absolute;\n    bottom: 0;\n    width: 100%;\n    font-size: .65rem;\n}\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n@keyframes flashBrightness {\nfrom {\n    -webkit-filter: brightness(5);\n    filter: brightness(5);\n}\nto {\n    -webkit-filter: brightness(1);\n    filter: brightness(1);\n}\n}\n@keyframes flashDull {\nfrom {\n    -webkit-filter: brightness(2);\n    filter: brightness(2);\n}\nto {\n    -webkit-filter: brightness(1);\n    filter: brightness(1);\n}\n}\n.flash {\n  animation: flashBrightness .2s;\n}\n.dull {\n  animation: flashDull .2s;\n}\n.card-container {\n  width: 253px;\n  height: 320px;\n  float: left;\n  padding: 16px 15px;\n  margin-bottom: 15px;\n}\n.card-container:hover {\n    background-image: url(https://dl.dropboxusercontent.com/u/24984522/spritesheet.png);\n}\n.game-card {\n  width: 224px;\n  height: 296px;\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/spritesheet.png);\n  position: relative;\n  text-align: center;\n  user-select: none;\n  -webkit-user-select: none;\n}\n.game-card.minion, .game-card.general {\n    background-position: -719px -2px;\n}\n.game-card.minion.disabled, .game-card.general.disabled {\n      background-position: -1409px -2px;\n}\n.game-card.spell {\n    background-position: -489px -2px;\n}\n.game-card.spell.disabled {\n      background-position: -1179px -2px;\n}\n.game-card.artifact {\n    background-position: -259px -2px;\n}\n.game-card.artifact.disabled {\n      background-position: -949px -2px;\n}\n.game-card > .cost {\n    width: 57px;\n    height: 63px;\n    font-size: 22px;\n    background-image: url(https://dl.dropboxusercontent.com/u/24984522/icon_mana.png);\n    position: absolute;\n    top: -16px;\n    left: -16px;\n    line-height: 63px;\n    color: #00213b;\n    font-weight: bold;\n}\n.game-card > .name {\n    text-transform: uppercase;\n    position: absolute;\n    text-align: center;\n    width: 100%;\n    top: 112px;\n    font-size: .8rem;\n}\n.game-card > .type {\n    color: #90cacf;\n    text-transform: uppercase;\n    position: absolute;\n    text-align: center;\n    width: 100%;\n    top: 130px;\n    font-size: .65rem;\n}\n.game-card > .type.artifact {\n      color: #edd144;\n}\n.game-card > .rarity {\n    width: 44px;\n    height: 44px;\n    position: absolute;\n    top: 151px;\n    left: 89px;\n}\n.game-card > .rarity.common {\n      background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_common.png);\n}\n.game-card > .rarity.epic {\n      background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_epic.png);\n}\n.game-card > .rarity.legendary {\n      background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_legendary.png);\n}\n.game-card > .rarity.rare {\n      background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_rare.png);\n}\n.game-card > .attack, .game-card > .health {\n    position: absolute;\n    width: 50px;\n    text-align: center;\n    font-size: 1.2rem;\n    top: 166px;\n}\n.game-card > .attack {\n    left: 27px;\n}\n.game-card > .health {\n    left: 148px;\n}\n.game-card > .text {\n    color: #90cacf;\n    line-height: 1.2;\n    text-align: center;\n    position: absolute;\n    top: 215px;\n    width: 90%;\n    left: 5%;\n    font-size: .75rem;\n}\n.game-card > .qty {\n    position: absolute;\n    bottom: 0;\n    width: 100%;\n    font-size: .65rem;\n}\n", ""]);
 
 	// exports
 
@@ -8544,7 +8658,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-4", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-6", module.exports)
 	  }
 	}
 
@@ -8563,7 +8677,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(31)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -8580,9 +8697,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-9", __vue_options__)
+	    hotAPI.createRecord("data-v-8", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-9", __vue_options__)
+	    hotAPI.reload("data-v-8", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] GeneralCard.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -8606,8 +8723,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-9!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GeneralCard.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-9!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GeneralCard.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GeneralCard.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GeneralCard.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -8625,7 +8742,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n", ""]);
 
 	// exports
 
@@ -8741,7 +8858,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-9", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-8", module.exports)
 	  }
 	}
 
@@ -8760,7 +8877,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(128)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -8777,9 +8897,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-6", __vue_options__)
+	    hotAPI.createRecord("data-v-7", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-6", __vue_options__)
+	    hotAPI.reload("data-v-7", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] DeckList.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -8803,8 +8923,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckList.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckList.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckList.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckList.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -8822,7 +8942,7 @@
 
 
 	// module
-	exports.push([module.id, "\n@charset \"UTF-8\";\n/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.save-deck {\n  margin-top: 15px;\n}\n.save-deck::before {\n    font-family: 'Material Icons';\n    content: \"\\E2C4\";\n}\n", ""]);
+	exports.push([module.id, "\n@charset \"UTF-8\";\n/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.save-deck {\n  margin-top: 15px;\n}\n.save-deck::before {\n    font-family: 'Material Icons';\n    content: \"\\E2C4\";\n}\n", ""]);
 
 	// exports
 
@@ -11161,7 +11281,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(109)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -11178,9 +11301,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-14", __vue_options__)
+	    hotAPI.createRecord("data-v-15", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-14", __vue_options__)
+	    hotAPI.reload("data-v-15", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] ManaCurve.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -11204,8 +11327,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-14!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManaCurve.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-14!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManaCurve.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-15!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManaCurve.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-15!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManaCurve.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -11223,7 +11346,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.mana-curve {\n  position: relative;\n}\n.card-counts {\n  height: 70px;\n  position: relative;\n}\n.card-counts > .mana {\n    width: 10%;\n    display: inline-block;\n}\n.card-counts > .mana > .bar {\n      background: #01d6f3;\n      position: absolute;\n      bottom: 2px;\n      width: calc(10% - 2px);\n      transition: all .3s ease-out;\n}\n.card-counts > .mana > .bar > .count {\n        text-align: center;\n        margin-top: -25px;\n        font-size: .9rem;\n}\n.mana-numbers {\n  border-top: 1px solid #01d6f3;\n  border-bottom: 1px solid #01d6f3;\n  width: 100%;\n}\n.mana-numbers:after {\n    content: \"\";\n    display: table;\n    clear: both;\n}\n.mana-numbers > .number {\n    width: 10%;\n    display: inline-block;\n    text-align: center;\n    font-size: .8rem;\n    float: left;\n    padding-top: 2px;\n}\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.mana-curve {\n  position: relative;\n}\n.card-counts {\n  height: 70px;\n  position: relative;\n}\n.card-counts > .mana {\n    width: 10%;\n    display: inline-block;\n}\n.card-counts > .mana > .bar {\n      background: #01d6f3;\n      position: absolute;\n      bottom: 2px;\n      width: calc(10% - 2px);\n      transition: all .3s ease-out;\n}\n.card-counts > .mana > .bar > .count {\n        text-align: center;\n        margin-top: -25px;\n        font-size: .9rem;\n}\n.mana-numbers {\n  border-top: 1px solid #01d6f3;\n  border-bottom: 1px solid #01d6f3;\n  width: 100%;\n}\n.mana-numbers:after {\n    content: \"\";\n    display: table;\n    clear: both;\n}\n.mana-numbers > .number {\n    width: 10%;\n    display: inline-block;\n    text-align: center;\n    font-size: .8rem;\n    float: left;\n    padding-top: 2px;\n}\n", ""]);
 
 	// exports
 
@@ -11316,7 +11439,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-14", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-15", module.exports)
 	  }
 	}
 
@@ -11335,7 +11458,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(114)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -11352,9 +11478,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-15", __vue_options__)
+	    hotAPI.createRecord("data-v-16", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-15", __vue_options__)
+	    hotAPI.reload("data-v-16", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] DeckCounts.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -11378,8 +11504,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-15!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckCounts.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-15!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckCounts.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-16!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckCounts.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-16!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckCounts.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -11397,7 +11523,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.deck-counts > .count {\n  width: 32%;\n  text-align: center;\n  display: inline-block;\n  font-size: .9rem;\n  margin-top: 8px;\n}\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.deck-counts > .count {\n  width: 32%;\n  text-align: center;\n  display: inline-block;\n  font-size: .9rem;\n  margin-top: 8px;\n}\n", ""]);
 
 	// exports
 
@@ -11455,7 +11581,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-15", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-16", module.exports)
 	  }
 	}
 
@@ -11474,7 +11600,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(119)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -11491,9 +11620,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-16", __vue_options__)
+	    hotAPI.createRecord("data-v-17", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-16", __vue_options__)
+	    hotAPI.reload("data-v-17", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] DeckGeneral.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -11517,8 +11646,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-16!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckGeneral.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-16!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckGeneral.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-17!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckGeneral.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-17!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckGeneral.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -11536,7 +11665,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.deck-general {\n  text-align: right;\n  position: relative;\n  height: 110px;\n}\n.deck-general > .general {\n    top: -40px;\n    left: -20px;\n}\n.deck-general > .cards {\n    padding-top: 15px;\n}\n.deck-general > .cards > b, .deck-general > .spirit > b {\n    color: #01d6f3;\n}\n.deck-general > .name {\n    font-size: 1.1rem;\n    text-transform: uppercase;\n    position: absolute;\n    bottom: 0;\n    left: 120px;\n}\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.deck-general {\n  text-align: right;\n  position: relative;\n  height: 110px;\n}\n.deck-general > .general {\n    top: -40px;\n    left: -20px;\n}\n.deck-general > .cards {\n    padding-top: 15px;\n}\n.deck-general > .cards > b, .deck-general > .spirit > b {\n    color: #01d6f3;\n}\n.deck-general > .name {\n    font-size: 1.1rem;\n    text-transform: uppercase;\n    position: absolute;\n    bottom: 0;\n    left: 120px;\n}\n", ""]);
 
 	// exports
 
@@ -11579,7 +11708,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-16", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-17", module.exports)
 	  }
 	}
 
@@ -11598,7 +11727,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(124)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -11615,9 +11747,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-17", __vue_options__)
+	    hotAPI.createRecord("data-v-18", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-17", __vue_options__)
+	    hotAPI.reload("data-v-18", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] DeckCard.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -11641,8 +11773,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-17!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckCard.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-17!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckCard.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-18!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckCard.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-18!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DeckCard.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -11660,7 +11792,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.deck-card {\n  background: #104365;\n  height: 44px;\n  margin: 3px 0;\n  position: relative;\n}\n.deck-card > .cost {\n    line-height: 63px;\n    text-align: center;\n    font-weight: bold;\n    width: 57px;\n    height: 63px;\n    background-image: url(https://dl.dropboxusercontent.com/u/24984522/icon_mana.png);\n    position: absolute;\n    top: -10px;\n    left: -10px;\n    transform: scale(0.75);\n    color: #222222;\n    z-index: 4;\n}\n.deck-card > .name {\n    line-height: 44px;\n    text-indent: 45px;\n}\n.deck-card::before, .deck-card::after {\n    position: absolute;\n    content: '';\n    bottom: 0;\n    border-style: solid;\n}\n.deck-card::before {\n    left: 0;\n    border-width: 0 22px 22px 0;\n    border-color: #0b1c27 #104365;\n}\n.deck-card::after {\n    left: 0;\n    top: 0;\n    height: 22px;\n    border-width: 22px 22px 0 0;\n    border-color: #0b1c27 #104365;\n}\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.deck-card {\n  background: #104365;\n  height: 44px;\n  margin: 3px 0;\n  position: relative;\n}\n.deck-card > .cost {\n    line-height: 63px;\n    text-align: center;\n    font-weight: bold;\n    width: 57px;\n    height: 63px;\n    background-image: url(https://dl.dropboxusercontent.com/u/24984522/icon_mana.png);\n    position: absolute;\n    top: -10px;\n    left: -10px;\n    transform: scale(0.75);\n    color: #222222;\n    z-index: 4;\n}\n.deck-card > .name {\n    line-height: 44px;\n    text-indent: 45px;\n}\n.deck-card::before, .deck-card::after {\n    position: absolute;\n    content: '';\n    bottom: 0;\n    border-style: solid;\n}\n.deck-card::before {\n    left: 0;\n    border-width: 0 22px 22px 0;\n    border-color: #0b1c27 #104365;\n}\n.deck-card::after {\n    left: 0;\n    top: 0;\n    height: 22px;\n    border-width: 22px 22px 0 0;\n    border-color: #0b1c27 #104365;\n}\n", ""]);
 
 	// exports
 
@@ -11737,7 +11869,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-17", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-18", module.exports)
 	  }
 	}
 
@@ -11797,8 +11929,8 @@
 	            .then(applyOptions)
 	            .then(function (clone) {
 	                return makeSvgDataUri(clone,
-	                    options.width || node.scrollWidth,
-	                    options.height || node.scrollHeight
+	                    options.width || util.width(node),
+	                    options.height || util.height(node)
 	                );
 	            });
 
@@ -11828,8 +11960,8 @@
 	                return canvas.getContext('2d').getImageData(
 	                    0,
 	                    0,
-	                    node.scrollWidth,
-	                    node.scrollHeight
+	                    util.width(node),
+	                    util.height(node)
 	                ).data;
 	            });
 	    }
@@ -11881,8 +12013,8 @@
 
 	        function newCanvas(domNode) {
 	            var canvas = document.createElement('canvas');
-	            canvas.width = options.width || domNode.scrollWidth;
-	            canvas.height = options.height || domNode.scrollHeight;
+	            canvas.width = options.width || util.width(domNode);
+	            canvas.height = options.height || util.height(domNode);
 
 	            if (options.bgcolor) {
 	                var ctx = canvas.getContext('2d');
@@ -12079,7 +12211,9 @@
 	            delay: delay,
 	            asArray: asArray,
 	            escapeXhtml: escapeXhtml,
-	            makeImage: makeImage
+	            makeImage: makeImage,
+	            width: width,
+	            height: height
 	        };
 
 	        function mimes() {
@@ -12245,6 +12379,23 @@
 
 	        function escapeXhtml(string) {
 	            return string.replace(/#/g, '%23').replace(/\n/g, '%0A');
+	        }
+
+	        function width(node) {
+	            var leftBorder = px(node, 'border-left-width');
+	            var rightBorder = px(node, 'border-right-width');
+	            return node.scrollWidth + leftBorder + rightBorder;
+	        }
+
+	        function height(node) {
+	            var topBorder = px(node, 'border-top-width');
+	            var bottomBorder = px(node, 'border-bottom-width');
+	            return node.scrollHeight + topBorder + bottomBorder;
+	        }
+
+	        function px(node, styleProperty) {
+	            var value = window.getComputedStyle(node).getPropertyValue(styleProperty);
+	            return parseFloat(value.replace('px', ''));
 	        }
 	    }
 
@@ -15132,7 +15283,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-6", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-7", module.exports)
 	  }
 	}
 
@@ -15151,7 +15302,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(134)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -15168,9 +15322,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-11", __vue_options__)
+	    hotAPI.createRecord("data-v-9", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-11", __vue_options__)
+	    hotAPI.reload("data-v-9", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] CardPagination.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -15194,8 +15348,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-11!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CardPagination.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-11!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CardPagination.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-9!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CardPagination.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-9!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CardPagination.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -15213,7 +15367,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.card-pagination {\n  text-align: center;\n}\n.card-pagination > .next, .card-pagination > .prev {\n    background-repeat: no-repeat;\n    width: 32px;\n    height: 40px;\n    display: inline-block;\n}\n.card-pagination > .next {\n    background-image: url(https://dl.dropboxusercontent.com/u/24984522/dialogue_carat.png);\n    float: right;\n}\n.card-pagination > .prev {\n    background-image: url(https://dl.dropboxusercontent.com/u/24984522/dialogue_carat_left.png);\n    float: left;\n}\n.card-pagination > .text {\n    padding-top: 8px;\n}\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.card-pagination {\n  text-align: center;\n}\n.card-pagination > .next, .card-pagination > .prev {\n    background-repeat: no-repeat;\n    width: 32px;\n    height: 40px;\n    display: inline-block;\n}\n.card-pagination > .next {\n    background-image: url(https://dl.dropboxusercontent.com/u/24984522/dialogue_carat.png);\n    float: right;\n}\n.card-pagination > .prev {\n    background-image: url(https://dl.dropboxusercontent.com/u/24984522/dialogue_carat_left.png);\n    float: left;\n}\n.card-pagination > .text {\n    padding-top: 8px;\n}\n", ""]);
 
 	// exports
 
@@ -15242,7 +15396,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
-	 * vuex v2.0.0-rc.5
+	 * vuex v2.0.0-rc.6
 	 * (c) 2016 Evan You
 	 * @license MIT
 	 */
@@ -15250,512 +15404,525 @@
 	   true ? module.exports = factory() :
 	  typeof define === 'function' && define.amd ? define(factory) :
 	  (global.Vuex = factory());
-	}(this, function () { 'use strict';
+	}(this, (function () { 'use strict';
 
-	  var devtoolHook =
-	    typeof window !== 'undefined' &&
-	    window.__VUE_DEVTOOLS_GLOBAL_HOOK__
+	var devtoolHook =
+	  typeof window !== 'undefined' &&
+	  window.__VUE_DEVTOOLS_GLOBAL_HOOK__
 
-	  function devtoolPlugin (store) {
-	    if (!devtoolHook) return
+	function devtoolPlugin (store) {
+	  if (!devtoolHook) { return }
 
-	    store._devtoolHook = devtoolHook
+	  store._devtoolHook = devtoolHook
 
-	    devtoolHook.emit('vuex:init', store)
+	  devtoolHook.emit('vuex:init', store)
 
-	    devtoolHook.on('vuex:travel-to-state', function (targetState) {
-	      store.replaceState(targetState)
-	    })
+	  devtoolHook.on('vuex:travel-to-state', function (targetState) {
+	    store.replaceState(targetState)
+	  })
 
-	    store.subscribe(function (mutation, state) {
-	      devtoolHook.emit('vuex:mutation', mutation, state)
-	    })
-	  }
+	  store.subscribe(function (mutation, state) {
+	    devtoolHook.emit('vuex:mutation', mutation, state)
+	  })
+	}
 
-	  function applyMixin (Vue) {
-	    var version = Number(Vue.version.split('.')[0])
+	function applyMixin (Vue) {
+	  var version = Number(Vue.version.split('.')[0])
 
-	    if (version >= 2) {
-	      var usesInit = Vue.config._lifecycleHooks.indexOf('init') > -1
-	      Vue.mixin(usesInit ? { init: vuexInit } : { beforeCreate: vuexInit })
-	    } else {
-	      // override init and inject vuex init procedure
-	      // for 1.x backwards compatibility.
-	      var _init = Vue.prototype._init
-	      Vue.prototype._init = function (options) {
-	        if ( options === void 0 ) options = {};
+	  if (version >= 2) {
+	    var usesInit = Vue.config._lifecycleHooks.indexOf('init') > -1
+	    Vue.mixin(usesInit ? { init: vuexInit } : { beforeCreate: vuexInit })
+	  } else {
+	    // override init and inject vuex init procedure
+	    // for 1.x backwards compatibility.
+	    var _init = Vue.prototype._init
+	    Vue.prototype._init = function (options) {
+	      if ( options === void 0 ) options = {};
 
-	        options.init = options.init
-	          ? [vuexInit].concat(options.init)
-	          : vuexInit
-	        _init.call(this, options)
-	      }
-	    }
-
-	    /**
-	     * Vuex init hook, injected into each instances init hooks list.
-	     */
-
-	    function vuexInit () {
-	      var options = this.$options
-	      // store injection
-	      if (options.store) {
-	        this.$store = options.store
-	      } else if (options.parent && options.parent.$store) {
-	        this.$store = options.parent.$store
-	      }
+	      options.init = options.init
+	        ? [vuexInit].concat(options.init)
+	        : vuexInit
+	      _init.call(this, options)
 	    }
 	  }
 
-	  function mapState (states) {
-	    var res = {}
-	    normalizeMap(states).forEach(function (ref) {
-	      var key = ref.key;
-	      var val = ref.val;
+	  /**
+	   * Vuex init hook, injected into each instances init hooks list.
+	   */
 
-	      res[key] = function mappedState () {
-	        return typeof val === 'function'
-	          ? val.call(this, this.$store.state, this.$store.getters)
-	          : this.$store.state[val]
+	  function vuexInit () {
+	    var options = this.$options
+	    // store injection
+	    if (options.store) {
+	      this.$store = options.store
+	    } else if (options.parent && options.parent.$store) {
+	      this.$store = options.parent.$store
+	    }
+	  }
+	}
+
+	function mapState (states) {
+	  var res = {}
+	  normalizeMap(states).forEach(function (ref) {
+	    var key = ref.key;
+	    var val = ref.val;
+
+	    res[key] = function mappedState () {
+	      return typeof val === 'function'
+	        ? val.call(this, this.$store.state, this.$store.getters)
+	        : this.$store.state[val]
+	    }
+	  })
+	  return res
+	}
+
+	function mapMutations (mutations) {
+	  var res = {}
+	  normalizeMap(mutations).forEach(function (ref) {
+	    var key = ref.key;
+	    var val = ref.val;
+
+	    res[key] = function mappedMutation () {
+	      var args = [], len = arguments.length;
+	      while ( len-- ) args[ len ] = arguments[ len ];
+
+	      return this.$store.commit.apply(this.$store, [val].concat(args))
+	    }
+	  })
+	  return res
+	}
+
+	function mapGetters (getters) {
+	  var res = {}
+	  normalizeMap(getters).forEach(function (ref) {
+	    var key = ref.key;
+	    var val = ref.val;
+
+	    res[key] = function mappedGetter () {
+	      if (!(val in this.$store.getters)) {
+	        console.error(("[vuex] unknown getter: " + val))
 	      }
-	    })
-	    return res
-	  }
+	      return this.$store.getters[val]
+	    }
+	  })
+	  return res
+	}
 
-	  function mapMutations (mutations) {
-	    var res = {}
-	    normalizeMap(mutations).forEach(function (ref) {
-	      var key = ref.key;
-	      var val = ref.val;
+	function mapActions (actions) {
+	  var res = {}
+	  normalizeMap(actions).forEach(function (ref) {
+	    var key = ref.key;
+	    var val = ref.val;
 
-	      res[key] = function mappedMutation () {
-	        var args = [], len = arguments.length;
-	        while ( len-- ) args[ len ] = arguments[ len ];
+	    res[key] = function mappedAction () {
+	      var args = [], len = arguments.length;
+	      while ( len-- ) args[ len ] = arguments[ len ];
 
-	        return this.$store.commit.apply(this.$store, [val].concat(args))
-	      }
-	    })
-	    return res
-	  }
+	      return this.$store.dispatch.apply(this.$store, [val].concat(args))
+	    }
+	  })
+	  return res
+	}
 
-	  function mapGetters (getters) {
-	    var res = {}
-	    normalizeMap(getters).forEach(function (ref) {
-	      var key = ref.key;
-	      var val = ref.val;
+	function normalizeMap (map) {
+	  return Array.isArray(map)
+	    ? map.map(function (key) { return ({ key: key, val: key }); })
+	    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+	}
 
-	      res[key] = function mappedGetter () {
-	        if (!(val in this.$store.getters)) {
-	          console.error(("[vuex] unknown getter: " + val))
-	        }
-	        return this.$store.getters[val]
-	      }
-	    })
-	    return res
-	  }
+	function isObject (obj) {
+	  return obj !== null && typeof obj === 'object'
+	}
 
-	  function mapActions (actions) {
-	    var res = {}
-	    normalizeMap(actions).forEach(function (ref) {
-	      var key = ref.key;
-	      var val = ref.val;
+	function isPromise (val) {
+	  return val && typeof val.then === 'function'
+	}
 
-	      res[key] = function mappedAction () {
-	        var args = [], len = arguments.length;
-	        while ( len-- ) args[ len ] = arguments[ len ];
+	function assert (condition, msg) {
+	  if (!condition) { throw new Error(("[vuex] " + msg)) }
+	}
 
-	        return this.$store.dispatch.apply(this.$store, [val].concat(args))
-	      }
-	    })
-	    return res
-	  }
+	var Vue // bind on install
 
-	  function normalizeMap (map) {
-	    return Array.isArray(map)
-	      ? map.map(function (key) { return ({ key: key, val: key }); })
-	      : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
-	  }
+	var Store = function Store (options) {
+	  var this$1 = this;
+	  if ( options === void 0 ) options = {};
 
-	  var Vue // bind on install
+	  assert(Vue, "must call Vue.use(Vuex) before creating a store instance.")
+	  assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.")
 
-	  var Store = function Store (options) {
-	    var this$1 = this;
-	    if ( options === void 0 ) options = {};
+	  var state = options.state; if ( state === void 0 ) state = {};
+	  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
+	  var strict = options.strict; if ( strict === void 0 ) strict = false;
 
-	    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.")
-	    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.")
-
-	    var state = options.state; if ( state === void 0 ) state = {};
-	    var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
-	    var strict = options.strict; if ( strict === void 0 ) strict = false;
-
-	    // store internal state
-	    this._options = options
-	    this._committing = false
-	    this._actions = Object.create(null)
-	    this._mutations = Object.create(null)
-	    this._wrappedGetters = Object.create(null)
-	      this._runtimeModules = Object.create(null)
-	    this._subscribers = []
-	    this._watcherVM = new Vue()
+	  // store internal state
+	  this._options = options
+	  this._committing = false
+	  this._actions = Object.create(null)
+	  this._mutations = Object.create(null)
+	  this._wrappedGetters = Object.create(null)
+	  this._runtimeModules = Object.create(null)
+	  this._subscribers = []
+	  this._watcherVM = new Vue()
 
 	    // bind commit and dispatch to self
-	    var store = this
-	    var ref = this;
-	    var dispatch = ref.dispatch;
-	    var commit = ref.commit;
-	      this.dispatch = function boundDispatch (type, payload) {
-	      return dispatch.call(store, type, payload)
+	  var store = this
+	  var ref = this;
+	  var dispatch = ref.dispatch;
+	  var commit = ref.commit;
+	  this.dispatch = function boundDispatch (type, payload) {
+	    return dispatch.call(store, type, payload)
 	    }
 	    this.commit = function boundCommit (type, payload, options) {
-	      return commit.call(store, type, payload, options)
-	    }
+	    return commit.call(store, type, payload, options)
+	  }
 
-	    // strict mode
-	    this.strict = strict
+	  // strict mode
+	  this.strict = strict
 
-	    // init root module.
-	    // this also recursively registers all sub-modules
-	    // and collects all module getters inside this._wrappedGetters
-	    installModule(this, state, [], options)
+	  // init root module.
+	  // this also recursively registers all sub-modules
+	  // and collects all module getters inside this._wrappedGetters
+	  installModule(this, state, [], options)
 
-	    // initialize the store vm, which is responsible for the reactivity
-	    // (also registers _wrappedGetters as computed properties)
-	    resetStoreVM(this, state)
+	  // initialize the store vm, which is responsible for the reactivity
+	  // (also registers _wrappedGetters as computed properties)
+	  resetStoreVM(this, state)
 
-	    // apply plugins
-	    plugins.concat(devtoolPlugin).forEach(function (plugin) { return plugin(this$1); })
-	  };
+	  // apply plugins
+	  plugins.concat(devtoolPlugin).forEach(function (plugin) { return plugin(this$1); })
+	};
 
-	  var prototypeAccessors = { state: {} };
+	var prototypeAccessors = { state: {} };
 
-	  prototypeAccessors.state.get = function () {
-	    return this._vm.state
-	  };
+	prototypeAccessors.state.get = function () {
+	  return this._vm.state
+	};
 
-	  prototypeAccessors.state.set = function (v) {
-	    assert(false, "Use store.replaceState() to explicit replace store state.")
-	  };
+	prototypeAccessors.state.set = function (v) {
+	  assert(false, "Use store.replaceState() to explicit replace store state.")
+	};
 
-	  Store.prototype.commit = function commit (type, payload, options) {
-	      var this$1 = this;
+	Store.prototype.commit = function commit (type, payload, options) {
+	    var this$1 = this;
 
-	    // check object-style commit
-	    var mutation
-	    if (isObject(type) && type.type) {
-	      options = payload
-	      payload = mutation = type
-	      type = type.type
-	    } else {
-	      mutation = { type: type, payload: payload }
-	    }
-	    var entry = this._mutations[type]
-	    if (!entry) {
-	      console.error(("[vuex] unknown mutation type: " + type))
-	      return
-	    }
-	    this._withCommit(function () {
-	      entry.forEach(function commitIterator (handler) {
-	        handler(payload)
-	      })
+	  // check object-style commit
+	  if (isObject(type) && type.type) {
+	    options = payload
+	    payload = type
+	    type = type.type
+	  }
+	  var mutation = { type: type, payload: payload }
+	  var entry = this._mutations[type]
+	  if (!entry) {
+	    console.error(("[vuex] unknown mutation type: " + type))
+	    return
+	  }
+	  this._withCommit(function () {
+	    entry.forEach(function commitIterator (handler) {
+	      handler(payload)
 	    })
-	    if (!options || !options.silent) {
-	      this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); })
+	  })
+	  if (!options || !options.silent) {
+	    this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); })
+	  }
+	};
+
+	Store.prototype.dispatch = function dispatch (type, payload) {
+	  // check object-style dispatch
+	  if (isObject(type) && type.type) {
+	    payload = type
+	    type = type.type
+	  }
+	  var entry = this._actions[type]
+	  if (!entry) {
+	    console.error(("[vuex] unknown action type: " + type))
+	    return
+	  }
+	  return entry.length > 1
+	    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
+	    : entry[0](payload)
+	};
+
+	Store.prototype.subscribe = function subscribe (fn) {
+	  var subs = this._subscribers
+	  if (subs.indexOf(fn) < 0) {
+	    subs.push(fn)
+	  }
+	  return function () {
+	    var i = subs.indexOf(fn)
+	    if (i > -1) {
+	      subs.splice(i, 1)
 	    }
-	  };
+	  }
+	};
 
-	  Store.prototype.dispatch = function dispatch (type, payload) {
-	    var entry = this._actions[type]
-	    if (!entry) {
-	      console.error(("[vuex] unknown action type: " + type))
-	      return
-	    }
-	    return entry.length > 1
-	      ? Promise.all(entry.map(function (handler) { return handler(payload); }))
-	      : entry[0](payload)
-	  };
+	Store.prototype.watch = function watch (getter, cb, options) {
+	    var this$1 = this;
 
-	  Store.prototype.subscribe = function subscribe (fn) {
-	    var subs = this._subscribers
-	    if (subs.indexOf(fn) < 0) {
-	      subs.push(fn)
-	    }
-	    return function () {
-	      var i = subs.indexOf(fn)
-	      if (i > -1) {
-	        subs.splice(i, 1)
-	      }
-	    }
-	  };
+	  assert(typeof getter === 'function', "store.watch only accepts a function.")
+	  return this._watcherVM.$watch(function () { return getter(this$1.state); }, cb, options)
+	};
 
-	  Store.prototype.watch = function watch (getter, cb, options) {
-	      var this$1 = this;
+	Store.prototype.replaceState = function replaceState (state) {
+	    var this$1 = this;
 
-	    assert(typeof getter === 'function', "store.watch only accepts a function.")
-	    return this._watcherVM.$watch(function () { return getter(this$1.state); }, cb, options)
-	  };
+	  this._withCommit(function () {
+	    this$1._vm.state = state
+	  })
+	};
 
-	  Store.prototype.replaceState = function replaceState (state) {
-	      var this$1 = this;
+	Store.prototype.registerModule = function registerModule (path, module) {
+	  if (typeof path === 'string') { path = [path] }
+	  assert(Array.isArray(path), "module path must be a string or an Array.")
+	  this._runtimeModules[path.join('.')] = module
+	  installModule(this, this.state, path, module)
+	  // reset store to update getters...
+	  resetStoreVM(this, this.state)
+	};
 
-	    this._withCommit(function () {
-	      this$1._vm.state = state
-	    })
-	  };
+	Store.prototype.unregisterModule = function unregisterModule (path) {
+	    var this$1 = this;
 
-	  Store.prototype.registerModule = function registerModule (path, module) {
-	    if (typeof path === 'string') path = [path]
-	    assert(Array.isArray(path), "module path must be a string or an Array.")
-	    this._runtimeModules[path.join('.')] = module
-	    installModule(this, this.state, path, module)
-	    // reset store to update getters...
-	    resetStoreVM(this, this.state)
-	  };
-
-	  Store.prototype.unregisterModule = function unregisterModule (path) {
-	      var this$1 = this;
-
-	    if (typeof path === 'string') path = [path]
-	    assert(Array.isArray(path), "module path must be a string or an Array.")
+	  if (typeof path === 'string') { path = [path] }
+	  assert(Array.isArray(path), "module path must be a string or an Array.")
 	    delete this._runtimeModules[path.join('.')]
-	    this._withCommit(function () {
-	      var parentState = getNestedState(this$1.state, path.slice(0, -1))
-	      Vue.delete(parentState, path[path.length - 1])
-	    })
-	    resetStore(this)
-	  };
+	  this._withCommit(function () {
+	    var parentState = getNestedState(this$1.state, path.slice(0, -1))
+	    Vue.delete(parentState, path[path.length - 1])
+	  })
+	  resetStore(this)
+	};
 
-	  Store.prototype.hotUpdate = function hotUpdate (newOptions) {
-	    var options = this._options
-	    if (newOptions.actions) {
-	      options.actions = newOptions.actions
-	    }
-	    if (newOptions.mutations) {
-	      options.mutations = newOptions.mutations
-	    }
-	    if (newOptions.getters) {
-	      options.getters = newOptions.getters
-	    }
-	    if (newOptions.modules) {
-	      for (var key in newOptions.modules) {
-	        options.modules[key] = newOptions.modules[key]
-	      }
-	    }
-	    resetStore(this)
-	  };
+	Store.prototype.hotUpdate = function hotUpdate (newOptions) {
+	  updateModule(this._options, newOptions)
+	  resetStore(this)
+	};
 
-	  Store.prototype._withCommit = function _withCommit (fn) {
-	    var committing = this._committing
-	      this._committing = true
-	    fn()
-	    this._committing = committing
-	  };
+	Store.prototype._withCommit = function _withCommit (fn) {
+	  var committing = this._committing
+	  this._committing = true
+	  fn()
+	  this._committing = committing
+	};
 
-	  Object.defineProperties( Store.prototype, prototypeAccessors );
+	Object.defineProperties( Store.prototype, prototypeAccessors );
 
-	  function assert (condition, msg) {
-	    if (!condition) throw new Error(("[vuex] " + msg))
+	function updateModule (targetModule, newModule) {
+	  if (newModule.actions) {
+	    targetModule.actions = newModule.actions
 	  }
-
-	  function resetStore (store) {
-	    store._actions = Object.create(null)
-	    store._mutations = Object.create(null)
-	    store._wrappedGetters = Object.create(null)
-	    var state = store.state
-	    // init root module
-	    installModule(store, state, [], store._options, true)
-	    // init all runtime modules
-	    Object.keys(store._runtimeModules).forEach(function (key) {
-	      installModule(store, state, key.split('.'), store._runtimeModules[key], true)
-	    })
-	    // reset vm
-	    resetStoreVM(store, state)
+	  if (newModule.mutations) {
+	    targetModule.mutations = newModule.mutations
 	  }
-
-	  function resetStoreVM (store, state) {
-	    var oldVm = store._vm
-
-	    // bind store public getters
-	    store.getters = {}
-	    var wrappedGetters = store._wrappedGetters
-	    var computed = {}
-	    Object.keys(wrappedGetters).forEach(function (key) {
-	      var fn = wrappedGetters[key]
-	      // use computed to leverage its lazy-caching mechanism
-	      computed[key] = function () { return fn(store); }
-	      Object.defineProperty(store.getters, key, {
-	        get: function () { return store._vm[key]; }
-	      })
-	    })
-
-	    // use a Vue instance to store the state tree
-	    // suppress warnings just in case the user has added
-	    // some funky global mixins
-	    var silent = Vue.config.silent
-	    Vue.config.silent = true
-	    store._vm = new Vue({
-	      data: { state: state },
-	      computed: computed
-	    })
-	    Vue.config.silent = silent
-
-	    // enable strict mode for new vm
-	    if (store.strict) {
-	      enableStrictMode(store)
-	    }
-
-	    if (oldVm) {
-	      // dispatch changes in all subscribed watchers
-	      // to force getter re-evaluation.
-	      store._withCommit(function () {
-	        oldVm.state = null
-	      })
-	      Vue.nextTick(function () { return oldVm.$destroy(); })
-	    }
+	  if (newModule.getters) {
+	    targetModule.getters = newModule.getters
 	  }
-
-	  function installModule (store, rootState, path, module, hot) {
-	    var isRoot = !path.length
-	    var state = module.state;
-	    var actions = module.actions;
-	    var mutations = module.mutations;
-	    var getters = module.getters;
-	    var modules = module.modules;
-
-	    // set state
-	    if (!isRoot && !hot) {
-	      var parentState = getNestedState(rootState, path.slice(0, -1))
-	      var moduleName = path[path.length - 1]
-	      store._withCommit(function () {
-	        Vue.set(parentState, moduleName, state || {})
-	      })
-	    }
-
-	    if (mutations) {
-	      Object.keys(mutations).forEach(function (key) {
-	        registerMutation(store, key, mutations[key], path)
-	      })
-	    }
-
-	    if (actions) {
-	      Object.keys(actions).forEach(function (key) {
-	        registerAction(store, key, actions[key], path)
-	      })
-	    }
-
-	    if (getters) {
-	      wrapGetters(store, getters, path)
-	    }
-
-	    if (modules) {
-	      Object.keys(modules).forEach(function (key) {
-	        installModule(store, rootState, path.concat(key), modules[key], hot)
-	      })
-	    }
-	  }
-
-	  function registerMutation (store, type, handler, path) {
-	    if ( path === void 0 ) path = [];
-
-	    var entry = store._mutations[type] || (store._mutations[type] = [])
-	    entry.push(function wrappedMutationHandler (payload) {
-	      handler(getNestedState(store.state, path), payload)
-	    })
-	  }
-
-	  function registerAction (store, type, handler, path) {
-	    if ( path === void 0 ) path = [];
-
-	    var entry = store._actions[type] || (store._actions[type] = [])
-	    var dispatch = store.dispatch;
-	    var commit = store.commit;
-	    entry.push(function wrappedActionHandler (payload, cb) {
-	      var res = handler({
-	        dispatch: dispatch,
-	        commit: commit,
-	        getters: store.getters,
-	        state: getNestedState(store.state, path),
-	        rootState: store.state
-	      }, payload, cb)
-	      if (!isPromise(res)) {
-	        res = Promise.resolve(res)
-	      }
-	      if (store._devtoolHook) {
-	        return res.catch(function (err) {
-	          store._devtoolHook.emit('vuex:error', err)
-	          throw err
-	        })
-	      } else {
-	        return res
-	      }
-	    })
-	  }
-
-	  function wrapGetters (store, moduleGetters, modulePath) {
-	    Object.keys(moduleGetters).forEach(function (getterKey) {
-	      var rawGetter = moduleGetters[getterKey]
-	      if (store._wrappedGetters[getterKey]) {
-	        console.error(("[vuex] duplicate getter key: " + getterKey))
+	  if (newModule.modules) {
+	    for (var key in newModule.modules) {
+	      if (!(targetModule.modules && targetModule.modules[key])) {
+	        console.warn(
+	          "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+	          'manual reload is needed'
+	        )
 	        return
 	      }
-	      store._wrappedGetters[getterKey] = function wrappedGetter (store) {
-	        return rawGetter(
-	          getNestedState(store.state, modulePath), // local state
-	          store.getters, // getters
-	          store.state // root state
-	        )
-	      }
+	      updateModule(targetModule.modules[key], newModule.modules[key])
+	    }
+	  }
+	}
+
+	function resetStore (store) {
+	  store._actions = Object.create(null)
+	  store._mutations = Object.create(null)
+	  store._wrappedGetters = Object.create(null)
+	  var state = store.state
+	  // init root module
+	  installModule(store, state, [], store._options, true)
+	  // init all runtime modules
+	  Object.keys(store._runtimeModules).forEach(function (key) {
+	    installModule(store, state, key.split('.'), store._runtimeModules[key], true)
+	  })
+	  // reset vm
+	  resetStoreVM(store, state)
+	}
+
+	function resetStoreVM (store, state) {
+	  var oldVm = store._vm
+
+	  // bind store public getters
+	  store.getters = {}
+	  var wrappedGetters = store._wrappedGetters
+	  var computed = {}
+	  Object.keys(wrappedGetters).forEach(function (key) {
+	    var fn = wrappedGetters[key]
+	    // use computed to leverage its lazy-caching mechanism
+	    computed[key] = function () { return fn(store); }
+	    Object.defineProperty(store.getters, key, {
+	      get: function () { return store._vm[key]; }
+	    })
+	  })
+
+	  // use a Vue instance to store the state tree
+	  // suppress warnings just in case the user has added
+	  // some funky global mixins
+	  var silent = Vue.config.silent
+	  Vue.config.silent = true
+	  store._vm = new Vue({
+	    data: { state: state },
+	    computed: computed
+	  })
+	  Vue.config.silent = silent
+
+	  // enable strict mode for new vm
+	  if (store.strict) {
+	    enableStrictMode(store)
+	  }
+
+	  if (oldVm) {
+	    // dispatch changes in all subscribed watchers
+	    // to force getter re-evaluation.
+	    store._withCommit(function () {
+	      oldVm.state = null
+	    })
+	    Vue.nextTick(function () { return oldVm.$destroy(); })
+	  }
+	}
+
+	function installModule (store, rootState, path, module, hot) {
+	  var isRoot = !path.length
+	  var state = module.state;
+	  var actions = module.actions;
+	  var mutations = module.mutations;
+	  var getters = module.getters;
+	  var modules = module.modules;
+
+	  // set state
+	  if (!isRoot && !hot) {
+	    var parentState = getNestedState(rootState, path.slice(0, -1))
+	    var moduleName = path[path.length - 1]
+	    store._withCommit(function () {
+	      Vue.set(parentState, moduleName, state || {})
 	    })
 	  }
 
-	  function enableStrictMode (store) {
-	    store._vm.$watch('state', function () {
-	      assert(store._committing, "Do not mutate vuex store state outside mutation handlers.")
-	    }, { deep: true, sync: true })
+	  if (mutations) {
+	    Object.keys(mutations).forEach(function (key) {
+	      registerMutation(store, key, mutations[key], path)
+	    })
 	  }
 
-	  function isObject (obj) {
-	    return obj !== null && typeof obj === 'object'
+	  if (actions) {
+	    Object.keys(actions).forEach(function (key) {
+	      registerAction(store, key, actions[key], path)
+	    })
 	  }
 
-	  function isPromise (val) {
-	    return val && typeof val.then === 'function'
+	  if (getters) {
+	    wrapGetters(store, getters, path)
 	  }
 
-	  function getNestedState (state, path) {
-	    return path.length
-	      ? path.reduce(function (state, key) { return state[key]; }, state)
-	      : state
+	  if (modules) {
+	    Object.keys(modules).forEach(function (key) {
+	      installModule(store, rootState, path.concat(key), modules[key], hot)
+	    })
 	  }
+	}
 
-	  function install (_Vue) {
-	    if (Vue) {
-	      console.error(
-	        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
-	      )
+	function registerMutation (store, type, handler, path) {
+	  if ( path === void 0 ) path = [];
+
+	  var entry = store._mutations[type] || (store._mutations[type] = [])
+	  entry.push(function wrappedMutationHandler (payload) {
+	    handler(getNestedState(store.state, path), payload)
+	  })
+	}
+
+	function registerAction (store, type, handler, path) {
+	  if ( path === void 0 ) path = [];
+
+	  var entry = store._actions[type] || (store._actions[type] = [])
+	  var dispatch = store.dispatch;
+	  var commit = store.commit;
+	  entry.push(function wrappedActionHandler (payload, cb) {
+	    var res = handler({
+	      dispatch: dispatch,
+	      commit: commit,
+	      getters: store.getters,
+	      state: getNestedState(store.state, path),
+	      rootState: store.state
+	    }, payload, cb)
+	    if (!isPromise(res)) {
+	      res = Promise.resolve(res)
+	    }
+	    if (store._devtoolHook) {
+	      return res.catch(function (err) {
+	        store._devtoolHook.emit('vuex:error', err)
+	        throw err
+	      })
+	    } else {
+	      return res
+	    }
+	  })
+	}
+
+	function wrapGetters (store, moduleGetters, modulePath) {
+	  Object.keys(moduleGetters).forEach(function (getterKey) {
+	    var rawGetter = moduleGetters[getterKey]
+	    if (store._wrappedGetters[getterKey]) {
+	      console.error(("[vuex] duplicate getter key: " + getterKey))
 	      return
 	    }
-	    Vue = _Vue
-	    applyMixin(Vue)
+	    store._wrappedGetters[getterKey] = function wrappedGetter (store) {
+	      return rawGetter(
+	        getNestedState(store.state, modulePath), // local state
+	        store.getters, // getters
+	        store.state // root state
+	      )
+	    }
+	  })
+	}
+
+	function enableStrictMode (store) {
+	  store._vm.$watch('state', function () {
+	    assert(store._committing, "Do not mutate vuex store state outside mutation handlers.")
+	  }, { deep: true, sync: true })
+	}
+
+	function getNestedState (state, path) {
+	  return path.length
+	    ? path.reduce(function (state, key) { return state[key]; }, state)
+	    : state
+	}
+
+	function install (_Vue) {
+	  if (Vue) {
+	    console.error(
+	      '[vuex] already installed. Vue.use(Vuex) should be called only once.'
+	    )
+	    return
 	  }
+	  Vue = _Vue
+	  applyMixin(Vue)
+	}
 
-	  // auto install in dist mode
-	  if (typeof window !== 'undefined' && window.Vue) {
-	    install(window.Vue)
-	  }
+	// auto install in dist mode
+	if (typeof window !== 'undefined' && window.Vue) {
+	  install(window.Vue)
+	}
 
-	  var index = {
-	    Store: Store,
-	    install: install,
-	    mapState: mapState,
-	    mapMutations: mapMutations,
-	    mapGetters: mapGetters,
-	    mapActions: mapActions
-	  }
+	var index = {
+	  Store: Store,
+	  install: install,
+	  mapState: mapState,
+	  mapMutations: mapMutations,
+	  mapGetters: mapGetters,
+	  mapActions: mapActions
+	}
 
-	  return index;
+	return index;
 
-	}));
+	})));
 
 /***/ },
 /* 134 */
@@ -15785,7 +15952,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-11", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-9", module.exports)
 	  }
 	}
 
@@ -15804,7 +15971,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(171)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -15821,9 +15991,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-10", __vue_options__)
+	    hotAPI.createRecord("data-v-11", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-10", __vue_options__)
+	    hotAPI.reload("data-v-11", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] FilterArea.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -15847,8 +16017,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterArea.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterArea.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-11!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterArea.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-11!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterArea.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -15866,7 +16036,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.filter-area {\n  height: 40px;\n  position: relative;\n  z-index: 10;\n}\n.filter-area > .medium {\n    height: 100%;\n    width: 32.20339%;\n    float: left;\n    margin-right: 1.69492%;\n}\n.filter-area > .small {\n    height: 100%;\n    width: 15.25424%;\n    float: left;\n    margin-right: 1.69492%;\n}\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.filter-area {\n  height: 40px;\n  position: relative;\n  z-index: 10;\n}\n.filter-area > .medium {\n    height: 100%;\n    width: 32.20339%;\n    float: left;\n    margin-right: 1.69492%;\n}\n.filter-area > .small {\n    height: 100%;\n    width: 15.25424%;\n    float: left;\n    margin-right: 1.69492%;\n}\n", ""]);
 
 	// exports
 
@@ -15923,7 +16093,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(150)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -15985,7 +16158,7 @@
 
 
 	// module
-	exports.push([module.id, "\n@charset \"UTF-8\";\n/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.text-search {\n  position: relative;\n}\n.text-search:after {\n    content: \"\";\n    display: table;\n    clear: both;\n}\n.text-search > .search {\n    background: #104365;\n    border: none;\n    padding: 10px;\n    width: 100%;\n}\n.text-search > .search:active, .text-search > .search:focus {\n      outline: none;\n}\n.text-search > .clear {\n    position: absolute;\n    right: 0;\n    top: 0;\n    color: #3c77a0;\n    height: 100%;\n    width: 30px;\n    font-size: 1.5rem;\n}\n.text-search > .clear:hover {\n      color: #01d6f3;\n}\n.text-search > .clear::before {\n      font-family: 'Material Icons';\n      content: \"\\E14C\";\n}\n", ""]);
+	exports.push([module.id, "\n@charset \"UTF-8\";\n/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.text-search {\n  position: relative;\n}\n.text-search:after {\n    content: \"\";\n    display: table;\n    clear: both;\n}\n.text-search > .search {\n    background: #104365;\n    border: none;\n    padding: 10px;\n    width: 100%;\n}\n.text-search > .search:active, .text-search > .search:focus {\n      outline: none;\n}\n.text-search > .clear {\n    position: absolute;\n    right: 0;\n    top: 0;\n    color: #3c77a0;\n    height: 100%;\n    width: 30px;\n    font-size: 1.5rem;\n}\n.text-search > .clear:hover {\n      color: #01d6f3;\n}\n.text-search > .clear::before {\n      font-family: 'Material Icons';\n      content: \"\\E14C\";\n}\n", ""]);
 
 	// exports
 
@@ -16179,7 +16352,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(160)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -16241,7 +16417,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n", ""]);
 
 	// exports
 
@@ -16289,7 +16465,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(159)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -16351,7 +16530,7 @@
 
 
 	// module
-	exports.push([module.id, "\n@charset \"UTF-8\";\n/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.dropdown-wrapper {\n  background: #104365;\n  position: relative;\n  height: 100%;\n  display: flex;\n  align-items: center;\n}\n.dropdown-wrapper > .menu {\n    padding: 0 10px;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n.dropdown-wrapper:focus, .dropdown-wrapper:active {\n    outline: none;\n}\n.dropdown-wrapper > .options {\n    list-style: none;\n    padding: 0;\n    display: none;\n    position: absolute;\n    width: 100%;\n    background: #104365;\n    z-index: 10;\n    top: 42px;\n}\n.dropdown-wrapper > .options > .option {\n      padding: 10px;\n}\n.dropdown-wrapper > .options > .option::before {\n        font-family: 'Material Icons';\n        content: \"\\E835\";\n        position: relative;\n        top: 2px;\n        margin-right: 10px;\n}\n.dropdown-wrapper > .options > .option.selected::before {\n        font-family: 'Material Icons';\n        content: \"\\E834\";\n}\n.dropdown-wrapper > .options > .option:hover {\n        background: #092639;\n}\n.dropdown-wrapper:focus > .options {\n  display: block;\n}\n", ""]);
+	exports.push([module.id, "\n@charset \"UTF-8\";\n/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.dropdown-wrapper {\n  background: #104365;\n  position: relative;\n  height: 100%;\n  display: flex;\n  align-items: center;\n}\n.dropdown-wrapper > .menu {\n    padding: 0 10px;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n.dropdown-wrapper:focus, .dropdown-wrapper:active {\n    outline: none;\n}\n.dropdown-wrapper > .options {\n    list-style: none;\n    padding: 0;\n    display: none;\n    position: absolute;\n    width: 100%;\n    background: #104365;\n    z-index: 10;\n    top: 42px;\n}\n.dropdown-wrapper > .options > .option {\n      padding: 10px;\n}\n.dropdown-wrapper > .options > .option::before {\n        font-family: 'Material Icons';\n        content: \"\\E835\";\n        position: relative;\n        top: 2px;\n        margin-right: 10px;\n}\n.dropdown-wrapper > .options > .option.selected::before {\n        font-family: 'Material Icons';\n        content: \"\\E834\";\n}\n.dropdown-wrapper > .options > .option:hover {\n        background: #092639;\n}\n.dropdown-wrapper:focus > .options {\n  display: block;\n}\n", ""]);
 
 	// exports
 
@@ -16377,7 +16556,7 @@
 	    attrs: {
 	      "tabindex": "1"
 	    }
-	  }, [$slots["default"]])
+	  }, [_t("default")])
 	}},staticRenderFns: []}
 	if (false) {
 	  module.hot.accept()
@@ -16455,7 +16634,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(165)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -16628,7 +16810,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(170)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -16782,7 +16967,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-10", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-11", module.exports)
 	  }
 	}
 
@@ -17807,7 +17992,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(235)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -17869,7 +18057,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Includes */\n/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n/* Files */\nhtml {\n  box-sizing: border-box;\n}\n*,\n*::before,\n*::after {\n  box-sizing: border-box;\n}\n@-ms-viewport {\n  width: device-width;\n}\nhtml {\n  font-size: 16px;\n  -ms-overflow-style: scrollbar;\n  -webkit-tap-highlight-color: transparent;\n  height: 100%;\n}\nbody {\n  font-family: LatoRegular, sans-serif;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: #e9e9e9;\n  background-color: #0b1c27;\n  margin: 0;\n  padding: 0;\n  height: 100%;\n}\n[tabindex=\"-1\"]:focus {\n  outline: none !important;\n}\nh1, h2, h3, h4, h5, h6 {\n  margin-top: 0;\n  margin-bottom: .5rem;\n}\ninput, textarea {\n  font-family: LatoRegular, sans-serif;\n  color: #e9e9e9;\n}\np {\n  margin-top: 0;\n  margin-bottom: 1rem;\n}\nabbr[title],\nabbr[data-original-title] {\n  cursor: help;\n  border-bottom: 1px dotted #373a3c;\n}\naddress {\n  margin-bottom: 1rem;\n  font-style: normal;\n  line-height: inherit;\n}\nol,\nul,\ndl {\n  margin-top: 0;\n  margin-bottom: 1rem;\n}\nol ol,\nul ul,\nol ul,\nul ol {\n  margin-bottom: 0;\n}\ndt {\n  font-weight: bold;\n}\ndd {\n  margin-bottom: .5rem;\n  margin-left: 0;\n}\nblockquote {\n  margin: 0 0 1rem;\n}\na {\n  color: #01afee;\n  text-decoration: none;\n}\na:hover, a:focus {\n    color: #0177a2;\n    text-decoration: none;\n}\na:focus {\n    outline: thin dotted;\n    outline: 5px auto -webkit-focus-ring-color;\n    outline-offset: -2px;\n}\npre {\n  margin-top: 0;\n  margin-bottom: 1rem;\n}\nfigure {\n  margin: 0 0 1rem;\n}\nimg {\n  vertical-align: middle;\n}\n[role=\"button\"] {\n  cursor: pointer;\n}\na,\narea,\nbutton,\n[role=\"button\"],\ninput,\nlabel,\nselect,\nsummary,\ntextarea {\n  touch-action: manipulation;\n}\ntable {\n  background-color: transparent;\n}\ncaption {\n  padding-top: 0.75rem;\n  padding-bottom: 0.75rem;\n  color: #818a91;\n  text-align: left;\n  caption-side: bottom;\n}\nth {\n  text-align: left;\n}\nlabel {\n  display: inline-block;\n  margin-bottom: .5rem;\n}\nbutton:focus {\n  outline: 1px dotted;\n  outline: 5px auto -webkit-focus-ring-color;\n}\ninput,\nbutton,\nselect,\ntextarea {\n  margin: 0;\n  line-height: inherit;\n  border-radius: 0;\n}\ntextarea {\n  resize: vertical;\n}\nfieldset {\n  min-width: 0;\n  padding: 0;\n  margin: 0;\n  border: 0;\n}\nlegend {\n  display: block;\n  width: 100%;\n  padding: 0;\n  margin-bottom: .5rem;\n  font-size: 1.5rem;\n  line-height: inherit;\n}\ninput[type=\"search\"] {\n  -webkit-appearance: none;\n}\noutput {\n  display: inline-block;\n}\n[hidden] {\n  display: none !important;\n}\n\n/* Sprites */\n.abyssian-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_abyssian.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.abyssian-20049 {\n  background-position: 0 0;\n}\n.abyssian-20050 {\n  background-position: -96px 0;\n}\n.abyssian-20051 {\n  background-position: -192px 0;\n}\n.abyssian-20052 {\n  background-position: -288px 0;\n}\n.abyssian-20057 {\n  background-position: -384px 0;\n}\n.abyssian-20059 {\n  background-position: -480px 0;\n}\n.abyssian-20061 {\n  background-position: -576px 0;\n}\n.abyssian-20065 {\n  background-position: -672px 0;\n}\n.abyssian-20069 {\n  background-position: -768px 0;\n}\n.abyssian-20070 {\n  background-position: 0 -96px;\n}\n.abyssian-20071 {\n  background-position: -96px -96px;\n}\n.abyssian-20072 {\n  background-position: -192px -96px;\n}\n.abyssian-20089 {\n  background-position: -288px -96px;\n}\n.abyssian-20131 {\n  background-position: -384px -96px;\n}\n.abyssian-20133 {\n  background-position: -480px -96px;\n}\n.abyssian-20154 {\n  background-position: -576px -96px;\n}\n.abyssian-20166 {\n  background-position: -672px -96px;\n}\n.abyssian-20199 {\n  background-position: -768px -96px;\n}\n.abyssian-20200 {\n  background-position: 0 -192px;\n}\n.abyssian-20201 {\n  background-position: -96px -192px;\n}\n.abyssian-20204 {\n  background-position: -192px -192px;\n}\n.abyssian-20205 {\n  background-position: -288px -192px;\n}\n.abyssian-20213 {\n  background-position: -384px -192px;\n}\n.abyssian-30002 {\n  background-position: -480px -192px;\n}\n.abyssian-30005 {\n  background-position: -576px -192px;\n}\n.abyssian-30014 {\n  background-position: -672px -192px;\n}\n.abyssian-30020 {\n  background-position: -768px -192px;\n}\n.abyssian-308 {\n  background-position: 0 -288px;\n}\n.abyssian-309 {\n  background-position: -160px -288px;\n}\n.abyssian-310 {\n  background-position: -320px -288px;\n}\n.abyssian-311 {\n  background-position: -480px -288px;\n}\n.abyssian-312 {\n  background-position: -640px -288px;\n}\n.abyssian-313 {\n  background-position: 0 -448px;\n}\n.abyssian-314 {\n  background-position: -160px -448px;\n}\n.abyssian-316 {\n  background-position: -320px -448px;\n}\n.abyssian-317 {\n  background-position: -480px -448px;\n}\n.abyssian-318 {\n  background-position: -640px -448px;\n}\n.abyssian-319 {\n  background-position: 0 -608px;\n}\n.abyssian-320 {\n  background-position: -160px -608px;\n}\n.abyssian-321 {\n  background-position: -320px -608px;\n}\n.abyssian-322 {\n  background-position: -480px -608px;\n}\n.abyssian-324 {\n  background-position: -640px -608px;\n}\n.abyssian-325 {\n  background-position: -864px 0;\n}\n.abyssian-326 {\n  background-position: -864px -160px;\n}\n.abyssian-327 {\n  background-position: -800px -320px;\n}\n.abyssian-328 {\n  background-position: -800px -480px;\n}\n.abyssian-329 {\n  background-position: -800px -640px;\n}\n.abyssian-330 {\n  background-position: 0 -800px;\n}\n.general-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_generals.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.general-1 {\n  background-position: -5px -5px;\n}\n.general-101 {\n  background-position: -175px -5px;\n}\n.general-123 {\n  background-position: -345px -5px;\n}\n.general-201 {\n  background-position: -5px -175px;\n}\n.general-223 {\n  background-position: -175px -175px;\n}\n.general-23 {\n  background-position: -345px -175px;\n}\n.general-301 {\n  background-position: -5px -345px;\n}\n.general-323 {\n  background-position: -175px -345px;\n}\n.general-401 {\n  background-position: -345px -345px;\n}\n.general-418 {\n  background-position: -515px -5px;\n}\n.general-501 {\n  background-position: -515px -175px;\n}\n.general-527 {\n  background-position: -515px -345px;\n}\n.lyonar-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_lyonar.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.lyonar-10 {\n  background-position: -2px -2px;\n}\n.lyonar-11 {\n  background-position: -166px -2px;\n}\n.lyonar-12 {\n  background-position: -330px -2px;\n}\n.lyonar-13 {\n  background-position: -494px -2px;\n}\n.lyonar-14 {\n  background-position: -658px -2px;\n}\n.lyonar-15 {\n  background-position: -2px -166px;\n}\n.lyonar-16 {\n  background-position: -166px -166px;\n}\n.lyonar-17 {\n  background-position: -330px -166px;\n}\n.lyonar-18 {\n  background-position: -494px -166px;\n}\n.lyonar-20 {\n  background-position: -658px -166px;\n}\n.lyonar-20043 {\n  background-position: -822px -2px;\n}\n.lyonar-20044 {\n  background-position: -822px -102px;\n}\n.lyonar-20045 {\n  background-position: -822px -202px;\n}\n.lyonar-20046 {\n  background-position: -822px -302px;\n}\n.lyonar-20047 {\n  background-position: -2px -402px;\n}\n.lyonar-20062 {\n  background-position: -102px -402px;\n}\n.lyonar-20064 {\n  background-position: -202px -402px;\n}\n.lyonar-20066 {\n  background-position: -302px -402px;\n}\n.lyonar-20067 {\n  background-position: -402px -402px;\n}\n.lyonar-20068 {\n  background-position: -502px -402px;\n}\n.lyonar-20090 {\n  background-position: -602px -402px;\n}\n.lyonar-20104 {\n  background-position: -702px -402px;\n}\n.lyonar-20109 {\n  background-position: -802px -402px;\n}\n.lyonar-20120 {\n  background-position: -2px -502px;\n}\n.lyonar-20128 {\n  background-position: -102px -502px;\n}\n.lyonar-20158 {\n  background-position: -202px -502px;\n}\n.lyonar-20161 {\n  background-position: -302px -502px;\n}\n.lyonar-20175 {\n  background-position: -402px -502px;\n}\n.lyonar-20186 {\n  background-position: -502px -502px;\n}\n.lyonar-20187 {\n  background-position: -602px -502px;\n}\n.lyonar-20188 {\n  background-position: -702px -502px;\n}\n.lyonar-20189 {\n  background-position: -802px -502px;\n}\n.lyonar-20190 {\n  background-position: -2px -602px;\n}\n.lyonar-20220 {\n  background-position: -102px -602px;\n}\n.lyonar-21 {\n  background-position: -202px -602px;\n}\n.lyonar-22 {\n  background-position: -366px -602px;\n}\n.lyonar-24 {\n  background-position: -530px -602px;\n}\n.lyonar-25 {\n  background-position: -694px -602px;\n}\n.lyonar-26 {\n  background-position: -922px -2px;\n}\n.lyonar-27 {\n  background-position: -922px -166px;\n}\n.lyonar-28 {\n  background-position: -922px -330px;\n}\n.lyonar-29 {\n  background-position: -902px -494px;\n}\n.lyonar-30 {\n  background-position: -858px -658px;\n}\n.lyonar-30001 {\n  width: 96px;\n  height: 96px;\n  background-position: -2px -822px;\n}\n.lyonar-30004 {\n  width: 96px;\n  height: 96px;\n  background-position: -102px -822px;\n}\n.lyonar-30018 {\n  width: 96px;\n  height: 96px;\n  background-position: -202px -822px;\n}\n.lyonar-30024 {\n  width: 96px;\n  height: 96px;\n  background-position: -302px -822px;\n}\n.lyonar-8 {\n  background-position: -402px -822px;\n}\n.lyonar-9 {\n  background-position: -566px -822px;\n}\n.songhai-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_songhai.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.songhai-108 {\n  background-position: -5px -5px;\n}\n.songhai-109 {\n  background-position: -175px -5px;\n}\n.songhai-110 {\n  background-position: -345px -5px;\n}\n.songhai-111 {\n  background-position: -515px -5px;\n}\n.songhai-112 {\n  background-position: -685px -5px;\n}\n.songhai-114 {\n  background-position: -5px -175px;\n}\n.songhai-115 {\n  background-position: -175px -175px;\n}\n.songhai-116 {\n  background-position: -345px -175px;\n}\n.songhai-117 {\n  background-position: -515px -175px;\n}\n.songhai-118 {\n  background-position: -685px -175px;\n}\n.songhai-119 {\n  background-position: -5px -345px;\n}\n.songhai-120 {\n  background-position: -175px -345px;\n}\n.songhai-121 {\n  background-position: -345px -345px;\n}\n.songhai-122 {\n  background-position: -515px -345px;\n}\n.songhai-124 {\n  background-position: -685px -345px;\n}\n.songhai-125 {\n  background-position: -5px -515px;\n}\n.songhai-126 {\n  background-position: -175px -515px;\n}\n.songhai-127 {\n  background-position: -345px -515px;\n}\n.songhai-128 {\n  background-position: -515px -515px;\n}\n.songhai-129 {\n  background-position: -685px -515px;\n}\n.songhai-130 {\n  background-position: -5px -685px;\n}\n.songhai-131 {\n  background-position: -175px -685px;\n}\n.songhai-20080 {\n  background-position: -855px -5px;\n}\n.songhai-20081 {\n  background-position: -855px -111px;\n}\n.songhai-20082 {\n  background-position: -855px -217px;\n}\n.songhai-20084 {\n  background-position: -855px -323px;\n}\n.songhai-20085 {\n  background-position: -855px -429px;\n}\n.songhai-20086 {\n  background-position: -855px -535px;\n}\n.songhai-20087 {\n  background-position: -855px -641px;\n}\n.songhai-20088 {\n  background-position: -345px -747px;\n}\n.songhai-20094 {\n  background-position: -451px -747px;\n}\n.songhai-20100 {\n  background-position: -557px -747px;\n}\n.songhai-20102 {\n  background-position: -663px -747px;\n}\n.songhai-20106 {\n  background-position: -769px -747px;\n}\n.songhai-20129 {\n  background-position: -345px -853px;\n}\n.songhai-20141 {\n  background-position: -451px -853px;\n}\n.songhai-20143 {\n  background-position: -557px -853px;\n}\n.songhai-20155 {\n  background-position: -663px -853px;\n}\n.songhai-20167 {\n  background-position: -769px -853px;\n}\n.songhai-20168 {\n  background-position: -961px -5px;\n}\n.songhai-20191 {\n  background-position: -961px -111px;\n}\n.songhai-20192 {\n  background-position: -961px -217px;\n}\n.songhai-20193 {\n  background-position: -961px -323px;\n}\n.songhai-20194 {\n  background-position: -961px -429px;\n}\n.songhai-20217 {\n  background-position: -961px -535px;\n}\n.songhai-30007 {\n  background-position: -961px -641px;\n}\n.songhai-30009 {\n  background-position: -875px -747px;\n}\n.songhai-30010 {\n  background-position: -875px -853px;\n}\n.songhai-30023 {\n  background-position: -5px -959px;\n}\n.magmar-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_magmar.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.magmar-20063 {\n  background-position: -5px -5px;\n}\n.magmar-20111 {\n  background-position: -111px -5px;\n}\n.magmar-20112 {\n  background-position: -217px -5px;\n}\n.magmar-20113 {\n  background-position: -323px -5px;\n}\n.magmar-20114 {\n  background-position: -429px -5px;\n}\n.magmar-20115 {\n  background-position: -535px -5px;\n}\n.magmar-20116 {\n  background-position: -641px -5px;\n}\n.magmar-20117 {\n  background-position: -747px -5px;\n}\n.magmar-20118 {\n  background-position: -853px -5px;\n}\n.magmar-20119 {\n  background-position: -5px -111px;\n}\n.magmar-20121 {\n  background-position: -111px -111px;\n}\n.magmar-20122 {\n  background-position: -217px -111px;\n}\n.magmar-20124 {\n  background-position: -323px -111px;\n}\n.magmar-20125 {\n  background-position: -429px -111px;\n}\n.magmar-20156 {\n  background-position: -535px -111px;\n}\n.magmar-20157 {\n  background-position: -641px -111px;\n}\n.magmar-20162 {\n  background-position: -747px -111px;\n}\n.magmar-20202 {\n  background-position: -853px -111px;\n}\n.magmar-20203 {\n  background-position: -5px -217px;\n}\n.magmar-20206 {\n  background-position: -111px -217px;\n}\n.magmar-20218 {\n  background-position: -217px -217px;\n}\n.magmar-20219 {\n  background-position: -323px -217px;\n}\n.magmar-30012 {\n  background-position: -429px -217px;\n}\n.magmar-30013 {\n  background-position: -535px -217px;\n}\n.magmar-30017 {\n  background-position: -641px -217px;\n}\n.magmar-30025 {\n  background-position: -747px -217px;\n}\n.magmar-402 {\n  background-position: -5px -323px;\n}\n.magmar-403 {\n  background-position: -175px -323px;\n}\n.magmar-404 {\n  background-position: -345px -323px;\n}\n.magmar-405 {\n  background-position: -515px -323px;\n}\n.magmar-406 {\n  background-position: -685px -323px;\n}\n.magmar-407 {\n  background-position: -5px -493px;\n}\n.magmar-408 {\n  background-position: -175px -493px;\n}\n.magmar-409 {\n  background-position: -345px -493px;\n}\n.magmar-410 {\n  background-position: -515px -493px;\n}\n.magmar-412 {\n  background-position: -685px -493px;\n}\n.magmar-413 {\n  background-position: -5px -663px;\n}\n.magmar-414 {\n  background-position: -175px -663px;\n}\n.magmar-415 {\n  background-position: -345px -663px;\n}\n.magmar-417 {\n  background-position: -515px -663px;\n}\n.magmar-419 {\n  background-position: -685px -663px;\n}\n.magmar-420 {\n  background-position: -959px -5px;\n}\n.magmar-421 {\n  background-position: -959px -175px;\n}\n.magmar-422 {\n  background-position: -855px -345px;\n}\n.magmar-423 {\n  background-position: -855px -515px;\n}\n.magmar-424 {\n  background-position: -855px -685px;\n}\n.magmar-425 {\n  background-position: -5px -855px;\n}\n.magmar-426 {\n  background-position: -175px -855px;\n}\n.neutral-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_neutral.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.neutral-10001 {\n  background-position: -5px -5px;\n}\n.neutral-10009 {\n  background-position: -175px -5px;\n}\n.neutral-10012 {\n  background-position: -345px -5px;\n}\n.neutral-10013 {\n  background-position: -515px -5px;\n}\n.neutral-10014 {\n  background-position: -685px -5px;\n}\n.neutral-10016 {\n  background-position: -855px -5px;\n}\n.neutral-10017 {\n  background-position: -1025px -5px;\n}\n.neutral-10018 {\n  background-position: -1195px -5px;\n}\n.neutral-10019 {\n  background-position: -1365px -5px;\n}\n.neutral-10020 {\n  background-position: -1535px -5px;\n}\n.neutral-10021 {\n  background-position: -1705px -5px;\n}\n.neutral-10022 {\n  background-position: -1875px -5px;\n}\n.neutral-10204 {\n  background-position: -5px -175px;\n}\n.neutral-10301 {\n  background-position: -175px -175px;\n}\n.neutral-10302 {\n  background-position: -345px -175px;\n}\n.neutral-10303 {\n  background-position: -515px -175px;\n}\n.neutral-10304 {\n  background-position: -685px -175px;\n}\n.neutral-10305 {\n  background-position: -855px -175px;\n}\n.neutral-10306 {\n  background-position: -1025px -175px;\n}\n.neutral-10307 {\n  background-position: -1195px -175px;\n}\n.neutral-10953 {\n  background-position: -1365px -175px;\n}\n.neutral-10954 {\n  background-position: -1535px -175px;\n}\n.neutral-10955 {\n  background-position: -1705px -175px;\n}\n.neutral-10956 {\n  background-position: -1875px -175px;\n}\n.neutral-10957 {\n  background-position: -5px -345px;\n}\n.neutral-10958 {\n  background-position: -175px -345px;\n}\n.neutral-10959 {\n  background-position: -345px -345px;\n}\n.neutral-10960 {\n  background-position: -515px -345px;\n}\n.neutral-10961 {\n  background-position: -685px -345px;\n}\n.neutral-10962 {\n  background-position: -855px -345px;\n}\n.neutral-10963 {\n  background-position: -1025px -345px;\n}\n.neutral-10965 {\n  background-position: -1195px -345px;\n}\n.neutral-10966 {\n  background-position: -1365px -345px;\n}\n.neutral-10973 {\n  background-position: -1535px -345px;\n}\n.neutral-10974 {\n  background-position: -1705px -345px;\n}\n.neutral-10975 {\n  background-position: -1875px -345px;\n}\n.neutral-10976 {\n  background-position: -5px -515px;\n}\n.neutral-10978 {\n  background-position: -175px -515px;\n}\n.neutral-10979 {\n  background-position: -345px -515px;\n}\n.neutral-10980 {\n  background-position: -515px -515px;\n}\n.neutral-10981 {\n  background-position: -685px -515px;\n}\n.neutral-10982 {\n  background-position: -855px -515px;\n}\n.neutral-10983 {\n  background-position: -1025px -515px;\n}\n.neutral-10984 {\n  background-position: -1195px -515px;\n}\n.neutral-10985 {\n  background-position: -1365px -515px;\n}\n.neutral-10986 {\n  background-position: -1535px -515px;\n}\n.neutral-10987 {\n  background-position: -1705px -515px;\n}\n.neutral-10988 {\n  background-position: -1875px -515px;\n}\n.neutral-10989 {\n  background-position: -5px -685px;\n}\n.neutral-10990 {\n  background-position: -175px -685px;\n}\n.neutral-10991 {\n  background-position: -345px -685px;\n}\n.neutral-10992 {\n  background-position: -515px -685px;\n}\n.neutral-10993 {\n  background-position: -685px -685px;\n}\n.neutral-10994 {\n  background-position: -855px -685px;\n}\n.neutral-10995 {\n  background-position: -1025px -685px;\n}\n.neutral-10996 {\n  background-position: -1195px -685px;\n}\n.neutral-10997 {\n  background-position: -1365px -685px;\n}\n.neutral-11001 {\n  background-position: -1535px -685px;\n}\n.neutral-11004 {\n  background-position: -1705px -685px;\n}\n.neutral-11006 {\n  background-position: -1875px -685px;\n}\n.neutral-11007 {\n  background-position: -5px -855px;\n}\n.neutral-11008 {\n  background-position: -175px -855px;\n}\n.neutral-11009 {\n  background-position: -345px -855px;\n}\n.neutral-11010 {\n  background-position: -515px -855px;\n}\n.neutral-11011 {\n  background-position: -685px -855px;\n}\n.neutral-11013 {\n  background-position: -855px -855px;\n}\n.neutral-11014 {\n  background-position: -1025px -855px;\n}\n.neutral-11015 {\n  background-position: -1195px -855px;\n}\n.neutral-11016 {\n  background-position: -1365px -855px;\n}\n.neutral-11017 {\n  background-position: -1535px -855px;\n}\n.neutral-11018 {\n  background-position: -1705px -855px;\n}\n.neutral-11019 {\n  background-position: -1875px -855px;\n}\n.neutral-11020 {\n  background-position: -5px -1025px;\n}\n.neutral-11021 {\n  background-position: -175px -1025px;\n}\n.neutral-11022 {\n  background-position: -345px -1025px;\n}\n.neutral-11023 {\n  background-position: -515px -1025px;\n}\n.neutral-11024 {\n  background-position: -685px -1025px;\n}\n.neutral-11025 {\n  background-position: -855px -1025px;\n}\n.neutral-11026 {\n  background-position: -1025px -1025px;\n}\n.neutral-11027 {\n  background-position: -1195px -1025px;\n}\n.neutral-11028 {\n  background-position: -1365px -1025px;\n}\n.neutral-11029 {\n  background-position: -1535px -1025px;\n}\n.neutral-11030 {\n  background-position: -1705px -1025px;\n}\n.neutral-11031 {\n  background-position: -1875px -1025px;\n}\n.neutral-11032 {\n  background-position: -5px -1195px;\n}\n.neutral-11033 {\n  background-position: -175px -1195px;\n}\n.neutral-11034 {\n  background-position: -345px -1195px;\n}\n.neutral-11035 {\n  background-position: -515px -1195px;\n}\n.neutral-11036 {\n  background-position: -685px -1195px;\n}\n.neutral-11037 {\n  background-position: -855px -1195px;\n}\n.neutral-11038 {\n  background-position: -1025px -1195px;\n}\n.neutral-11039 {\n  background-position: -1195px -1195px;\n}\n.neutral-11040 {\n  background-position: -1365px -1195px;\n}\n.neutral-11041 {\n  background-position: -1535px -1195px;\n}\n.neutral-11042 {\n  background-position: -1705px -1195px;\n}\n.neutral-11043 {\n  background-position: -1875px -1195px;\n}\n.neutral-11044 {\n  background-position: -5px -1365px;\n}\n.neutral-11045 {\n  background-position: -175px -1365px;\n}\n.neutral-11046 {\n  background-position: -345px -1365px;\n}\n.neutral-11047 {\n  background-position: -515px -1365px;\n}\n.neutral-11048 {\n  background-position: -685px -1365px;\n}\n.neutral-11049 {\n  background-position: -855px -1365px;\n}\n.neutral-11051 {\n  background-position: -1025px -1365px;\n}\n.neutral-11052 {\n  background-position: -1195px -1365px;\n}\n.neutral-11053 {\n  background-position: -1365px -1365px;\n}\n.neutral-11054 {\n  background-position: -1535px -1365px;\n}\n.neutral-11055 {\n  background-position: -1705px -1365px;\n}\n.neutral-11056 {\n  background-position: -1875px -1365px;\n}\n.neutral-11057 {\n  background-position: -5px -1535px;\n}\n.neutral-11058 {\n  background-position: -175px -1535px;\n}\n.neutral-11059 {\n  background-position: -345px -1535px;\n}\n.neutral-11060 {\n  background-position: -515px -1535px;\n}\n.neutral-11061 {\n  background-position: -685px -1535px;\n}\n.neutral-11063 {\n  background-position: -855px -1535px;\n}\n.neutral-11064 {\n  background-position: -1025px -1535px;\n}\n.neutral-11066 {\n  background-position: -1195px -1535px;\n}\n.neutral-11075 {\n  background-position: -1365px -1535px;\n}\n.neutral-11076 {\n  background-position: -1535px -1535px;\n}\n.neutral-11077 {\n  background-position: -1705px -1535px;\n}\n.neutral-11078 {\n  background-position: -1875px -1535px;\n}\n.neutral-133720 {\n  background-position: -5px -1705px;\n}\n.neutral-133729 {\n  background-position: -175px -1705px;\n}\n.neutral-133730 {\n  background-position: -345px -1705px;\n}\n.neutral-133733 {\n  background-position: -515px -1705px;\n}\n.neutral-133740 {\n  background-position: -685px -1705px;\n}\n.neutral-19002 {\n  background-position: -855px -1705px;\n}\n.neutral-19003 {\n  background-position: -1025px -1705px;\n}\n.neutral-19004 {\n  background-position: -1195px -1705px;\n}\n.neutral-19005 {\n  background-position: -1365px -1705px;\n}\n.neutral-19006 {\n  background-position: -1535px -1705px;\n}\n.neutral-19010 {\n  background-position: -1705px -1705px;\n}\n.neutral-19025 {\n  background-position: -1875px -1705px;\n}\n.neutral-19026 {\n  background-position: -5px -1875px;\n}\n.neutral-19027 {\n  background-position: -175px -1875px;\n}\n.neutral-19028 {\n  background-position: -345px -1875px;\n}\n.neutral-19029 {\n  background-position: -515px -1875px;\n}\n.neutral-19030 {\n  background-position: -685px -1875px;\n}\n.neutral-19031 {\n  background-position: -855px -1875px;\n}\n.neutral-19032 {\n  background-position: -1025px -1875px;\n}\n.neutral-19033 {\n  background-position: -1195px -1875px;\n}\n.neutral-19034 {\n  background-position: -1365px -1875px;\n}\n.neutral-19035 {\n  background-position: -1535px -1875px;\n}\n.neutral-19036 {\n  background-position: -1705px -1875px;\n}\n.neutral-19037 {\n  background-position: -1875px -1875px;\n}\n.neutral-19038 {\n  background-position: -2045px -5px;\n}\n.neutral-19039 {\n  background-position: -2045px -175px;\n}\n.neutral-19040 {\n  background-position: -2045px -345px;\n}\n.neutral-19042 {\n  background-position: -2045px -515px;\n}\n.neutral-19043 {\n  background-position: -2045px -685px;\n}\n.neutral-19044 {\n  background-position: -2045px -855px;\n}\n.neutral-19045 {\n  background-position: -2045px -1025px;\n}\n.neutral-19046 {\n  background-position: -2045px -1195px;\n}\n.neutral-19047 {\n  background-position: -2045px -1365px;\n}\n.neutral-19049 {\n  background-position: -2045px -1535px;\n}\n.neutral-19050 {\n  background-position: -2045px -1705px;\n}\n.neutral-19051 {\n  background-position: -2045px -1875px;\n}\n.neutral-19052 {\n  background-position: -5px -2045px;\n}\n.vanar-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_vanar.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.vanar-20134 {\n  background-position: -5px -5px;\n}\n.vanar-20135 {\n  background-position: -111px -5px;\n}\n.vanar-20136 {\n  background-position: -217px -5px;\n}\n.vanar-20137 {\n  background-position: -323px -5px;\n}\n.vanar-20138 {\n  background-position: -429px -5px;\n}\n.vanar-20139 {\n  background-position: -535px -5px;\n}\n.vanar-20140 {\n  background-position: -641px -5px;\n}\n.vanar-20144 {\n  background-position: -747px -5px;\n}\n.vanar-20145 {\n  background-position: -853px -5px;\n}\n.vanar-20146 {\n  background-position: -5px -111px;\n}\n.vanar-20147 {\n  background-position: -111px -111px;\n}\n.vanar-20148 {\n  background-position: -217px -111px;\n}\n.vanar-20149 {\n  background-position: -323px -111px;\n}\n.vanar-20150 {\n  background-position: -429px -111px;\n}\n.vanar-20160 {\n  background-position: -535px -111px;\n}\n.vanar-20163 {\n  background-position: -641px -111px;\n}\n.vanar-20165 {\n  background-position: -747px -111px;\n}\n.vanar-20207 {\n  background-position: -853px -111px;\n}\n.vanar-20208 {\n  background-position: -5px -217px;\n}\n.vanar-20209 {\n  background-position: -111px -217px;\n}\n.vanar-20211 {\n  background-position: -217px -217px;\n}\n.vanar-20212 {\n  background-position: -323px -217px;\n}\n.vanar-20214 {\n  background-position: -429px -217px;\n}\n.vanar-30015 {\n  background-position: -535px -217px;\n}\n.vanar-30016 {\n  background-position: -641px -217px;\n}\n.vanar-30019 {\n  background-position: -747px -217px;\n}\n.vanar-30021 {\n  background-position: -853px -217px;\n}\n.vanar-503 {\n  background-position: -5px -323px;\n}\n.vanar-505 {\n  background-position: -175px -323px;\n}\n.vanar-506 {\n  background-position: -345px -323px;\n}\n.vanar-507 {\n  background-position: -515px -323px;\n}\n.vanar-508 {\n  background-position: -685px -323px;\n}\n.vanar-510 {\n  background-position: -5px -493px;\n}\n.vanar-511 {\n  background-position: -175px -493px;\n}\n.vanar-512 {\n  background-position: -345px -493px;\n}\n.vanar-513 {\n  background-position: -515px -493px;\n}\n.vanar-514 {\n  background-position: -685px -493px;\n}\n.vanar-515 {\n  background-position: -5px -663px;\n}\n.vanar-517 {\n  background-position: -175px -663px;\n}\n.vanar-519 {\n  background-position: -345px -663px;\n}\n.vanar-526 {\n  background-position: -515px -663px;\n}\n.vanar-528 {\n  background-position: -685px -663px;\n}\n.vanar-529 {\n  background-position: -959px -5px;\n}\n.vanar-530 {\n  background-position: -959px -175px;\n}\n.vanar-531 {\n  background-position: -855px -345px;\n}\n.vanar-532 {\n  background-position: -855px -515px;\n}\n.vanar-533 {\n  background-position: -855px -685px;\n}\n.vanar-534 {\n  background-position: -5px -855px;\n}\n.vetruvian-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_vetruvian.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.vetruvian-20028 {\n  background-position: -5px -5px;\n}\n.vetruvian-20073 {\n  background-position: -111px -5px;\n}\n.vetruvian-20074 {\n  background-position: -217px -5px;\n}\n.vetruvian-20075 {\n  background-position: -323px -5px;\n}\n.vetruvian-20076 {\n  background-position: -429px -5px;\n}\n.vetruvian-20077 {\n  background-position: -535px -5px;\n}\n.vetruvian-20078 {\n  background-position: -641px -5px;\n}\n.vetruvian-20093 {\n  background-position: -747px -5px;\n}\n.vetruvian-20095 {\n  background-position: -853px -5px;\n}\n.vetruvian-20096 {\n  background-position: -5px -111px;\n}\n.vetruvian-20097 {\n  background-position: -111px -111px;\n}\n.vetruvian-20105 {\n  background-position: -217px -111px;\n}\n.vetruvian-20132 {\n  background-position: -323px -111px;\n}\n.vetruvian-20151 {\n  background-position: -429px -111px;\n}\n.vetruvian-20152 {\n  background-position: -535px -111px;\n}\n.vetruvian-20153 {\n  background-position: -641px -111px;\n}\n.vetruvian-20169 {\n  background-position: -747px -111px;\n}\n.vetruvian-20195 {\n  background-position: -853px -111px;\n}\n.vetruvian-20196 {\n  background-position: -5px -217px;\n}\n.vetruvian-20197 {\n  background-position: -111px -217px;\n}\n.vetruvian-20198 {\n  background-position: -217px -217px;\n}\n.vetruvian-20216 {\n  background-position: -323px -217px;\n}\n.vetruvian-208 {\n  background-position: -429px -217px;\n}\n.vetruvian-209 {\n  background-position: -599px -217px;\n}\n.vetruvian-210 {\n  background-position: -769px -217px;\n}\n.vetruvian-211 {\n  background-position: -5px -387px;\n}\n.vetruvian-212 {\n  background-position: -175px -387px;\n}\n.vetruvian-213 {\n  background-position: -345px -387px;\n}\n.vetruvian-214 {\n  background-position: -515px -387px;\n}\n.vetruvian-215 {\n  background-position: -685px -387px;\n}\n.vetruvian-216 {\n  background-position: -5px -557px;\n}\n.vetruvian-218 {\n  background-position: -175px -557px;\n}\n.vetruvian-219 {\n  background-position: -345px -557px;\n}\n.vetruvian-220 {\n  background-position: -515px -557px;\n}\n.vetruvian-221 {\n  background-position: -685px -557px;\n}\n.vetruvian-222 {\n  background-position: -5px -727px;\n}\n.vetruvian-224 {\n  background-position: -175px -727px;\n}\n.vetruvian-226 {\n  background-position: -345px -727px;\n}\n.vetruvian-227 {\n  background-position: -515px -727px;\n}\n.vetruvian-228 {\n  background-position: -685px -727px;\n}\n.vetruvian-229 {\n  background-position: -959px -5px;\n}\n.vetruvian-231 {\n  background-position: -959px -175px;\n}\n.vetruvian-232 {\n  background-position: -939px -345px;\n}\n.vetruvian-233 {\n  background-position: -855px -515px;\n}\n.vetruvian-30006 {\n  background-position: -1025px -515px;\n}\n.vetruvian-30008 {\n  background-position: -1025px -621px;\n}\n.vetruvian-30011 {\n  background-position: -855px -727px;\n}\n.vetruvian-30022 {\n  background-position: -961px -727px;\n}\n@font-face {\n  font-family: LatoRegular;\n  src: url(https://dl.dropboxusercontent.com/u/24984522/Lato-Regular.woff);\n}\n.container {\n  max-width: 1570px;\n  margin: 0 15px;\n}\n@media (min-width: 1600px) {\n.container {\n      margin: 0 auto;\n}\n}\nbutton {\n  background: #104365;\n  border: none;\n  padding: 8px;\n  color: #e1e1e1;\n}\n.sprite.minion, .sprite.general {\n  top: -54px;\n  left: 34px;\n  width: 160px;\n  height: 160px;\n}\n.sprite.spell, .sprite.artifact {\n  top: 24px;\n  left: 64px;\n  width: 96px;\n  height: 96px;\n}\n.sprite.minion-sm {\n  top: -77px;\n  right: -40px;\n  z-index: 2;\n  transform: scaleX(-0.5) scaleY(0.5);\n  width: 160px;\n  height: 160px;\n}\n.sprite.spell-sm, .sprite.artifact-sm {\n  top: -26px;\n  right: -10px;\n  transform: scale(0.6);\n  width: 96px;\n  height: 96px;\n}\n.sprite.general-md {\n  top: -43px;\n  left: -20px;\n  width: 160px;\n  height: 160px;\n  transform: scale(0.8);\n}\n", ""]);
+	exports.push([module.id, "/* Includes */\n/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n/* Files */\nhtml {\n  box-sizing: border-box;\n}\n*,\n*::before,\n*::after {\n  box-sizing: border-box;\n}\n@-ms-viewport {\n  width: device-width;\n}\nhtml {\n  font-size: 16px;\n  -ms-overflow-style: scrollbar;\n  -webkit-tap-highlight-color: transparent;\n  height: 100%;\n}\nbody {\n  font-family: LatoRegular, sans-serif;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: #e9e9e9;\n  background-color: #0b1c27;\n  margin: 0;\n  padding: 0;\n  height: 100%;\n}\n[tabindex=\"-1\"]:focus {\n  outline: none !important;\n}\nh1, h2, h3, h4, h5, h6 {\n  margin-top: 0;\n  margin-bottom: .5rem;\n}\ninput, textarea {\n  font-family: LatoRegular, sans-serif;\n  color: #e9e9e9;\n}\np {\n  margin-top: 0;\n  margin-bottom: 1rem;\n}\nabbr[title],\nabbr[data-original-title] {\n  cursor: help;\n  border-bottom: 1px dotted #373a3c;\n}\naddress {\n  margin-bottom: 1rem;\n  font-style: normal;\n  line-height: inherit;\n}\nol,\nul,\ndl {\n  margin-top: 0;\n  margin-bottom: 1rem;\n}\nol ol,\nul ul,\nol ul,\nul ol {\n  margin-bottom: 0;\n}\ndt {\n  font-weight: bold;\n}\ndd {\n  margin-bottom: .5rem;\n  margin-left: 0;\n}\nblockquote {\n  margin: 0 0 1rem;\n}\na {\n  color: #01afee;\n  text-decoration: none;\n}\na:hover, a:focus {\n    color: #0177a2;\n    text-decoration: none;\n}\na:focus {\n    outline: thin dotted;\n    outline: 5px auto -webkit-focus-ring-color;\n    outline-offset: -2px;\n}\npre {\n  margin-top: 0;\n  margin-bottom: 1rem;\n}\nfigure {\n  margin: 0 0 1rem;\n}\nimg {\n  vertical-align: middle;\n}\n[role=\"button\"] {\n  cursor: pointer;\n}\na,\narea,\nbutton,\n[role=\"button\"],\ninput,\nlabel,\nselect,\nsummary,\ntextarea {\n  touch-action: manipulation;\n}\ntable {\n  background-color: transparent;\n}\ncaption {\n  padding-top: 0.75rem;\n  padding-bottom: 0.75rem;\n  color: #818a91;\n  text-align: left;\n  caption-side: bottom;\n}\nth {\n  text-align: left;\n}\nlabel {\n  display: inline-block;\n  margin-bottom: .5rem;\n}\nbutton:focus {\n  outline: 1px dotted;\n  outline: 5px auto -webkit-focus-ring-color;\n}\ninput,\nbutton,\nselect,\ntextarea {\n  margin: 0;\n  line-height: inherit;\n  border-radius: 0;\n}\ntextarea {\n  resize: vertical;\n}\nfieldset {\n  min-width: 0;\n  padding: 0;\n  margin: 0;\n  border: 0;\n}\nlegend {\n  display: block;\n  width: 100%;\n  padding: 0;\n  margin-bottom: .5rem;\n  font-size: 1.5rem;\n  line-height: inherit;\n}\ninput[type=\"search\"] {\n  -webkit-appearance: none;\n}\noutput {\n  display: inline-block;\n}\n[hidden] {\n  display: none !important;\n}\n\n/* Sprites */\n.abyssian-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_abyssian.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.abyssian-20049 {\n  background-position: 0 0;\n}\n.abyssian-20050 {\n  background-position: -96px 0;\n}\n.abyssian-20051 {\n  background-position: -192px 0;\n}\n.abyssian-20052 {\n  background-position: -288px 0;\n}\n.abyssian-20057 {\n  background-position: -384px 0;\n}\n.abyssian-20059 {\n  background-position: -480px 0;\n}\n.abyssian-20061 {\n  background-position: -576px 0;\n}\n.abyssian-20065 {\n  background-position: -672px 0;\n}\n.abyssian-20069 {\n  background-position: -768px 0;\n}\n.abyssian-20070 {\n  background-position: 0 -96px;\n}\n.abyssian-20071 {\n  background-position: -96px -96px;\n}\n.abyssian-20072 {\n  background-position: -192px -96px;\n}\n.abyssian-20089 {\n  background-position: -288px -96px;\n}\n.abyssian-20131 {\n  background-position: -384px -96px;\n}\n.abyssian-20133 {\n  background-position: -480px -96px;\n}\n.abyssian-20154 {\n  background-position: -576px -96px;\n}\n.abyssian-20166 {\n  background-position: -672px -96px;\n}\n.abyssian-20199 {\n  background-position: -768px -96px;\n}\n.abyssian-20200 {\n  background-position: 0 -192px;\n}\n.abyssian-20201 {\n  background-position: -96px -192px;\n}\n.abyssian-20204 {\n  background-position: -192px -192px;\n}\n.abyssian-20205 {\n  background-position: -288px -192px;\n}\n.abyssian-20213 {\n  background-position: -384px -192px;\n}\n.abyssian-30002 {\n  background-position: -480px -192px;\n}\n.abyssian-30005 {\n  background-position: -576px -192px;\n}\n.abyssian-30014 {\n  background-position: -672px -192px;\n}\n.abyssian-30020 {\n  background-position: -768px -192px;\n}\n.abyssian-308 {\n  background-position: 0 -288px;\n}\n.abyssian-309 {\n  background-position: -160px -288px;\n}\n.abyssian-310 {\n  background-position: -320px -288px;\n}\n.abyssian-311 {\n  background-position: -480px -288px;\n}\n.abyssian-312 {\n  background-position: -640px -288px;\n}\n.abyssian-313 {\n  background-position: 0 -448px;\n}\n.abyssian-314 {\n  background-position: -160px -448px;\n}\n.abyssian-316 {\n  background-position: -320px -448px;\n}\n.abyssian-317 {\n  background-position: -480px -448px;\n}\n.abyssian-318 {\n  background-position: -640px -448px;\n}\n.abyssian-319 {\n  background-position: 0 -608px;\n}\n.abyssian-320 {\n  background-position: -160px -608px;\n}\n.abyssian-321 {\n  background-position: -320px -608px;\n}\n.abyssian-322 {\n  background-position: -480px -608px;\n}\n.abyssian-324 {\n  background-position: -640px -608px;\n}\n.abyssian-325 {\n  background-position: -864px 0;\n}\n.abyssian-326 {\n  background-position: -864px -160px;\n}\n.abyssian-327 {\n  background-position: -800px -320px;\n}\n.abyssian-328 {\n  background-position: -800px -480px;\n}\n.abyssian-329 {\n  background-position: -800px -640px;\n}\n.abyssian-330 {\n  background-position: 0 -800px;\n}\n.general-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_generals.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.general-1 {\n  background-position: -5px -5px;\n}\n.general-101 {\n  background-position: -175px -5px;\n}\n.general-123 {\n  background-position: -345px -5px;\n}\n.general-201 {\n  background-position: -5px -175px;\n}\n.general-223 {\n  background-position: -175px -175px;\n}\n.general-23 {\n  background-position: -345px -175px;\n}\n.general-301 {\n  background-position: -5px -345px;\n}\n.general-323 {\n  background-position: -175px -345px;\n}\n.general-401 {\n  background-position: -345px -345px;\n}\n.general-418 {\n  background-position: -515px -5px;\n}\n.general-501 {\n  background-position: -515px -175px;\n}\n.general-527 {\n  background-position: -515px -345px;\n}\n.lyonar-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_lyonar.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.lyonar-10 {\n  background-position: -2px -2px;\n}\n.lyonar-11 {\n  background-position: -166px -2px;\n}\n.lyonar-12 {\n  background-position: -330px -2px;\n}\n.lyonar-13 {\n  background-position: -494px -2px;\n}\n.lyonar-14 {\n  background-position: -658px -2px;\n}\n.lyonar-15 {\n  background-position: -2px -166px;\n}\n.lyonar-16 {\n  background-position: -166px -166px;\n}\n.lyonar-17 {\n  background-position: -330px -166px;\n}\n.lyonar-18 {\n  background-position: -494px -166px;\n}\n.lyonar-20 {\n  background-position: -658px -166px;\n}\n.lyonar-20043 {\n  background-position: -822px -2px;\n}\n.lyonar-20044 {\n  background-position: -822px -102px;\n}\n.lyonar-20045 {\n  background-position: -822px -202px;\n}\n.lyonar-20046 {\n  background-position: -822px -302px;\n}\n.lyonar-20047 {\n  background-position: -2px -402px;\n}\n.lyonar-20062 {\n  background-position: -102px -402px;\n}\n.lyonar-20064 {\n  background-position: -202px -402px;\n}\n.lyonar-20066 {\n  background-position: -302px -402px;\n}\n.lyonar-20067 {\n  background-position: -402px -402px;\n}\n.lyonar-20068 {\n  background-position: -502px -402px;\n}\n.lyonar-20090 {\n  background-position: -602px -402px;\n}\n.lyonar-20104 {\n  background-position: -702px -402px;\n}\n.lyonar-20109 {\n  background-position: -802px -402px;\n}\n.lyonar-20120 {\n  background-position: -2px -502px;\n}\n.lyonar-20128 {\n  background-position: -102px -502px;\n}\n.lyonar-20158 {\n  background-position: -202px -502px;\n}\n.lyonar-20161 {\n  background-position: -302px -502px;\n}\n.lyonar-20175 {\n  background-position: -402px -502px;\n}\n.lyonar-20186 {\n  background-position: -502px -502px;\n}\n.lyonar-20187 {\n  background-position: -602px -502px;\n}\n.lyonar-20188 {\n  background-position: -702px -502px;\n}\n.lyonar-20189 {\n  background-position: -802px -502px;\n}\n.lyonar-20190 {\n  background-position: -2px -602px;\n}\n.lyonar-20220 {\n  background-position: -102px -602px;\n}\n.lyonar-21 {\n  background-position: -202px -602px;\n}\n.lyonar-22 {\n  background-position: -366px -602px;\n}\n.lyonar-24 {\n  background-position: -530px -602px;\n}\n.lyonar-25 {\n  background-position: -694px -602px;\n}\n.lyonar-26 {\n  background-position: -922px -2px;\n}\n.lyonar-27 {\n  background-position: -922px -166px;\n}\n.lyonar-28 {\n  background-position: -922px -330px;\n}\n.lyonar-29 {\n  background-position: -902px -494px;\n}\n.lyonar-30 {\n  background-position: -858px -658px;\n}\n.lyonar-30001 {\n  width: 96px;\n  height: 96px;\n  background-position: -2px -822px;\n}\n.lyonar-30004 {\n  width: 96px;\n  height: 96px;\n  background-position: -102px -822px;\n}\n.lyonar-30018 {\n  width: 96px;\n  height: 96px;\n  background-position: -202px -822px;\n}\n.lyonar-30024 {\n  width: 96px;\n  height: 96px;\n  background-position: -302px -822px;\n}\n.lyonar-8 {\n  background-position: -402px -822px;\n}\n.lyonar-9 {\n  background-position: -566px -822px;\n}\n.songhai-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_songhai.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.songhai-108 {\n  background-position: -5px -5px;\n}\n.songhai-109 {\n  background-position: -175px -5px;\n}\n.songhai-110 {\n  background-position: -345px -5px;\n}\n.songhai-111 {\n  background-position: -515px -5px;\n}\n.songhai-112 {\n  background-position: -685px -5px;\n}\n.songhai-114 {\n  background-position: -5px -175px;\n}\n.songhai-115 {\n  background-position: -175px -175px;\n}\n.songhai-116 {\n  background-position: -345px -175px;\n}\n.songhai-117 {\n  background-position: -515px -175px;\n}\n.songhai-118 {\n  background-position: -685px -175px;\n}\n.songhai-119 {\n  background-position: -5px -345px;\n}\n.songhai-120 {\n  background-position: -175px -345px;\n}\n.songhai-121 {\n  background-position: -345px -345px;\n}\n.songhai-122 {\n  background-position: -515px -345px;\n}\n.songhai-124 {\n  background-position: -685px -345px;\n}\n.songhai-125 {\n  background-position: -5px -515px;\n}\n.songhai-126 {\n  background-position: -175px -515px;\n}\n.songhai-127 {\n  background-position: -345px -515px;\n}\n.songhai-128 {\n  background-position: -515px -515px;\n}\n.songhai-129 {\n  background-position: -685px -515px;\n}\n.songhai-130 {\n  background-position: -5px -685px;\n}\n.songhai-131 {\n  background-position: -175px -685px;\n}\n.songhai-20080 {\n  background-position: -855px -5px;\n}\n.songhai-20081 {\n  background-position: -855px -111px;\n}\n.songhai-20082 {\n  background-position: -855px -217px;\n}\n.songhai-20084 {\n  background-position: -855px -323px;\n}\n.songhai-20085 {\n  background-position: -855px -429px;\n}\n.songhai-20086 {\n  background-position: -855px -535px;\n}\n.songhai-20087 {\n  background-position: -855px -641px;\n}\n.songhai-20088 {\n  background-position: -345px -747px;\n}\n.songhai-20094 {\n  background-position: -451px -747px;\n}\n.songhai-20100 {\n  background-position: -557px -747px;\n}\n.songhai-20102 {\n  background-position: -663px -747px;\n}\n.songhai-20106 {\n  background-position: -769px -747px;\n}\n.songhai-20129 {\n  background-position: -345px -853px;\n}\n.songhai-20141 {\n  background-position: -451px -853px;\n}\n.songhai-20143 {\n  background-position: -557px -853px;\n}\n.songhai-20155 {\n  background-position: -663px -853px;\n}\n.songhai-20167 {\n  background-position: -769px -853px;\n}\n.songhai-20168 {\n  background-position: -961px -5px;\n}\n.songhai-20191 {\n  background-position: -961px -111px;\n}\n.songhai-20192 {\n  background-position: -961px -217px;\n}\n.songhai-20193 {\n  background-position: -961px -323px;\n}\n.songhai-20194 {\n  background-position: -961px -429px;\n}\n.songhai-20217 {\n  background-position: -961px -535px;\n}\n.songhai-30007 {\n  background-position: -961px -641px;\n}\n.songhai-30009 {\n  background-position: -875px -747px;\n}\n.songhai-30010 {\n  background-position: -875px -853px;\n}\n.songhai-30023 {\n  background-position: -5px -959px;\n}\n.magmar-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_magmar.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.magmar-20063 {\n  background-position: -5px -5px;\n}\n.magmar-20111 {\n  background-position: -111px -5px;\n}\n.magmar-20112 {\n  background-position: -217px -5px;\n}\n.magmar-20113 {\n  background-position: -323px -5px;\n}\n.magmar-20114 {\n  background-position: -429px -5px;\n}\n.magmar-20115 {\n  background-position: -535px -5px;\n}\n.magmar-20116 {\n  background-position: -641px -5px;\n}\n.magmar-20117 {\n  background-position: -747px -5px;\n}\n.magmar-20118 {\n  background-position: -853px -5px;\n}\n.magmar-20119 {\n  background-position: -5px -111px;\n}\n.magmar-20121 {\n  background-position: -111px -111px;\n}\n.magmar-20122 {\n  background-position: -217px -111px;\n}\n.magmar-20124 {\n  background-position: -323px -111px;\n}\n.magmar-20125 {\n  background-position: -429px -111px;\n}\n.magmar-20156 {\n  background-position: -535px -111px;\n}\n.magmar-20157 {\n  background-position: -641px -111px;\n}\n.magmar-20162 {\n  background-position: -747px -111px;\n}\n.magmar-20202 {\n  background-position: -853px -111px;\n}\n.magmar-20203 {\n  background-position: -5px -217px;\n}\n.magmar-20206 {\n  background-position: -111px -217px;\n}\n.magmar-20218 {\n  background-position: -217px -217px;\n}\n.magmar-20219 {\n  background-position: -323px -217px;\n}\n.magmar-30012 {\n  background-position: -429px -217px;\n}\n.magmar-30013 {\n  background-position: -535px -217px;\n}\n.magmar-30017 {\n  background-position: -641px -217px;\n}\n.magmar-30025 {\n  background-position: -747px -217px;\n}\n.magmar-402 {\n  background-position: -5px -323px;\n}\n.magmar-403 {\n  background-position: -175px -323px;\n}\n.magmar-404 {\n  background-position: -345px -323px;\n}\n.magmar-405 {\n  background-position: -515px -323px;\n}\n.magmar-406 {\n  background-position: -685px -323px;\n}\n.magmar-407 {\n  background-position: -5px -493px;\n}\n.magmar-408 {\n  background-position: -175px -493px;\n}\n.magmar-409 {\n  background-position: -345px -493px;\n}\n.magmar-410 {\n  background-position: -515px -493px;\n}\n.magmar-412 {\n  background-position: -685px -493px;\n}\n.magmar-413 {\n  background-position: -5px -663px;\n}\n.magmar-414 {\n  background-position: -175px -663px;\n}\n.magmar-415 {\n  background-position: -345px -663px;\n}\n.magmar-417 {\n  background-position: -515px -663px;\n}\n.magmar-419 {\n  background-position: -685px -663px;\n}\n.magmar-420 {\n  background-position: -959px -5px;\n}\n.magmar-421 {\n  background-position: -959px -175px;\n}\n.magmar-422 {\n  background-position: -855px -345px;\n}\n.magmar-423 {\n  background-position: -855px -515px;\n}\n.magmar-424 {\n  background-position: -855px -685px;\n}\n.magmar-425 {\n  background-position: -5px -855px;\n}\n.magmar-426 {\n  background-position: -175px -855px;\n}\n.neutral-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_neutral.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.neutral-10001 {\n  background-position: -5px -5px;\n}\n.neutral-10009 {\n  background-position: -175px -5px;\n}\n.neutral-10012 {\n  background-position: -345px -5px;\n}\n.neutral-10013 {\n  background-position: -515px -5px;\n}\n.neutral-10014 {\n  background-position: -685px -5px;\n}\n.neutral-10016 {\n  background-position: -855px -5px;\n}\n.neutral-10017 {\n  background-position: -1025px -5px;\n}\n.neutral-10018 {\n  background-position: -1195px -5px;\n}\n.neutral-10019 {\n  background-position: -1365px -5px;\n}\n.neutral-10020 {\n  background-position: -1535px -5px;\n}\n.neutral-10021 {\n  background-position: -1705px -5px;\n}\n.neutral-10022 {\n  background-position: -1875px -5px;\n}\n.neutral-10204 {\n  background-position: -5px -175px;\n}\n.neutral-10301 {\n  background-position: -175px -175px;\n}\n.neutral-10302 {\n  background-position: -345px -175px;\n}\n.neutral-10303 {\n  background-position: -515px -175px;\n}\n.neutral-10304 {\n  background-position: -685px -175px;\n}\n.neutral-10305 {\n  background-position: -855px -175px;\n}\n.neutral-10306 {\n  background-position: -1025px -175px;\n}\n.neutral-10307 {\n  background-position: -1195px -175px;\n}\n.neutral-10953 {\n  background-position: -1365px -175px;\n}\n.neutral-10954 {\n  background-position: -1535px -175px;\n}\n.neutral-10955 {\n  background-position: -1705px -175px;\n}\n.neutral-10956 {\n  background-position: -1875px -175px;\n}\n.neutral-10957 {\n  background-position: -5px -345px;\n}\n.neutral-10958 {\n  background-position: -175px -345px;\n}\n.neutral-10959 {\n  background-position: -345px -345px;\n}\n.neutral-10960 {\n  background-position: -515px -345px;\n}\n.neutral-10961 {\n  background-position: -685px -345px;\n}\n.neutral-10962 {\n  background-position: -855px -345px;\n}\n.neutral-10963 {\n  background-position: -1025px -345px;\n}\n.neutral-10965 {\n  background-position: -1195px -345px;\n}\n.neutral-10966 {\n  background-position: -1365px -345px;\n}\n.neutral-10973 {\n  background-position: -1535px -345px;\n}\n.neutral-10974 {\n  background-position: -1705px -345px;\n}\n.neutral-10975 {\n  background-position: -1875px -345px;\n}\n.neutral-10976 {\n  background-position: -5px -515px;\n}\n.neutral-10978 {\n  background-position: -175px -515px;\n}\n.neutral-10979 {\n  background-position: -345px -515px;\n}\n.neutral-10980 {\n  background-position: -515px -515px;\n}\n.neutral-10981 {\n  background-position: -685px -515px;\n}\n.neutral-10982 {\n  background-position: -855px -515px;\n}\n.neutral-10983 {\n  background-position: -1025px -515px;\n}\n.neutral-10984 {\n  background-position: -1195px -515px;\n}\n.neutral-10985 {\n  background-position: -1365px -515px;\n}\n.neutral-10986 {\n  background-position: -1535px -515px;\n}\n.neutral-10987 {\n  background-position: -1705px -515px;\n}\n.neutral-10988 {\n  background-position: -1875px -515px;\n}\n.neutral-10989 {\n  background-position: -5px -685px;\n}\n.neutral-10990 {\n  background-position: -175px -685px;\n}\n.neutral-10991 {\n  background-position: -345px -685px;\n}\n.neutral-10992 {\n  background-position: -515px -685px;\n}\n.neutral-10993 {\n  background-position: -685px -685px;\n}\n.neutral-10994 {\n  background-position: -855px -685px;\n}\n.neutral-10995 {\n  background-position: -1025px -685px;\n}\n.neutral-10996 {\n  background-position: -1195px -685px;\n}\n.neutral-10997 {\n  background-position: -1365px -685px;\n}\n.neutral-11001 {\n  background-position: -1535px -685px;\n}\n.neutral-11004 {\n  background-position: -1705px -685px;\n}\n.neutral-11006 {\n  background-position: -1875px -685px;\n}\n.neutral-11007 {\n  background-position: -5px -855px;\n}\n.neutral-11008 {\n  background-position: -175px -855px;\n}\n.neutral-11009 {\n  background-position: -345px -855px;\n}\n.neutral-11010 {\n  background-position: -515px -855px;\n}\n.neutral-11011 {\n  background-position: -685px -855px;\n}\n.neutral-11013 {\n  background-position: -855px -855px;\n}\n.neutral-11014 {\n  background-position: -1025px -855px;\n}\n.neutral-11015 {\n  background-position: -1195px -855px;\n}\n.neutral-11016 {\n  background-position: -1365px -855px;\n}\n.neutral-11017 {\n  background-position: -1535px -855px;\n}\n.neutral-11018 {\n  background-position: -1705px -855px;\n}\n.neutral-11019 {\n  background-position: -1875px -855px;\n}\n.neutral-11020 {\n  background-position: -5px -1025px;\n}\n.neutral-11021 {\n  background-position: -175px -1025px;\n}\n.neutral-11022 {\n  background-position: -345px -1025px;\n}\n.neutral-11023 {\n  background-position: -515px -1025px;\n}\n.neutral-11024 {\n  background-position: -685px -1025px;\n}\n.neutral-11025 {\n  background-position: -855px -1025px;\n}\n.neutral-11026 {\n  background-position: -1025px -1025px;\n}\n.neutral-11027 {\n  background-position: -1195px -1025px;\n}\n.neutral-11028 {\n  background-position: -1365px -1025px;\n}\n.neutral-11029 {\n  background-position: -1535px -1025px;\n}\n.neutral-11030 {\n  background-position: -1705px -1025px;\n}\n.neutral-11031 {\n  background-position: -1875px -1025px;\n}\n.neutral-11032 {\n  background-position: -5px -1195px;\n}\n.neutral-11033 {\n  background-position: -175px -1195px;\n}\n.neutral-11034 {\n  background-position: -345px -1195px;\n}\n.neutral-11035 {\n  background-position: -515px -1195px;\n}\n.neutral-11036 {\n  background-position: -685px -1195px;\n}\n.neutral-11037 {\n  background-position: -855px -1195px;\n}\n.neutral-11038 {\n  background-position: -1025px -1195px;\n}\n.neutral-11039 {\n  background-position: -1195px -1195px;\n}\n.neutral-11040 {\n  background-position: -1365px -1195px;\n}\n.neutral-11041 {\n  background-position: -1535px -1195px;\n}\n.neutral-11042 {\n  background-position: -1705px -1195px;\n}\n.neutral-11043 {\n  background-position: -1875px -1195px;\n}\n.neutral-11044 {\n  background-position: -5px -1365px;\n}\n.neutral-11045 {\n  background-position: -175px -1365px;\n}\n.neutral-11046 {\n  background-position: -345px -1365px;\n}\n.neutral-11047 {\n  background-position: -515px -1365px;\n}\n.neutral-11048 {\n  background-position: -685px -1365px;\n}\n.neutral-11049 {\n  background-position: -855px -1365px;\n}\n.neutral-11051 {\n  background-position: -1025px -1365px;\n}\n.neutral-11052 {\n  background-position: -1195px -1365px;\n}\n.neutral-11053 {\n  background-position: -1365px -1365px;\n}\n.neutral-11054 {\n  background-position: -1535px -1365px;\n}\n.neutral-11055 {\n  background-position: -1705px -1365px;\n}\n.neutral-11056 {\n  background-position: -1875px -1365px;\n}\n.neutral-11057 {\n  background-position: -5px -1535px;\n}\n.neutral-11058 {\n  background-position: -175px -1535px;\n}\n.neutral-11059 {\n  background-position: -345px -1535px;\n}\n.neutral-11060 {\n  background-position: -515px -1535px;\n}\n.neutral-11061 {\n  background-position: -685px -1535px;\n}\n.neutral-11063 {\n  background-position: -855px -1535px;\n}\n.neutral-11064 {\n  background-position: -1025px -1535px;\n}\n.neutral-11066 {\n  background-position: -1195px -1535px;\n}\n.neutral-11075 {\n  background-position: -1365px -1535px;\n}\n.neutral-11076 {\n  background-position: -1535px -1535px;\n}\n.neutral-11077 {\n  background-position: -1705px -1535px;\n}\n.neutral-11078 {\n  background-position: -1875px -1535px;\n}\n.neutral-133720 {\n  background-position: -5px -1705px;\n}\n.neutral-133729 {\n  background-position: -175px -1705px;\n}\n.neutral-133730 {\n  background-position: -345px -1705px;\n}\n.neutral-133733 {\n  background-position: -515px -1705px;\n}\n.neutral-133740 {\n  background-position: -685px -1705px;\n}\n.neutral-19002 {\n  background-position: -855px -1705px;\n}\n.neutral-19003 {\n  background-position: -1025px -1705px;\n}\n.neutral-19004 {\n  background-position: -1195px -1705px;\n}\n.neutral-19005 {\n  background-position: -1365px -1705px;\n}\n.neutral-19006 {\n  background-position: -1535px -1705px;\n}\n.neutral-19010 {\n  background-position: -1705px -1705px;\n}\n.neutral-19025 {\n  background-position: -1875px -1705px;\n}\n.neutral-19026 {\n  background-position: -5px -1875px;\n}\n.neutral-19027 {\n  background-position: -175px -1875px;\n}\n.neutral-19028 {\n  background-position: -345px -1875px;\n}\n.neutral-19029 {\n  background-position: -515px -1875px;\n}\n.neutral-19030 {\n  background-position: -685px -1875px;\n}\n.neutral-19031 {\n  background-position: -855px -1875px;\n}\n.neutral-19032 {\n  background-position: -1025px -1875px;\n}\n.neutral-19033 {\n  background-position: -1195px -1875px;\n}\n.neutral-19034 {\n  background-position: -1365px -1875px;\n}\n.neutral-19035 {\n  background-position: -1535px -1875px;\n}\n.neutral-19036 {\n  background-position: -1705px -1875px;\n}\n.neutral-19037 {\n  background-position: -1875px -1875px;\n}\n.neutral-19038 {\n  background-position: -2045px -5px;\n}\n.neutral-19039 {\n  background-position: -2045px -175px;\n}\n.neutral-19040 {\n  background-position: -2045px -345px;\n}\n.neutral-19042 {\n  background-position: -2045px -515px;\n}\n.neutral-19043 {\n  background-position: -2045px -685px;\n}\n.neutral-19044 {\n  background-position: -2045px -855px;\n}\n.neutral-19045 {\n  background-position: -2045px -1025px;\n}\n.neutral-19046 {\n  background-position: -2045px -1195px;\n}\n.neutral-19047 {\n  background-position: -2045px -1365px;\n}\n.neutral-19049 {\n  background-position: -2045px -1535px;\n}\n.neutral-19050 {\n  background-position: -2045px -1705px;\n}\n.neutral-19051 {\n  background-position: -2045px -1875px;\n}\n.neutral-19052 {\n  background-position: -5px -2045px;\n}\n.vanar-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_vanar.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.vanar-20134 {\n  background-position: -5px -5px;\n}\n.vanar-20135 {\n  background-position: -111px -5px;\n}\n.vanar-20136 {\n  background-position: -217px -5px;\n}\n.vanar-20137 {\n  background-position: -323px -5px;\n}\n.vanar-20138 {\n  background-position: -429px -5px;\n}\n.vanar-20139 {\n  background-position: -535px -5px;\n}\n.vanar-20140 {\n  background-position: -641px -5px;\n}\n.vanar-20144 {\n  background-position: -747px -5px;\n}\n.vanar-20145 {\n  background-position: -853px -5px;\n}\n.vanar-20146 {\n  background-position: -5px -111px;\n}\n.vanar-20147 {\n  background-position: -111px -111px;\n}\n.vanar-20148 {\n  background-position: -217px -111px;\n}\n.vanar-20149 {\n  background-position: -323px -111px;\n}\n.vanar-20150 {\n  background-position: -429px -111px;\n}\n.vanar-20160 {\n  background-position: -535px -111px;\n}\n.vanar-20163 {\n  background-position: -641px -111px;\n}\n.vanar-20165 {\n  background-position: -747px -111px;\n}\n.vanar-20207 {\n  background-position: -853px -111px;\n}\n.vanar-20208 {\n  background-position: -5px -217px;\n}\n.vanar-20209 {\n  background-position: -111px -217px;\n}\n.vanar-20211 {\n  background-position: -217px -217px;\n}\n.vanar-20212 {\n  background-position: -323px -217px;\n}\n.vanar-20214 {\n  background-position: -429px -217px;\n}\n.vanar-30015 {\n  background-position: -535px -217px;\n}\n.vanar-30016 {\n  background-position: -641px -217px;\n}\n.vanar-30019 {\n  background-position: -747px -217px;\n}\n.vanar-30021 {\n  background-position: -853px -217px;\n}\n.vanar-503 {\n  background-position: -5px -323px;\n}\n.vanar-505 {\n  background-position: -175px -323px;\n}\n.vanar-506 {\n  background-position: -345px -323px;\n}\n.vanar-507 {\n  background-position: -515px -323px;\n}\n.vanar-508 {\n  background-position: -685px -323px;\n}\n.vanar-510 {\n  background-position: -5px -493px;\n}\n.vanar-511 {\n  background-position: -175px -493px;\n}\n.vanar-512 {\n  background-position: -345px -493px;\n}\n.vanar-513 {\n  background-position: -515px -493px;\n}\n.vanar-514 {\n  background-position: -685px -493px;\n}\n.vanar-515 {\n  background-position: -5px -663px;\n}\n.vanar-517 {\n  background-position: -175px -663px;\n}\n.vanar-519 {\n  background-position: -345px -663px;\n}\n.vanar-526 {\n  background-position: -515px -663px;\n}\n.vanar-528 {\n  background-position: -685px -663px;\n}\n.vanar-529 {\n  background-position: -959px -5px;\n}\n.vanar-530 {\n  background-position: -959px -175px;\n}\n.vanar-531 {\n  background-position: -855px -345px;\n}\n.vanar-532 {\n  background-position: -855px -515px;\n}\n.vanar-533 {\n  background-position: -855px -685px;\n}\n.vanar-534 {\n  background-position: -5px -855px;\n}\n.vetruvian-sprite {\n  background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_vetruvian.png);\n  background-repeat: no-repeat;\n  display: block;\n  position: absolute;\n}\n.vetruvian-20028 {\n  background-position: -5px -5px;\n}\n.vetruvian-20073 {\n  background-position: -111px -5px;\n}\n.vetruvian-20074 {\n  background-position: -217px -5px;\n}\n.vetruvian-20075 {\n  background-position: -323px -5px;\n}\n.vetruvian-20076 {\n  background-position: -429px -5px;\n}\n.vetruvian-20077 {\n  background-position: -535px -5px;\n}\n.vetruvian-20078 {\n  background-position: -641px -5px;\n}\n.vetruvian-20093 {\n  background-position: -747px -5px;\n}\n.vetruvian-20095 {\n  background-position: -853px -5px;\n}\n.vetruvian-20096 {\n  background-position: -5px -111px;\n}\n.vetruvian-20097 {\n  background-position: -111px -111px;\n}\n.vetruvian-20105 {\n  background-position: -217px -111px;\n}\n.vetruvian-20132 {\n  background-position: -323px -111px;\n}\n.vetruvian-20151 {\n  background-position: -429px -111px;\n}\n.vetruvian-20152 {\n  background-position: -535px -111px;\n}\n.vetruvian-20153 {\n  background-position: -641px -111px;\n}\n.vetruvian-20169 {\n  background-position: -747px -111px;\n}\n.vetruvian-20195 {\n  background-position: -853px -111px;\n}\n.vetruvian-20196 {\n  background-position: -5px -217px;\n}\n.vetruvian-20197 {\n  background-position: -111px -217px;\n}\n.vetruvian-20198 {\n  background-position: -217px -217px;\n}\n.vetruvian-20216 {\n  background-position: -323px -217px;\n}\n.vetruvian-208 {\n  background-position: -429px -217px;\n}\n.vetruvian-209 {\n  background-position: -599px -217px;\n}\n.vetruvian-210 {\n  background-position: -769px -217px;\n}\n.vetruvian-211 {\n  background-position: -5px -387px;\n}\n.vetruvian-212 {\n  background-position: -175px -387px;\n}\n.vetruvian-213 {\n  background-position: -345px -387px;\n}\n.vetruvian-214 {\n  background-position: -515px -387px;\n}\n.vetruvian-215 {\n  background-position: -685px -387px;\n}\n.vetruvian-216 {\n  background-position: -5px -557px;\n}\n.vetruvian-218 {\n  background-position: -175px -557px;\n}\n.vetruvian-219 {\n  background-position: -345px -557px;\n}\n.vetruvian-220 {\n  background-position: -515px -557px;\n}\n.vetruvian-221 {\n  background-position: -685px -557px;\n}\n.vetruvian-222 {\n  background-position: -5px -727px;\n}\n.vetruvian-224 {\n  background-position: -175px -727px;\n}\n.vetruvian-226 {\n  background-position: -345px -727px;\n}\n.vetruvian-227 {\n  background-position: -515px -727px;\n}\n.vetruvian-228 {\n  background-position: -685px -727px;\n}\n.vetruvian-229 {\n  background-position: -959px -5px;\n}\n.vetruvian-231 {\n  background-position: -959px -175px;\n}\n.vetruvian-232 {\n  background-position: -939px -345px;\n}\n.vetruvian-233 {\n  background-position: -855px -515px;\n}\n.vetruvian-30006 {\n  background-position: -1025px -515px;\n}\n.vetruvian-30008 {\n  background-position: -1025px -621px;\n}\n.vetruvian-30011 {\n  background-position: -855px -727px;\n}\n.vetruvian-30022 {\n  background-position: -961px -727px;\n}\n@font-face {\n  font-family: LatoRegular;\n  src: url(https://dl.dropboxusercontent.com/u/24984522/Lato-Regular.woff);\n}\n.container {\n  max-width: 1570px;\n  margin: 0 15px;\n}\n@media (min-width: 1600px) {\n.container {\n      margin: 0 auto;\n}\n}\nbutton {\n  background: #104365;\n  border: none;\n  padding: 8px;\n  color: #e1e1e1;\n}\n.sprite.minion, .sprite.general {\n  top: -54px;\n  left: 34px;\n  width: 160px;\n  height: 160px;\n}\n.sprite.spell, .sprite.artifact {\n  top: 24px;\n  left: 64px;\n  width: 96px;\n  height: 96px;\n}\n.sprite.minion-sm {\n  top: -77px;\n  right: -40px;\n  z-index: 2;\n  transform: scaleX(-0.5) scaleY(0.5);\n  width: 160px;\n  height: 160px;\n}\n.sprite.spell-sm, .sprite.artifact-sm {\n  top: -26px;\n  right: -10px;\n  transform: scale(0.6);\n  width: 96px;\n  height: 96px;\n}\n.sprite.general-md {\n  top: -43px;\n  left: -20px;\n  width: 160px;\n  height: 160px;\n  transform: scale(0.8);\n}\n", ""]);
 
 	// exports
 
@@ -17916,7 +18104,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(224)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -17933,9 +18124,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-5", __vue_options__)
+	    hotAPI.createRecord("data-v-4", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-5", __vue_options__)
+	    hotAPI.reload("data-v-4", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] TopNav.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -17959,8 +18150,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TopNav.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TopNav.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-4!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TopNav.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-4!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TopNav.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -17978,7 +18169,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.top-nav {\n  background: #070e13;\n  padding-top: 15px;\n  padding-bottom: 15px;\n  margin-bottom: 30px;\n}\n.top-nav:after {\n    content: \"\";\n    display: table;\n    clear: both;\n}\n.top-nav > .container > .logo {\n    float: left;\n}\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.top-nav {\n  background: #070e13;\n  padding-top: 15px;\n  padding-bottom: 15px;\n  margin-bottom: 30px;\n}\n.top-nav:after {\n    content: \"\";\n    display: table;\n    clear: both;\n}\n.top-nav > .container > .logo {\n    float: left;\n}\n", ""]);
 
 	// exports
 
@@ -18025,7 +18216,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(217)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -18087,7 +18281,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.dd-arrow {\n  padding-right: 30px;\n}\n.dd-arrow::after {\n    font-family: 'Material Icons';\n    content: '\\E313';\n    position: absolute;\n    right: 10px;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.faction-navigation {\n  background: #104365;\n  display: inline-block;\n  position: relative;\n  float: right;\n  min-width: 140px;\n}\n.faction-navigation:active, .faction-navigation:focus {\n    outline: none;\n}\n.faction-navigation > .menu {\n    padding: 8px 15px;\n}\n.faction-navigation.opened > .links {\n    display: block;\n}\n.faction-navigation > .links {\n    display: none;\n    position: absolute;\n    right: 0;\n    z-index: 12;\n    background: #104365;\n    min-width: 140px;\n    width: 100%;\n}\n.faction-navigation > .links > .link {\n      padding: 5px 10px;\n      cursor: pointer;\n      display: block;\n}\n.faction-navigation > .links > .link:hover {\n        background: #092639;\n}\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.dd-arrow {\n  padding-right: 30px;\n}\n.dd-arrow::after {\n    font-family: 'Material Icons';\n    content: '\\E313';\n    position: absolute;\n    right: 10px;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.faction-navigation {\n  background: #104365;\n  display: inline-block;\n  position: relative;\n  float: right;\n  min-width: 140px;\n}\n.faction-navigation:active, .faction-navigation:focus {\n    outline: none;\n}\n.faction-navigation > .menu {\n    padding: 8px 15px;\n}\n.faction-navigation.opened > .links {\n    display: block;\n}\n.faction-navigation > .links {\n    display: none;\n    position: absolute;\n    right: 0;\n    z-index: 12;\n    background: #104365;\n    min-width: 140px;\n    width: 100%;\n}\n.faction-navigation > .links > .link {\n      padding: 5px 10px;\n      cursor: pointer;\n      display: block;\n}\n.faction-navigation > .links > .link:hover {\n        background: #092639;\n}\n", ""]);
 
 	// exports
 
@@ -18231,7 +18425,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(223)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -18293,7 +18490,7 @@
 
 
 	// module
-	exports.push([module.id, "\n@charset \"UTF-8\";\n/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.import-deck-button {\n  background: #104365;\n  float: right;\n  margin-right: 30px;\n  padding: 8px 15px;\n}\n.import-deck-button::before {\n    font-family: 'Material Icons';\n    content: \"\\E2C6\";\n}\n", ""]);
+	exports.push([module.id, "\n@charset \"UTF-8\";\n/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.import-deck-button {\n  background: #104365;\n  float: right;\n  margin-right: 30px;\n  padding: 8px 15px;\n}\n.import-deck-button::before {\n    font-family: 'Material Icons';\n    content: \"\\E2C6\";\n}\n", ""]);
 
 	// exports
 
@@ -18381,7 +18578,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-5", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-4", module.exports)
 	  }
 	}
 
@@ -18400,7 +18597,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(234)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -18417,9 +18617,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-7", __vue_options__)
+	    hotAPI.createRecord("data-v-5", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-7", __vue_options__)
+	    hotAPI.reload("data-v-5", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] ImportDeckModal.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -18443,8 +18643,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ImportDeckModal.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ImportDeckModal.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ImportDeckModal.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ImportDeckModal.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -18462,7 +18662,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.import-deck-modal {\n  background: #104365;\n  padding: 30px;\n}\n.import-deck-modal > .input {\n    background: #0b1c27;\n    border: none;\n    color: #e1e1e1;\n    width: 100%;\n    padding: 8px;\n    margin-bottom: 15px;\n}\nbutton.success {\n  background: #01d6f3;\n}\nbutton.cancel {\n  background: #373a3c;\n}\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.import-deck-modal {\n  background: #104365;\n  padding: 30px;\n}\n.import-deck-modal > .input {\n    background: #0b1c27;\n    border: none;\n    color: #e1e1e1;\n    width: 100%;\n    padding: 8px;\n    margin-bottom: 15px;\n}\nbutton.success {\n  background: #01d6f3;\n}\nbutton.cancel {\n  background: #373a3c;\n}\n", ""]);
 
 	// exports
 
@@ -18601,7 +18801,10 @@
 	/* template */
 	var __vue_template__ = __webpack_require__(233)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (typeof __vue_exports__.default === "object") {
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
 	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
 	__vue_options__ = __vue_exports__ = __vue_exports__.default
 	}
@@ -18618,9 +18821,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-18", __vue_options__)
+	    hotAPI.createRecord("data-v-14", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-18", __vue_options__)
+	    hotAPI.reload("data-v-14", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] GeneralModal.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -18644,8 +18847,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-18!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GeneralModal.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-18!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GeneralModal.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-14!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GeneralModal.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-14!./../../node_modules/sass-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./GeneralModal.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -18663,7 +18866,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\n\n    Usage:\n    @include breakpoint(md) {\n        ...\n    }\n*/\n.modal-mask {\n  position: fixed;\n  z-index: 999;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  transition: all 0.2s ease-out;\n  display: table;\n}\n.modal-wrapper {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container {\n  margin: 0 auto;\n}\n.modal-enter, .modal-leave {\n  opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave .modal-container {\n  transform: scale(1.1);\n}\n", ""]);
+	exports.push([module.id, "/* Vendor */\n/* Partials */\n/*\r\n    https://jdsteinbach.com/css//sass-maps-breakpoint-mixin/\r\n\r\n    Usage:\r\n    @include breakpoint(md) {\r\n        ...\r\n    }\r\n*/\n.modal-mask {\n  position: fixed;\n  z-index: 999;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  transition: all 0.2s ease-out;\n  display: table;\n}\n.modal-wrapper {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container {\n  margin: 0 auto;\n}\n.modal-enter, .modal-leave {\n  opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave .modal-container {\n  transform: scale(1.1);\n}\n", ""]);
 
 	// exports
 
@@ -18714,12 +18917,12 @@
 	        $event.stopPropagation();
 	      }
 	    }
-	  }, [$slots["default"]])])])])
+	  }, [_t("default")])])])])
 	}},staticRenderFns: []}
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-18", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-14", module.exports)
 	  }
 	}
 
@@ -18766,7 +18969,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-7", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-5", module.exports)
 	  }
 	}
 
