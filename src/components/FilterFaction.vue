@@ -15,12 +15,13 @@
     computed: {
       labelText () {
         return this.$store.state.cardList.factionSelect.length
-          ? this.$store.state.cardList.factionSelect.join(', ')
+          ? this.$store.state.cardList.factionSelect.map(item => item.charAt(0).toUpperCase() + item.substr(1)).join(', ')
           : 'Select faction'
       },
 
       currentFaction () {
-        return this.$store.state.route.params.faction
+        const faction = this.$store.state.route.params.faction
+        return faction.charAt(0).toUpperCase() + faction.substr(1)
       },
     },
 

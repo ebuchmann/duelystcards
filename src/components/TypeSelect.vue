@@ -17,7 +17,7 @@
     computed: {
       labelText () {
         return this.$store.state.cardList.typeSelect.length
-          ? this.$store.state.cardList.typeSelect.join(', ')
+          ? this.$store.state.cardList.typeSelect.map(item => item.charAt(0).toUpperCase() + item.substr(1)).join(', ')
           : 'Select type'
       },
     },

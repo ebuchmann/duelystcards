@@ -18,7 +18,7 @@
     computed: {
       labelText () {
         return this.$store.state.cardList.raritySelect.length
-          ? this.$store.state.cardList.raritySelect.join(', ')
+          ? this.$store.state.cardList.raritySelect.map(item => item.charAt(0).toUpperCase() + item.substr(1)).join(', ')
           : 'Select rarity'
       },
     },
