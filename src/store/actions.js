@@ -95,3 +95,12 @@ export const goToPage = ({ commit, state }, direction) => {
   if (direction === -1 && currentPage > 1) commit(types.SET_PAGE, currentPage + direction)
   else if (direction === 1 && currentPage < totalPages(state)) commit(types.SET_PAGE, currentPage + direction)
 }
+
+export const resetAll = ({ commit, state }) => {
+  commit(types.TEXT_SEARCH, '')
+  commit(types.SELECT_RARITY, [])
+  commit(types.SELECT_TYPE, [])
+  commit(types.SELECT_FACTION, [])
+  commit(types.SET_PAGE, 1)
+  commit(types.CLEAR_DECK)
+}

@@ -8,9 +8,7 @@
 - Add some footer info, github link, etc.
 - Add general spell icon to card
 - Style save deck button, and only show when some cards are selected
-- Remove save deck button from saved jpg
 - Add icon to import deck
-- Clear all filters when switching to a different faction
 
 ### Improvements
 - Icon on "import deck" button

@@ -52,8 +52,7 @@
     },
 
     beforeRouteLeave (route, redirect, next) {
-      this.$store.dispatch('clearDeck')
-      this.$store.commit('SET_PAGE', 1)
+      this.$store.dispatch('resetAll')
       next()
     },
 
@@ -85,7 +84,7 @@
 
   .right-column {
     @include span(3 of 12 last)
-    margin-top: 60px;
+    margin-top: 10px;
   }
 
   .card-grid {

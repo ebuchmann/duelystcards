@@ -1,10 +1,12 @@
 <template>
-  <div class="deck-list" ref="test">
-    <mana-curve></mana-curve>
-    <deck-counts></deck-counts>
-    <deck-general></deck-general>
-    <div class="cards">
-      <deck-card v-for="card in cardList" :card="card"></deck-card>
+  <div class="deck-list">
+    <div ref="image">
+      <mana-curve></mana-curve>
+      <deck-counts></deck-counts>
+      <deck-general></deck-general>
+      <div class="cards">
+        <deck-card v-for="card in cardList" :card="card"></deck-card>
+      </div>
     </div>
     <button v-if="$store.state.deck.cards.length" class="save-deck" @click="save()" :disabled="saving">Save Deck</button>
   </div>
@@ -34,9 +36,9 @@
     methods: {
       async save () {
         this.saving = true
-        const dataUrl = await domtoimage.toJpeg(this.$refs.test)
+        const dataUrl = await domtoimage.toPng(this.$refs.image)
         const link = document.createElement('a')
-        link.download = `${this.$store.state.route.params.faction}-deck.jpeg`
+        link.download = `${this.$store.state.route.params.faction}-deck.png`
         link.href = dataUrl
         link.click()
         this.saving = false
@@ -55,11 +57,18 @@
 <style lang="sass">
   @import '../css/includes';
 
+  .deck-list {
+    padding-top: 30px;
+  }
+
   .save-deck {
     margin-top: 15px;
+    padding: 8px;
 
     &::before {
       @include font-icon($icon-download)
+      padding-top: 2px;
+      margin-right: 10px;
     }
   }
 </style>

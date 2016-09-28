@@ -42,8 +42,7 @@
 
       navigate (path) {
         this.$router.push({ path })
-        this.$store.dispatch('clearDeck')
-        this.$store.commit('SET_PAGE', 1)
+        this.$store.dispatch('resetAll')
         this.$refs.nav.blur()
       },
     },
@@ -72,6 +71,11 @@
     position: relative;
     float: right;
     min-width: 140px;
+    transition: $all-fast;
+
+    &:hover {
+      background: lighten($blue, 10%);
+    }
 
     &:active, &:focus {
       outline: none;
