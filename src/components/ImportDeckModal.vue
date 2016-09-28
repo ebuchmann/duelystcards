@@ -37,6 +37,7 @@
 
       closeModal () {
         this.modal = false
+        this.error = false
         this.$refs.url.value = ''
       },
 

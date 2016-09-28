@@ -2,37 +2,37 @@
   <div class="faction-choice-component">
     <div class="wrapper">
       <router-link class="faction-choice" to="/deck/lyonar">
-        <img class="image" src="https://dl.dropboxusercontent.com/u/24984522/lyonar.png" alt="Lyonar" />
+        <div class="image lyonar"></div>
         <div class="text">Lyonar</div>
       </router-link>
     </div>
     <div class="wrapper">
       <router-link class="faction-choice" to="/deck/songhai">
-        <img class="image" src="https://dl.dropboxusercontent.com/u/24984522/songhai.png" alt="Songhai" />
+        <div class="image songhai"></div>
         <div class="text">Songhai</div>
       </router-link>
     </div>
     <div class="wrapper">
       <router-link class="faction-choice" to="/deck/vetruvian">
-        <img class="image" src="https://dl.dropboxusercontent.com/u/24984522/vetruvian.png" alt="Vetruvian" />
+        <div class="image vetruvian"></div>
         <div class="text">Vetruvian</div>
       </router-link>
     </div>
     <div class="wrapper">
       <router-link class="faction-choice" to="/deck/abyssian">
-        <img class="image" src="https://dl.dropboxusercontent.com/u/24984522/abyssian.png" alt="Abyssian" />
+        <div class="image abyssian"></div>
         <div class="text">Abyssian</div>
       </router-link>
     </div>
     <div class="wrapper">
       <router-link class="faction-choice" to="/deck/magmar">
-        <img class="image" src="https://dl.dropboxusercontent.com/u/24984522/magmar.png" alt="Magmar" />
+        <div class="image magmar"></div>
         <div class="text">Magmar</div>
       </router-link>
     </div>
     <div class="wrapper">
       <router-link class="faction-choice" to="/deck/vanar">
-        <img class="image" src="https://dl.dropboxusercontent.com/u/24984522/vanar.png" alt="Vanar" />
+        <div class="image vanar"></div>
         <div class="text">Vanar</div>
       </router-link>
     </div>
@@ -65,9 +65,21 @@
     margin: 0 auto 45px;
 
     > .image {
+      background-image: url(https://dl.dropboxusercontent.com/u/24984522/faction_selection.png);
+      background-repeat: no-repeat;
+      display: block;
       margin-bottom: -32px;
       position: relative;
+      width: 254px;
+      height: 233px;
       z-index: $faction-select-image;
+
+      &.abyssian { background-position: -2px -2px; }
+      &.lyonar { background-position: -260px -2px; }
+      &.magmar { background-position: -2px -239px; }
+      &.songhai { background-position: -260px -239px; }
+      &.vanar { background-position: -518px -2px; }
+      &.vetruvian { background-position: -518px -239px; }
     }
 
     > .text {
