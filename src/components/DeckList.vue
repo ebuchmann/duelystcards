@@ -19,6 +19,7 @@
   import DeckCard from './DeckCard'
   import domtoimage from 'dom-to-image'
   import sortBy from 'lodash.sortby'
+  import { saveAs } from 'file-saver'
 
   export default {
     data () {
@@ -36,11 +37,8 @@
     methods: {
       async save () {
         this.saving = true
-        const dataUrl = await domtoimage.toPng(this.$refs.image)
-        const link = document.createElement('a')
-        link.download = `${this.$store.state.route.params.faction}-deck.png`
-        link.href = dataUrl
-        link.click()
+        const image = await domtoimage.toBlob(this.$refs.image, { bgcolor: '#0b1c27', width: this.$refs.image.offsetWidth + 40, height: this.$refs.image.offsetHeight + 60, style: { padding: '40px 20px' } })
+        saveAs(image, `${this.$store.state.route.params.faction}-deck.png`);
         this.saving = false
       },
     },
