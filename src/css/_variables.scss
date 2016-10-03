@@ -16,6 +16,11 @@ $blue:                      #104365;
 $blue-dark:                 #0b1c27;
 $blue-light:                #01d6f3;
 
+$color-common:              #a7a7a7;
+$color-rare:                #016cb0;
+$color-epic:                #c501dc;
+$color-legendary:           #ff911a;
+
 $font-size-root:            16px !default;
 $font-family-sans-serif:    LatoRegular, sans-serif !default;
 $font-family-base:          $font-family-sans-serif !default;
@@ -48,6 +53,7 @@ $all-slow:                  all .6s ease-out;
 // Z-Index
 $faction-navigation: 12;
 $filter-area: 10;
+$deck-card-cost: 4;
 $faction-select-image: 2;
 
 // Icons

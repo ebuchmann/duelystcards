@@ -1,17 +1,26 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+
+const nodeEnv = process.env.NODE_ENV || 'development'
+const isProd = nodeEnv === 'production'
+
+console.log(process.env.NODE_ENV)
 
 module.exports = {
   entry: {
-    main: './src/main.js',
+    app: './src/main.js',
+    // vendor: ['vue', 'vue-router', 'vuex', 'vuex-router-sync'],
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'build.js',
+    filename: isProd ? '[name].[chunkhash].js' : 'build.js',
     publicPath: '/',
   },
   resolve: {
-    extensions: ['', '.js', '.json', '.vue', '.scss'],
+    extensions: ['.js', '.json', '.vue', '.scss'],
     alias: {
       'components': path.resolve(__dirname, './src/components'),
       'pages': path.resolve(__dirname, './src/pages'),
@@ -26,10 +35,47 @@ module.exports = {
       { test: /\.json$/, loader: 'json' },
     ],
   },
-  plugins: [
+  plugins: getPlugins()
+}
+
+function getPlugins () {
+  const plugins = []
+
+  if (isProd) {
+    plugins.push(new CleanWebpackPlugin(['dist']))
+
+    plugins.push(
+      new HtmlWebpackPlugin({
+        filename: path.join(__dirname, 'dist', '200.html'),
+        template: path.join(__dirname, 'src', 'index.html'),
+      })
+    )
+
+    plugins.push(
+      new webpack.optimize.UglifyJsPlugin({
+        compress: { warnings: false },
+        output: { comments: false },
+        sourceMap: false
+      })
+    )
+  }
+
+  if (!isProd) {
+
+  }
+
+  plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
+    })
+  )
+
+  plugins.push(
     new HtmlWebpackPlugin({
       filename: path.join(__dirname, 'dist', 'index.html'),
       template: path.join(__dirname, 'src', 'index.html'),
-    }),
-  ],
+    })
+  )
+
+  return plugins
 }

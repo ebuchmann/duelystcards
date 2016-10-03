@@ -1,6 +1,10 @@
 # Duelyst Deck Builder
 ## by ebuchmann
 
+## Where it can be found
+[Duelysthub](https://duelysthub.com/deckbuilder)
+[Beta Version](http://duelyst.surge.sh/)
+
 ### TODO
 - Add set/expansion info to card data
 - Add faction icon to navigation (if there is one)
@@ -9,6 +13,7 @@
 - Add general spell icon to card
 - Style save deck button, and only show when some cards are selected
 - Add icon to import deck
+- Add "waiting" or some notification while saving a deck image is happening
 
 ### Improvements
 - Icon on "import deck" button

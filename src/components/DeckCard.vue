@@ -1,7 +1,8 @@
 <template>
-  <div :class="['deck-card', { 'flash': flash, 'dull': dull }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
+  <div :class="['deck-card', card.rarity, { 'flash': flash, 'dull': dull }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
     <div class="cost">{{ card.cost }}</div>
-    <div class="name">{{ card.name }} x{{ card.qty }}</div>
+    <div class="name">{{ card.name }}</div>
+    <div class="qty">x{{ card.qty }}</div>
     <div :class="spriteClass"></div>
   </div>
 </template>
@@ -44,9 +45,30 @@
 
   .deck-card {
     background: $blue;
-    height: 44px;
-    margin: 3px 0;
+    height: 43px;
+    margin: 3px 0 0 20px;
     position: relative;
+    border-right-width: 4px;
+    border-right-style: solid;
+    border-color: transparent;
+    display: flex;
+    align-items: center;
+
+    &.common {
+      border-color: $color-common;
+    }
+
+    &.rare {
+      border-color: $color-rare;
+    }
+
+    &.epic {
+      border-color: $color-epic;
+    }
+
+    &.legendary {
+      border-color: $color-legendary;
+    }
 
     > .cost {
       line-height: 63px;
@@ -57,36 +79,21 @@
       background-image: url(https://dl.dropboxusercontent.com/u/24984522/icon_mana.png);
       position: absolute;
       top: -10px;
-      left: -10px;
+      left: -28px;
       transform: scale(0.75);
       color: $dark;
-      z-index: 4;
+      z-index: $deck-card-cost;
     }
 
     > .name {
-      line-height: 44px;
-      text-indent: 45px;
+      margin-left: 28px;
+      width: 180px;
+      float: left;
+      line-height: 1.1;
     }
 
-    &::before, &::after {
-      position: absolute;
-      content: '';
-      bottom: 0;
-      border-style: solid;
-    }
-
-    &::before {
-      left: 0;
-      border-width: 0 22px 22px 0;
-      border-color: $blue-dark $blue;
-    }
-
-    &::after {
-      left: 0;
-      top: 0;
-      height: 22px;
-      border-width: 22px 22px 0 0;
-      border-color: $blue-dark $blue;
+    > .qty {
+      float: left;
     }
   }
 </style>

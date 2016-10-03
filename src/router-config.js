@@ -5,7 +5,7 @@ import Deck from 'pages/Deck'
 
 export const router = new VueRouter({
   mode: 'history',
-  base: 'deckbuilder',
+  base: '/',
   routes: [
     { path: '/', component: Home },
     { path: '/deck', component: Home },

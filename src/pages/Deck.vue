@@ -2,11 +2,17 @@
   <div class="deck-page">
     <filter-area></filter-area>
     <div class="left-column">
+      <div class="prev-page">
+        <span @click="$store.dispatch('goToPage', -1)" class="prev"></span>
+      </div>
       <div class="card-grid" @mousewheel="swapPage($event)">
         <template v-for="card in visibleCards">
           <game-card v-if="card.type !== 'general'" :card="card"></game-card>
           <general-card v-else :card="card"></general-card>
         </template>
+      </div>
+      <div class="next-page">
+        <span @click="$store.dispatch('goToPage', 1)" class="next"></span>
       </div>
       <card-pagination></card-pagination>
     </div>
@@ -77,22 +83,74 @@
 <style lang="sass">
   @import '../css/includes';
 
+  .deck-page {
+    min-width: 945px;
+  }
+
   .left-column {
-    @include span(9 of 12)
+    float: left;
+    position: relative;
+    width: calc(100% - 360px);
     margin-top: 20px;
+    padding: 0 40px;
   }
 
   .right-column {
-    @include span(3 of 12 last)
+    float: right;
+    width: 340px;
     margin-top: 10px;
+    margin-left: 20px;
   }
 
   .card-grid {
+    margin: 0 auto;
+    max-width: 1016px;
     @include clearfix;
+
+    @media screen and (min-width: 600px) and (max-width: 1239px) {
+      width: 508px;
+    }
+
+    @media screen and (min-width: 1240px) and (max-width: 1320px) {
+      width: 762px;
+    }
   }
 
   .deck-page {
     @include clearfix;
   }
-  
+
+  .prev-page, .next-page {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .prev-page {
+    left: 0;
+  }
+
+  .next-page {
+    right: 0;
+  }
+
+  .prev-page > .prev, .next-page > .next {
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 40px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .prev-page {
+    > .prev {
+      background-image: url(https://dl.dropboxusercontent.com/u/24984522/dialogue_carat_left.png);
+    }
+  }
+
+  .next-page {
+    > .next {
+      background-image: url(https://dl.dropboxusercontent.com/u/24984522/dialogue_carat.png);
+    }
+  }  
 </style>

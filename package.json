@@ -5,9 +5,9 @@
   "main": "index.js",
   "author": "Eric Buchmann <me@ebuchmann.com>",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "webpack && node server.js",
     "test": "eslint src/**/*.{js,vue}",
-    "deploy": "webpack -p && surge dist/ --domain duelyst.surge.sh"
+    "deploy": "cross-env NODE_ENV=production webpack -p && surge dist/ --domain duelyst.surge.sh"
   },
   "license": "ISC",
   "dependencies": {
@@ -28,6 +28,7 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-stage-2": "^6.13.0",
     "clean-webpack-plugin": "^0.1.10",
+    "cross-env": "^3.0.0",
     "css-loader": "^0.24.0",
     "eslint": "^3.4.0",
     "eslint-config-standard": "^6.0.1",

@@ -28,6 +28,11 @@
   }
 }
 
+body {
+  background-image: linear-gradient(#003d4f, #001920 100%);
+  background-attachment: fixed;
+}
+
 button {
   background: $blue;
   border: none;
@@ -50,7 +55,7 @@ button {
 }
 
 .sprite.minion-sm {
-  top: -77px;
+  top: -78px;
   right: -40px;
   z-index: 2;
   transform: scaleX(-0.5) scaleY(0.5);
