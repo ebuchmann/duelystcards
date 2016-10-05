@@ -1,9 +1,10 @@
 <template>
-  <div :class="['deck-card', card.rarity, { 'flash': flash, 'dull': dull }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
+  <div :class="['deck-card', { 'flash': flash, 'dull': dull }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
     <div class="cost">{{ card.cost }}</div>
     <div class="name">{{ card.name }}</div>
     <div class="qty">x{{ card.qty }}</div>
     <div :class="spriteClass"></div>
+    <div :class="['rarity', card.rarity]"></div>
   </div>
 </template>
 
@@ -48,27 +49,40 @@
     height: 43px;
     margin: 3px 0 0 20px;
     position: relative;
-    border-right-width: 4px;
-    border-right-style: solid;
-    border-color: transparent;
     display: flex;
     align-items: center;
 
-    &.common {
-      border-color: $color-common;
+    .rarity {
+      width: 0;
+      height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-right-width: 6px;
+      border-right-style: solid;
+      position: absolute;
+      right: 0;
+
+      &.basic {
+        border-right-color: transparent;
+      }
+
+      &.common {
+        border-right-color: $color-common;
+      }
+
+      &.rare {
+        border-right-color: $color-rare;
+      }
+
+      &.epic {
+        border-right-color: $color-epic;
+      }
+
+      &.legendary {
+        border-right-color: $color-legendary;
+      }
     }
 
-    &.rare {
-      border-color: $color-rare;
-    }
-
-    &.epic {
-      border-color: $color-epic;
-    }
-
-    &.legendary {
-      border-color: $color-legendary;
-    }
 
     > .cost {
       line-height: 63px;
@@ -88,12 +102,11 @@
     > .name {
       margin-left: 28px;
       width: 180px;
-      float: left;
       line-height: 1.1;
     }
 
     > .qty {
-      float: left;
+      
     }
   }
 </style>

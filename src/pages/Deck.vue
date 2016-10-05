@@ -33,6 +33,7 @@
   export default {
     computed: mapGetters({
       visibleCards: 'visibleCards',
+      cardsPerPage: 'cardsPerPage',
     }),
 
     data () {
@@ -55,6 +56,22 @@
           this.scrolling = false
         }, 100)
       },
+
+      resize () {
+        window.requestAnimationFrame(() => {
+          if (window.innerWidth >= 1499 && this.cardsPerPage !== 8) {
+            this.$store.commit('SET_PER_PAGE', 8)
+            this.$store.commit('SET_PAGE', 1)
+          } else if ((window.innerWidth <= 1498 && window.innerWidth > 1240) && this.cardsPerPage !== 6) {
+            this.$store.commit('SET_PER_PAGE', 6)
+            this.$store.commit('SET_PAGE', 1)
+          }
+          else if (window.innerWidth < 1240 && this.cardsPerPage !== 4) {
+            this.$store.commit('SET_PER_PAGE', 4)
+            this.$store.commit('SET_PAGE', 1)
+          }
+        })
+      }
     },
 
     beforeRouteLeave (route, redirect, next) {
@@ -62,12 +79,11 @@
       next()
     },
 
-    // watch: {
-    //   '$route': 'test'
-    // },
-
     created() {
-      if (this.$store.state.route.hash) this.$store.dispatch('loadDeck', this.$store.state.route.hash)
+      if (this.$store.state.route.hash) this.$store.dispatch('loadDeck', this.$store.state.route.hash.substr(1))
+
+      this.resize()
+      window.addEventListener('resize', this.resize)
     },
 
     components: {
@@ -111,7 +127,7 @@
       width: 508px;
     }
 
-    @media screen and (min-width: 1240px) and (max-width: 1320px) {
+    @media screen and (min-width: 1240px) and (max-width: 1498px) {
       width: 762px;
     }
   }

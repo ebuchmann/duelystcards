@@ -47,12 +47,12 @@
           const url = this.$refs.url.value
           if (!url) return
 
-          const hash = url.substring(url.indexOf('#'))
+          const hash = url.split(/(#|build=)/).pop()
 
           await this.$store.dispatch('clearDeck')
           const faction = await this.$store.dispatch('loadDeck', hash)
 
-          this.$router.push({ path: `/deck/${faction}/${hash}`} )
+          this.$router.push({ path: `/deck/${faction}/#${hash}`} )
           this.closeModal()
         } catch (e) {
           this.error = true

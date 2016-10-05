@@ -28,3 +28,5 @@ export const totalPages = (state) => Math.ceil(filteredCards(state).length / sta
 export const currentPage = (state) => totalPages(state) > 0 ? state.cardList.currentPage : 0
 
 export const searchText = ({ cardList }) => cardList.textSearch
+
+export const cardsPerPage = ({ cardList }) => cardList.cardsPerPage

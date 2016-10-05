@@ -46,31 +46,35 @@ export const setCardList = ({ commit }, cards) => new Promise(resolve =>{
 })
 
 export const loadDeck = async ({ commit, dispatch, state }, hash) => {
-  const cardList = atob(hash.slice(1)).split(',').map(card => {
-    const split = card.split(':')
-    return {
-      qty: Number(split[0]),
-      id: Number(split[1]),
-    }
-  })
+  try {
+    const cardList = atob(hash).split(',').map(card => {
+      const split = card.split(':')
+      return {
+        qty: Number(split[0]),
+        id: Number(split[1]),
+      }
+    })
 
-  const generalIds = generals.map(general => general.id)
-  const generalList = cardList.find(card => generalIds.includes(card.id))
+    const generalIds = generals.map(general => general.id)
+    const generalList = cardList.find(card => generalIds.includes(card.id))
 
-  const general = generals.find(general => general.id === generalList.id)
+    const general = generals.find(general => general.id === generalList.id)
 
-  if (!general) throw Error('General required')
+    if (!general) throw Error('General required')
 
-  // Remove the general from the list
-  cardList.splice(cardList.indexOf(generalList), 1)
+    // Remove the general from the list
+    cardList.splice(cardList.indexOf(generalList), 1)
 
-  await dispatch('selectGeneral', general)
-  await dispatch('setCardList', [...cards[state.deck.faction], ...cards.neutral])
-  cardList.forEach(card => {
-    dispatch('selectCard', { card: state.cardList.cards.find(c => c.id === card.id), qty: card.qty })
-  })
+    await dispatch('selectGeneral', general)
+    await dispatch('setCardList', [...cards[state.deck.faction], ...cards.neutral])
+    cardList.forEach(card => {
+      dispatch('selectCard', { card: state.cardList.cards.find(c => c.id === card.id), qty: card.qty })
+    })
 
-  return general.faction
+    return general.faction
+  } catch (error) {
+    throw error
+  }
 }
 
 export const textSearch = ({ commit }, text) => {
