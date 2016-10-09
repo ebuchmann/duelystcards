@@ -16,6 +16,14 @@ $blue:                      #104365;
 $blue-dark:                 #0b1c27;
 $blue-light:                #01d6f3;
 
+$color-abyssian:            #996bd1;
+$color-lyonar:              #e7c151;
+$color-magmar:              #51aa85;
+$color-songhai:             #ee5c5c;
+$color-vanar:               #5bbacf;
+$color-vetruvian:           #f08d44;
+
+$color-basic:               #aaa;
 $color-common:              #a7a7a7;
 $color-rare:                #016cb0;
 $color-epic:                #c501dc;
@@ -51,6 +59,8 @@ $all-medium:                all .4s ease-out;
 $all-slow:                  all .6s ease-out;
 
 // Z-Index
+$perfect-scrollbar: 100;
+$click-stopper: 50;
 $faction-navigation: 12;
 $filter-area: 10;
 $deck-card-cost: 4;

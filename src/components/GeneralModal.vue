@@ -1,51 +1,52 @@
 <template>
-  <transition name="modal">
-    <div class="modal-mask" v-show="show"  @click="close(false)">
-      <div class="modal-wrapper">
-        <div class="modal-container" :style="{ width: this.width }" @click.stop>
-          <slot></slot>
-        </div>
+  <div class="modal-mask" v-show="show"  @click="close(false)">
+    <div class="modal-wrapper">
+      <div class="modal-container" :style="{ width: this.width }" @click.stop>
+        <slot></slot>
       </div>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>
   export default {
     props: ['show', 'width', 'close'],
+
+    watch: {
+      show () {
+        if (this.show) document.querySelector('body').classList.add('modal-open')
+        else document.querySelector('body').classList.remove('modal-open')
+      }
+    }
   };
 </script>
 
 <style lang="sass">
   @import '../css/includes';
 
+  body.modal-open {
+    overflow: hidden;
+    margin-right: 17px;
+  }
+
   .modal-mask {
     position: fixed;
     z-index: 999;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, .5);
-    transition: $all-fast;
-    display: table;
+    overflow-y: scroll;
   }
 
   .modal-wrapper {
-    display: table-cell;
-    vertical-align: middle;
+    position: relative;
+    width: 500px;
+    margin: 30px auto;
+    transform: translate(0,0);
   }
 
   .modal-container {
-    margin: 0 auto;
-  }
-
-  .modal-enter, .modal-leave {
-    opacity: 0;
-  }
-
-  .modal-enter .modal-container,
-  .modal-leave .modal-container, {
-    transform: scale(1.1);
   }
 </style>

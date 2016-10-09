@@ -3,6 +3,7 @@
 
 /* Files */
 @import 'reboot';
+@import '~perfect-scrollbar/dist/css/perfect-scrollbar';
 
 /* Sprites */
 @import 'sprites/abyssian';
@@ -72,9 +73,11 @@ button {
 }
 
 .sprite.general-md {
-  top: -43px;
-  left: -20px;
-  width: 160px;
-  height: 160px;
-  transform: scale(0.8)
+  bottom: 5px;
+  width: 100px;
+  height: 114px;
+}
+
+.ps-scrollbar-y-rail {
+  z-index: $perfect-scrollbar
 }

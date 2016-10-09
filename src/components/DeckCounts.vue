@@ -9,6 +9,9 @@
     <span class="count">
       {{ artifactCount }} Artifact<template v-if="artifactCount !== 1">s</template>
     </span>
+    <span class="count right">
+      {{ cardCount }} / 40
+    </span>
   </div>
 </template>
 
@@ -26,6 +29,10 @@
       artifactCount () {
         return this.$store.state.deck.cards.filter(card => card.type === 'artifact').reduce((prev, curr) => prev + curr.qty, 0)
       },
+
+      cardCount () {
+        return this.$store.state.deck.totalCards
+      }
     },
   }
 </script>
@@ -34,12 +41,18 @@
   @import '../css/includes';
 
   .deck-counts {
+    @include clearfix;
+
     > .count {
-      width: 32%;
-      text-align: center;
+      width: calc(100% / 4);
       display: inline-block;
       font-size: .9rem;
-      margin-top: 8px;
+      margin: 8px 0;
+      float: left;
+
+      &.right {
+        text-align: right;
+      }
     }
   }
 </style>

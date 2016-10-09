@@ -18,6 +18,7 @@
     </div>
     <div class="right-column">
       <deck-list></deck-list>
+      <button v-if="$store.state.deck.cards.length" class="save-deck" @click="bus.$emit('save-deck-modal', true)">Save Deck</button>
     </div>
   </div>
 </template>
@@ -29,6 +30,7 @@
   import CardPagination from 'components/CardPagination'
   import FilterArea from 'components/FilterArea'
   import { mapGetters } from 'vuex'
+  import bus from '../bus'
 
   export default {
     computed: mapGetters({
@@ -39,6 +41,7 @@
     data () {
       return {
         scrolling: false,
+        bus,
       }
     },
 
@@ -71,7 +74,7 @@
             this.$store.commit('SET_PAGE', 1)
           }
         })
-      }
+      },
     },
 
     beforeRouteLeave (route, redirect, next) {

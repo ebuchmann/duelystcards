@@ -61,7 +61,7 @@
   }
 
   .card-counts {
-    height: 70px;
+    height: 50px;
     position: relative;
 
     > .mana {
@@ -89,7 +89,6 @@
     border-top: 1px solid $blue-light;
     border-bottom: 1px solid $blue-light;
     width: 100%;
-    background: #103349;
     @include clearfix;
 
     > .number {

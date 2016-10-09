@@ -1,8 +1,6 @@
 <template>
-  <div class="deck-general">
-    <div class="cards"><b>{{ $store.state.deck.totalCards }} / 40</b> cards</div>
-    <div class="spirit"><b>{{ $store.state.deck.spirit }}</b> spirit</div>
-    <div class="name" v-if="$store.state.deck.general">{{ $store.state.deck.general.name }}</div>
+  <div :class="['deck-general', faction]" v-show="generalName">
+    <div class="name" v-html="generalName"></div>
     <div :class="spriteClass"></div>
   </div>
 </template>
@@ -12,8 +10,17 @@
     computed: {
       spriteClass () {
         const general = this.$store.state.deck.general
-        if (general) return `sprite ${general.type}-md ${general.type}-sprite ${general.type}-${general.id}`
+        if (general) return `sprite ${general.type}-md ${general.type}-sprite ${general.type}-hex_${general.id}`
       },
+
+      generalName () {
+        const general = this.$store.state.deck.general
+        if (general) return general.name.replace(' ', '<br />')
+      },
+
+      faction () {
+        return this.$store.state.route.params.faction
+      }
     }
   }
 </script>
@@ -22,29 +29,30 @@
   @import '../css/includes';
 
   .deck-general {
-    text-align: right;
     position: relative;
-    height: 110px;
+    height: 100px;
+    background: $dark;
+    display: flex;
+    align-items: center;
+
+    &.abyssian { color: $color-abyssian; }
+    &.lyonar { color: $color-lyonar; }
+    &.magmar { color: $color-magmar; }
+    &.songhai { color: $color-songhai; }
+    &.vanar { color: $color-vanar; }
+    &.vetruvian { color: $color-vetruvian; }
 
     > .general {
       top: -40px;
       left: -20px;
     }
 
-    > .cards {
-      padding-top: 15px;
-    }
-
-    > .cards > b, > .spirit > b {
-      color: $blue-light;
-    }
-
     > .name {
-      font-size: 1.1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      line-height: 1.1;
       text-transform: uppercase;
-      position: absolute;
-      bottom: 0;
-      left: 120px;
+      margin-left: 105px;
     }
   }
 </style>

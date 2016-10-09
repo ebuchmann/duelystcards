@@ -1,14 +1,17 @@
 <template>
   <div :class="['deck-card', { 'flash': flash, 'dull': dull }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
-    <div class="cost">{{ card.cost }}</div>
+    <div :class="['cost', card.rarity]">
+      <div class="number">{{ card.cost }}</div>
+    </div>
     <div class="name">{{ card.name }}</div>
     <div class="qty">x{{ card.qty }}</div>
     <div :class="spriteClass"></div>
-    <div :class="['rarity', card.rarity]"></div>
   </div>
 </template>
 
 <script>
+  import updateHash from 'utils/updateHash'
+
   export default {
     props: ['card'],
 
@@ -32,10 +35,12 @@
           this.flash = false
         }, 200)
         this.$store.dispatch('selectCard', { card, qty: 1 })
+        updateHash(this.$store.state.deck)
       },
 
       removeCard (card) {
         this.$store.dispatch('removeCard', card)
+        updateHash(this.$store.state.deck)
       }
     },
   }
@@ -45,63 +50,88 @@
   @import '../css/includes';
 
   .deck-card {
-    background: $blue;
+    background: $dark;
+    color: $light;
     height: 43px;
-    margin: 3px 0 0 20px;
+    margin-top: 3px;
     position: relative;
     display: flex;
     align-items: center;
 
-    .rarity {
-      width: 0;
-      height: 0;
-      border-top: 6px solid transparent;
-      border-bottom: 6px solid transparent;
-      border-right-width: 6px;
-      border-right-style: solid;
-      position: absolute;
-      right: 0;
-
-      &.basic {
-        border-right-color: transparent;
-      }
-
-      &.common {
-        border-right-color: $color-common;
-      }
-
-      &.rare {
-        border-right-color: $color-rare;
-      }
-
-      &.epic {
-        border-right-color: $color-epic;
-      }
-
-      &.legendary {
-        border-right-color: $color-legendary;
-      }
-    }
-
-
     > .cost {
-      line-height: 63px;
-      text-align: center;
-      font-weight: bold;
-      width: 57px;
-      height: 63px;
-      background-image: url(https://dl.dropboxusercontent.com/u/24984522/icon_mana.png);
-      position: absolute;
-      top: -10px;
-      left: -28px;
-      transform: scale(0.75);
-      color: $dark;
-      z-index: $deck-card-cost;
+      position: relative;
+      width: 32px; 
+      height: 18.48px;
+      background-color: #292929;
+      margin: 9.24px 0;
+      margin-left: 10px;
+      border-left-style: solid;
+      border-right-style: solid;
+      border-left-width: 1px;
+      border-right-width: 1px;
+
+      &.basic, &.basic::before, &.basic::after {
+        border-color: $color-basic;
+      }
+
+      &.common, &.common::before, &.common::after {
+        border-color: $color-common;
+      }
+
+      &.rare, &.rare::before, &.rare::after {
+        border-color: $color-rare;
+      }
+
+      &.epic, &.epic::before, &.epic::after {
+        border-color: $color-epic;
+      }
+
+      &.legendary, &.legendary::before, &.legendary::after {
+        border-color: $color-legendary;
+      }
+
+      > .number {
+        z-index: 200;
+        width: 30px;
+        line-height: 1.2;
+        position: relative;
+        text-align: center;
+      }
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        width: 22.63px;
+        height: 22.63px;
+        -webkit-transform: scaleY(0.5774) rotate(-45deg);
+        -ms-transform: scaleY(0.5774) rotate(-45deg);
+        transform: scaleY(0.5774) rotate(-45deg);
+        background-color: inherit;
+        left: 3.6863px;
+      }
+
+      &::before {
+        top: -11.3137px;
+        border-top-style: solid;
+        border-top-width: 1.4142px;
+        border-right-style: solid;
+        border-right-width: 1.4142px;
+      }
+
+      &::after {
+        bottom: -11.3137px;
+        border-bottom-style: solid;
+        border-bottom-width: 1.4142px;
+        border-left-style: solid;
+        border-left-width: 1.4142px;
+      }
     }
 
     > .name {
-      margin-left: 28px;
-      width: 180px;
+      margin-left: 18px;
+      width: 165px;
       line-height: 1.1;
     }
 

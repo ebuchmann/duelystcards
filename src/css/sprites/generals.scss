@@ -1,54 +1,102 @@
 .general-sprite {
-    background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_generals.png);
+    background-image: url(https://dl.dropboxusercontent.com/u/24984522/sprites_generals_2.png);
     background-repeat: no-repeat;
     display: block;
     position: absolute;
 }
 
 .general-1 {
-    background-position: -5px -5px;
+    background-position: 0 0;
 }
 
 .general-101 {
-    background-position: -175px -5px;
+    background-position: -160px 0;
 }
 
 .general-123 {
-    background-position: -345px -5px;
+    background-position: -320px 0;
 }
 
 .general-201 {
-    background-position: -5px -175px;
+    background-position: -480px 0;
 }
 
 .general-223 {
-    background-position: -175px -175px;
+    background-position: 0 -160px;
 }
 
 .general-23 {
-    background-position: -345px -175px;
+    background-position: -160px -160px;
 }
 
 .general-301 {
-    background-position: -5px -345px;
+    background-position: -320px -160px;
 }
 
 .general-323 {
-    background-position: -175px -345px;
+    background-position: -480px -160px;
 }
 
 .general-401 {
-    background-position: -345px -345px;
+    background-position: 0 -320px;
 }
 
 .general-418 {
-    background-position: -515px -5px;
+    background-position: -160px -320px;
 }
 
 .general-501 {
-    background-position: -515px -175px;
+    background-position: -320px -320px;
 }
 
 .general-527 {
-    background-position: -515px -345px;
+    background-position: -480px -320px;
+}
+
+.general-hex_1 {
+    background-position: 0 -480px;
+}
+
+.general-hex_101 {
+    background-position: -100px -480px;
+}
+
+.general-hex_123 {
+    background-position: -200px -480px;
+}
+
+.general-hex_201 {
+    background-position: -300px -480px;
+}
+
+.general-hex_223 {
+    background-position: -400px -480px;
+}
+
+.general-hex_23 {
+    background-position: -500px -480px;
+}
+
+.general-hex_301 {
+    background-position: -640px 0;
+}
+
+.general-hex_323 {
+    background-position: -640px -114px;
+}
+
+.general-hex_401 {
+    background-position: -640px -228px;
+}
+
+.general-hex_418 {
+    background-position: -640px -342px;
+}
+
+.general-hex_501 {
+    background-position: -640px -456px;
+}
+
+.general-hex_527 {
+    background-position: -600px -570px;
 }
