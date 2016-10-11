@@ -2,21 +2,21 @@
   <div class="top-nav">
     <div class="container">
       <h2 class="logo"><router-link to="/">Deck Builder</router-link></h2>
-      <faction-navigation></faction-navigation>
-      <import-deck-button></import-deck-button>
+      <text-search />
+      <import-deck-button />
     </div>
   </div>
 </template>
 
 <script>
-  import FactionNavigation from './FactionNavigation'
   import ImportDeckButton from './ImportDeckButton'
+  import TextSearch from './TextSearch'
 
   export default {
     components: {
-      FactionNavigation,
       ImportDeckButton,
-    }
+      TextSearch,
+    },
   }
 </script>
 

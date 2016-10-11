@@ -1,9 +1,7 @@
 <template>
   <div class="app-page">
     <top-nav></top-nav>
-    <div class="container">
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
     <page-footer></page-footer>
     <import-deck-modal></import-deck-modal>
     <save-deck-modal></save-deck-modal>

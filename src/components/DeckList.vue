@@ -48,10 +48,11 @@
 
   .deck-list {
     padding-top: 30px;
+    height: 100%;
 
     > .cards {
       position: relative;
-      max-height: 400px;
+      height: calc(100% - 256px);
     }
   }
 

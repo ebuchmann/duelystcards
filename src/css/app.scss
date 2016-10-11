@@ -30,8 +30,7 @@
 }
 
 body {
-  background-image: linear-gradient(#003d4f, #001920 100%);
-  background-attachment: fixed;
+  background: #191919;
 }
 
 button {
@@ -42,15 +41,13 @@ button {
 }
 
 .sprite.minion, .sprite.general {
-  top: -54px;
-  left: 34px;
+  margin: 0 auto;
   width: 160px;
   height: 160px;
 }
 
 .sprite.spell, .sprite.artifact {
-  top: 24px;
-  left: 64px;
+  margin: 0 auto;
   width: 96px;
   height: 96px;
 }

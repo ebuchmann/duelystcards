@@ -1,21 +1,28 @@
 <template>
   <div class="card-container">
     <div :class="['game-card', card.type, { 'disabled': inDeck === 'X 3', 'flash': flash, 'dull': dull }]" @click="selectCard(card)" @contextmenu.prevent="removeCard(card)">
-      <div :class="['sprite', spriteClass]"></div>
-      <div class="cost" v-show="card.type !== 'general'">{{ card.cost }}</div>
-      <div class="name">{{ card.name }}</div>
-      <div class="type" :class="card.type">{{ card.race || card.type }}</div>
-      <div class="rarity" :class="[card.rarity]"></div>
+      <div class="card-sprite-block">
+        <div :class="['sprite', spriteClass]"></div>
+      </div>
+
       <div v-if="card.attack || card.attack >= 0" class="attack">{{ card.attack }}</div>
       <div v-if="card.health" class="health">{{ card.health }}</div>
-      <div class="text" v-html="card.text"></div>
       <div class="qty">{{ inDeck }}</div>
+
+      <div class="card-name-block">
+        <card-cost v-show="card.type !== 'general'" :card="card" />
+        <div class="name">{{ card.name }}</div>
+        <div class="type" :class="card.type">{{ card.race || card.type }}</div>
+      </div>
+
+      <div class="text" v-html="card.text"></div>
     </div>
   </div>
 </template>
 
 <script>
   import updateHash from 'utils/updateHash'
+  import CardCost from 'components/CardCost'
 
   export default {
     props: ['card'],
@@ -72,6 +79,10 @@
         }, 200)
       }
     },
+
+    components: {
+      CardCost,
+    },
   }
 </script>
 
@@ -97,113 +108,38 @@
   }
 
   .card-container {
-    width: 253px;
-    height: 320px;
-    float: left;
+    flex: 0 0 33%;
     padding: 16px 15px;
     margin-bottom: 15px;
 
-    &:hover {
-      background-image: url(https://dl.dropboxusercontent.com/u/24984522/spritesheet.png);
+    @include breakpoint(lg) {
+      flex: 0 0 25%;
+    }
+
+    @include breakpoint(vl) {
+      flex: 0 0 20%;
     }
   }
   
   .game-card {
-    width: 224px;
-    height: 296px;
-    background-image: url(https://dl.dropboxusercontent.com/u/24984522/spritesheet.png);
     position: relative;
-    text-align: center;
     user-select: none;
     -webkit-user-select: none;
+    height: 100%;
+    border-bottom: 1px solid $blue;
+    transition: $all-medium;
 
-    &.minion, &.general {
-      background-position: -719px -2px;
-
-      &.disabled {
-        background-position: -1409px -2px;
-      }
-    }
-
-    &.spell {
-      background-position: -489px -2px;
-
-      &.disabled {
-        background-position: -1179px -2px;
-      }
-    }
-
-    &.artifact {
-      background-position: -259px -2px;
-
-      &.disabled {
-        background-position: -949px -2px;
-      }
-    }
-
-    > .cost {
-      width: 57px;
-      height: 63px;
-      font-size: 22px;
-      background-image: url(https://dl.dropboxusercontent.com/u/24984522/icon_mana.png);
-      position: absolute;
-      top: -16px;
-      left: -16px;
-      line-height: 63px;
-      color: #00213b;
-      font-weight: bold;
-    }
-
-    > .name {
-      text-transform: uppercase;
-      position: absolute;
-      text-align: center;
-      width: 100%;
-      top: 112px;
-      font-size: .8rem;
-    }
-
-    > .type {
-      color: #90cacf;
-      text-transform: uppercase;
-      position: absolute;
-      text-align: center;
-      width: 100%;
-      top: 130px;
-      font-size: .65rem;
-
-      &.artifact {
-        color: #edd144;
-      }
-    }
-
-    > .rarity {
-      width: 44px;
-      height: 44px;
-      position: absolute;
-      top: 151px;
-      left: 89px;
-
-      &.common {
-        background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_common.png)
-      }
-      &.epic {
-        background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_epic.png)
-      }
-      &.legendary {
-        background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_legendary.png)
-      }
-      &.rare {
-        background-image: url(https://dl.dropboxusercontent.com/u/24984522/collection_card_rarity_rare.png)
-      }
+    &:hover {
+      border-bottom: 1px solid $blue-light;
+      cursor: pointer;
     }
 
     > .attack, > .health {
-      position: absolute;
       width: 50px;
       text-align: center;
       font-size: 1.2rem;
       top: 166px;
+      display: none;
     }
 
     > .attack {
@@ -216,13 +152,8 @@
 
     > .text {
       color: #90cacf;
-      line-height: 1.2;
-      text-align: center;
-      position: absolute;
-      top: 215px;
-      width: 90%;
-      left: 5%;
-      font-size: .75rem;
+      font-size: .8rem;
+      margin-bottom: 15px;
     }
 
     > .qty {
@@ -230,6 +161,48 @@
       bottom: 0;
       width: 100%;
       font-size: .65rem;
+      text-align: right;
+    }
+  }
+
+  .card-sprite-block {
+    height: 160px;
+
+    > .general, > .minion {
+      top: -25px;
+      position: relative;
+    }
+
+    > .spell, > .artifact {
+      top: 40px;
+      position: relative;
+    }
+  }
+
+  .card-name-block {
+    margin-bottom: 15px;
+    @include clearfix;
+
+    > .card-cost {
+      float: left;
+    }
+
+    > .name, > .type {
+      text-transform: uppercase;
+      margin-left: 55px;
+    }
+
+    > .name {
+      font-size: .8rem;
+    }
+
+    > .type {
+      color: #90cacf;
+      font-size: .7rem;
+
+      &.artifact {
+        color: #edd144;
+      }
     }
   }
 </style>
