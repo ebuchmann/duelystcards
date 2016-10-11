@@ -4,6 +4,7 @@
     <div class="btn-group">
       <button class="btn" @click="closed = !closed">Close</button>
       <button class="btn" @click="$store.dispatch('resetAll')">Clear Deck</button>
+      {{ closed }}
     </div>
   </div>
 </template>
@@ -12,10 +13,10 @@
   import DeckList from 'components/DeckList'
 
   export default {
-    data () {
-      return {
-        closed: false,
-      }
+    computed: {
+      closed () {
+        return !this.$store.state.app.drawerOpen
+      },
     },
 
     components: {
@@ -31,10 +32,10 @@
     width: 340px;
     position: fixed;
     right: 0;
-    top: 120px;
+    top: 48px;
     bottom: 0;
     margin-right: 20px;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 60px);
     transition: $all-fast;
 
     &.closed {

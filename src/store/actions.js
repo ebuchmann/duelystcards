@@ -105,3 +105,7 @@ export const resetAll = ({ commit, state }) => {
   commit(types.SELECT_FACTION, [])
   commit(types.CLEAR_DECK)
 }
+
+export const toggleDrawer = ({ commit, state }) => {
+  commit(types.SET_PROPERTY, { property: 'drawerOpen', value: !state.app.drawerOpen })
+}

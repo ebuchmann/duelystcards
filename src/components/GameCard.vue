@@ -108,9 +108,13 @@
   }
 
   .card-container {
-    flex: 0 0 33%;
+    flex: 0 0 50%;
     padding: 16px 15px;
     margin-bottom: 15px;
+
+    @include breakpoint(md) {
+      flex: 0 0 33%;
+    }
 
     @include breakpoint(lg) {
       flex: 0 0 25%;

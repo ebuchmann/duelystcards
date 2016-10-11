@@ -19,7 +19,8 @@
       },
 
       faction () {
-        return this.$store.state.route.params.faction
+        const general = this.$store.state.deck.general
+        if (general) return this.$store.state.deck.general.faction
       }
     }
   }

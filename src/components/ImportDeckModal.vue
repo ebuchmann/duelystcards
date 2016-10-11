@@ -52,7 +52,7 @@
           await this.$store.dispatch('clearDeck')
           const faction = await this.$store.dispatch('loadDeck', hash)
 
-          this.$router.push({ path: `/deck/${faction}/#${hash}`} )
+          this.$router.push({ path: `/#${hash}`} )
           this.closeModal()
         } catch (e) {
           this.error = true

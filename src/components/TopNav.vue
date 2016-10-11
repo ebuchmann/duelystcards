@@ -1,10 +1,9 @@
 <template>
   <div class="top-nav">
-    <div class="container">
-      <h2 class="logo"><router-link to="/">Deck Builder</router-link></h2>
-      <text-search />
-      <import-deck-button />
-    </div>
+    <h2 class="logo">Deck Builder</h2>
+    <text-search />
+    <import-deck-button />
+    <button @click="$store.dispatch('toggleDrawer')">Toggle</button>
   </div>
 </template>
 
@@ -25,13 +24,21 @@
 
   .top-nav {
     background: #070e13;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    border-bottom: 1px solid white;
     margin-bottom: 30px;
-    @include clearfix;
+    position: fixed;
+    height: 48px;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: $z-top-nav;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 40px;
 
-    > .container > .logo {
-      float: left;
+    > .logo {
+      margin: 0;
     }
   }
 </style>

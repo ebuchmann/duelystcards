@@ -1,11 +1,11 @@
 import VueRouter from 'vue-router'
 
-import Deck from 'pages/Deck'
+import Home from 'pages/Home'
 
 export const router = new VueRouter({
   mode: 'history',
   base: '/',
   routes: [
-    { path: '/', component: Deck },
+    { path: '/', component: Home },
   ],
 })

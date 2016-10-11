@@ -13,3 +13,6 @@ export const TEXT_SEARCH = 'TEXT_SEARCH'
 export const SELECT_TYPE = 'SELECT_TYPE'
 export const SELECT_RARITY = 'SELECT_RARITY'
 export const SELECT_FACTION = 'SELECT_FACTION'
+
+// app
+export const SET_PROPERTY = 'SET_PROPERTY'

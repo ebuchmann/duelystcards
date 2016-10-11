@@ -48,7 +48,7 @@
     }
 
     > .number {
-      z-index: 200;
+      z-index: $z-card-cost;
       width: 30px;
       line-height: 1.2;
       position: relative;
