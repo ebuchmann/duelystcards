@@ -1,6 +1,7 @@
 import * as types from './mutation-types'
 import generals from '../cards/generals'
 import cards from '../cards'
+import updateHash from 'utils/updateHash'
 
 export const selectGeneral = ({ commit, state }, general) => new Promise(resolve => {
   commit(types.SELECT_GENERAL, general)
@@ -98,12 +99,17 @@ export const factionSelect = ({ commit, state }, faction) => {
   commit(types.SELECT_FACTION, factionSelect)
 }
 
-export const resetAll = ({ commit, state }) => {
+export const resetFilters = ({ commit }) => {
   commit(types.TEXT_SEARCH, '')
   commit(types.SELECT_RARITY, [])
   commit(types.SELECT_TYPE, [])
   commit(types.SELECT_FACTION, [])
+}
+
+export const resetAll = ({ commit, state }) => {
+  resetFilters({ commit })
   commit(types.CLEAR_DECK)
+  updateHash(state)
 }
 
 export const toggleDrawer = ({ commit, state }) => {

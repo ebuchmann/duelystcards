@@ -28,12 +28,11 @@
   @import '../css/includes';
 
   .text-search {
-    position: relative;
-    @include clearfix;
+    flex: 1;
 
     > .search {
-      background: $blue;
-      border: none;
+      background: $dark;
+      border: 1px solid $blue-dark;
       padding: 10px;
       width: 100%;
 

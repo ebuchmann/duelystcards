@@ -15,17 +15,20 @@
 <style lang="sass">
   @import '../css/includes';
 
+  $card-cost-width-edges: 2.8284px;
+  $card-cost-width-sides: 2px;
+  $card-cost-size: 22.63px;
+
   .card-cost {
     position: relative;
     width: 32px; 
     height: 18.48px;
-    background-color: #292929;
     margin: 9.24px 0;
     margin-left: 10px;
     border-left-style: solid;
     border-right-style: solid;
-    border-left-width: 1px;
-    border-right-width: 1px;
+    border-left-width: $card-cost-width-sides;
+    border-right-width: $card-cost-width-sides;
 
     &.basic, &.basic::before, &.basic::after {
       border-color: $color-basic;
@@ -49,7 +52,7 @@
 
     > .number {
       z-index: $z-card-cost;
-      width: 30px;
+      width: 28px;
       line-height: 1.2;
       position: relative;
       text-align: center;
@@ -60,29 +63,29 @@
       content: "";
       position: absolute;
       z-index: 1;
-      width: 22.63px;
-      height: 22.63px;
+      width: $card-cost-size;
+      height: $card-cost-size;
       -webkit-transform: scaleY(0.5774) rotate(-45deg);
       -ms-transform: scaleY(0.5774) rotate(-45deg);
       transform: scaleY(0.5774) rotate(-45deg);
       background-color: inherit;
-      left: 3.6863px;
+      left: 2.6863px;
     }
 
     &::before {
       top: -11.3137px;
       border-top-style: solid;
-      border-top-width: 1.4142px;
+      border-top-width: $card-cost-width-edges;
       border-right-style: solid;
-      border-right-width: 1.4142px;
+      border-right-width: $card-cost-width-edges;
     }
 
     &::after {
       bottom: -11.3137px;
       border-bottom-style: solid;
-      border-bottom-width: 1.4142px;
+      border-bottom-width: $card-cost-width-edges;
       border-left-style: solid;
-      border-left-width: 1.4142px;
+      border-left-width: $card-cost-width-edges;
     }
   }
 </style>

@@ -14,14 +14,10 @@
   @import '../css/includes';
 
   .dropdown-wrapper {
-    background: $blue;
+    border-bottom: 2px solid $blue;
     position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
 
     > .menu {
-      padding: 0 10px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -36,10 +32,10 @@
       padding: 0;
       display: none;
       position: absolute;
-      width: 100%;
+      min-width: 260px;
       background: $blue;
       z-index: $filter-area;
-      top: 42px;
+      margin-left: $width-drawer-filter;
 
       > .option {
         padding: 10px;

@@ -1,15 +1,19 @@
 <template>
   <div class="card-container">
     <div :class="['game-card', card.type, { 'disabled': inDeck, 'flash': flash, 'dull': dull }]" @click="selectCard(card)" @contextmenu.prevent>
-      <div :class="['sprite', spriteClass]"></div>
-      <div class="cost" v-show="card.type !== 'general'">{{ card.cost }}</div>
-      <div class="name">{{ card.name }}</div>
-      <div class="type" :class="card.type">{{ card.race || card.type }}</div>
-      <div class="rarity" :class="[card.rarity]"></div>
-      <div v-if="card.attack" class="attack">{{ card.attack }}</div>
+      <div class="card-sprite-block">
+        <div :class="['sprite', spriteClass]"></div>
+      </div>
+
+      <div v-if="card.attack || card.attack >= 0" class="attack">{{ card.attack }}</div>
       <div v-if="card.health" class="health">{{ card.health }}</div>
+
+      <div class="card-name-block">
+        <div class="name">{{ card.name }}</div>
+        <div class="type" :class="card.type">{{ card.race || card.type }}</div>
+      </div>
+
       <div class="text" v-html="card.text"></div>
-      <div class="qty">{{ inDeck ? 'X 1' : '' }}</div>
     </div>
   </div>
 </template>

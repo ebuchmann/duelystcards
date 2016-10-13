@@ -1,5 +1,6 @@
 <template>
   <div class="home-page">
+    <drawer-filters />
     <div :class="['left-column', { closed }]">
       <card-list v-if="factionCards" :faction="faction" :cards="factionCards" />
       <card-list v-if="neutralCards" faction="neutral" :cards="neutralCards" />
@@ -11,6 +12,7 @@
 
 <script>
   import DrawerDeck from 'components/DrawerDeck'
+  import DrawerFilters from 'components/DrawerFilters'
   import FilterArea from 'components/FilterArea'
   import CardList from 'components/CardList'
   import { mapGetters } from 'vuex'
@@ -44,6 +46,7 @@
 
     components: {
       DrawerDeck,
+      DrawerFilters,
       FilterArea,
       CardList,
     },
@@ -57,7 +60,7 @@
     position: relative;
     width: calc(100% - 360px);
     margin-top: 65px;
-    padding: 0 40px;
+    padding: 0 40px 0 $width-drawer-filter + 30px;
 
     &.closed {
       max-width: 1600px;

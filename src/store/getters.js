@@ -26,4 +26,6 @@ export const general = ({ deck }) => deck.general
 
 export const searchText = ({ cardList }) => cardList.textSearch
 
-export const cardsPerPage = ({ cardList }) => cardList.cardsPerPage
+export const hasActiveFilters = ({ cardList }) => !!cardList.typeSelect.length || !!cardList.raritySelect.length || cardList.factionSelect.length
+
+export const currentFaction = ({ deck }) => deck.general ? deck.general.faction : null

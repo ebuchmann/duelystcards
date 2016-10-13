@@ -4,7 +4,6 @@
     <div class="btn-group">
       <button class="btn" @click="closed = !closed">Close</button>
       <button class="btn" @click="$store.dispatch('resetAll')">Clear Deck</button>
-      {{ closed }}
     </div>
   </div>
 </template>
