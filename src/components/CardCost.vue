@@ -24,7 +24,6 @@
     width: 32px; 
     height: 18.48px;
     margin: 9.24px 0;
-    margin-left: 10px;
     border-left-style: solid;
     border-right-style: solid;
     border-left-width: $card-cost-width-sides;

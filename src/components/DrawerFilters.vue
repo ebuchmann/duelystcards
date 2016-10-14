@@ -1,11 +1,11 @@
 <template>
-  <div :class="['drawer-filters', { closed }]">
+  <div class="drawer-filters">
     <label class="label">FILTERS</label>
     <type-select />
     <rarity-select />
     <filter-faction />
     <div class="clear-filters" @click="resetFilters" v-show="hasActiveFilters">
-      XX
+      <i class="material-icons">cancel</i>
     </div>
   </div>
 </template>
@@ -18,10 +18,6 @@
 
   export default {
     computed: {
-      closed () {
-        return !this.$store.state.app.drawerOpen
-      },
-
       ...mapGetters(['hasActiveFilters']),
     },
 
@@ -47,10 +43,10 @@
     top: 48px;
     bottom: 0;
     margin-right: 20px;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 48px);
     transition: $all-fast;
     z-index: $z-drawer-filters;
-    border-right: 1px solid white;
+    background: darken($blue-dark, 2%);
 
     > .label {
      font-size: .8rem;
@@ -59,9 +55,12 @@
      padding: 15px 0;
      border-bottom: 1px solid white;
     }
+  }
 
-    &.closed {
-      transform: translateX(-112%);
-    }
+  .clear-filters {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
   }
 </style>

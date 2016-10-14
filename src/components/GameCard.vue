@@ -124,6 +124,14 @@
       flex: 0 0 20%;
     }
   }
+
+  .game-card .sprite {
+    transition: filter .4s ease-out;
+  }
+
+  .game-card:hover .sprite {
+    -webkit-filter: brightness(1.15);
+  }
   
   .game-card {
     position: relative;
@@ -132,6 +140,7 @@
     height: 100%;
     border-bottom: 1px solid $blue;
     transition: $all-medium;
+    padding: 0 15px 15px 15px;
 
     &:hover {
       border-bottom: 1px solid $blue-light;
@@ -139,19 +148,25 @@
     }
 
     > .attack, > .health {
-      width: 50px;
+      width: 32px;
+      line-height: 32px;
       text-align: center;
-      font-size: 1.2rem;
       top: 166px;
-      display: none;
+      position: absolute;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 50%;
+      left: 15px;
     }
 
     > .attack {
-      left: 27px;
+      top: 60px;
+      border-color: yellow;
     }
 
     > .health {
-      left: 148px;
+      top: 110px;
+      border-color: red;
     }
 
     > .text {
@@ -193,7 +208,7 @@
 
     > .name, > .type {
       text-transform: uppercase;
-      margin-left: 55px;
+      margin-left: 45px;
     }
 
     > .name {

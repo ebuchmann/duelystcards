@@ -13,14 +13,27 @@
 <style lang="sass">
   @import '../css/includes';
 
+  .dropdown-wrapper:focus > .menu, .dropdown-wrapper > .menu:hover {
+    background: lighten($blue-dark, 25%);
+  }
+
   .dropdown-wrapper {
-    border-bottom: 2px solid $blue;
     position: relative;
 
     > .menu {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      text-align: center;
+      cursor: pointer;
+      height: 48px;
+      display: flex;
+      align-items: center;
+
+      > .material-icons {
+        width: 100%;
+      }
+
+      &.active {
+        color: $blue-light;
+      }
     }
 
     &:focus, &:active {
@@ -36,6 +49,7 @@
       background: $blue;
       z-index: $filter-area;
       margin-left: $width-drawer-filter;
+      top: 0;
 
       > .option {
         padding: 10px;

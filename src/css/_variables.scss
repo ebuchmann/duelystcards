@@ -59,6 +59,7 @@ $all-medium:                all .4s ease-out;
 $all-slow:                  all .6s ease-out;
 
 // Z-Index
+$z-drawer-deck: 500;
 $z-drawer-filters: 400;
 $z-top-nav: 300;
 $perfect-scrollbar: 100;
@@ -68,7 +69,7 @@ $filter-area: 10;
 $faction-select-image: 2;
 
 // Widths
-$width-drawer-filter: 64px;
+$width-drawer-filter: 48px;
 
 // Icons
 $icon-clear: '\e14c';

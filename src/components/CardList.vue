@@ -1,8 +1,8 @@
 <template>
   <section class="card-section">
-    <div :class="['title', faction]">
-      <h2>{{ faction | capitalize }}</h2>
-      <span>{{ cards.length }} visible cards</span>
+    <div :class="['card-section-top', faction]">
+      <h2 class="title">{{ faction | capitalize }}</h2>
+      <span class="cards">{{ cards.length }} visible cards</span>
     </div>
     <div class="card-grid">
       <template v-for="card in cards">
@@ -38,17 +38,28 @@
 
   .card-section {
     margin-bottom: 60px;
+  }
 
-    .title {
-      border-bottom: 1px solid white;
+  .card-section-top {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid white;
 
-      &.abyssian { color: $color-abyssian; }
-      &.lyonar { color: $color-lyonar; }
-      &.songhai { color: $color-songhai; }
-      &.magmar { color: $color-magmar; }
-      &.vanar { color: $color-vanar; }
-      &.vetruvian { color: $color-vetruvian; }
+    > .title {
+      flex: 1;
+      margin: 0;
     }
+
+    > .cards {
+      font-size: .9rem;
+    }
+
+    &.abyssian { color: $color-abyssian; }
+    &.lyonar { color: $color-lyonar; }
+    &.songhai { color: $color-songhai; }
+    &.magmar { color: $color-magmar; }
+    &.vanar { color: $color-vanar; }
+    &.vetruvian { color: $color-vetruvian; }
   }
 
   .card-grid {

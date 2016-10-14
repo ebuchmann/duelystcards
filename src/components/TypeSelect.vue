@@ -1,11 +1,11 @@
 <template>
   <dropdown-wrapper>
-    <div class="menu">{{ labelText }}</div>
+    <div :class="['menu', { 'active': filter.length }]"><i class="material-icons">3d_rotation</i></div>
     <ul class="options">
-      <li :class="['option', { 'selected': $store.state.cardList.typeSelect.includes('artifact')}]" @click="typeSelect('artifact')">Artifact</li>
-      <li :class="['option', { 'selected': $store.state.cardList.typeSelect.includes('minion')}]" @click="typeSelect('minion')">Minion</li>
-      <li :class="['option', { 'selected': $store.state.cardList.typeSelect.includes('spell')}]" @click="typeSelect('spell')">Spell</li>
-      <li :class="['option', { 'selected': $store.state.cardList.typeSelect.includes('general')}]" @click="typeSelect('general')">General</li>
+      <li :class="['option', { 'selected': filter.includes('artifact')}]" @click="typeSelect('artifact')">Artifact</li>
+      <li :class="['option', { 'selected': filter.includes('minion')}]" @click="typeSelect('minion')">Minion</li>
+      <li :class="['option', { 'selected': filter.includes('spell')}]" @click="typeSelect('spell')">Spell</li>
+      <li :class="['option', { 'selected': filter.includes('general')}]" @click="typeSelect('general')">General</li>
     </ul>
   </dropdown-wrapper>
 </template>
@@ -16,10 +16,8 @@
 
   export default {
     computed: {
-      labelText () {
-        return this.$store.state.cardList.typeSelect.length
-          ? this.$store.state.cardList.typeSelect.map(item => item.charAt(0).toUpperCase() + item.substr(1)).join(', ')
-          : 'All types'
+      filter () {
+        return this.$store.state.cardList.typeSelect
       },
     },
 

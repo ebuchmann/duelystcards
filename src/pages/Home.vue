@@ -13,7 +13,6 @@
 <script>
   import DrawerDeck from 'components/DrawerDeck'
   import DrawerFilters from 'components/DrawerFilters'
-  import FilterArea from 'components/FilterArea'
   import CardList from 'components/CardList'
   import { mapGetters } from 'vuex'
 
@@ -47,7 +46,6 @@
     components: {
       DrawerDeck,
       DrawerFilters,
-      FilterArea,
       CardList,
     },
   }

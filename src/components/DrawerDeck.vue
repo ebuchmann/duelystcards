@@ -2,7 +2,6 @@
   <div :class="['drawer-deck', { closed }]">
     <deck-list />
     <div class="btn-group">
-      <button class="btn" @click="closed = !closed">Close</button>
       <button class="btn" @click="$store.dispatch('resetAll')">Clear Deck</button>
     </div>
   </div>
@@ -34,8 +33,10 @@
     top: 48px;
     bottom: 0;
     margin-right: 20px;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 48px);
     transition: $all-fast;
+    background: $blue-dark;
+    z-index: $z-drawer-deck;
 
     &.closed {
       transform: translateX(112%);
