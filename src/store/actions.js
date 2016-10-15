@@ -100,7 +100,6 @@ export const factionSelect = ({ commit, state }, faction) => {
 }
 
 export const resetFilters = ({ commit }) => {
-  commit(types.TEXT_SEARCH, '')
   commit(types.SELECT_RARITY, [])
   commit(types.SELECT_TYPE, [])
   commit(types.SELECT_FACTION, [])
@@ -108,12 +107,9 @@ export const resetFilters = ({ commit }) => {
 
 export const resetAll = ({ commit, state }) => {
   resetFilters({ commit })
+  commit(types.TEXT_SEARCH, '')
   commit(types.CLEAR_DECK)
   updateHash(state)
-}
-
-export const toggleDrawer = ({ commit, state }) => {
-  commit(types.SET_PROPERTY, { property: 'drawerOpen', value: !state.app.drawerOpen })
 }
 
 export const toggleProperty = ({ commit, state }, payload) => {

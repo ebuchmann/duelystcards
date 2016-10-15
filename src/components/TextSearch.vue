@@ -1,7 +1,7 @@
 <template>
   <div class="text-search">
-    <input class="search" ref="search" type="text" :value="searchText" @keyup="textSearch($refs.search.value)" placeholder="Search..." />
-    <div v-show="searchText.length" @click="clearSearch()" class="clear"></div>
+    <input class="search" ref="search" type="text" :value="searchText" @keyup="textSearch($refs.search.value)" placeholder="Search" />
+    <div @click="clearSearch()" :class="['icon', { 'clear': searchText.length }]"></div>
   </div>
 </template>
 
@@ -9,9 +9,9 @@
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
-    computed: mapGetters({
-      searchText: 'searchText',
-    }),
+    computed: {
+      ...mapGetters(['searchText']),
+    },
 
     methods: {
       ...mapActions(['textSearch']),
@@ -28,33 +28,46 @@
   @import '../css/includes';
 
   .text-search {
-    flex: 1;
+    float: left;
+    height: 100%;
+    position: relative;
+    width: calc(100% - 380px);
 
     > .search {
-      background: $dark;
-      border: 1px solid $blue-dark;
-      padding: 10px;
+      background: transparent;
+      padding: 5px 10px 5px 50px;
+      height: 100%;
       width: 100%;
+      border: none;
+      font-size: 1.2rem;
 
       &:active, &:focus {
         outline: none;
       }
     }
 
-    > .clear {
+    > .icon {
       position: absolute;
-      right: 0;
       top: 0;
       color: #3c77a0;
       height: 100%;
-      width: 30px;
+      width: 45px;
       font-size: 1.5rem;
+      display: flex;
+      align-items: center;
 
       &:hover {
+        cursor: pointer;
         color: $blue-light;
       }
 
       &::before {
+        width: 100%;
+        text-align: center;
+        @include font-icon($icon-search);
+      }
+
+      &.clear::before {
         @include font-icon($icon-clear);
       }
     }

@@ -27,7 +27,7 @@
   @import '../css/includes';
 
   .drawer-deck {
-    width: 340px;
+    width: $width-drawer-deck;
     position: fixed;
     right: 0;
     top: 48px;

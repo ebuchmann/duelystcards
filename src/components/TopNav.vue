@@ -1,11 +1,10 @@
 <template>
   <div class="top-nav">
-    <h2 class="logo">Deck Builder</h2>
     <text-search />
     <div class="deck-options">
       <button @click="$store.dispatch('toggleProperty', 'saveDeck')">Download</button>
       <button @click="$store.dispatch('toggleProperty', 'importDeck')">Import</button>
-      <button @click="$store.dispatch('toggleDrawer')">Clear</button>
+      <button @click="$store.dispatch('toggleProperty', 'drawerOpen')">Toggle</button>
     </div>
   </div>
 </template>
@@ -33,13 +32,17 @@
     right: 0;
     top: 0;
     z-index: $z-top-nav;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0 40px;
+  }
 
-    > .logo {
-      margin: 0;
+  .deck-options {
+    width: $width-drawer-deck + 20px;
+    float: right;
+    display: flex;
+    height: 100%;
+
+    > button {
+      flex: 0 0 33%;
+      height: 100%;
     }
   }
 </style>

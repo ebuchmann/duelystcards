@@ -1,34 +1,26 @@
 <template>
   <div class="drawer-filters">
     <label class="label">FILTERS</label>
-    <type-select />
-    <rarity-select />
+    <filter-type />
+    <filter-rarity />
     <filter-faction />
-    <div class="clear-filters" @click="resetFilters" v-show="hasActiveFilters">
-      <i class="material-icons">cancel</i>
-    </div>
+    <filter-clear />
   </div>
 </template>
 
 <script>
-  import TypeSelect from 'components/TypeSelect'
-  import RaritySelect from 'components/RaritySelect'
+  import FilterType from 'components/FilterType'
+  import FilterRarity from 'components/FilterRarity'
   import FilterFaction from 'components/FilterFaction'
+  import FilterClear from 'components/FilterClear'
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    computed: {
-      ...mapGetters(['hasActiveFilters']),
-    },
-
-    methods: {
-      ...mapActions(['resetFilters'])
-    },
-
     components: {
-      TypeSelect,
-      RaritySelect,
+      FilterType,
+      FilterRarity,
       FilterFaction,
+      FilterClear,
     },
   }
 </script>
@@ -51,8 +43,8 @@
      font-size: .8rem;
      display: block;
      text-align: center;
-     padding: 15px 0;
-     border-bottom: 1px solid white;
+     padding-top: 3px;
+     border-bottom: 1px solid $blue;
     }
   }
 
