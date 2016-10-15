@@ -4,6 +4,8 @@ import {
 
 const state = {
   drawerOpen: true,
+  importDeck: false,
+  saveDeck: false,
 }
 
 const mutations = {

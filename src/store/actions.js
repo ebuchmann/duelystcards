@@ -115,3 +115,7 @@ export const resetAll = ({ commit, state }) => {
 export const toggleDrawer = ({ commit, state }) => {
   commit(types.SET_PROPERTY, { property: 'drawerOpen', value: !state.app.drawerOpen })
 }
+
+export const toggleProperty = ({ commit, state }, payload) => {
+  commit(types.SET_PROPERTY, { property: payload, value: !state.app[payload] })
+}

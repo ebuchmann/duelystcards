@@ -46,7 +46,6 @@
     height: calc(100vh - 48px);
     transition: $all-fast;
     z-index: $z-drawer-filters;
-    background: darken($blue-dark, 2%);
 
     > .label {
      font-size: .8rem;

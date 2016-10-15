@@ -6,7 +6,7 @@ const generals = [
   { id: 223, name: 'Scioness Sajj', type: 'general', faction: 'vetruvian', attack: 2, health: 25, text: '<b>Bloodborn Spell:</b> Your General deals double damage to minion this turn.' },
   { id: 201, name: 'Zirix Starstrider', type: 'general', faction: 'vetruvian', attack: 2, health: 25, text: '<b>Bloodborn Spell:</b> Summon a 2/2 Iron Dervish on a random space nearby your General.' },
   { id: 323, name: 'Cassyva Soulreaper', type: 'general', faction: 'abyssian', attack: 2, health: 25, text: '<b>Bloodborn Spell:</b> Deal 1 damage to a minion. If it dies this turn, the space turns into Shadow Creep.' },
-  { id: 301, name: 'Lilthe Blightcaster', type: 'general', faction: 'abyssian', attack: 2, health: 25, text: '<b>Bloodborn Spell:</b> Summon 2 Wraithlings nearby your General.' },
+  { id: 301, name: 'Lilithe Blightcaster', type: 'general', faction: 'abyssian', attack: 2, health: 25, text: '<b>Bloodborn Spell:</b> Summon 2 Wraithlings nearby your General.' },
   { id: 418, name: 'Starhorn the Seeker', type: 'general', faction: 'magmar', attack: 2, health: 25, text: '<b>Bloodborn Spell:</b> Both players draw a card.' },
   { id: 401, name: 'Vaath the Immortal', type: 'general', faction: 'magmar', attack: 2, health: 25, text: '<b>Bloodborn Spell:</b> Give your General +1 Attack.' },
   { id: 501, name: 'Faie Bloodwing', type: 'general', faction: 'vanar', attack: 2, health: 25, text: `<b>Bloodborn Spell:</b> Deal 2 damage to all enemies in the enemy General's Column` },

@@ -1,5 +1,5 @@
 <template>
-  <general-modal :show="modal" width="500px" :close="showModal">
+  <general-modal :show="modal" width="500px" :close="closeModal">
     <div class="import-deck-modal">
       <h1>Import Deck</h1>
       <p>Paste the URL of the deck you want to import</p>
@@ -14,29 +14,34 @@
 <script>
   import bus from '../bus'
   import GeneralModal from 'components/GeneralModal'
+  import { mapState, mapActions } from 'vuex'
 
   export default {
     data () {
       return {
-        modal: false,
         error: false,
       }
     },
 
-    methods: {
-      showModal (value) {
-        this.modal = value
-        if (this.modal) {
+    computed: {
+      ...mapState({ modal: state => state.app.importDeck }),
+    },
+
+    watch: {
+      modal () {
+        if (this.$store.state.app.importDeck) {
           this.$nextTick(() => {
             this.$refs.url.focus()
           })
-        } else {
-          this.$refs.url.value = ''
         }
       },
+    },
+
+    methods: {
+      ...mapActions(['toggleProperty']),
 
       closeModal () {
-        this.modal = false
+        this.toggleProperty('importDeck')
         this.error = false
         this.$refs.url.value = ''
       },
@@ -58,10 +63,6 @@
           this.error = true
         }
       },
-    },
-
-    created () {
-      bus.$on('import-deck-modal', this.showModal)
     },
 
     components: {

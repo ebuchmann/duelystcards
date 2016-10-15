@@ -2,18 +2,19 @@
   <div class="top-nav">
     <h2 class="logo">Deck Builder</h2>
     <text-search />
-    <import-deck-button />
-    <button @click="$store.dispatch('toggleDrawer')">Toggle</button>
+    <div class="deck-options">
+      <button @click="$store.dispatch('toggleProperty', 'saveDeck')">Download</button>
+      <button @click="$store.dispatch('toggleProperty', 'importDeck')">Import</button>
+      <button @click="$store.dispatch('toggleDrawer')">Clear</button>
+    </div>
   </div>
 </template>
 
 <script>
-  import ImportDeckButton from './ImportDeckButton'
   import TextSearch from './TextSearch'
 
   export default {
     components: {
-      ImportDeckButton,
       TextSearch,
     },
   }

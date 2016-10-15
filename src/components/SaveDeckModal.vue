@@ -1,11 +1,11 @@
 <template>
-  <general-modal :show="modal" :close="showModal" width="440px">
+  <general-modal :show="modal" :close="closeModal" width="440px">
     <div class="save-deck-modal">
       <div class="save-options">
-        <button @click="faction = !faction">Use faction colors for background</button>
-        <button @click="rarity = !rarity">Use rarity colors</button>
+        <button @click="useFaction = !useFaction">Use faction colors for background</button>
+        <button @click="useRarity = !useRarity">Use rarity colors</button>
       </div>
-      <div ref="image" :class="['deck-wrapper', $store.state.route.params.faction, { 'use-faction': faction, 'no-rarity': rarity }]">
+      <div ref="image" :class="['deck-wrapper', faction, { 'use-faction': useFaction, 'no-rarity': !useRarity }]">
         <div class="click-stopper"></div>
         <deck-list></deck-list>
       </div>
@@ -20,24 +20,29 @@
   import DeckList from 'components/DeckList'
   import domtoimage from 'dom-to-image'
   import { saveAs } from 'file-saver'
+  import { mapState, mapActions } from 'vuex'
 
   export default {
     data () {
       return {
-        modal: false,
         saving: false,
-        faction: false,
-        rarity: false,
+        useFaction: false,
+        useRarity: true,
       }
     },
 
+    computed: {
+      ...mapState({
+        modal: state => state.app.saveDeck,
+        faction: state => state.deck.general.faction
+      }),
+    },
+
     methods: {
-      showModal (value) {
-        this.modal = value
-      },
+      ...mapActions(['toggleProperty']),
 
       closeModal () {
-        this.modal = false
+        this.toggleProperty('saveDeck')
       },
 
       async save () {
@@ -46,10 +51,6 @@
         saveAs(image, `${this.$store.state.route.params.faction}-deck.png`);
         this.saving = false
       },
-    },
-
-    created () {
-      bus.$on('save-deck-modal', this.showModal)
     },
 
     components: {
