@@ -10,7 +10,7 @@ const generals = [
   { id: 418, name: 'Starhorn the Seeker', type: 'general', faction: 'magmar', attack: 2, health: 25, text: '<b>Bloodborn Spell:</b> Both players draw a card.' },
   { id: 401, name: 'Vaath the Immortal', type: 'general', faction: 'magmar', attack: 2, health: 25, text: '<b>Bloodborn Spell:</b> Give your General +1 Attack.' },
   { id: 501, name: 'Faie Bloodwing', type: 'general', faction: 'vanar', attack: 2, health: 25, text: `<b>Bloodborn Spell:</b> Deal 2 damage to all enemies in the enemy General's Column` },
-  { id: 527, name: 'Kara Winterblade', type: 'general', faction: 'vanar', attack: 2, health: 25, text: '<b>Bloodborn Spell:</b> Give each minion in your hand +1/+1.' },
+  { id: 527, name: 'Kara Winterblade', type: 'general', faction: 'vanar', attack: 2, health: 25, text: '<b>Bloodborn Spell:</b> Any minion you summon this turn gains +1/+1.' },
 ]
 
 export default generals

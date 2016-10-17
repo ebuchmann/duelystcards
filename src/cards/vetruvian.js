@@ -1,6 +1,6 @@
 const vetruvian = [
   { id: 227, name: 'Rae', type: 'minion', race: 'battle pet', cost: 0, rarity: 'common', attack: 1, health: 1, faction: 'vetruvian', text: '<b>Dying Wish</b>: Dispel the nearest enemy minion.' },
-  { id: 20073, name: 'Siphon Energy', type: 'spell', cost: 0, rarity: 'common', faction: 'vetruvian', text: 'Dispel an enemy minion.' },
+  { id: 20073, name: 'Siphon Energy', type: 'spell', cost: 0, rarity: 'common', faction: 'vetruvian', text: 'Dispel an enemy minion nearby your General.' },
   { id: 20132, name: 'Auroras Tears', type: 'spell', cost: 1, rarity: 'epic', faction: 'vetruvian', text: 'This turn, your General gains +2 Attack for every equipped artifact.' },
   { id: 20075, name: 'Blindscorch', type: 'spell', cost: 1, rarity: 'basic', faction: 'vetruvian', text: 'Lower a minion\'s Attack to 0 until your next turn.' },
   { id: 20095, name: `Scion's First Wish`, type: 'spell', cost: 1, rarity: 'basic', faction: 'vetruvian', text: 'Give a friendly minion +1/+1. Draw a card.' },
