@@ -1,6 +1,6 @@
 <template>
   <dropdown-wrapper v-show="hasActiveFilters">
-    <div class="menu" @click="resetFilters"><i class="material-icons">cancel</i></div>
+    <div class="menu filter-clear" @click="resetFilters"><i class="material-icons">cancel</i></div>
   </dropdown-wrapper>
 </template>
 
@@ -25,4 +25,8 @@
 
 <style lang="sass">
   @import '../css/includes';
+
+  .filter-clear {
+    border-top: 1px solid $blue;
+  }
 </style>

@@ -24,7 +24,7 @@
 
   .top-nav {
     background: #070e13;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid $blue;
     margin-bottom: 30px;
     position: fixed;
     height: 48px;
@@ -32,6 +32,7 @@
     right: 0;
     top: 0;
     z-index: $z-top-nav;
+    box-shadow: $medium-shadow;
   }
 
   .deck-options {
