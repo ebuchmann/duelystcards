@@ -1,6 +1,6 @@
 <template>
   <dropdown-wrapper>
-    <div :class="['menu', { 'active': filter.length }]"><i class="material-icons">lens</i></div>
+    <div :class="['menu', { 'active': filter.length }]"><svg class="icon icon-rarity"><use xlink:href="#icon-rarity"></use></svg></div>
     <ul class="options">
       <li :class="['option', { 'selected': filter.includes('basic') }]" @click="raritySelect('basic')"> Basic</li>
       <li :class="['option', { 'selected': filter.includes('common') }]" @click="raritySelect('common')"> Common</li>

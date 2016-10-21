@@ -1,6 +1,6 @@
 <template>
   <dropdown-wrapper v-show="hasActiveFilters">
-    <div class="menu filter-clear" @click="resetFilters"><i class="material-icons">cancel</i></div>
+    <div class="menu filter-clear" @click="resetFilters"><svg class="icon icon-mana-empty"><use xlink:href="#icon-mana-empty"></use></svg></div>
   </dropdown-wrapper>
 </template>
 

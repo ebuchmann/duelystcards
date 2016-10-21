@@ -4,6 +4,7 @@
     <filter-type />
     <filter-rarity />
     <filter-faction />
+    <filter-mana />
     <filter-clear />
   </div>
 </template>
@@ -12,6 +13,7 @@
   import FilterType from 'components/FilterType'
   import FilterRarity from 'components/FilterRarity'
   import FilterFaction from 'components/FilterFaction'
+  import FilterMana from 'components/FilterMana'
   import FilterClear from 'components/FilterClear'
   import { mapActions, mapGetters } from 'vuex'
 
@@ -20,6 +22,7 @@
       FilterType,
       FilterRarity,
       FilterFaction,
+      FilterMana,
       FilterClear,
     },
   }

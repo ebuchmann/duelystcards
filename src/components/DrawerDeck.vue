@@ -2,6 +2,7 @@
   <div :class="['drawer-deck', { closed }]">
     <deck-list />
     <div class="btn-group">
+    {{ totalCards }} / 40 cards
       <button class="btn" @click="$store.dispatch('resetAll')">Clear Deck</button>
     </div>
   </div>
@@ -15,6 +16,10 @@
       closed () {
         return !this.$store.state.app.drawerOpen
       },
+
+      totalCards () {
+        return this.$store.state.deck.totalCards
+      }
     },
 
     components: {

@@ -6,20 +6,19 @@
 [Beta Version](http://duelyst.surge.sh/)
 
 ### TODO
-- Add set/expansion info to card data
-- Add faction icon to navigation (if there is one)
-- Create a card component wrapper to share functions between a general card and other cards
 - Add general spell icon to card
-- Style save deck button, and only show when some cards are selected
-- Add icon to import deck
 - Add "waiting" or some notification while saving a deck image is happening
+- Make toggle area / icon smaller
+- Fix "clear deck" button / make an icon
+- Change deck drawer on mobile so it overlaps things instead of taking up space
+- Fix mobile breakpoints for card lists so they aren't squished
+- Add labels to all filter lists
+- Fix filter list checkbox icons
 
 ### Improvements
-- Icon on "import deck" button
-- Icon on "save deck" button
-- Attempt to find faction from import if general is missing
-- Add background behind faction text on faction select screen
-- Sprite maps for all small icons
+- Add set/expansion info to card data
+- Horizontal image for saving
+- Upload to imgur or other file service automatically
 - Deck stats
   - Minion health / defence / mana cost curves
   - spell and artifact curves

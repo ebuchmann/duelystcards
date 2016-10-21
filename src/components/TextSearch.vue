@@ -1,7 +1,10 @@
 <template>
   <div class="text-search">
     <input class="search" ref="search" type="text" :value="searchText" @keyup="textSearch($refs.search.value)" placeholder="Search" />
-    <div @click="clearSearch()" :class="['icon', { 'clear': searchText.length }]"></div>
+    <div @click="clearSearch()" class="button">
+      <svg v-if="!searchText.length" class="icon icon-search"><use xlink:href="#icon-search"></use></svg>
+      <svg v-else class="icon icon-clear"><use xlink:href="#icon-clear"></use></svg>
+    </div>
   </div>
 </template>
 
@@ -46,7 +49,7 @@
       }
     }
 
-    > .icon {
+    > .button {
       position: absolute;
       top: 0;
       color: #3c77a0;
@@ -55,20 +58,14 @@
       font-size: 1.5rem;
       display: flex;
       align-items: center;
+      cursor: pointer;
 
       &:hover {
-        cursor: pointer;
         color: $blue-light;
       }
 
-      &::before {
+      > .icon {
         width: 100%;
-        text-align: center;
-        @include font-icon($icon-search);
-      }
-
-      &.clear::before {
-        @include font-icon($icon-clear);
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="mana-curve">
+  <div :class="['mana-curve', currentFaction]">
     <div class="card-counts">
       <span class="mana" v-for="item in curve">
         <div class="bar" :style="{ height: `${percentage(item, highestValue)}%` }">
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
     methods: {
       percentage (value, highestValue) {
@@ -48,7 +49,9 @@
 
       highestValue () {
         return Math.max.apply(Math, this.curve)
-      }
+      },
+
+      ...mapGetters(['currentFaction']),
     },
   }
 </script>
@@ -58,6 +61,14 @@
   
   .mana-curve {
     position: relative;
+    margin-bottom: 10px;
+
+    &.abyssian { color: $color-abyssian; }
+    &.lyonar { color: $color-lyonar; }
+    &.magmar { color: $color-magmar; }
+    &.songhai { color: $color-songhai; }
+    &.vanar { color: $color-vanar; }
+    &.vetruvian { color: $color-vetruvian; }
   }
 
   .card-counts {
@@ -69,7 +80,7 @@
       display: inline-block;
 
       > .bar {
-        background: $blue-light;
+        background: currentColor;
         position: absolute;
         bottom: 2px;
         width: calc(10% - 2px);
@@ -86,8 +97,8 @@
   }
 
   .mana-numbers {
-    border-top: 1px solid $blue-light;
-    border-bottom: 1px solid $blue-light;
+    border-top: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
     width: 100%;
     @include clearfix;
 

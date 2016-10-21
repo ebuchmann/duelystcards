@@ -27,8 +27,9 @@
       display: flex;
       align-items: center;
 
-      > .material-icons {
+      > .icon {
         width: 100%;
+        font-size: 1.3rem;
       }
 
       &.active {
@@ -50,6 +51,11 @@
       z-index: $filter-area;
       margin-left: $width-drawer-filter;
       top: 0;
+
+      > .label {
+        padding: 10px;
+        border-bottom: 1px solid $blue-dark;
+      }
 
       > .option {
         padding: 10px;

@@ -4,6 +4,7 @@ import {
   SELECT_TYPE,
   SELECT_RARITY,
   SELECT_FACTION,
+  SELECT_MANA,
 } from '../mutation-types'
 
 const state = {
@@ -12,6 +13,7 @@ const state = {
   typeSelect: [],
   raritySelect: [],
   factionSelect: [],
+  manaSelect: [],
 }
 
 const mutations = {
@@ -29,6 +31,10 @@ const mutations = {
 
   [SELECT_RARITY] (state, raritySelect) {
     state.raritySelect = raritySelect
+  },
+
+  [SELECT_MANA] (state, manaSelect) {
+    state.manaSelect = manaSelect
   },
 
   [SELECT_FACTION] (state, factionSelect) {

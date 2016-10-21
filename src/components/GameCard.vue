@@ -5,8 +5,8 @@
         <div :class="['sprite', spriteClass]"></div>
       </div>
 
-      <div v-if="card.attack || card.attack >= 0" class="attack">{{ card.attack }}</div>
-      <div v-if="card.health" class="health">{{ card.health }}</div>
+      <div v-if="card.attack || card.attack >= 0" class="attack"><svg class="icon icon-attack"><use xlink:href="#icon-attack"></use></svg>{{ card.attack }}</div>
+      <div v-if="card.health" class="health"><svg class="icon icon-health"><use xlink:href="#icon-health"></use></svg>{{ card.health }}</div>
       <div class="qty">{{ inDeck }}</div>
 
       <div class="card-name-block">
@@ -148,25 +148,32 @@
     }
 
     > .attack, > .health {
-      width: 32px;
-      line-height: 32px;
-      text-align: center;
-      top: 166px;
       position: absolute;
-      border-width: 2px;
-      border-style: solid;
-      border-radius: 50%;
-      left: 15px;
+      font-size: 1.1rem;
+      left: 13px;
+
+      > .icon {
+        margin-left: -10px;
+        margin-right: 5px;
+        top: 3px;
+        position: relative;
+      }
     }
 
     > .attack {
-      top: 60px;
-      border-color: yellow;
+      top: 90px;
+
+      > .icon {
+        color: $color-attack;
+      }
     }
 
     > .health {
-      top: 110px;
-      border-color: red;
+      top: 125px;
+
+      > .icon {
+        color: $color-health;
+      }
     }
 
     > .text {

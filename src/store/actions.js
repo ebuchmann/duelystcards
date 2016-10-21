@@ -93,6 +93,12 @@ export const raritySelect = ({ commit, state }, rarity) => {
   commit(types.SELECT_RARITY, raritySelect)
 }
 
+export const manaSelect = ({ commit, state }, mana) => {
+  const manaSelect = [...state.cardList.manaSelect]
+  manaSelect.includes(mana) ? manaSelect.splice(manaSelect.indexOf(mana), 1) : manaSelect.push(mana)
+  commit(types.SELECT_MANA, manaSelect)
+}
+
 export const factionSelect = ({ commit, state }, faction) => {
   const factionSelect = [...state.cardList.factionSelect]
   factionSelect.includes(faction) ? factionSelect.splice(factionSelect.indexOf(faction), 1) : factionSelect.push(faction)
@@ -103,6 +109,7 @@ export const resetFilters = ({ commit }) => {
   commit(types.SELECT_RARITY, [])
   commit(types.SELECT_TYPE, [])
   commit(types.SELECT_FACTION, [])
+  commit(types.SELECT_MANA, [])
 }
 
 export const resetAll = ({ commit, state }) => {

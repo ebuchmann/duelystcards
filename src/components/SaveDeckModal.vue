@@ -48,7 +48,7 @@
       async save () {
         this.saving = true
         const image = await domtoimage.toBlob(this.$refs.image)
-        saveAs(image, `${this.$store.state.route.params.faction}-deck.png`);
+        saveAs(image, `${this.faction}-deck.png`);
         this.saving = false
       },
     },
@@ -72,7 +72,7 @@
   .deck-wrapper {
     width: 380px;
     padding: 20px;
-    background: $blue;
+    background: $blue-dark;
     position: relative;
 
     > .click-stopper {
@@ -91,19 +91,6 @@
 
     &.use-faction {
       .mana-curve {
-        color: $dark;
-      }
-
-      .mana-numbers {
-        border-top-color: $dark;
-        border-bottom-color: $dark;
-      }
-
-      .bar {
-        background: $dark !important;
-      }
-
-      .deck-counts {
         color: $dark;
       }
 

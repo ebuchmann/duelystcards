@@ -1,6 +1,6 @@
 <template>
   <dropdown-wrapper>
-    <div :class="['menu', { 'active': filter.length }]"><i class="material-icons">3d_rotation</i></div>
+    <div :class="['menu', { 'active': filter.length }]"><svg class="icon icon-mana-empty"><use xlink:href="#icon-mana-empty"></use></svg></div>
     <ul class="options">
       <li :class="['option', { 'selected': filter.includes('artifact')}]" @click="typeSelect('artifact')">Artifact</li>
       <li :class="['option', { 'selected': filter.includes('minion')}]" @click="typeSelect('minion')">Minion</li>

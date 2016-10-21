@@ -1,8 +1,8 @@
 <template>
   <div class="deck-list">
-    <mana-curve></mana-curve>
-    <deck-counts></deck-counts>
-    <deck-general></deck-general>
+    <mana-curve />
+    <deck-counts-new />
+    <deck-general />
     <div ref="scroll" class="cards">
       <deck-card v-for="card in cardList" :card="card"></deck-card>
     </div>
@@ -11,7 +11,7 @@
 
 <script>
   import ManaCurve from './ManaCurve'
-  import DeckCounts from './DeckCounts'
+  import DeckCountsNew from './DeckCountsNew'
   import DeckGeneral from './DeckGeneral'
   import DeckCard from './DeckCard'
   import sortBy from 'lodash.sortby'
@@ -36,7 +36,7 @@
 
     components: {
       ManaCurve,
-      DeckCounts,
+      DeckCountsNew,
       DeckGeneral,
       DeckCard,
     },
@@ -52,7 +52,7 @@
 
     > .cards {
       position: relative;
-      height: calc(100% - 256px);
+      height: calc(100% - 290px);
     }
   }
 
