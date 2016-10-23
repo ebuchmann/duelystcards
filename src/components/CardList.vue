@@ -4,7 +4,7 @@
       <h2 class="title">{{ faction | capitalize }}</h2>
       <span class="cards">{{ cards.length }} visible cards</span>
     </div>
-    <div class="card-grid">
+    <div :class="['card-grid', { 'small': drawerState }]">
       <template v-for="card in cards">
         <game-card v-if="card.type !== 'general'" :card="card"></game-card>
         <general-card v-else :card="card"></general-card>
@@ -20,9 +20,9 @@
   export default {
     props: ['faction', 'cards'],
 
-    filters: {
-      capitalize (word) {
-        return word.charAt(0).toUpperCase() + word.slice(1);
+    computed: {
+      drawerState () {
+        return this.$store.state.app.drawerOpen
       },
     },
 
@@ -65,5 +65,39 @@
   .card-grid {
     display: flex;
     flex-wrap: wrap;
+
+    .card-container {
+      flex: 0 0 100%;
+      padding: 16px 15px;
+      margin-bottom: 15px;
+
+      @include breakpoint(md) {
+        flex: 0 0 50%;
+      }
+
+      @include breakpoint(lg) {
+        flex: 0 0 25%;
+      }
+
+      @include breakpoint(vl) {
+        flex: 0 0 20%;
+      }
+    }
+  }
+
+  .card-grid.small {
+    .card-container {
+      @include breakpoint(md) {
+        flex: 0 0 50%;
+      }
+
+      @include breakpoint(lg) {
+        flex: 0 0 33%;
+      }
+
+      @include breakpoint(vl) {
+        flex: 0 0 20%;
+      } 
+    }
   }
 </style>

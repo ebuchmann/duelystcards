@@ -9,6 +9,10 @@ Vue.use(VueRouter)
 
 sync(store, router)
 
+Vue.filter('capitalize', word => {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+})
+
 /* eslint-disable no-new */
 new Vue({
   router,

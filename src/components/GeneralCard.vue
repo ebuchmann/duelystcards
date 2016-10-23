@@ -5,8 +5,8 @@
         <div :class="['sprite', spriteClass]"></div>
       </div>
 
-      <div v-if="card.attack || card.attack >= 0" class="attack">{{ card.attack }}</div>
-      <div v-if="card.health" class="health">{{ card.health }}</div>
+      <div v-if="card.attack || card.attack >= 0" class="attack"><i class="icon icon-attack"></i>{{ card.attack }}</div>
+      <div v-if="card.health" class="health"><i class="icon icon-health"></i>{{ card.health }}</div>
 
       <div class="card-name-block">
         <div class="name">{{ card.name }}</div>

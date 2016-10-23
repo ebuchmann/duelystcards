@@ -56,9 +56,12 @@
 
   .left-column {
     position: relative;
-    width: calc(100% - 360px);
     margin-top: 65px;
     padding: 0 40px 0 $width-drawer-filter + 30px;
+
+    @include breakpoint(lg) {
+      width: calc(100% - 360px);
+    }
 
     &.closed {
       max-width: 1600px;

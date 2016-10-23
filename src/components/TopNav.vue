@@ -2,9 +2,9 @@
   <div class="top-nav">
     <text-search />
     <div class="deck-options">
-      <span class="button" @click="$store.dispatch('toggleProperty', 'saveDeck')"><svg class="icon icon-download"><use xlink:href="#icon-download"></use></svg> Download</span>
-      <span class="button" @click="$store.dispatch('toggleProperty', 'importDeck')"><svg class="icon icon-upload"><use xlink:href="#icon-upload"></use></svg> Import</span>
-      <span class="button" @click="$store.dispatch('toggleProperty', 'drawerOpen')">Toggle</span>
+      <span class="button" @click="$store.dispatch('toggleProperty', 'saveDeck')"><i class="icon icon-download"></i> Download</span>
+      <span class="button" @click="$store.dispatch('toggleProperty', 'importDeck')"><i class="icon icon-upload"></i> Import</span>
+      <span :class="['button', 'button-toggle', { 'left': closed }]" @click="$store.dispatch('toggleProperty', 'drawerOpen')"></span>
     </div>
   </div>
 </template>
@@ -13,6 +13,12 @@
   import TextSearch from './TextSearch'
 
   export default {
+    computed: {
+      closed () {
+        return !this.$store.state.app.drawerOpen
+      },
+    },
+
     components: {
       TextSearch,
     },
@@ -42,7 +48,7 @@
     height: 100%;
 
     > .button {
-      flex: 0 0 33%;
+      flex: 0 0 45%;
       height: 100%;
       display: flex;
       align-items: center;
@@ -55,6 +61,24 @@
 
       > .icon {
         margin-right: 10px;
+      }
+    }
+
+    > .button-toggle {
+      font-size: 1.6rem;
+      flex: 0 0 10%;
+      text-align: center;
+      padding: 0;
+
+      &::before {
+        width: 100%;
+        @include font-icon($icon-chevron-right);
+      }
+
+      &.left {
+        &::before {
+          @include font-icon($icon-chevron-left);
+        }
       }
     }
   }

@@ -5,7 +5,7 @@
         <button @click="useFaction = !useFaction">Use faction colors for background</button>
         <button @click="useRarity = !useRarity">Use rarity colors</button>
       </div>
-      <div ref="image" :class="['deck-wrapper', faction, { 'use-faction': useFaction, 'no-rarity': !useRarity }]">
+      <div ref="image" :class="['deck-wrapper', currentFaction, { 'use-faction': useFaction, 'no-rarity': !useRarity }]">
         <div class="click-stopper"></div>
         <deck-list></deck-list>
       </div>
@@ -20,7 +20,7 @@
   import DeckList from 'components/DeckList'
   import domtoimage from 'dom-to-image'
   import { saveAs } from 'file-saver'
-  import { mapState, mapActions } from 'vuex'
+  import { mapState, mapActions, mapGetters } from 'vuex'
 
   export default {
     data () {
@@ -34,8 +34,9 @@
     computed: {
       ...mapState({
         modal: state => state.app.saveDeck,
-        faction: state => state.deck.general.faction
       }),
+
+      ...mapGetters(['currentFaction'])
     },
 
     methods: {
@@ -48,7 +49,7 @@
       async save () {
         this.saving = true
         const image = await domtoimage.toBlob(this.$refs.image)
-        saveAs(image, `${this.faction}-deck.png`);
+        saveAs(image, `${this.currentFaction}-deck.png`);
         this.saving = false
       },
     },

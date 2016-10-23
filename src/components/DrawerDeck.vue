@@ -3,7 +3,7 @@
     <deck-list />
     <div class="btn-group">
     {{ totalCards }} / 40 cards
-      <button class="btn" @click="$store.dispatch('resetAll')">Clear Deck</button>
+      <button class="btn" @click="$store.dispatch('resetAll')"><i class="icon icon-clear-deck"></i> Clear Deck</button>
     </div>
   </div>
 </template>

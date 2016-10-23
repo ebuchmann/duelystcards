@@ -5,8 +5,8 @@
         <div :class="['sprite', spriteClass]"></div>
       </div>
 
-      <div v-if="card.attack || card.attack >= 0" class="attack"><svg class="icon icon-attack"><use xlink:href="#icon-attack"></use></svg>{{ card.attack }}</div>
-      <div v-if="card.health" class="health"><svg class="icon icon-health"><use xlink:href="#icon-health"></use></svg>{{ card.health }}</div>
+      <div v-if="card.attack || card.attack >= 0" class="attack"><i class="icon icon-attack"></i>{{ card.attack }}</div>
+      <div v-if="card.health" class="health"><i class="icon icon-health"></i>{{ card.health }}</div>
       <div class="qty">{{ inDeck }}</div>
 
       <div class="card-name-block">
@@ -107,24 +107,6 @@
     animation: flashDull .2s;
   }
 
-  .card-container {
-    flex: 0 0 50%;
-    padding: 16px 15px;
-    margin-bottom: 15px;
-
-    @include breakpoint(md) {
-      flex: 0 0 33%;
-    }
-
-    @include breakpoint(lg) {
-      flex: 0 0 25%;
-    }
-
-    @include breakpoint(vl) {
-      flex: 0 0 20%;
-    }
-  }
-
   .game-card .sprite {
     transition: filter .4s ease-out;
   }
@@ -155,7 +137,7 @@
       > .icon {
         margin-left: -10px;
         margin-right: 5px;
-        top: 3px;
+        top: 2px;
         position: relative;
       }
     }
@@ -188,6 +170,7 @@
       width: 100%;
       font-size: .65rem;
       text-align: right;
+      padding-right: 15px;
     }
   }
 

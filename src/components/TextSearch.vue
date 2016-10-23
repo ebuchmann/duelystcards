@@ -2,8 +2,7 @@
   <div class="text-search">
     <input class="search" ref="search" type="text" :value="searchText" @keyup="textSearch($refs.search.value)" placeholder="Search" />
     <div @click="clearSearch()" class="button">
-      <svg v-if="!searchText.length" class="icon icon-search"><use xlink:href="#icon-search"></use></svg>
-      <svg v-else class="icon icon-clear"><use xlink:href="#icon-clear"></use></svg>
+      <i :class="['icon', searchText.length ? 'icon-clear' : 'icon-search']"></i>
     </div>
   </div>
 </template>
@@ -65,7 +64,7 @@
       }
 
       > .icon {
-        width: 100%;
+        margin: 0 auto;
       }
     }
   }

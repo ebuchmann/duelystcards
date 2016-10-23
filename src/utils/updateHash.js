@@ -1,5 +1,8 @@
 const updateHash = ({ general, cards }) => {
-  if (!general || !cards) return
+  if (!general || !cards) {
+    window.location.hash = ''
+    return
+  }
 
   const hash = []
   hash.push(`1:${general.id}`)
