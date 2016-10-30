@@ -1,6 +1,6 @@
 <template>
   <div class="text-search">
-    <input class="search" ref="search" type="text" :value="searchText" @keyup="textSearch($refs.search.value)" placeholder="Search" />
+    <input class="search" ref="search" type="text" :value="searchText" @keyup="handleSearch()" placeholder="Search" />
     <div @click="clearSearch()" class="button">
       <i :class="['icon', searchText.length ? 'icon-clear' : 'icon-search']"></i>
     </div>
@@ -11,12 +11,25 @@
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
+    data () {
+      return {
+        debounce: null
+      }
+    },
+
     computed: {
       ...mapGetters(['searchText']),
     },
 
     methods: {
       ...mapActions(['textSearch']),
+
+      handleSearch () {
+        clearTimeout(this.debounce)
+        this.debounce = setTimeout(() => {
+          this.textSearch(this.$refs.search.value)
+        }, 400)
+      },
 
       clearSearch () {
         this.textSearch('')
