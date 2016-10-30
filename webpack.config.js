@@ -18,11 +18,13 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: isProd ? '[name].[chunkhash].js' : 'build.js',
     publicPath: '/',
+    sourceMapFilename: '[name].[chunkhash].map.js',
   },
   resolve: {
     extensions: ['.js', '.json', '.vue', '.scss'],
     alias: {
       'components': path.resolve(__dirname, './src/components'),
+      'store': path.resolve(__dirname, './src/store'),
       'pages': path.resolve(__dirname, './src/pages'),
       'utils': path.resolve(__dirname, './src/utils'),
     },
@@ -33,9 +35,10 @@ module.exports = {
       { test: /\.scss$/, loader: 'style!css!sass' },
       { test: /\.vue$/, loader: 'vue' },
       { test: /\.json$/, loader: 'json' },
+      { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file?name=fonts/[name].[ext]' },
     ],
   },
-  plugins: getPlugins()
+  plugins: getPlugins(),
 }
 
 function getPlugins () {
@@ -48,14 +51,6 @@ function getPlugins () {
       new HtmlWebpackPlugin({
         filename: path.join(__dirname, 'dist', '200.html'),
         template: path.join(__dirname, 'src', 'index.html'),
-      })
-    )
-
-    plugins.push(
-      new webpack.optimize.UglifyJsPlugin({
-        compress: { warnings: false },
-        output: { comments: false },
-        sourceMap: false
       })
     )
   }

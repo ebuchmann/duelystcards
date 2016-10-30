@@ -1,8 +1,8 @@
 <template>
-  <dropdown-wrapper v-show="currentFaction">
+  <dropdown-wrapper v-if="currentFaction">
     <div :class="['menu', { 'active': filter.length }]"><i class="icon icon-set"></i></div>
+    <span class="tool-tip-right">Faction</span>
     <ul class="options">
-      <li class="label">Select Faction</li>
       <li :class="['option', { 'selected': filter.includes('neutral') }]" @click="factionSelect('neutral')">Neutral</li>
       <li :class="['option', { 'selected': filter.includes(currentFaction) }]" @click="factionSelect(currentFaction)">{{ currentFaction | capitalize }}</li>
     </ul>

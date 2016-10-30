@@ -28,7 +28,7 @@ $color-vetruvian:           #f08d44;
 
 $color-basic:               #aaa;
 $color-common:              #a7a7a7;
-$color-rare:                #016cb0;
+$color-rare:                #00bfff;
 $color-epic:                #c501dc;
 $color-legendary:           #ff911a;
 
@@ -62,18 +62,18 @@ $all-medium:                all .4s ease-out;
 $all-slow:                  all .6s ease-out;
 
 // Z-Index
+$z-modal-waiting: 1000;
+$z-top-nav: 600;
 $z-drawer-deck: 500;
 $z-drawer-filters: 400;
-$z-top-nav: 300;
+$z-btn-group: 200;
 $perfect-scrollbar: 100;
 $click-stopper: 50;
-$z-card-cost: 40;
 $filter-area: 10;
-$faction-select-image: 2;
 
 // Widths
 $width-drawer-filter: 48px;
-$width-drawer-deck: 340px;
+$width-drawer-deck: 310px;
 
 // Icons
 $icon-clear: '\e906';

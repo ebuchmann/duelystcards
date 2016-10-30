@@ -1,6 +1,7 @@
 <template>
   <dropdown-wrapper>
-    <div :class="['menu', { 'active': filter.length }]"><i class="icon icon-clear-deck"></i></div>
+    <div :class="['menu', { 'active': filter.length }]"><i class="icon icon-type"></i></div>
+    <span class="tool-tip-right">Type</span>
     <ul class="options">
       <li :class="['option', { 'selected': filter.includes('artifact')}]" @click="typeSelect('artifact')">Artifact</li>
       <li :class="['option', { 'selected': filter.includes('minion')}]" @click="typeSelect('minion')">Minion</li>

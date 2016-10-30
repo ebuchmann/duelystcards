@@ -1,21 +1,27 @@
 <template>
   <div class="deck-counts">
     <span class="count">
-      {{ minionCount }} Minon<template v-if="minionCount !== 1">s</template> 
+      <label class="label">Minions</label>
+      <span :class="['value', currentFaction]">{{ minionCount }}</span> 
     </span>
     <span class="count">
-      {{ spellCount }} Spell<template v-if="spellCount !== 1">s</template> 
+      <label class="label">Spells</label>
+      <span :class="['value', currentFaction]">{{ spellCount }}</span>
     </span>
     <span class="count">
-      {{ artifactCount }} Artifact<template v-if="artifactCount !== 1">s</template>
+      <label class="label">Artifacts</label>
+      <span :class="['value', currentFaction]">{{ artifactCount }}</span>
     </span>
-    <span class="count right">
-      {{ cardCount }} / 40
+    <span class="count">
+      <label class="label">Spirit</label>
+      <span :class="['value', currentFaction]">{{ spirit }}</span>
     </span>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     computed: {
       minionCount () {
@@ -30,9 +36,11 @@
         return this.$store.state.deck.cards.filter(card => card.type === 'artifact').reduce((prev, curr) => prev + curr.qty, 0)
       },
 
-      cardCount () {
-        return this.$store.state.deck.totalCards
-      }
+      spirit () {
+        return this.$store.state.deck.spirit
+      },
+
+      ...mapGetters(['currentFaction']),
     },
   }
 </script>
@@ -41,17 +49,36 @@
   @import '../css/includes';
 
   .deck-counts {
-    @include clearfix;
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
 
     > .count {
-      width: calc(100% / 4);
-      display: inline-block;
-      font-size: .9rem;
-      margin: 8px 0;
-      float: left;
+      flex: 0 0 23%;
+      background: $dark;
+      text-align: center;
+      font-size: 1.2rem;
 
-      &.right {
-        text-align: right;
+      &:last-child {
+        border-right: none;
+      }
+
+      > .label {
+        text-align: center;
+        display: block;
+        font-size: .9rem;
+        margin: 0;
+        padding-top: 4px;
+        color: #999;
+      }
+
+      > .value {
+        &.lyonar { color: $color-lyonar; }
+        &.abyssian { color: $color-abyssian; }
+        &.vanar { color: $color-vanar; }
+        &.vetruvian { color: $color-vetruvian; }
+        &.magmar { color: $color-magmar; }
+        &.songhai { color: $color-songhai; }
       }
     }
   }

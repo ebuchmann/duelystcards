@@ -1,10 +1,11 @@
 <template>
   <div class="drawer-filters">
     <label class="label">FILTERS</label>
-    <filter-type />
-    <filter-rarity />
     <filter-faction />
     <filter-mana />
+    <filter-rarity />
+    <filter-tribe />
+    <filter-type />
     <filter-clear />
   </div>
 </template>
@@ -14,6 +15,7 @@
   import FilterRarity from 'components/FilterRarity'
   import FilterFaction from 'components/FilterFaction'
   import FilterMana from 'components/FilterMana'
+  import FilterTribe from 'components/FilterTribe'
   import FilterClear from 'components/FilterClear'
   import { mapActions, mapGetters } from 'vuex'
 
@@ -23,6 +25,7 @@
       FilterRarity,
       FilterFaction,
       FilterMana,
+      FilterTribe,
       FilterClear,
     },
   }

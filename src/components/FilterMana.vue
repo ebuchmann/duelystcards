@@ -1,6 +1,7 @@
 <template>
   <dropdown-wrapper>
     <div :class="['menu', { 'active': filter.length }]"><i class="icon icon-mana"></i></div>
+    <span class="tool-tip-right">Mana</span>
     <ul class="options">
       <li :class="['option', { 'selected': filter.includes(0) }]" @click="manaSelect(0)"> 0</li>
       <li :class="['option', { 'selected': filter.includes(1) }]" @click="manaSelect(1)"> 1</li>

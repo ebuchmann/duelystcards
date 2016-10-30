@@ -1,6 +1,7 @@
 <template>
   <dropdown-wrapper v-show="hasActiveFilters">
     <div class="menu filter-clear" @click="resetFilters"><i class="icon icon-cancel"></i></div>
+    <span class="tool-tip-right">Clear filters</span>
   </dropdown-wrapper>
 </template>
 

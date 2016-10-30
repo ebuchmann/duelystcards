@@ -14,6 +14,7 @@ export const SELECT_TYPE = 'SELECT_TYPE'
 export const SELECT_RARITY = 'SELECT_RARITY'
 export const SELECT_FACTION = 'SELECT_FACTION'
 export const SELECT_MANA = 'SELECT_MANA'
+export const SELECT_TRIBE = 'SELECT_TRIBE'
 
 // app
 export const SET_PROPERTY = 'SET_PROPERTY'

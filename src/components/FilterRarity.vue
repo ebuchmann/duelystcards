@@ -1,6 +1,7 @@
 <template>
   <dropdown-wrapper>
     <div :class="['menu', { 'active': filter.length }]"><i class="icon icon-rarity"></i></div>
+    <span class="tool-tip-right">Rarity</span>
     <ul class="options">
       <li :class="['option', { 'selected': filter.includes('basic') }]" @click="raritySelect('basic')"> Basic</li>
       <li :class="['option', { 'selected': filter.includes('common') }]" @click="raritySelect('common')"> Common</li>

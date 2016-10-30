@@ -40,7 +40,7 @@ const lyonar = [
   { id: 22, name: 'Sunriser', type: 'minion', cost: 4, rarity: 'epic', attack: 3, health: 4, faction: 'lyonar', text: 'Whenever ANY minion or General is healed, deal 2 damage to all nearby enemies.' },
   { id: 16, name: 'Suntide Maiden', type: 'minion', cost: 4, rarity: 'common', attack: 3, health: 6, faction: 'lyonar', text: '<b>Zeal</b>: At the end of your turn, restore this minion to full Health.' },
   { id: 20104, name: 'Circle of Life', type: 'spell', cost: 5, rarity: 'epic', faction: 'lyonar', text: 'Deal 5 damage to any enemy minion. Restore 5 Health to your General.' },
-  { id: 17, name: 'Ironcliffe Guardian', type: 'minion', cost: 5, rarity: 'rare', attack: 3, Health: 10, faction: 'lyonar', text: '<b>Airdrop</b>, <b>Provoke</b>' },
+  { id: 17, name: 'Ironcliffe Guardian', type: 'minion', cost: 5, rarity: 'rare', attack: 3, health: 10, faction: 'lyonar', text: '<b>Airdrop</b>, <b>Provoke</b>' },
   { id: 13, name: 'Second Sun', type: 'minion', cost: 5, rarity: 'rare', attack: 0, health: 8, faction: 'lyonar', text: '<b>Zeal</b>: Gains +8 Attack.' },
   { id: 30024, name: `Dawn's Eye`, type: 'artifact', cost: 6, rarity: 'legendary', faction: 'lyonar', text: 'Your General gains +4 Attack. At the end of your turn, repair all of your artifacts to full durability.' },
   { id: 18, name: 'Elyx Stormblade', type: 'minion', cost: 6, rarity: 'legendary', attack: 7, health: 7, faction: 'lyonar', text: '<b>Provoke</b><br> Your minions and General may move an additional space.' },

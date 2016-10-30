@@ -105,11 +105,18 @@ export const factionSelect = ({ commit, state }, faction) => {
   commit(types.SELECT_FACTION, factionSelect)
 }
 
+export const tribeSelect = ({ commit, state }, tribe) => {
+  const tribeSelect = [...state.cardList.tribeSelect]
+  tribeSelect.includes(tribe) ? tribeSelect.splice(tribeSelect.indexOf(tribe), 1) : tribeSelect.push(tribe)
+  commit(types.SELECT_TRIBE, tribeSelect)
+}
+
 export const resetFilters = ({ commit }) => {
   commit(types.SELECT_RARITY, [])
   commit(types.SELECT_TYPE, [])
   commit(types.SELECT_FACTION, [])
   commit(types.SELECT_MANA, [])
+  commit(types.SELECT_TRIBE, [])
 }
 
 export const resetAll = ({ commit, state }) => {
@@ -121,4 +128,8 @@ export const resetAll = ({ commit, state }) => {
 
 export const toggleProperty = ({ commit, state }, payload) => {
   commit(types.SET_PROPERTY, { property: payload, value: !state.app[payload] })
+}
+
+export const setProperty = ({ commit, state }, payload) => {
+  commit(types.SET_PROPERTY, payload)
 }

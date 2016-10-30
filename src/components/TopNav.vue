@@ -2,15 +2,17 @@
   <div class="top-nav">
     <text-search />
     <div class="deck-options">
-      <span class="button" @click="$store.dispatch('toggleProperty', 'saveDeck')"><i class="icon icon-download"></i> Download</span>
-      <span class="button" @click="$store.dispatch('toggleProperty', 'importDeck')"><i class="icon icon-upload"></i> Import</span>
       <span :class="['button', 'button-toggle', { 'left': closed }]" @click="$store.dispatch('toggleProperty', 'drawerOpen')"></span>
+      <span class="button" @click="$store.dispatch('toggleProperty', 'importDeck')"><i class="icon icon-upload"></i></span>
+      <download-button />
     </div>
   </div>
 </template>
 
 <script>
-  import TextSearch from './TextSearch'
+  import TextSearch from 'components/TextSearch'
+  import DownloadButton from 'components/DownloadButton'
+  import { saveToComputer } from 'utils/saveDeck'
 
   export default {
     computed: {
@@ -19,8 +21,13 @@
       },
     },
 
+    methods: {
+      saveToComputer,
+    },
+
     components: {
       TextSearch,
+      DownloadButton,
     },
   }
 </script>
@@ -29,7 +36,7 @@
   @import '../css/includes';
 
   .top-nav {
-    background: #070e13;
+    background: $blue-dark;
     border-bottom: 1px solid $blue;
     margin-bottom: 30px;
     position: fixed;
@@ -43,24 +50,25 @@
 
   .deck-options {
     width: $width-drawer-deck + 20px;
-    float: right;
-    display: flex;
     height: 100%;
+    float: right;
 
     > .button {
-      flex: 0 0 45%;
       height: 100%;
       display: flex;
       align-items: center;
       cursor: pointer;
       padding: 0 10px;
+      float: right;
+      width: 40px;
+      transition: color .2s ease-out;
 
-      &:hover {
-        background: $blue;
+      &:hover > .icon {
+        color: $blue-light;
       }
 
       > .icon {
-        margin-right: 10px;
+        font-size: 1.6rem;
       }
     }
 

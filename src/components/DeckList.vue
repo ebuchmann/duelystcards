@@ -1,7 +1,7 @@
 <template>
-  <div class="deck-list">
+  <div :class="['deck-list', { 'saving': saving }]" ref="deck">
     <mana-curve />
-    <deck-counts-new />
+    <deck-counts />
     <deck-general />
     <div ref="scroll" class="cards">
       <deck-card v-for="card in cardList" :card="card"></deck-card>
@@ -11,17 +11,19 @@
 
 <script>
   import ManaCurve from './ManaCurve'
-  import DeckCountsNew from './DeckCountsNew'
+  import DeckCounts from './DeckCounts'
   import DeckGeneral from './DeckGeneral'
   import DeckCard from './DeckCard'
   import sortBy from 'lodash.sortby'
   import Ps from 'perfect-scrollbar'
+  import { mapState } from 'vuex'
 
   export default {
     computed: {
       cardList () {
         return sortBy(this.$store.state.deck.cards, ['cost', 'name'])
       },
+      ...mapState({ saving: state => state.app.savingDeck }),
     },
 
     watch: {
@@ -36,7 +38,7 @@
 
     components: {
       ManaCurve,
-      DeckCountsNew,
+      DeckCounts,
       DeckGeneral,
       DeckCard,
     },
@@ -53,6 +55,11 @@
     > .cards {
       position: relative;
       height: calc(100% - 290px);
+    }
+
+    &.saving > .cards {
+      height: auto;
+      padding-bottom: 30px;
     }
   }
 

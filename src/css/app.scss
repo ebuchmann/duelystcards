@@ -4,6 +4,7 @@
 /* Files */
 @import 'reboot';
 @import '~perfect-scrollbar/dist/css/perfect-scrollbar';
+@import 'iconmoo';
 
 /* Sprites */
 @import 'sprites/abyssian';
@@ -69,6 +70,7 @@ button {
   bottom: 5px;
   width: 100px;
   height: 114px;
+  left: 0;
 }
 
 .ps-scrollbar-y-rail {

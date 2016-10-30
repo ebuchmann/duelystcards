@@ -1,6 +1,6 @@
 <template>
   <footer class="page-footer">
-    Duelyst version: 1.74<br>Deckbuilder version: 1.0.0.rc1 - 
+    Duelyst version: 1.75<br>Deckbuilder version: 1.0.0.rc2 - 
     by <a href="https://github.com/ebuchmann/deckbuilder" target="_blank">ebuchmann</a>
   </footer>
 </template>

@@ -7,6 +7,7 @@
       <card-list v-if="!factionCards && !neutralCards" faction="generals" :cards="visibleCards" />
     </div>
     <drawer-deck />
+    <modal-waiting />
   </div>
 </template>
 
@@ -14,6 +15,7 @@
   import DrawerDeck from 'components/DrawerDeck'
   import DrawerFilters from 'components/DrawerFilters'
   import CardList from 'components/CardList'
+  import ModalWaiting from 'components/ModalWaiting'
   import { mapGetters } from 'vuex'
 
   export default {
@@ -47,6 +49,7 @@
       DrawerDeck,
       DrawerFilters,
       CardList,
+      ModalWaiting,
     },
   }
 </script>
@@ -60,7 +63,7 @@
     padding: 0 40px 0 $width-drawer-filter + 30px;
 
     @include breakpoint(lg) {
-      width: calc(100% - 360px);
+      width: calc(100% - #{$width-drawer-deck} - 20px);
     }
 
     &.closed {

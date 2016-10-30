@@ -46,19 +46,14 @@
       padding: 0;
       display: none;
       position: absolute;
-      min-width: 260px;
       background: $blue;
       z-index: $filter-area;
       margin-left: $width-drawer-filter;
       top: 0;
 
-      > .label {
-        padding: 10px;
-        border-bottom: 1px solid $blue-dark;
-      }
-
       > .option {
-        padding: 10px;
+        padding: 10px 20px;
+        white-space: nowrap;
 
         &::before {
           @include font-icon($icon-checkbox-empty);
@@ -80,5 +75,23 @@
 
   .dropdown-wrapper:focus > .options {
     display: block;
+  }
+
+  .dropdown-wrapper > .menu + .tool-tip-right {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background: $blue;
+    left: 55px;
+    top: 50%;
+    padding: 4px;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    transition: visibility 0s, opacity 0.3s ease-out;
+  }
+
+  .dropdown-wrapper > .menu:hover + .tool-tip-right {
+    visibility: visible;
+    opacity: 1;
   }
 </style>

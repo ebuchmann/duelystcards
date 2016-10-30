@@ -2,7 +2,7 @@
   <section class="card-section">
     <div :class="['card-section-top', faction]">
       <h2 class="title">{{ faction | capitalize }}</h2>
-      <span class="cards">{{ cards.length }} visible cards</span>
+      <span class="cards">{{ cards.length }} of {{ cardCount }} cards</span>
     </div>
     <div :class="['card-grid', { 'small': drawerState }]">
       <template v-for="card in cards">
@@ -16,6 +16,8 @@
 <script>
   import GameCard from 'components/GameCard'
   import GeneralCard from 'components/GeneralCard'
+  import allCards from '../cards'
+  import generals from '../cards/generals'
 
   export default {
     props: ['faction', 'cards'],
@@ -24,6 +26,11 @@
       drawerState () {
         return this.$store.state.app.drawerOpen
       },
+
+      cardCount () {
+        if (this.faction !== 'generals') return this.faction === 'neutral' ? allCards[this.faction].length : allCards[this.faction].length + 2
+        return generals.length
+      }
     },
 
     components: {
@@ -43,7 +50,7 @@
   .card-section-top {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid $light;
 
     > .title {
       flex: 1;

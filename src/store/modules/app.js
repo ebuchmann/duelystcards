@@ -3,9 +3,16 @@ import {
 } from '../mutation-types'
 
 const state = {
+  // state toggles
   drawerOpen: true,
   importDeck: false,
   saveDeck: false,
+  savingDeck: false,
+  imgurModal: false,
+
+  // data
+  imgurLink: '',
+  imgurHash: '',
 }
 
 const mutations = {

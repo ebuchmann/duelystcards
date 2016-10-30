@@ -88,7 +88,7 @@
 
         > .count {
           text-align: center;
-          margin-top: -25px;
+          margin-top: -20px;
           font-size: .9rem;
         }
       }

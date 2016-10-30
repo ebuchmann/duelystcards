@@ -161,7 +161,6 @@
     > .text {
       color: #90cacf;
       font-size: .8rem;
-      margin-bottom: 15px;
     }
 
     > .qty {

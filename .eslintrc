@@ -6,7 +6,9 @@
   },
   "globals": {
     "atob": true,
-    "btoa": true
+    "btoa": true,
+    "FileReader": true,
+    "ga": true
   },
   "plugins": [
     "vue"
