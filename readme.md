@@ -2,8 +2,7 @@
 ## by ebuchmann
 
 ## Where it can be found
-[Duelysthub](https://duelysthub.com/deckbuilder)
-[Beta Version](http://duelyst.surge.sh/)
+[duelystcards.com](http://duelystcards.com/)
 
 ### TODO
 - Add general spell icon to card
