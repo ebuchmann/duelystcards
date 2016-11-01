@@ -12,7 +12,6 @@
 - Apply filters and search to general list
 - Fix the modal so it's centered
 - Add a "remove" button on cards
-- Add debounce to the search
 - Option to split deck into neutral / faction cards
 - Reduce size / white space... more compact
 - Detect size and auto-hide deck list
