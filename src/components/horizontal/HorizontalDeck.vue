@@ -23,10 +23,10 @@
       </div>
       <div class="horizontal-cards">
         <div class="columns">
-          <deck-card-small v-for="card in spellsArtifacts" :card="card" />
+          <horizontal-deck-card v-for="card in spellsArtifacts" :card="card" />
         </div>
         <div class="columns">
-          <deck-card-small v-for="card in minions" :card="card" />
+          <horizontal-deck-card v-for="card in minions" :card="card" />
         </div>
       </div>
     </div>
@@ -64,10 +64,10 @@
 
     components: {
       GeneralModal,
-      DeckCardSmall,
       DeckGeneral,
       DeckCounts,
       ManaCurve,
+      HorizontalDeckCard,
       HorizontalSpells,
       HorizontalArtifacts,
       HorizontalMinions,
@@ -168,7 +168,7 @@
     -moz-column-gap: 10px;
     column-gap: 10px;
 
-    > .deck-card-small {
+    > .horizontal-deck-card {
       -webkit-column-break-inside:avoid;
       -moz-column-break-inside:avoid;
       -o-column-break-inside:avoid;
