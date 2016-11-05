@@ -132,7 +132,7 @@
     > .attack, > .health {
       position: absolute;
       font-size: 1.1rem;
-      left: 13px;
+      left: 15px;
 
       > .icon {
         margin-left: -10px;

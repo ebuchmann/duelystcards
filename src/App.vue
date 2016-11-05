@@ -4,6 +4,7 @@
     <router-view />
     <page-footer />
     <import-deck-modal />
+    <horizontal-deck />
     <imgur-modal />
   </div>
 </template>
@@ -12,6 +13,7 @@
   import TopNav from 'components/TopNav'
   import ImportDeckModal from 'components/ImportDeckModal'
   import ImgurModal from 'components/ImgurModal'
+  import HorizontalDeck from 'components/horizontal/HorizontalDeck'
   import PageFooter from 'components/PageFooter'
 
   export default {
@@ -19,6 +21,7 @@
       TopNav,
       ImportDeckModal,
       ImgurModal,
+      HorizontalDeck,
       PageFooter,
     },
   }

@@ -7,14 +7,13 @@ import axios from 'axios'
 import credentials from '../../credentials.js'
 
 function getImage () {
-  const element = document.querySelector('.deck-list')
-  return domtoimage.toBlob(element, { width: element.offsetWidth + 40, bgcolor: '#0b1c27', style: { padding: '40px 20px 20px 20px' } })
+  const element = document.querySelector('.horizontal-deck')
+  return domtoimage.toBlob(element)
 }
 
 export const saveToComputer = async (currentFaction) => {
   try {
-    ga('send', 'event', 'Save deck', 'Computer', 'vertical')
-    console.log('sending to google')
+    ga('send', 'event', 'Save deck', 'Computer', 'horizontal')
     toggleProperty(store, 'savingDeck')
     const image = await getImage()
     saveAs(image, `${currentFaction}-deck.png`)
@@ -26,7 +25,7 @@ export const saveToComputer = async (currentFaction) => {
 
 export const saveToImgur = async () => {
   try {
-    ga('send', 'event', 'Save deck', 'Imgur', 'vertical')
+    ga('send', 'event', 'Save deck', 'Imgur', 'horizontal')
     toggleProperty(store, 'savingDeck')
     const image = await getImage()
     const reader = new FileReader()
