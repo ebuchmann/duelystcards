@@ -37,6 +37,13 @@ button {
   color: $light;
 }
 
+.sprite {
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: pixelated;
+}
+
 .sprite.minion, .sprite.general {
   margin: 0 auto;
   width: 160px;

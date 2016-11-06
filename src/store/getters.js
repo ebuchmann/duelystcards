@@ -5,6 +5,12 @@ const getCardText = card => {
   return `${card.name} ${card.type} ${card.cost} ${card.rarity} ${card.text} ${card.race} ${card.set}`.toLowerCase()
 }
 
+const filter = (text, searchString) => {
+  const regexStr = '(?=.*' + searchString.split(/\,|\s/).join(')(?=.*') + ')'
+  const searchRegEx = new RegExp(regexStr, 'gi')
+  return text.match(searchRegEx) !== null
+}
+
 export const filteredCards = ({ route, deck, cardList }) => {
   let cards = deck.general
   ? [...generals.filter(card => card.faction === deck.general.faction), ...allCards[deck.general.faction], ...allCards.neutral]
@@ -12,7 +18,7 @@ export const filteredCards = ({ route, deck, cardList }) => {
 
   const { textSearch, typeSelect, raritySelect, factionSelect, manaSelect, tribeSelect } = cardList
 
-  if (textSearch) cards = cards.filter(card => getCardText(card).includes(textSearch.toLowerCase()))
+  if (textSearch) cards = cards.filter(card => filter(getCardText(card), textSearch))
   if (typeSelect.length) cards = cards.filter(card => typeSelect.includes(card.type))
   if (raritySelect.length) cards = cards.filter(card => raritySelect.includes(card.rarity))
   if (factionSelect.length) cards = cards.filter(card => factionSelect.includes(card.faction))
