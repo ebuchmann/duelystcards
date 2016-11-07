@@ -18,7 +18,6 @@ export const filteredCards = ({ route, deck, cardList }) => {
 
   const { textSearch, typeSelect, raritySelect, factionSelect, manaSelect, tribeSelect } = cardList
 
-  if (textSearch) cards = cards.filter(card => filter(getCardText(card), textSearch))
   if (typeSelect.length) cards = cards.filter(card => typeSelect.includes(card.type))
   if (raritySelect.length) cards = cards.filter(card => raritySelect.includes(card.rarity))
   if (factionSelect.length) cards = cards.filter(card => factionSelect.includes(card.faction))
@@ -29,6 +28,7 @@ export const filteredCards = ({ route, deck, cardList }) => {
       return manaSelect.includes(card.cost)
     })
   }
+  if (textSearch) cards = cards.filter(card => filter(getCardText(card), textSearch))
   // if (!deck.general) cards = cards.filter(card => card.type === 'general')
 
   return cards
