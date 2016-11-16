@@ -103,6 +103,10 @@
       bottom: -13px;
       transform: scale(0.8);
     }
+
+    .count {
+      font-size: .6rem;
+    }
   }
 
   .horizontal-counts {

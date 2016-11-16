@@ -1,9 +1,9 @@
 <template>
   <div class="top-nav">
     <text-search />
-    <div class="deck-options">
-      <span :class="['button', 'button-toggle', { 'left': closed }]" @click="$store.dispatch('toggleProperty', 'drawerOpen')"></span>
-      <span class="button" @click="$store.dispatch('toggleProperty', 'importDeck')"><i class="icon icon-upload"></i></span>
+    <div class="site-options">
+      <span :class="['button', 'button-toggle', { 'left': closed }]" @click="$store.dispatch('toggleProperty', 'drawerOpen')" data-tooltip="Toggle deck list" data-position="bottom left"></span>
+      <span class="button" @click="$store.dispatch('toggleProperty', 'importDeck')"><i class="icon icon-upload" data-tooltip="Import deck" data-position="bottom left"></i></span>
       <download-button />
     </div>
   </div>
@@ -46,19 +46,17 @@
     top: 0;
     z-index: $z-top-nav;
     box-shadow: $medium-shadow;
+    display: flex;
+    justify-content: space-between;
   }
 
-  .deck-options {
-    width: $width-drawer-deck + 20px;
-    height: 100%;
-    float: right;
+  .site-options {
 
     > .button {
       height: 100%;
       display: flex;
       align-items: center;
       cursor: pointer;
-      padding: 0 10px;
       float: right;
       width: 40px;
       transition: color .2s ease-out;
@@ -69,6 +67,10 @@
 
       > .icon {
         font-size: 1.6rem;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        padding: 10px;
       }
     }
 

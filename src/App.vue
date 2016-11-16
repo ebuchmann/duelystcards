@@ -6,6 +6,7 @@
     <import-deck-modal />
     <horizontal-deck />
     <imgur-modal />
+    <settings-modal />
   </div>
 </template>
 
@@ -14,6 +15,7 @@
   import ImportDeckModal from 'components/ImportDeckModal'
   import ImgurModal from 'components/ImgurModal'
   import HorizontalDeck from 'components/horizontal/HorizontalDeck'
+  import SettingsModal from 'components/settings/SettingsModal'
   import PageFooter from 'components/PageFooter'
 
   export default {
@@ -23,6 +25,7 @@
       ImgurModal,
       HorizontalDeck,
       PageFooter,
+      SettingsModal,
     },
   }
 </script>

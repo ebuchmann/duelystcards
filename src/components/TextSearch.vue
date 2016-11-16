@@ -43,10 +43,7 @@
   @import '../css/includes';
 
   .text-search {
-    float: left;
-    height: 100%;
-    position: relative;
-    width: calc(100% - 380px);
+    flex: 1;
 
     > .search {
       background: transparent;

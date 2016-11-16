@@ -6,16 +6,17 @@ import { toggleProperty, setProperty } from 'store/actions'
 import axios from 'axios'
 import credentials from '../../credentials.js'
 
-function getImage () {
-  const element = document.querySelector('.horizontal-deck')
-  return domtoimage.toBlob(element)
+function getImage (type) {
+  const element = type === 'horizontal' ? document.querySelector('.horizontal-deck') : document.querySelector('.deck-list')
+  const options = type === 'horizontal' ? {} : { width: element.offsetWidth + 40, bgcolor: '#0b1c27', style: { padding: '40px 20px 20px 20px' } }
+  return domtoimage.toBlob(element, options)
 }
 
-export const saveToComputer = async (currentFaction) => {
+export const saveToComputer = async (type, currentFaction) => {
   try {
-    ga('send', 'event', 'Save deck', 'Computer', 'horizontal')
+    ga('send', 'event', 'Save deck', 'Computer', type)
     toggleProperty(store, 'savingDeck')
-    const image = await getImage()
+    const image = await getImage(type)
     saveAs(image, `${currentFaction}-deck.png`)
     toggleProperty(store, 'savingDeck')
   } catch (error) {
@@ -23,11 +24,11 @@ export const saveToComputer = async (currentFaction) => {
   }
 }
 
-export const saveToImgur = async () => {
+export const saveToImgur = async (type) => {
   try {
-    ga('send', 'event', 'Save deck', 'Imgur', 'horizontal')
+    ga('send', 'event', 'Save deck', 'Imgur', type)
     toggleProperty(store, 'savingDeck')
-    const image = await getImage()
+    const image = await getImage(type)
     const reader = new FileReader()
     reader.readAsDataURL(image)
     reader.onloadend = async () => {

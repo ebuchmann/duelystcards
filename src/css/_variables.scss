@@ -33,7 +33,7 @@ $color-epic:                #c921dd;
 $color-legendary:           #ff911a;
 
 $font-size-root:            16px !default;
-$font-family-sans-serif:    LatoRegular, sans-serif !default;
+$font-family-sans-serif:    LatoRegular, arial, sans-serif !default;
 $font-family-base:          $font-family-sans-serif !default;
 $font-size-base:            1rem !default;
 $line-height-base:          1.5 !default;
@@ -63,6 +63,7 @@ $all-slow:                  all .6s ease-out;
 
 // Z-Index
 $z-modal-waiting: 1000;
+$z-tooltip: 700;
 $z-top-nav: 600;
 $z-drawer-deck: 500;
 $z-drawer-filters: 400;

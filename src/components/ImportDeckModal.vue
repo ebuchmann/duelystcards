@@ -52,7 +52,7 @@
           const url = this.$refs.url.value
           if (!url) return
 
-          const hash = url.split(/(#|build=)/).pop()
+          const hash = url.split(/(#|build=|deckList=)/).pop()
 
           await this.$store.dispatch('clearDeck')
           const faction = await this.$store.dispatch('loadDeck', hash)

@@ -2,6 +2,7 @@
   <div :class="['deck-general', faction]" v-show="generalName">
     <div class="name" v-html="generalName"></div>
     <div :class="spriteClass"></div>
+    <div class="count">{{ totalCards }} / 40</div>
   </div>
 </template>
 
@@ -21,6 +22,10 @@
       faction () {
         const general = this.$store.state.deck.general
         if (general) return this.$store.state.deck.general.faction
+      },
+
+      totalCards () {
+        return this.$store.state.deck.totalCards
       }
     }
   }
@@ -54,6 +59,13 @@
       line-height: 1.1;
       text-transform: uppercase;
       margin-left: 105px;
+    }
+
+    > .count {
+      font-size: .8rem;
+      position: absolute;
+      top: 5px;
+      right: 5px;
     }
   }
 </style>

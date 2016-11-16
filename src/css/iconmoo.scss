@@ -24,8 +24,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-settings:before {
+  content: "\e907";
+}
+.icon-clear-deck:before {
+  content: "\e913";
+}
+.icon-download:before {
+  content: "\e914";
+}
 .icon-tribe:before {
   content: "\e910";
+}
+.icon-divide-list:before {
+  content: "\e912";
 }
 .icon-type:before {
   content: "\e911";
@@ -51,12 +63,6 @@
 .icon-clear:before {
   content: "\e906";
 }
-.icon-clear-deck:before {
-  content: "\e907";
-}
-.icon-download:before {
-  content: "\e908";
-}
 .icon-health:before {
   content: "\e909";
 }
@@ -78,4 +84,3 @@
 .icon-upload:before {
   content: "\e90f";
 }
-

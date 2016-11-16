@@ -2,7 +2,7 @@
   <div :class="['drawer-deck', { closed }]">
     <deck-list />
     <div class="btn-group">
-      {{ totalCards }} / 40 cards
+      <deck-options />
       <button class="btn clear-deck" @click="$store.dispatch('resetAll')"><i class="icon icon-clear-deck"></i> Clear</button>
     </div>
   </div>
@@ -10,20 +10,18 @@
 
 <script>
   import DeckList from 'components/DeckList'
+  import DeckOptions from 'components/DeckOptions'
 
   export default {
     computed: {
       closed () {
         return !this.$store.state.app.drawerOpen
       },
-
-      totalCards () {
-        return this.$store.state.deck.totalCards
-      }
     },
 
     components: {
       DeckList,
+      DeckOptions,
     },
   }
 </script>

@@ -37,13 +37,14 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, .5);
-    overflow-y: scroll;
   }
 
   .modal-wrapper {
-    position: relative;
-    width: 500px;
-    margin: 30px auto;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
     transform: translate(0,0);
   }
 

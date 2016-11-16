@@ -1,9 +1,11 @@
 <template>
   <div class="download-button button" tabindex="1" ref="button">
-    <i class="icon icon-download"></i>
+    <i class="icon icon-download" data-tooltip="Save deck" data-position="bottom left"></i>
     <div class="menu">
-      <div class="option" @click="handleSaveToComputer()">Save to computer</div>
-      <div class="option" @click="handleSaveToImgur()">Save to Imgur</div>
+      <div class="option" @click="handleSaveToComputer('horizontal')">Save to computer (horizontal)</div>
+      <div class="option" @click="handleSaveToImgur('horizontal')">Save to Imgur (horizontal)</div>
+      <div class="option" @click="handleSaveToComputer('vertical')">Save to computer (vertical)</div>
+      <div class="option" @click="handleSaveToImgur('vertical')">Save to Imgur (vertical)</div>
     </div>
   </div>
 </template>
@@ -22,17 +24,13 @@
     },
 
     methods: {
-      handleSaveToComputer () {
-        saveToComputer(this.currentFaction)
+      handleSaveToComputer (type) {
+        saveToComputer(type, this.currentFaction)
         this.$refs.button.blur()
       },
 
-      handleSaveToImgur () {
-        if (this.imgurLink && this.imgurHash === window.location.hash) {
-          this.$store.dispatch('toggleProperty', 'imgurModal')
-        } else {
-          saveToImgur()
-        }
+      handleSaveToImgur (type) {
+        saveToImgur(type)
         this.$refs.button.blur()
       },
     },
@@ -45,18 +43,27 @@
   .download-button {
     position: relative;
 
+    &.button {
+      padding: 0;
+    }
+
+    &:focus, &:active {
+      outline: none;
+    }
+
     > .menu {
       list-style: none;
       padding: 0;
       display: none;
       position: absolute;
-      min-width: 180px;
+      min-width: 210px;
       background: $blue;
       top: 48px;
-      right: 20px;
+      right: 0;
 
       > .option {
         padding: 10px;
+        font-size: .9rem;
 
         &:hover {
           background: $blue-dark;

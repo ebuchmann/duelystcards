@@ -5,6 +5,7 @@
 @import 'reboot';
 @import '~perfect-scrollbar/dist/css/perfect-scrollbar';
 @import 'iconmoo';
+@import 'tooltip';
 
 /* Sprites */
 @import 'sprites/abyssian';
@@ -21,20 +22,15 @@
   src: url(https://dl.dropboxusercontent.com/u/24984522/Lato-Regular.woff);
 }
 
-.container {
-  max-width: 1570px;
-  margin: 0 15px;
-
-  @include breakpoint(vl) {
-    margin: 0 auto;
-  }
-}
-
 button {
   background: $blue;
   border: none;
   padding: 8px;
   color: $light;
+
+  &:active, &:focus {
+    outline: none;
+  }
 }
 
 .sprite {

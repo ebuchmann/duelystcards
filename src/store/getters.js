@@ -2,7 +2,7 @@ import generals from '../cards/generals'
 import allCards from '../cards'
 
 const getCardText = card => {
-  return `${card.name} ${card.type} ${card.cost} ${card.rarity} ${card.text} ${card.race} ${card.set}`.toLowerCase()
+  return `${card.name} ${card.type} ${card.cost} ${card.rarity} ${card.text} ${card.race} ${card.set} ${card.faction}`.toLowerCase()
 }
 
 const filter = (text, searchString) => {

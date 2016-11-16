@@ -88,6 +88,7 @@
     transform: translateY(-50%);
     white-space: nowrap;
     transition: visibility 0s, opacity 0.3s ease-out;
+    border-radius: 4px;
   }
 
   .dropdown-wrapper > .menu:hover + .tool-tip-right {

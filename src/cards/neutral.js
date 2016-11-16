@@ -109,7 +109,7 @@ const neutral = [
   { id: 11040, name: 'Alter Rexx', set: 'core', type: 'minion', race: 'mech', cost: 5, rarity: 'legendary', attack: 4, health: 4, faction: 'neutral', text: 'Whenever you summon MECHAZ0R, put a MECHAZ0R in your action bar.' },
   { id: 10983, name: 'Ash Mephyt', set: 'core', type: 'minion', cost: 5, rarity: 'common', attack: 2, health: 3, faction: 'neutral', text: '<b>Opening Gambit</b>: Summon two copies of this minion on random spaces.' },
   { id: 11054, name: 'Beastmaster', set: 'shimzar', type: 'minion', cost: 5, rarity: 'rare', attack: 2, health: 5, faction: 'neutral', text: '<b>Frenzy</b>, <b>Celerity</b>' },
-  { id: 10204, name: 'Brightmoss Golem', set: 'core', type: 'minion', cost: 5, rarity: 'basic', attack: 4, health: 9, faction: 'neutral', text: '' },
+  { id: 10204, name: 'Brightmoss Golem', set: 'core', type: 'minion', race: 'golem', cost: 5, rarity: 'basic', attack: 4, health: 9, faction: 'neutral', text: '' },
   { id: 11063, name: 'Calculator', set: 'shimzar', type: 'minion', cost: 5, rarity: 'epic', attack: 1, health: 1, faction: 'neutral', text: '<b>Opening Gambit</b>: Gain the combined Attack and Health of all Battle Pets in your action bar.' },
   { id: 11042, name: 'Chakkram', set: 'core', type: 'minion', cost: 5, rarity: 'rare', attack: 5, health: 5, faction: 'neutral', text: 'Costs 2 less if your General took damage on your opponent\'s last turn.' },
   { id: 10958, name: 'Dagger Kiri', set: 'core', type: 'minion', cost: 5, rarity: 'common', attack: 2, health: 8, faction: 'neutral', text: '<b>Celerity</b>' },

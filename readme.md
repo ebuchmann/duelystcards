@@ -18,16 +18,12 @@
 - Reduce size of button area at top for search on mobile
 - Clicking minion sprite in the deck list clicks that card, instead of what the mouse is actually over
 - Search by all fields, ie. "core rare"
+- Deck name, becomes file name / title on imgur
 
 ### Improvements
 - URL shortener
-- Add set/expansion info to card data
-- Horizontal image for saving
 - Build your own card screen
 - Deck stats
   - Minion health / defence / mana cost curves
   - spell and artifact curves
   - Ability list (3 provoke, 2 dying wish, etc.)
-
-### Beta
-- Move images off dropbox

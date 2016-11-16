@@ -8,7 +8,8 @@
     "atob": true,
     "btoa": true,
     "FileReader": true,
-    "ga": true
+    "ga": true,
+    "localStorage": true
   },
   "plugins": [
     "vue"

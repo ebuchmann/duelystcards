@@ -1,0 +1,17 @@
+/* Includes */
+@import 'includes';
+
+.b-tooltip {
+  display: inline-block;
+  font-size: .75em;
+  padding: .5em;
+  position: absolute;
+  text-align: center;
+  z-index: $z-tooltip;
+  border-radius: 4px;
+}
+
+.b-tooltip-dark {
+  background: $blue;
+  color: $light;
+}

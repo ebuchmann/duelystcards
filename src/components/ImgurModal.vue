@@ -2,7 +2,7 @@
   <general-modal :show="modal" width="500px" :close="closeModal">
     <div class="imgur-modal">
       <h2 class="title">Image ready</h2>
-      <a class="link" :href="imgurLink">{{ imgurLink }}</a>
+      <a class="link" :href="imgurLink" target="_blank">{{ imgurLink }}</a>
       <div class="modal-buttons">
         <button class="button" ref="copy">Copy link</button>
       </div>
@@ -24,8 +24,8 @@
 
     computed: {
       ...mapState({
-        modal: state => state.app.imgurModal,
-        imgurLink: state => state.app.imgurLink,  
+        modal: ({ app }) => app.imgurModal,
+        imgurLink: ({ app }) => app.imgurLink,  
       }),
     },
 

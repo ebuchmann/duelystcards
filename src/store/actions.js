@@ -47,16 +47,19 @@ export const setCardList = ({ commit }, cards) => new Promise(resolve =>{
 
 export const loadDeck = async ({ commit, dispatch, state }, hash) => {
   try {
+    // Splits the hash and removes anything with a blank id
     const cardList = atob(hash).split(',').map(card => {
       const split = card.split(':')
       return {
         qty: Number(split[0]),
         id: Number(split[1]),
       }
-    })
+    }).filter(card => card.id)
 
     const generalIds = generals.map(general => general.id)
     const generalList = cardList.find(card => generalIds.includes(card.id))
+
+    if (!generalList) throw Error('General required')
 
     const general = generals.find(general => general.id === generalList.id)
 

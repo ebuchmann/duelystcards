@@ -66,13 +66,13 @@
     }
 
     > .name {
-      margin-left: 18px;
+      margin-left: 12px;
       width: 155px;
       line-height: 1.1;
     }
 
     > .qty {
-      
+      font-size: .9rem;
     }
   }
 </style>

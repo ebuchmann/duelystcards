@@ -9,6 +9,8 @@ const state = {
   saveDeck: false,
   savingDeck: false,
   imgurModal: false,
+  divideDeck: true,
+  settingsModal: false,
 
   // data
   imgurLink: '',
