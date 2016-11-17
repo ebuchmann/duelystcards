@@ -40,7 +40,7 @@ const abyssian = [
   { id: 20050, name: 'Nether Summoning', set: 'core', type: 'spell', cost: 5, rarity: 'legendary', faction: 'abyssian', text: 'Summon 2 non-token minions destroyed since the end of your last turn nearby.' },
   { id: 325, name: 'Night Fiend', set: 'shimzar', type: 'minion', cost: 5, rarity: 'common', attack: 3, health: 3, faction: 'abyssian', text: '<b>Opening Gambit</b>: Deal 2 damage to each enemy on or near friendly <b>Shadow Creep</b>.' },
   { id: 322, name: 'Reaper of the Nine Moons', set: 'core', type: 'minion', cost: 5, rarity: 'epic', attack: 5, health: 3, faction: 'abyssian', text: '<b>Flying</b><br> <b>Dying Wish</b>: Summon a random minion from the opponent\'s deck on this space.' },
-  { id: 20154, name: 'Rite Of The Undervault', set: 'core', type: 'spell', cost: 5, rarity: 'epic', faction: 'abyssian', text: 'Draw to fill your action bar.' },
+  { id: 20154, name: 'Rite Of The Undervault', set: 'core', type: 'spell', cost: 6, rarity: 'epic', faction: 'abyssian', text: 'Draw to fill your action bar.' },
   { id: 318, name: 'Shadowdancer', set: 'core', type: 'minion', cost: 5, rarity: 'rare', attack: 4, health: 4, faction: 'abyssian', text: '<b>Deathwatch</b>: Deal 1 damage to the enemy General, and restore 1 Health to your General.' },
   { id: 330, name: 'Klaxon', set: 'shimzar', type: 'minion', cost: 6, rarity: 'legendary', attack: 6, health: 6, faction: 'abyssian', text: '<b>Provoke</b><br> <b>Dying Wish</b>: Turn six random spaces into <b>Shadow Creep</b>.' },
   { id: 314, name: 'Vorpal Reaver', set: 'core', type: 'minion', cost: 6, rarity: 'legendary', attack: 6, health: 6, faction: 'abyssian', text: '<b>Celerity</b><br> <b>Dying Wish</b>: Summon six Wraithlings on random spaces.' },

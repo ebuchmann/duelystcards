@@ -1,7 +1,7 @@
 const songhai = [
   { id: 20086, name: 'Inner Focus', set: 'core', type: 'spell', cost: 0, rarity: 'basic', faction: 'songhai', text: 'Reactivate an exhausted friendly minion with 3 or less Attack.' },
   { id: 20129, name: 'Juxtaposition', set: 'core', type: 'spell', cost: 0, rarity: 'epic', faction: 'songhai', text: 'Switch positions between ANY two minions.' },
-  { id: 20085, name: 'Mana Vortex', set: 'core', type: 'spell', cost: 0, rarity: 'rare', faction: 'songhai', text: 'The next two spells you cast this turn cost 1 less. Draw a card at the end of turn.' },
+  { id: 20085, name: 'Mana Vortex', set: 'core', type: 'spell', cost: 0, rarity: 'rare', faction: 'songhai', text: 'The next two spells you cast this turn cost 1 less.' },
   { id: 126, name: 'Ace', set: 'shimzar', type: 'minion', race: 'battle pet', cost: 1, rarity: 'common', attack: 1, health: 2, faction: 'songhai', text: '<b>Ranged</b>' },
   { id: 30010, name: 'Bloodrage Mask', set: 'core', type: 'artifact', cost: 1, rarity: 'basic', faction: 'songhai', text: 'Whenever you cast a spell, deal 1 damage to the enemy General.' },
   { id: 30023, name: 'Crescent Spear', set: 'shimzar', type: 'artifact', cost: 1, rarity: 'legendary', faction: 'songhai', text: 'Your General gains +1 Attack. Spells you cast that deal damage deal +1 damage.' },
@@ -30,7 +30,7 @@ const songhai = [
   { id: 114, name: 'Jade Monk', set: 'core', type: 'minion', cost: 3, rarity: 'common', attack: 4, health: 3, faction: 'songhai', text: 'Whenever this minion takes damage, deal 1 damage to a random enemy minion.' },
   { id: 128, name: 'Ki Beholder', set: 'shimzar', type: 'minion', cost: 3, rarity: 'rare', attack: 3, health: 2, faction: 'songhai', text: '<b>Ranged</b><br> <b>Opening Gambit</b>: An enemy minion cannot move next turn.' },
   { id: 20102, name: 'Killing Edge', set: 'core', type: 'spell', cost: 3, rarity: 'basic', faction: 'songhai', text: 'Give a friendly minion +4/+2. If that minion has <b>Backstab</b>, draw a card at end of turn.' },
-  { id: 122, name: 'Lantern Fox', set: 'core', type: 'minion', cost: 3, rarity: 'epic', attack: 2, health: 4, faction: 'songhai', text: 'Whenever this minion takes damage, put a Phoenix Fire in your action bar.' },
+  { id: 122, name: 'Lantern Fox', set: 'core', type: 'minion', cost: 3, rarity: 'epic', attack: 2, health: 3, faction: 'songhai', text: 'Whenever this minion takes damage, put a Phoenix Fire in your action bar.' },
   { id: 20087, name: 'Onyx Bear Seal', set: 'core', type: 'spell', cost: 3, rarity: 'epic', faction: 'songhai', text: 'Transform an enemy minion into a 0/2 Panddo that cannot be attacked.' },
   { id: 20082, name: 'Twin Strike', set: 'core', type: 'spell', cost: 3, rarity: 'common', faction: 'songhai', text: 'Deal 2 damage to exactly two random enemy minions. Draw a card at end of turn.' },
   { id: 109, name: 'Widowmaker', set: 'core', type: 'minion', cost: 3, rarity: 'basic', attack: 2, health: 3, faction: 'songhai', text: '<b>Ranged</b>' },
