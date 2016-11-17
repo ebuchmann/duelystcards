@@ -35,7 +35,7 @@
     right: 0;
     top: 48px;
     bottom: 0;
-    margin-right: 20px;
+    margin-right: 5px;
     height: calc(100vh - 48px);
     transition: $all-fast;
     background: $blue-dark;
