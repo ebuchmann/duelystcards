@@ -53,7 +53,6 @@
   @import '../css/includes';
 
   .imgur-modal {
-    background: $blue;
     text-align: center;
 
     > .title {

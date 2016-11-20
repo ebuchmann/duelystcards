@@ -2,7 +2,7 @@
   <general-modal :show="modal" width="500px" :close="closeModal">
     <div class="import-deck-modal">
       <h1>Import Deck</h1>
-      <p>Paste the URL of the deck you want to import</p>
+      <p>Paste the URL of the deck you want to import. The deck must contain a general for successful import.</p>
       <p v-if="error">There was an issue importing the deck. Please make sure the URL is correct and that the exported deck has a general.</p>
       <input class="input" ref="url" type="text" placeholder="Insert URL" />
       <button class="success" @click="handleImport()">Import</button>
@@ -75,24 +75,30 @@
   @import '../css/includes';
 
   .import-deck-modal {
-    background: $blue;
     padding: 30px;
 
     > .input {
-      background: $blue-dark;
-      border: none;
+      background: rgba(#000, 0.9);
+      border: 1px solid $blue;
       color: $light;
       width: 100%;
       padding: 8px;
       margin-bottom: 15px;
+
+      &:focus {
+        outline: 0;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+      }
     }
   }
 
   button.success {
+    cursor: pointer;
     background: $blue-light;
   }
 
   button.cancel {
+    cursor: pointer;
     background: $gray-dark;
   }
 </style>
