@@ -14,6 +14,9 @@
         <deck-card v-for="card in cardList" :card="card"></deck-card>
       </template>
     </div>
+    <div class="vertical-short-url">
+      {{ shortUrl }}
+    </div>
   </div>
 </template>
 
@@ -41,6 +44,7 @@
       ...mapState({
         saving: ({ app }) => app.savingDeck,
         divideDeck: ({ app }) => app.divideDeck,
+        shortUrl: ({ app }) => app.shortUrl,
       }),
       ...mapGetters(['currentFaction'])
     },
@@ -92,5 +96,12 @@
       padding-top: 2px;
       margin-right: 10px;
     }
+  }
+
+  .vertical-short-url {
+    color: $blue-light;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: -20px;
   }
 </style>

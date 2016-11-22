@@ -29,6 +29,9 @@
           <horizontal-deck-card v-for="card in minions" :card="card" />
         </div>
       </div>
+      <div class="short-url">
+        {{ shortUrl }}
+      </div>
     </div>
   </general-modal>
 </template>
@@ -47,7 +50,10 @@
 
   export default {
     computed: {
-      ...mapState({ modal: state => state.app.savingDeck }),
+      ...mapState({
+        modal: ({ app }) => app.savingDeck,
+        shortUrl: ({ app }) => app.shortUrl,
+      }),
 
       cardList () {
         return sortBy(this.$store.state.deck.cards, ['cost', 'name'])
@@ -144,8 +150,6 @@
         font-size: .6rem;
       }
     }
-    
-
   }
 
   .horizontal-cards {
@@ -192,5 +196,13 @@
     > .horizontal-artifacts {
 
     }
+  }
+
+  .short-url {
+    background: rgba(25, 25, 25, 0.3);
+    text-align: right;
+    padding: 6px;
+    margin: 5px -5px -5px -5px;
+    color: $blue-light;
   }
 </style>

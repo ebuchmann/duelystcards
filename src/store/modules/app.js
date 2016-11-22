@@ -15,6 +15,7 @@ const state = {
   // data
   imgurLink: '',
   imgurHash: '',
+  shortUrl: '',
 }
 
 const mutations = {

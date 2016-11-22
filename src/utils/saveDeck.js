@@ -12,10 +12,16 @@ function getImage (type) {
   return domtoimage.toBlob(element, options)
 }
 
+async function getShortUrl () {
+  const shortUrl = await axios.post('http://localhost:3000/save-deck', { hash: store.state.route.hash })
+  setProperty(store, { property: 'shortUrl', value: `http://duelyst.cards/${shortUrl.data.id}` })
+}
+
 export const saveToComputer = async (type, currentFaction) => {
   try {
-    ga('send', 'event', 'Save deck', 'Computer', type)
     toggleProperty(store, 'savingDeck')
+    ga('send', 'event', 'Save deck', 'Computer', type)
+    await getShortUrl()
     const image = await getImage(type)
     saveAs(image, `${currentFaction}-deck.png`)
     toggleProperty(store, 'savingDeck')
@@ -26,8 +32,9 @@ export const saveToComputer = async (type, currentFaction) => {
 
 export const saveToImgur = async (type) => {
   try {
-    ga('send', 'event', 'Save deck', 'Imgur', type)
     toggleProperty(store, 'savingDeck')
+    ga('send', 'event', 'Save deck', 'Imgur', type)
+    await getShortUrl()
     const image = await getImage(type)
     const reader = new FileReader()
     reader.readAsDataURL(image)
