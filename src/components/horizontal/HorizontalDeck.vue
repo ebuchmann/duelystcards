@@ -188,14 +188,6 @@
   .sprite-row {
     display: flex;
     justify-content: space-between;
-
-    > .horizontal-spells {
-
-    }
-
-    > .horizontal-artifacts {
-
-    }
   }
 
   .short-url {
@@ -204,5 +196,6 @@
     padding: 6px;
     margin: 5px -5px -5px -5px;
     color: $blue-light;
+    padding-right: 10px;
   }
 </style>
