@@ -25,6 +25,7 @@ export const saveToComputer = async (type, currentFaction) => {
     saveAs(image, `${currentFaction}-deck.png`)
     toggleProperty(store, 'savingDeck')
   } catch (error) {
+    console.log(error.response)
     toggleProperty(store, 'savingDeck')
   }
 }

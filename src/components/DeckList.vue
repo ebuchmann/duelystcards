@@ -85,6 +85,10 @@
       height: auto;
       padding-bottom: 30px;
     }
+
+    &.saving > .vertical-short-url {
+      display: block;
+    }
   }
 
   .save-deck {
@@ -103,5 +107,6 @@
     text-align: center;
     margin-bottom: 20px;
     margin-top: -20px;
+    display: none;
   }
 </style>
