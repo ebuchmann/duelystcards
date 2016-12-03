@@ -105,8 +105,8 @@
   .vertical-short-url {
     color: $blue-light;
     text-align: center;
-    margin-bottom: 20px;
-    margin-top: -20px;
+    margin-bottom: 40px;
+    margin-top: -25px;
     display: none;
   }
 </style>
