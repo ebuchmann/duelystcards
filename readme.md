@@ -14,7 +14,6 @@
 - Deck name, becomes file name / title on imgur
 
 ### Improvements
-- URL shortener
 - Build your own card screen
 - Deck stats
   - Minion health / defence / mana cost curves
