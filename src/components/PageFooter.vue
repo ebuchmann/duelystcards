@@ -1,13 +1,19 @@
 <template>
   <footer class="page-footer">
-    Duelyst version: 1.76<br>Deckbuilder version: 1.0.0 - 
+    Duelyst version: {{ version }}<br>Deckbuilder version: 1.0.0 - 
     by <a href="https://github.com/ebuchmann/deckbuilder" target="_blank">ebuchmann</a>
   </footer>
 </template>
 
 <script>
-  export default {
+  import credentials from '../../credentials';
 
+  export default {
+    computed: {
+      version() {
+        return credentials.duelystVersion
+      }
+    }
   }
 </script>
 
