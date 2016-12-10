@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import app from './modules/app'
 import cardList from './modules/cardList'
 import deck from './modules/deck'
-import app from './modules/app'
+import gauntlet from './modules/gauntlet'
+import user from './modules/user'
 import * as actions from './actions'
 import * as getters from './getters'
 
@@ -15,5 +17,7 @@ export default new Vuex.Store({
     app,
     cardList,
     deck,
+    gauntlet,
+    user,
   },
 })

@@ -18,3 +18,10 @@ export const SELECT_TRIBE = 'SELECT_TRIBE'
 
 // app
 export const SET_PROPERTY = 'SET_PROPERTY'
+
+// users
+export const SET_USER = 'SET_USER'
+
+// gauntlets
+export const SET_GAUNTLETS = 'SET_GAUNTLETS'
+export const SET_GAUNTLET = 'SET_GAUNTLET'

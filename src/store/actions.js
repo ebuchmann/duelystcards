@@ -2,6 +2,7 @@ import * as types from './mutation-types'
 import generals from '../cards/generals'
 import cards from '../cards'
 import updateHash from 'utils/updateHash'
+import { api } from '../api-config'
 
 export const selectGeneral = ({ commit, state }, general) => new Promise(resolve => {
   commit(types.SELECT_GENERAL, general)
@@ -11,7 +12,9 @@ export const selectGeneral = ({ commit, state }, general) => new Promise(resolve
 
 export const selectCard = ({ commit, state }, { card, qty }) => {
   if (state.deck.totalCards >= 40) return
+  if (!card) return
 
+  console.log('card', card)
   const cards = state.deck.cards
   const matchingCard = cards.find(c => c.name === card.name)
 
@@ -135,4 +138,40 @@ export const toggleProperty = ({ commit, state }, payload) => {
 
 export const setProperty = ({ commit, state }, payload) => {
   commit(types.SET_PROPERTY, payload)
+}
+
+// USER ACTIONS
+export const login = async ({ commit }, payload) => {
+  const { data } = await api.post('/login', payload)
+  if (data.user) {
+    commit(types.SET_USER, data.user)
+  }
+}
+
+export const logout = async ({ commit }) => {
+  await api.get('/logout')
+  commit(types.SET_USER, null)
+}
+
+// GAUNTLET ACTIONS
+export const getGauntlets = async ({ commit }, username) => {
+  console.log(username)
+  const { data } = await api.get(`/gauntlets/${username}`)
+
+  if (data.length > 0)  commit(types.SET_GAUNTLETS, data)
+}
+
+export const getGauntlet = async ({ commit, dispatch, state }, id) => {
+  const { data } = await api.get(`/gauntlet/${id}`)
+
+  if (data) {
+    data.matches = data.matches.sort((a, b) => b.startTime - a.startTime)
+    commit(types.SET_GAUNTLET, data)
+
+    await dispatch('selectGeneral', generals.find(general => general.id === data.generalId))
+    await dispatch('setCardList', [...cards[state.deck.faction], ...cards.neutral])
+    data.deck.forEach(card => {
+      dispatch('selectCard', { card: state.cardList.cards.find(c => c.id === card), qty: 1 })
+    })
+  }
 }

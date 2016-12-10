@@ -10,6 +10,7 @@ import credentials from '../credentials'
 import { loadStorage } from 'utils/localStorage'
 import { toggleProperty } from 'store/actions'
 import Tooltip from 'utils/tooltip'
+import { api } from './api-config'
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,11 @@ loadStorage()
 if (window.innerWidth < 960) {
   toggleProperty(store, 'drawerOpen')
 }
+
+(async () => {
+  const { data } = await api.get('/get-account')
+  if (data) store.commit('SET_USER', data.user)
+})()
 
 // Initializes Vue
 new Vue({

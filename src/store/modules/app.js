@@ -11,6 +11,7 @@ const state = {
   imgurModal: false,
   divideDeck: true,
   settingsModal: false,
+  loginModal: false,
 
   // data
   imgurLink: '',

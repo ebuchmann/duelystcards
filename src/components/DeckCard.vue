@@ -12,7 +12,13 @@
   import updateHash from 'utils/updateHash'
 
   export default {
-    props: ['card'],
+    props: {
+      card: Object,
+      isSelectable: {
+        type: Boolean,
+        default: true,
+      },
+    },
 
     data () {
       return {
@@ -29,6 +35,7 @@
 
     methods: {
       selectCard (card) {
+        if (!this.isSelectable) return;
         this.flash = true
         this.timeout = setTimeout(() => {
           this.flash = false
@@ -38,6 +45,7 @@
       },
 
       removeCard (card) {
+        if (!this.isSelectable) return;
         this.$store.dispatch('removeCard', card)
         updateHash(this.$store.state.deck)
       }
