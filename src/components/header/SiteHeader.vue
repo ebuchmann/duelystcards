@@ -5,8 +5,12 @@
     </span>
 
     <span class="site-navigation">
-      <a>Gauntlet tracker</a>
-      <a>Deckbuilder</a>
+      <router-link :to="{ name: 'gauntlet' }">
+        Gauntlet tracker
+      </router-link>
+      <router-link :to="{ name: 'deckbuilder' }">
+        Deckbuilder
+      </router-link>
     </span>
 
     <account-button v-if="user" />
@@ -39,6 +43,14 @@
   .site-header {
     display: flex;
     justify-content: space-between;
+    border-bottom: 2px solid $blue;
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: $height-site-header;
+    background: $blue-dark;
+    z-index: $z-top-nav;
+    align-items: center;
   }
 
   .site-logo {

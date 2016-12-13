@@ -14,7 +14,6 @@ export const selectCard = ({ commit, state }, { card, qty }) => {
   if (state.deck.totalCards >= 40) return
   if (!card) return
 
-  console.log('card', card)
   const cards = state.deck.cards
   const matchingCard = cards.find(c => c.name === card.name)
 
@@ -155,7 +154,6 @@ export const logout = async ({ commit }) => {
 
 // GAUNTLET ACTIONS
 export const getGauntlets = async ({ commit }, username) => {
-  console.log(username)
   const { data } = await api.get(`/gauntlets/${username}`)
 
   if (data.length > 0)  commit(types.SET_GAUNTLETS, data)

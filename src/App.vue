@@ -2,7 +2,9 @@
   <div class="app-page">
     <site-header />
     <!-- <top-nav /> -->
-    <router-view />
+    <div class="main-content">
+      <router-view />
+    </div>
 
     <import-deck-modal />
     <horizontal-deck />
@@ -37,12 +39,9 @@
 <style lang="sass">
   @import './css/app';
 
-  .app-page {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
+  .main-content {
+    padding-top: $height-site-header-spacing;
+    height: calc(100vh - #{$height-site-header-spacing});
   }
+
 </style>

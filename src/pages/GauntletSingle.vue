@@ -1,5 +1,8 @@
 <template>
-  <div class="gauntlet-page">
+  <div v-if="loading">
+    <h1>LOADING DATA</h1>
+  </div>
+  <div v-else class="gauntlet-page">
     <div :class="['gauntlet-content', background]">
       <div class="inner">
         <gauntlet-header :gauntlet="gauntlet" />
@@ -19,21 +22,29 @@
   import { mapActions, mapState } from 'vuex'
 
   export default {
+    data() {
+      return {
+        loading: true,
+      };
+    },
+
     computed: {
       ...mapState({
         gauntlet: ({ gauntlet }) => gauntlet.currentGauntlet,
       }),
 
       background () {
-        return `bg_${this.gauntlet.generalId}`
+        return `bg-${this.gauntlet.generalId}`
       },
     },
 
     methods: {
-      ...mapActions(['getGauntlet']),
+      ...mapActions(['getGauntlet', 'resetAll']),
 
       async fetchData () {
+        if (this.gauntlet && this.gauntlet._id === this.$route.params.id) this.loading = false
         await this.getGauntlet(this.$route.params.id)
+        this.loading = false
       }
     },
 
@@ -43,6 +54,11 @@
 
     watch: {
       '$route': 'fetchData'
+    },
+
+    beforeRouteLeave (to, from, next) {
+      this.resetAll();
+      next();
     },
 
     components: {
@@ -56,19 +72,20 @@
 <style lang="sass">
   @import '../css/includes';
 
-  .bg_323::after { background-image: url('../assets/images/crest_abyssian.png'); }
-  .bg_1::after { background-image: url('../assets/images/crest_abyssian.png'); }
+  .bg-501::after { background: url('../assets/images/crest_vanar.png'); }
+  .bg-323::after { background-image: url('../assets/images/crest_abyssian.png'); }
+  .bg-1::after { background-image: url('../assets/images/crest_abyssian.png'); }
 
   .gauntlet-content {
     @include span(9 of 12);
     position: absolute;
-    height: 100vh;
+    height: calc(100vh - #{$height-site-header-spacing});
     overflow-y: scroll;
 
     &::after {
       content: "";
       background-repeat: no-repeat;
-      background-position: 50%;
+      background-position: 50% 0;
       opacity: 0.1;
       top: 0;
       left: 0;

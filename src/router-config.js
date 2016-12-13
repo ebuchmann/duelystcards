@@ -9,7 +9,7 @@ export const router = new VueRouter({
   mode: 'history',
   base: '/',
   routes: [
-    { path: '/', component: Home },
+    { path: '/', component: Home, name: 'deckbuilder' },
     { path: '/gauntlet', component: Gauntlet, name: 'gauntlet' },
     { path: '/gauntlet/:username', component: GauntletOverview, name: 'gauntlet-overview' },
     { path: '/gauntlet/:username/:id', component: GauntletSingle, name: 'gauntlet-single' },

@@ -1,12 +1,13 @@
 <template>
-  <div class="gauntlet-header">
-    <router-link class="previous" :to="{ name: 'gauntlet-overview', params: { username: $route.params.username } }">
-      back to listings
-    </router-link>
-    <div class="sprite">
-      <div :class="spriteClass"></div>
+  <div class="gauntlet-card">
+    <div :class="spriteClass"></div>
+    <div>
+      <div class="matches">Wins: {{ wins }}, Losses: {{ losses }}</div>
+      <div class="dates">
+        Started on: {{ startDate }}
+        <div v-if="!gauntlet.isActive">Ended on: {{ endDate }}</div>
+      </div>
     </div>
-    <div class="win-loss">Wins: {{ wins }}, Losses: {{ losses }}</div>
     <div class="status">
       <span :class="['circle', gauntlet.isActive ? 'active' : 'complete']"></span>
       {{ status }}
@@ -15,6 +16,8 @@
 </template>
 
 <script>
+  import format from 'date-fns/format'
+
   export default {
     props: ['gauntlet'],
 
@@ -32,7 +35,15 @@
       },
 
       spriteClass () {
-        return `sprite general-lg general-sprite general-hex_${this.gauntlet.generalId}-lg`
+        return `sprite general-md general-sprite general-hex_${this.gauntlet.generalId}`
+      },
+
+      startDate () {
+        return format(this.gauntlet.createdAt, 'D/M/YYYY')
+      },
+
+      endDate () {
+        if (!this.gauntlet.isActive) return format(this.gauntlet.updatedAt, 'D/M/YYYY')
       },
     },
   }
@@ -41,35 +52,27 @@
 <style lang="sass">
   @import '../../css/includes';
 
-  .gauntlet-header {
+  .gauntlet-card {
     position: relative;
+    background: #162D35;
+    border-radius: 4px;
+    padding: 10px;
     display: flex;
-    flex-direction: column;
-    padding-bottom: 30px;
-
-    .previous {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
+    color: $light;
+    align-items: center;
 
     > .sprite {
-      margin: 0 auto;
-
-      > .sprite {
-        position: relative;
-      }
+      position: initial;
     }
 
-    > .win-loss {
-      text-align: center;
-      font-size: 3rem;
+    .matches {
+      font-size: 1.4rem;
     }
 
-    > .status {
+    .status {
       position: absolute;
-      top: 0;
-      right: 0;
+      top: 10px;
+      right: 10px;
 
       > .circle {
         border-radius: 50%;
@@ -86,5 +89,10 @@
         background: $color-green;
       }
     }
+
+    .dates {
+      font-size: 1.1rem;
+    }
   }
+
 </style>
