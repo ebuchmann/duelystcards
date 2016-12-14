@@ -23,26 +23,9 @@
 <style lang="sass">
   @import '../../css/includes';
 
-  .site-header {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .site-logo {
-
-  }
-
-  .site-navigation {
-
-  }
-
   .account-button {
     cursor: pointer;
     background: $blue;
     padding: 8px 14px;
-    margin-right: 30px;
-  }
-
-  .sign-in-button {
   }
 </style>

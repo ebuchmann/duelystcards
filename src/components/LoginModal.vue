@@ -1,13 +1,42 @@
 <template>
-  <general-modal :show="modal" width="500px" :close="closeModal">
-    <div class="login-modal">
-      <h2 class="title">Login</h2>
-      <label>Username</label>
-      <input v-model="username" />
-      <label>Password</label>
-      <input v-model="password" />
-      <button @click="handleLogin">Login</button>
-    </div>
+  <general-modal :show="modal" width="600px" :close="closeModal">
+    <form class="login-modal" @submit.prevent="handleSubmit">
+      <div class="login-left">
+        <h2 class="title">
+          <template v-if="showLogin">Sign In</template>
+          <template v-else>Sign up</template>
+        </h2>
+
+        <div v-if="errorMsg.length > 0">{{ errorMsg }}</div>
+
+        <label class="label">Username</label>
+        <input :class="['input', { error: !validate.username}]" v-model="username" ref="username" />
+        <span class="error-text" v-if="!validate.username">Username is required</span>
+
+        <label class="label">Password</label>
+        <input :class="['input', { error: !validate.password}]" v-model="password" type="password" />
+        <span class="error-text" v-if="!validate.password">Password must be at least 8 characters</span>
+
+
+        <template v-if="showLogin">
+          <button class="button">Login</button>
+          <div class="extra">Don't have an account? <span class="link" @click="showLogin = false">Sign up here!</span></div>
+        </template>
+
+        <template v-else>
+          <label class="label">Email</label>
+          <input :class="['input', { error: !validate.email}]" v-model="email" />
+          <span class="error-text" v-if="!validate.email">Email is required</span>
+
+          <button class="button">Create account</button>
+
+          <div class="extra">Already have an account? <span class="link" @click="showLogin = true">Sign in here!</span></div>
+        </template>
+      </div>
+      <div class="login-right">
+        <img src="../assets/images/login_background.jpg" alt="login" />
+      </div>
+    </form>
   </general-modal>
 </template>
 
@@ -20,6 +49,15 @@
       return {
         username: '',
         password: '',
+        email: '',
+        errorMsg: '',
+        showLogin: true,
+        waiting: false,
+        validate: {
+          username: true,
+          password: true,
+          email: true,
+        }
       }
     },
 
@@ -29,17 +67,79 @@
       }),
     },
 
+    watch: {
+      modal() {
+        if (!this.modal) return;
+
+        this.$nextTick(() => {
+          this.$refs.username.focus()
+        })
+      },
+    },
+
     methods: {
-      ...mapActions(['toggleProperty', 'login']),
+      ...mapActions(['toggleProperty', 'login', 'createAccount']),
 
       closeModal () {
         this.toggleProperty('loginModal')
+        this.resetForm()
+      },
+
+      handleSubmit () {
+        this.showLogin ? this.handleLogin() : this.handleSignup()
       },
 
       async handleLogin () {
-        await this.login({ username: this.username, password: this.password })
-        this.closeModal()
-      }
+        this.validateLogin();
+
+        if (!this.validate.username || !this.validate.password) return;
+
+        try {
+          this.waiting = true
+          await this.login({ username: this.username, password: this.password })
+          this.resetForm()
+          this.closeModal()
+        } catch (error) {
+          this.waiting = false
+          this.errorMsg = error.message
+        }
+      },
+
+      async handleSignup () {
+        this.validateLogin();
+
+        if (!this.validate.username || !this.validate.password || !this.validate.email) return;
+
+        try {
+          this.waiting = true
+          await this.createAccount({ username: this.username, password: this.password, email: this.email })
+          this.resetForm()
+        } catch (error) {
+          this.waiting = false
+          this.errorMsg = error.message
+        }
+      },
+
+      validateLogin () {
+        this.validate.username = true;
+        this.validate.password = true;
+        this.validate.email = true;
+        this.errorMsg = '';
+
+        if (this.username.length === 0) this.validate.username = false;
+        if (this.password.length < 8) this.validate.password = false;
+        if (!this.showLogin && this.email.length < 4) this.validate.email = false;
+      },
+
+      resetForm () {
+        this.username = ''
+        this.password = ''
+        this.email = ''
+        this.showLogin = true
+        this.validate.username = true;
+        this.validate.password = true;
+        this.validate.email = true;
+      },
     },
 
     components: {
@@ -52,10 +152,75 @@
   @import '../css/includes';
 
   .login-modal {
-    text-align: center;
+    display: flex;
 
-    > .title {
-      padding-top: 15px;
+    > .login-left {
+      flex: 0 0 60%;
+      padding: 15px 15px 0;
+      display: flex;
+      flex-direction: column;
+
+      > .title {
+        text-align: center;
+      }
+
+      > .input {
+        background: rgba(#000, 0.9);
+        border: 1px solid $blue;
+        color: $light;
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+
+        &.error {
+          border: 1px solid rgba($color-red, .6);
+
+          &:focus {
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba($color-red, .6);
+          }
+        }
+
+        &:focus {
+          outline: 0;
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+        }
+      }
+
+      > .error-text {
+        color: $color-red;
+        font-size: .8rem;
+        margin: -15px 0 15px;
+      }
+
+      > .label {
+        
+      }
+
+      > .button {
+        cursor: pointer;
+        margin-bottom: 15px;
+      }
+
+      > .extra {
+        margin-bottom: 15px;
+        font-size: 90%;
+        width: 100%;
+        align-self: flex-end;
+        margin-top: auto;
+
+        > .link {
+          color: $blue-light;
+          cursor: pointer;
+        }
+      }
     }
+
+    > .login-right {
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
   }
 </style>

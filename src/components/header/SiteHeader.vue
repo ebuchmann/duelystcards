@@ -5,16 +5,18 @@
     </span>
 
     <span class="site-navigation">
-      <router-link :to="{ name: 'gauntlet' }">
-        Gauntlet tracker
-      </router-link>
-      <router-link :to="{ name: 'deckbuilder' }">
+      <router-link :to="{ name: 'deckbuilder' }" exact>
         Deckbuilder
       </router-link>
+      <router-link v-if="user" :to="{ name: 'gauntlet-overview', params: { username: user.username } }">
+        Gauntlet
+      </router-link>
+      <router-link v-else :to="{ name: 'gauntlet' }">
+        Gauntlet
+      </router-link>
+      <account-button v-if="user" />
+      <signin-button v-else />
     </span>
-
-    <account-button v-if="user" />
-    <signin-button v-else />
   </div>
 </template>
 
@@ -58,16 +60,13 @@
   }
 
   .site-navigation {
+    > a {
+      color: $blue-light;
+      margin-right: 15px;
 
-  }
-
-  .account-button {
-    cursor: pointer;
-    background: $blue;
-    padding: 8px 14px;
-    margin-right: 30px;
-  }
-
-  .sign-in-button {
+      &.router-link-active {
+        color: $light;
+      }
+    }
   }
 </style>

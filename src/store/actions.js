@@ -141,15 +141,27 @@ export const setProperty = ({ commit, state }, payload) => {
 
 // USER ACTIONS
 export const login = async ({ commit }, payload) => {
-  const { data } = await api.post('/login', payload)
-  if (data.user) {
-    commit(types.SET_USER, data.user)
+  try {
+    const { data } = await api.post('/login', payload)
+    if (data.user) {
+      commit(types.SET_USER, data.user)
+    }
+  } catch (error) {
+    throw new Error('Login failed.')
   }
 }
 
 export const logout = async ({ commit }) => {
   await api.get('/logout')
   commit(types.SET_USER, null)
+}
+
+export const createAccount = async ({ commit }, payload) => {
+  try {
+    await api.post('/users/new', payload)
+  } catch (error) {
+    throw new Error('There was an error with the username or password.')
+  }
 }
 
 // GAUNTLET ACTIONS

@@ -72,9 +72,12 @@
 <style lang="sass">
   @import '../css/includes';
 
-  .bg-501::after { background: url('../assets/images/crest_vanar.png'); }
-  .bg-323::after { background-image: url('../assets/images/crest_abyssian.png'); }
-  .bg-1::after { background-image: url('../assets/images/crest_abyssian.png'); }
+  .bg-501::after, .bg-527::after { background: url('../assets/images/crest_vanar.png'); }
+  .bg-401::after, .bg-418::after { background-image: url('../assets/images/crest_magmar.png'); }
+  .bg-301::after, .bg-323::after { background-image: url('../assets/images/crest_abyssian.png'); }
+  .bg-201::after, .bg-223::after { background-image: url('../assets/images/crest_vetruvian.png'); }
+  .bg-101::after, .bg-123::after { background-image: url('../assets/images/crest_songhai.png'); }
+  .bg-1::after, .bg-23::after { background-image: url('../assets/images/crest_abyssian.png'); }
 
   .gauntlet-content {
     @include span(9 of 12);
