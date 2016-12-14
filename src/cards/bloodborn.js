@@ -23,11 +23,13 @@ const bloodborn = [
 
   // Vanar
   { id: null, name: 'Concealing Shroud', set: 'bloodborn', type: 'spell', cost: 2, rarity: 'rare', faction: 'vanar', text: 'Your General takes no damage until your next turn.' },
+  { id: null, name: 'Enfeeble', set: 'bloodborn', type: 'spell', cost: 3, rarity: 'epic', faction: 'vanar', text: 'All minions become 1/1.' },
   { id: null, name: 'Grandmaster Embla', set: 'bloodborn', type: 'minion', cost: 8, rarity: 'legendary', attack: 5, health: 5, faction: 'vanar', text: '<b>Opening Gambit:</b> Surround the enemy General with random Walls.' },
 
   // Vetruvian
   { id: null, name: 'Stone to Spears', set: 'bloodborn', type: 'spell', cost: 1, rarity: 'rare', faction: 'vetruvian', text: 'A friendly Obelysk gains +3 Attack and may move and attack this turn if able.' },
   { id: null, name: 'Zephyr', set: 'bloodborn', type: 'minion', cost: 3, rarity: 'common', attack: 3, health: 3, faction: 'vetruvian', text: '<b>Blood Surge:</b> Your General gains Frenzy this turn.' },
+  { id: null, name: 'Grandmaster Nosh-Rak', set: 'bloodborn', type: 'minion', cost: 7, rarity: 'legendary', attack: 4, health: 7, faction: 'vetruvian', text: '<b>Blast</b>, <b>Flying</b><br> The enemy General takes double damage.' },
 
   // Neutral
   { id: null, name: 'Sanguinar', set: 'bloodborn', type: 'minion', cost: 4, rarity: 'rare', attack: 5, health: 4, faction: 'neutral', text: 'Your Bloodborn Spell costs 1 less to activate.' },
