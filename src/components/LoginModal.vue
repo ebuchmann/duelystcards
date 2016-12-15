@@ -207,6 +207,7 @@
         width: 100%;
         align-self: flex-end;
         margin-top: auto;
+        text-align: center;
 
         > .link {
           color: $blue-light;

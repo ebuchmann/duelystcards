@@ -73,8 +73,8 @@
 
   .gauntlet-deck {
     padding-top: 30px;
-    height: 100%;
-    width: 100%;
+    width: $width-drawer-deck;
+    float: right;
 
     > .cards {
       position: relative;

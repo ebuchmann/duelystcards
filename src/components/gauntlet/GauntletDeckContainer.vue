@@ -24,17 +24,15 @@
   @import '../../css/includes';
 
   .gauntlet-deck-container {
-    width: $width-drawer-deck;
-    position: fixed;
     right: 0;
     top: 48px;
     bottom: 0;
     margin-right: 5px;
-    height: calc(100vh - 48px);
     transition: $all-fast;
     background: $blue-dark;
     z-index: $z-drawer-deck;
     overflow-y: scroll;
+    height: calc(100vh - #{$height-site-header-spacing});
 
     &.closed {
       transform: translateX(112%);

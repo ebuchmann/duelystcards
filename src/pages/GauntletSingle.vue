@@ -2,14 +2,14 @@
   <div v-if="loading">
     <h1>LOADING DATA</h1>
   </div>
-  <div v-else class="gauntlet-page">
+  <div v-else class="gauntlet-page container">
     <div :class="['gauntlet-content', background]">
       <div class="inner">
         <gauntlet-header :gauntlet="gauntlet" />
         <match-table :matches="gauntlet.matches" />
       </div>
     </div>
-    <div class="gauntlet-deck">
+    <div class="gauntlet-deck-column">
       <gauntlet-deck-container />
     </div>
   </div>
@@ -79,9 +79,12 @@
   .bg-101::after, .bg-123::after { background-image: url('../assets/images/crest_songhai.png'); }
   .bg-1::after, .bg-23::after { background-image: url('../assets/images/crest_lyonar.png'); }
 
+  .gauntlet-page {
+    display: flex;
+  }
+
   .gauntlet-content {
-    @include span(9 of 12);
-    position: absolute;
+    flex-basis: 75%;
     height: calc(100vh - #{$height-site-header-spacing});
     overflow-y: scroll;
 
@@ -106,8 +109,8 @@
     }
   }
 
-  .gauntlet-deck {
-    @include span(3 of 12 last);
+  .gauntlet-deck-column {
+    flex-basis: 25%;
   }
 
 </style>
