@@ -3,10 +3,11 @@
     <h1>LOADING DATA</h1>
   </div>
   <div v-else class="gauntlet-page container">
-    <div :class="['gauntlet-content', background]">
-      <div class="inner">
+    <div class="gauntlet-content">
+      <div :class="['inner', background]">
         <gauntlet-header :gauntlet="gauntlet" />
         <match-table :matches="gauntlet.matches" />
+        <rarity-pie-chart />
       </div>
     </div>
     <div class="gauntlet-deck-column">
@@ -19,6 +20,7 @@
   import GauntletHeader from 'components/gauntlet/GauntletHeader'
   import MatchTable from 'components/gauntlet/MatchTable'
   import GauntletDeckContainer from 'components/gauntlet/GauntletDeckContainer'
+  import RarityPieChart from 'components/gauntlet/RarityPieChart'
   import { mapActions, mapState } from 'vuex'
 
   export default {
@@ -65,6 +67,7 @@
       GauntletHeader,
       MatchTable,
       GauntletDeckContainer,
+      RarityPieChart,
     },
   }
 </script>
@@ -88,24 +91,26 @@
     height: calc(100vh - #{$height-site-header-spacing});
     overflow-y: scroll;
 
-    &::after {
-      content: "";
-      background-repeat: no-repeat;
-      background-position: 50% 0;
-      opacity: 0.1;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      position: absolute;
-      z-index: -1;
-      filter: grayscale(100%);
-    }
 
 
     > .inner {
       max-width: 1000px;
       margin: 0 auto;
+      position: relative;
+
+      &::after {
+        content: "";
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        opacity: 0.1;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;
+        filter: grayscale(100%);
+      }
     }
   }
 
