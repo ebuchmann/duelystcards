@@ -22,7 +22,7 @@ const magmar = [
   { id: 423, name: 'Moloki Huntress', set: 'shimzar', type: 'minion', cost: 3, rarity: 'epic', attack: 1, health: 2, faction: 'magmar', text: '<b>Grow</b>: +1/+1. Friendly minions grow at the start of BOTH player\'s turns.' },
   { id: 410, name: 'Primordial Gazer', set: 'core', type: 'minion', cost: 3, rarity: 'basic', attack: 2, health: 2, faction: 'magmar', text: '<b>Opening Gambit</b>: Give a nearby friendly minion +2/+2.' },
   { id: 20234, name: 'Tectonic Spikes', set: 'bloodborn', type: 'spell', cost: 3, rarity: 'rare', faction: 'magmar', spirit: 0, text: 'Both players draw 3 cards. Deal 3 damage to both Generals.' },
-  { id: 429, name: 'Thraex', set: 'bloodborn', type: 'minion', cost: 3, rarity: 'common', attacK: 2, health: 4, faction: 'magmar', spirit: 0, text: '<b>Blood Surge:</b> All friendly minions gain +1 Attack (including itself).' },
+  { id: 429, name: 'Thraex', set: 'bloodborn', type: 'minion', cost: 3, rarity: 'common', attack: 2, health: 4, faction: 'magmar', spirit: 0, text: '<b>Blood Surge:</b> All friendly minions gain +1 Attack (including itself).' },
   { id: 20218, name: 'Thumping Wave', set: 'shimzar', type: 'spell', cost: 3, rarity: 'rare', faction: 'magmar', text: 'Give a minion +5 Attack. At the end of turn, transform it into a 3/3 Kin.' },
   { id: 30017, name: 'Twin Fang', set: 'core', type: 'artifact', cost: 3, rarity: 'legendary', faction: 'magmar', text: 'Whenever a friendly minion or your General takes damage, your General gains +2 Attack.' },
   { id: 417, name: 'Vindicator', set: 'core', type: 'minion', cost: 3, rarity: 'legendary', attack: 1, health: 3, faction: 'magmar', text: 'Whenever your opponent draws a card, this minion gains +2/+2.' },
