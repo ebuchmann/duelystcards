@@ -22,6 +22,7 @@
     "lodash.sortby": "^4.7.0",
     "perfect-scrollbar": "^0.6.12",
     "raven-js": "^3.7.0",
+    "validator": "^6.2.0",
     "vue": "^2.0.3",
     "vue-router": "^2.0.1",
     "vuex": "^2.0.0",

@@ -43,6 +43,7 @@
 <script>
   import GeneralModal from 'components/GeneralModal'
   import { mapActions, mapState } from 'vuex'
+  import isEmail from 'validator/lib/isEmail'
 
   export default {
     data () {
@@ -128,7 +129,7 @@
 
         if (this.username.length === 0) this.validate.username = false;
         if (this.password.length < 8) this.validate.password = false;
-        if (!this.showLogin && this.email.length < 4) this.validate.email = false;
+        if (!this.showLogin && !isEmail(this.email)) this.validate.email = false;
       },
 
       resetForm () {

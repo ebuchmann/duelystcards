@@ -36,11 +36,11 @@
           type: 'doughnut',
           data: {
             labels: [
-              'Basic',
-              'Common',
-              'Rare',
-              'Epic',
-              'Legendary',
+              `Basic - ${Math.round(this.basic / 30 * 100)}%`,
+              `Common - ${Math.round(this.common / 30 * 100)}%`,
+              `Rare - ${Math.round(this.rare / 30 * 100)}%`,
+              `Epic - ${Math.round(this.epic / 30 * 100)}%`,
+              `Legendary - ${Math.round(this.legendary / 30 * 100)}%`,
             ],
             datasets: [
               {
