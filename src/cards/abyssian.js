@@ -28,7 +28,7 @@ const abyssian = [
   { id: 20065, name: 'Shadow Reflection', set: 'core', type: 'spell', cost: 3, rarity: 'common', faction: 'abyssian', text: 'Give a friendly minion +5 Attack.' },
   { id: 311, name: 'Shadow Watcher', set: 'core', type: 'minion', cost: 3, rarity: 'basic', attack: 2, health: 2, faction: 'abyssian', text: '<b>Deathwatch</b>: Gains +1/+1.' },
   { id: 30002, name: 'Soul Grimwar', set: 'core', type: 'artifact', cost: 3, rarity: 'legendary', faction: 'abyssian', text: 'Your General gains, "<b>Deathwatch</b>: Gains +2 Attack."' },
-  { id: 20205, name: 'Void Steal', set: 'shimzar', type: 'spell', cost: 3, rarity: 'rare', faction: 'abyssian', text: 'Give an enemy minion +3 Attack. Nearby friendly minions gain +3 Attack.' },
+  { id: 20205, name: 'Void Steal', set: 'shimzar', type: 'spell', cost: 3, rarity: 'rare', faction: 'abyssian', text: 'Give an enemy minion -3 Attack. Nearby friendly minions gain +3 Attack.' },
   { id: 20089, name: 'Wraithling Fury', set: 'core', type: 'spell', cost: 3, rarity: 'epic', faction: 'abyssian', text: 'Give a friendly Wraithling minion +4/+4.' },
   { id: 20072, name: 'Wraithling Swarm', set: 'core', type: 'spell', cost: 3, rarity: 'basic', faction: 'abyssian', text: 'Summon three 1/1 Wraithlings nearby each other.' },
   { id: 309, name: 'Abyssal Juggernaut', set: 'core', type: 'minion', cost: 4, rarity: 'common', attack: 3, health: 3, faction: 'abyssian', text: 'This minion has +1/+1 for each friendly <b>Shadow Creep</b>.' },
