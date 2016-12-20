@@ -1,12 +1,16 @@
 <template>
   <div class="gauntlet-page container">
     <div class="gauntlet-list">
-      <router-link class="gauntlet" v-for="gauntlet in gauntlets" :to="{ name: 'gauntlet-single', params: { username: $route.params.username, id: gauntlet._id }}">
-        <gauntlet-card :gauntlet="gauntlet" />
-      </router-link>
+      <gauntlet-table :gauntlets="gauntlets" />
     </div>
     <div class="gauntlet-stats">
-
+      Total runs: {{ stats.totalRuns }}<br>
+      Total matches: {{ stats.totalMatches }}<br>
+      Win %: {{ stats.winPercent }}<br>
+      Average wins:<br>
+      Average losses:<br>
+      Total wins:<br>
+      Total losses:<br>
     </div>
   </div>
 </template>
@@ -14,20 +18,24 @@
 <script>
   import { mapActions, mapState } from 'vuex'
   import { getGauntlets } from 'store/actions'
-  import GauntletCard from 'components/gauntlet/GauntletCard'
+  import GauntletTable from 'components/gauntlet/GauntletTable'
 
   export default {
     computed: {
       ...mapState({
         gauntlets: ({ gauntlet }) => gauntlet.gauntlets,
-      })
+        stats: ({ gauntlet }) => gauntlet.stats,
+      }),
     },
 
     methods: {
-      ...mapActions(['getGauntlets']),
+      ...mapActions(['getGauntlets', 'getGauntletStats']),
 
       async fetchData () {
-        await this.getGauntlets(this.$route.params.username)
+        await Promise.all([
+          this.getGauntlets(this.$route.params.username),
+          this.getGauntletStats(this.$route.params.username),
+        ])
       }
     },
 
@@ -40,7 +48,7 @@
     },
 
     components: {
-      GauntletCard,
+      GauntletTable,
     },
   }
 </script>
@@ -53,12 +61,8 @@
       overflow-y: scroll;
       height: calc(100vh - #{$height-site-header-spacing});
 
-      @include breakpoint(md) {
-        @include span(6 of 12);
-      }
-
       @include breakpoint(lg) {
-        @include span(4 of 12);
+        @include span(6 of 12);
       }
 
       > .gauntlet {

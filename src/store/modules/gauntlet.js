@@ -1,11 +1,13 @@
 import {
   SET_GAUNTLETS,
   SET_GAUNTLET,
+  SET_STATS,
 } from '../mutation-types'
 
 const state = {
   gauntlets: [],
   currentGauntlet: {},
+  stats: {},
 }
 
 const mutations = {
@@ -15,7 +17,11 @@ const mutations = {
 
   [SET_GAUNTLET] (state, gauntlet) {
     state.currentGauntlet = gauntlet
-  }
+  },
+
+  [SET_STATS] (state, stats) {
+    state.stats = stats
+  },
 }
 
 export default {

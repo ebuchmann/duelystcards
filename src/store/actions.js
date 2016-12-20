@@ -185,3 +185,11 @@ export const getGauntlet = async ({ commit, dispatch, state }, id) => {
     })
   }
 }
+
+export const getGauntletStats = async ({ commit }, id) => {
+  const { data } = await api.get(`/gauntlets/${id}/stats`)
+
+  if (data) {
+    commit(types.SET_STATS, data)
+  }
+}
