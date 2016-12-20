@@ -21,7 +21,7 @@ const songhai = [
   { id: 110, name: 'Kaido Assassin', set: 'core', type: 'minion', cost: 2, rarity: 'basic', attack: 2, health: 3, faction: 'songhai', text: '<b>Backstab</b>: (1).' },
   { id: 30007, name: 'Mask of Shadows', set: 'core', type: 'artifact', cost: 2, rarity: 'legendary', faction: 'songhai', text: 'Your General gains <b>Backstab</b> (4).' },
   { id: 20194, name: 'Mirror Meld', set: 'shimzar', type: 'spell', cost: 2, rarity: 'rare', faction: 'songhai', text: 'Summon a copy of a friendly minion that costs 2 of less nearby.' },
-  { id: 20081, name: 'Phoenix Fire', set: 'core', type: 'spell', cost: 2, rarity: 'basic', faction: 'songhai', text: 'Deal 3 damage to a minion or General.' },
+  { id: 20081, name: 'Phoenix Fire', set: 'core', type: 'spell', cost: 2, rarity: 'basic', faction: 'songhai', text: 'Deal 3 damage to anything.' },
   { id: 20080, name: 'Saberspine Seal', set: 'core', type: 'spell', cost: 2, rarity: 'basic', faction: 'songhai', text: 'Give a minion or General +3 Attack this turn.' },
   { id: 121, name: 'Tusk Boar', set: 'core', type: 'minion', cost: 2, rarity: 'legendary', attack: 2, health: 3, faction: 'songhai', text: '<b>Rush</b><br> Return this minion to your action bar at the beginning of your turn.' },
   { id: 125, name: 'Xho', set: 'shimzar', type: 'minion', race: 'battle pet', cost: 2, rarity: 'rare', attack: 2, health: 3, faction: 'songhai', text: '<b>Dying Wish</b>: Put a random Songhai spell into your action bar. It costs 1 less.' },
