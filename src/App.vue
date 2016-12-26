@@ -21,7 +21,7 @@
   import ImgurModal from 'components/ImgurModal'
   import HorizontalDeck from 'components/horizontal/HorizontalDeck'
   import SettingsModal from 'components/settings/SettingsModal'
-  import LoginModal from 'components/LoginModal'
+  import LoginModal from 'components/header/LoginModal'
 
   export default {
     components: {

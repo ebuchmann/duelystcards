@@ -5,9 +5,8 @@
   <div v-else class="gauntlet-page container">
     <div class="gauntlet-content">
       <div :class="['inner', background]">
-        <gauntlet-header :gauntlet="gauntlet" />
-        <match-table :matches="gauntlet.matches" />
-        <rarity-pie-chart />
+        <deck-header :deck="deck" />
+        <vs-chart :stats="stats" />
       </div>
     </div>
     <div class="gauntlet-deck-column">
@@ -17,10 +16,10 @@
 </template>
 
 <script>
-  import GauntletHeader from 'components/gauntlet/GauntletHeader'
-  import MatchTable from 'components/gauntlet/MatchTable'
+  import DeckHeader from 'components/deckTracker/DeckHeader'
+  import FactionBarChart from 'components/deckTracker/FactionBarChart'
   import GauntletDeckContainer from 'components/gauntlet/GauntletDeckContainer'
-  import RarityPieChart from 'components/gauntlet/RarityPieChart'
+  import VsChart from 'components/deckTracker/VsChart'
   import { mapActions, mapState } from 'vuex'
 
   export default {
@@ -32,20 +31,21 @@
 
     computed: {
       ...mapState({
-        gauntlet: ({ gauntlet }) => gauntlet.currentGauntlet,
+        deck: ({ deckTracker }) => deckTracker.currentDeck,
+        stats: ({ deckTracker }) => deckTracker.stats,
       }),
 
       background () {
-        return `bg-${this.gauntlet.generalId}`
+        return `bg-${this.deck.generalId}`
       },
     },
 
     methods: {
-      ...mapActions(['getGauntlet', 'resetAll']),
+      ...mapActions(['getDeck', 'resetAll']),
 
       async fetchData () {
-        if (this.gauntlet && this.gauntlet._id === this.$route.params.id) this.loading = false
-        await this.getGauntlet(this.$route.params.id)
+        if (this.deck && this.deck._id === this.$route.params.id) this.loading = false
+        await this.getDeck(this.$route.params.id)
         this.loading = false
       }
     },
@@ -64,10 +64,10 @@
     },
 
     components: {
-      GauntletHeader,
-      MatchTable,
+      DeckHeader,
+      FactionBarChart,
       GauntletDeckContainer,
-      RarityPieChart,
+      VsChart,
     },
   }
 </script>
@@ -95,6 +95,7 @@
       max-width: 1000px;
       margin: 0 auto;
       position: relative;
+      height: 100%;
 
       &::after {
         content: "";
@@ -107,7 +108,6 @@
         right: 0;
         position: absolute;
         z-index: -1;
-        filter: grayscale(100%);
       }
     }
   }

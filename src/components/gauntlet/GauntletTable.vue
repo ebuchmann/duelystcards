@@ -3,10 +3,11 @@
     <thead>
       <tr>
         <th class="heading">general</th>
-        <th class="heading">wins</th>
-        <th class="heading">losses</th>
+        <th class="heading centered">wins</th>
+        <th class="heading centered">losses</th>
         <th class="heading">start date</th>
-        <th class="heading">end date</th>
+        <th class="heading centered">gold</th>
+        <th class="heading centered">spirit</th>
       </tr>
     </thead>
     <tbody>

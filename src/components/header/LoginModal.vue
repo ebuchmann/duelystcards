@@ -34,7 +34,7 @@
         </template>
       </div>
       <div class="login-right">
-        <img src="../assets/images/login_background.jpg" alt="login" />
+        <img src="../../assets/images/login_background.jpg" alt="login" />
       </div>
     </form>
   </general-modal>
@@ -150,7 +150,7 @@
 </script>
 
 <style lang="sass">
-  @import '../css/includes';
+  @import '../../css/includes';
 
   .login-modal {
     display: flex;

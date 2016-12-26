@@ -21,8 +21,14 @@ export const SET_PROPERTY = 'SET_PROPERTY'
 
 // users
 export const SET_USER = 'SET_USER'
+export const SET_API_KEY= 'SET_API_KEY'
 
 // gauntlets
 export const SET_GAUNTLETS = 'SET_GAUNTLETS'
 export const SET_GAUNTLET = 'SET_GAUNTLET'
 export const SET_STATS = 'SET_STATS'
+
+// deck tracker
+export const SET_DECKS = 'SET_DECKS'
+export const SET_CURRENT_DECK = 'SET_CURRENT_DECK'
+export const SET_CURRENT_DECK_STATS = 'SET_CURRENT_DECK_STATS'

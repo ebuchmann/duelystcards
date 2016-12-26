@@ -5,10 +5,11 @@
         <div :class="spriteClass"></div>
       </div>
     </td>
-    <td class="win">{{ wins }}</td>
-    <td class="loss">{{ losses }}</td>
+    <td class="centered win">{{ wins }}</td>
+    <td class="centered loss">{{ losses }}</td>
     <td>{{ startDate }}</td>
-    <td>{{ endDate }}</td>
+    <td class="centered">{{ gauntlet.gold !== null ? gauntlet.gold : '--' }}</td>
+    <td class="centered">{{ gauntlet.spirit !== null ? gauntlet.spirit : '--' }}</td>
   </router-link>
 </template>
 
@@ -35,9 +36,9 @@
         return format(this.gauntlet.createdAt, 'D/M/YYYY')
       },
 
-      endDate () {
-        if (!this.gauntlet.isActive) return format(this.gauntlet.updatedAt, 'D/M/YYYY')
-      },
+      noRewards () {
+        return (this.gauntlet.gold === null && this.gauntlet.spirit === null)
+      }
     },
   }
 </script>
@@ -48,6 +49,10 @@
   .link:hover {
     cursor: pointer;
     background-color: #162D35;
+  }
+
+  .centered {
+    text-align: center;
   }
 
   .win {

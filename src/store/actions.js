@@ -164,11 +164,21 @@ export const createAccount = async ({ commit }, payload) => {
   }
 }
 
+export const resetApiKey = async ({ commit }, payload) => {
+  try {
+    const { data } = await api.post('/users/reset-api-key')
+    commit(types.SET_API_KEY, data)
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
 // GAUNTLET ACTIONS
 export const getGauntlets = async ({ commit }, username) => {
   const { data } = await api.get(`/gauntlets/${username}`)
 
-  if (data.length > 0)  commit(types.SET_GAUNTLETS, data)
+  // includes limit, page, pages, total
+  if (data.docs && data.docs.length > 0) commit(types.SET_GAUNTLETS, data)
 }
 
 export const getGauntlet = async ({ commit, dispatch, state }, id) => {
@@ -191,5 +201,30 @@ export const getGauntletStats = async ({ commit }, id) => {
 
   if (data) {
     commit(types.SET_STATS, data)
+  }
+}
+
+// DECK TRACKER ACTIONS
+export const getDecks = async ({ commit }, username) => {
+  const { data } = await api.get(`/decks/${username}`)
+
+  if (data) commit(types.SET_DECKS, data)
+}
+
+export const getDeck = async ({ commit, dispatch, state}, id) => {
+  const { data } = await api.get(`/deck/${id}`)
+  const stats = await api.get(`/deck/${id}/stats`)
+  console.log(stats.data)
+
+  commit(types.SET_CURRENT_DECK_STATS, stats.data)
+
+  if (data) {
+    commit(types.SET_CURRENT_DECK, data)
+
+    await dispatch('selectGeneral', generals.find(general => general.id === data.generalId))
+    await dispatch('setCardList', [...cards[state.deck.faction], ...cards.neutral])
+    data.cards.forEach(card => {
+      dispatch('selectCard', { card: state.cardList.cards.find(c => c.id === card), qty: 1 })
+    })
   }
 }

@@ -14,7 +14,7 @@
   @import '../css/includes';
 
   .dropdown-wrapper:focus > .menu, .dropdown-wrapper > .menu:hover {
-    background: lighten($blue-dark, 25%);
+    background: lighten($blue, 10%);
   }
 
   .dropdown-wrapper {

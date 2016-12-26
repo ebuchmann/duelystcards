@@ -8,11 +8,11 @@
       <router-link :to="{ name: 'deckbuilder' }" exact>
         Deckbuilder
       </router-link>
-      <router-link v-if="user" :to="{ name: 'gauntlet-overview', params: { username: user.username } }">
-        Gauntlet
+      <router-link v-if="user" :to="{ name: 'deck-overview', params: { username: user.username } }">
+        Deck
       </router-link>
-      <router-link v-else :to="{ name: 'gauntlet' }">
-        Gauntlet
+      <router-link v-else :to="{ name: 'deck' }">
+        Deck
       </router-link>
       <account-button v-if="user" />
       <signin-button v-else />
@@ -60,6 +60,9 @@
   }
 
   .site-navigation {
+    display: flex;
+    align-items: center;
+
     > a {
       color: $blue-light;
       margin-right: 15px;

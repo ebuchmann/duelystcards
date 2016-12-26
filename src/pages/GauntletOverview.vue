@@ -7,10 +7,11 @@
       Total runs: {{ stats.totalRuns }}<br>
       Total matches: {{ stats.totalMatches }}<br>
       Win %: {{ stats.winPercent }}<br>
-      Average wins:<br>
-      Average losses:<br>
-      Total wins:<br>
-      Total losses:<br>
+      Average wins: {{ stats.averageWins }}<br>
+      Total wins: {{ stats.allWins }}<br>
+      Total losses: {{ stats.allLosses }}<br>
+      Total gold: {{ stats.totalGold }}<br>
+      Total spirit: {{ stats.totalSpirit }}
     </div>
   </div>
 </template>
@@ -62,7 +63,7 @@
       height: calc(100vh - #{$height-site-header-spacing});
 
       @include breakpoint(lg) {
-        @include span(6 of 12);
+        @include span(5 of 12);
       }
 
       > .gauntlet {
