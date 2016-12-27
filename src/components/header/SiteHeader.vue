@@ -1,22 +1,25 @@
 <template>
-  <div class="site-header container">
-    <span class="site-logo">
-      Duelystcards
-    </span>
+  <div class="site-header">
+    <div class="container">
+      <span class="site-logo">
+        Duelystcards
+      </span>
 
-    <span class="site-navigation">
-      <router-link :to="{ name: 'deckbuilder' }" exact>
-        Deckbuilder
-      </router-link>
-      <router-link v-if="user" :to="{ name: 'deck-overview', params: { username: user.username } }">
-        Deck
-      </router-link>
-      <router-link v-else :to="{ name: 'deck' }">
-        Deck
-      </router-link>
-      <account-button v-if="user" />
-      <signin-button v-else />
-    </span>
+      <span class="site-navigation">
+        <router-link :to="{ name: 'deckbuilder' }" exact>
+          Deck builder
+        </router-link>
+        <span class="divider"></span>
+        <router-link v-if="user" :to="{ name: 'deck-overview', params: { username: user.username } }">
+          Deck tracker
+        </router-link>
+        <router-link v-else :to="{ name: 'deck' }">
+          Deck tracker
+        </router-link>
+        <account-button v-if="user" />
+        <signin-button v-else />
+      </span>
+    </div>
   </div>
 </template>
 
@@ -43,16 +46,19 @@
   @import '../../css/includes';
 
   .site-header {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 2px solid $blue;
+    height: $height-site-header;
+    background: $blue-dark;
     position: fixed;
     left: 0;
     right: 0;
-    height: $height-site-header;
-    background: $blue-dark;
     z-index: $z-top-nav;
-    align-items: center;
+
+    > .container {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid $blue;
+      align-items: center;
+    }
   }
 
   .site-logo {
@@ -62,6 +68,12 @@
   .site-navigation {
     display: flex;
     align-items: center;
+
+    > .divider {
+      border-left: 1px solid $light;
+      margin-right: 15px;
+      height: 20px;
+    }
 
     > a {
       color: $blue-light;

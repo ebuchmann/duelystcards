@@ -1,7 +1,12 @@
 <template>
   <div :class="['drawer-deck', { closed }]">
+    <span :class="['button', 'button-toggle', { 'left': closed }]" @click="$store.dispatch('toggleProperty', 'drawerOpen')" data-tooltip="Toggle deck list" data-position="left middle">
+      close
+    </span>
     <deck-list />
     <div class="btn-group">
+      <download-button />
+      <span class="button" @click="$store.dispatch('toggleProperty', 'importDeck')"><i class="icon icon-upload" data-tooltip="Import deck" data-position="bottom left"></i></span>
       <deck-options />
       <button class="btn clear-deck" @click="$store.dispatch('resetAll')"><i class="icon icon-clear-deck"></i> Clear</button>
     </div>
@@ -11,6 +16,7 @@
 <script>
   import DeckList from 'components/DeckList'
   import DeckOptions from 'components/DeckOptions'
+  import DownloadButton from 'components/DownloadButton'
 
   export default {
     computed: {
@@ -22,6 +28,7 @@
     components: {
       DeckList,
       DeckOptions,
+      DownloadButton,
     },
   }
 </script>
@@ -42,7 +49,15 @@
     z-index: $z-drawer-deck;
 
     &.closed {
-      transform: translateX(112%);
+      transform: translateX(315px);
+    }
+
+    > .button-toggle {
+      position: absolute;
+      left: -25px;
+      top: 20px;
+      transform: rotate(90deg); 
+      cursor: pointer;
     }
   }
 
@@ -55,7 +70,19 @@
     z-index: $z-btn-group;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    border-top: 1px solid $dark;
+
+    > .button {
+      background: $blue;
+      padding: 6px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      margin-right: 10px;
+
+      &:hover {
+        background: lighten($blue, 10%);
+      }
+    }
   }
 
   .clear-deck {
@@ -64,6 +91,7 @@
     background: #2e3136;
     height: 32px;
     cursor: pointer;
+    margin-left: auto;
 
     &:focus, &:hover {
       outline: none;

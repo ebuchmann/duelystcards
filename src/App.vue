@@ -1,7 +1,6 @@
 <template>
   <div class="app-page">
     <site-header />
-    <!-- <top-nav /> -->
     <div class="main-content">
       <router-view />
     </div>
@@ -16,7 +15,6 @@
 
 <script>
   import SiteHeader from 'components/header/SiteHeader'
-  import TopNav from 'components/TopNav'
   import ImportDeckModal from 'components/ImportDeckModal'
   import ImgurModal from 'components/ImgurModal'
   import HorizontalDeck from 'components/horizontal/HorizontalDeck'
@@ -26,7 +24,6 @@
   export default {
     components: {
       SiteHeader,
-      TopNav,
       ImportDeckModal,
       ImgurModal,
       HorizontalDeck,

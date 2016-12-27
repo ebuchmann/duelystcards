@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="short-url">
-        {{ shortUrl }}
+        {{ url }}
       </div>
     </div>
   </general-modal>
@@ -66,6 +66,10 @@
       spellsArtifacts () {
         return this.cardList.filter(card => card.type !== 'minion')
       },
+
+      url () {
+        if (this.shortUrl.length) return this.shortUrl.substr(2)
+      }
     },
 
     components: {

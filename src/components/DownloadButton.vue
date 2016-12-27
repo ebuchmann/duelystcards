@@ -43,10 +43,6 @@
   .download-button {
     position: relative;
 
-    &.button {
-      padding: 0;
-    }
-
     &:focus, &:active {
       outline: none;
     }
@@ -58,8 +54,9 @@
       position: absolute;
       min-width: 210px;
       background: $blue;
-      top: 48px;
-      right: 0;
+      top: -168px;
+      z-index: 9999;
+      cursor: pointer;
 
       > .option {
         padding: 10px;

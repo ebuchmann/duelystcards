@@ -15,7 +15,7 @@
       </template>
     </div>
     <div class="vertical-short-url">
-      {{ shortUrl }}
+      {{ url }}
     </div>
   </div>
 </template>
@@ -46,7 +46,11 @@
         divideDeck: ({ app }) => app.divideDeck,
         shortUrl: ({ app }) => app.shortUrl,
       }),
-      ...mapGetters(['currentFaction'])
+      ...mapGetters(['currentFaction']),
+
+      url () {
+        if (this.shortUrl.length) return this.shortUrl.substr(2)
+      }
     },
 
     watch: {

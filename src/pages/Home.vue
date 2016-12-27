@@ -2,6 +2,7 @@
   <div class="home-page">
     <drawer-filters />
     <div :class="['left-column', { closed }]">
+      <text-search />
       <card-list v-if="factionCards" :faction="faction" :cards="factionCards" />
       <card-list v-if="neutralCards" faction="neutral" :cards="neutralCards" />
       <card-list v-if="!factionCards && !neutralCards" faction="generals" :cards="visibleCards" />
@@ -16,6 +17,7 @@
   import DrawerFilters from 'components/DrawerFilters'
   import CardList from 'components/CardList'
   import ModalWaiting from 'components/ModalWaiting'
+  import TextSearch from 'components/TextSearch'
   import { mapGetters } from 'vuex'
 
   export default {
@@ -45,11 +47,18 @@
       if (this.$store.state.route.hash) this.$store.dispatch('loadDeck', this.$store.state.route.hash.substr(1))
     },
 
+    beforeRouteLeave (to, from, next) {
+      this.$store.dispatch('clearDeck');
+      this.$store.dispatch('resetFilters');
+      next();
+    },
+
     components: {
       DrawerDeck,
       DrawerFilters,
       CardList,
       ModalWaiting,
+      TextSearch,
     },
   }
 </script>
@@ -59,8 +68,8 @@
 
   .left-column {
     position: relative;
-    margin-top: 65px;
     padding: 0 40px 0 $width-drawer-filter + 30px;
+    margin-top: 15px;
 
     @include breakpoint(lg) {
       width: calc(100% - #{$width-drawer-deck} - 20px);

@@ -44,6 +44,13 @@
 
   .text-search {
     flex: 1;
+    position: fixed;
+    top: $height-site-header - 12px;
+    z-index: $z-search;
+    min-width: 400px;
+    background: $blue-dark;
+    border: 1px solid $blue;
+    border-top: 2px solid $blue;
 
     > .search {
       background: transparent;
