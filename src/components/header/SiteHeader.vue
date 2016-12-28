@@ -46,7 +46,6 @@
   @import '../../css/includes';
 
   .site-header {
-    height: $height-site-header;
     background: $blue-dark;
     position: fixed;
     left: 0;
@@ -54,6 +53,7 @@
     z-index: $z-top-nav;
 
     > .container {
+      height: $height-site-header;
       display: flex;
       justify-content: space-between;
       border-bottom: 2px solid $blue;

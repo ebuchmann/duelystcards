@@ -16,8 +16,8 @@ export const router = new VueRouter({
     // { path: '/gauntlet', component: Gauntlet, name: 'gauntlet' },
     // { path: '/gauntlet/:username', component: GauntletOverview, name: 'gauntlet-overview' },
     // { path: '/gauntlet/:username/:id', component: GauntletSingle, name: 'gauntlet-single' },
-    { path: '/deck/', component: Deck, name: 'deck' },
-    { path: '/deck/:username', component: DeckOverview, name: 'deck-overview' },
-    { path: '/deck/:username/:id', component: DeckSingle, name: 'deck-single' },
+    { path: '/deck-tracker/', component: Deck, name: 'deck' },
+    { path: '/deck-tracker/:username', component: DeckOverview, name: 'deck-overview' },
+    { path: '/deck-tracker/:username/:id', component: DeckSingle, name: 'deck-single' },
   ],
 })

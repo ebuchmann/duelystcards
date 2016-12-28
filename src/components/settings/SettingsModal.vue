@@ -1,15 +1,17 @@
 <template>
-  <general-modal :show="modal" width="650px" :close="closeModal">
+  <general-modal :show="modal" width="780px" :close="closeModal">
     <div class="settings-modal">
       <div class="left">
         <h4 class="heading">Settings</h4>
         <ul class="links">
           <li :class="['link', { 'active': tab === 'account'}]" @click="tab = 'account'">Account</li>
           <li :class="['link', { 'active': tab === 'api'}]" @click="tab = 'api'">API Key</li>
+          <li :class="['link', { 'active': tab === 'script'}]" @click="tab = 'script'">Script Installation</li>
         </ul>
       </div>
       <div class="right">
         <options-api-key v-if="tab === 'api'" />
+        <options-script-installation v-if="tab === 'script'" />
       </div>
     </div>
   </general-modal>
@@ -18,6 +20,7 @@
 <script>
   import GeneralModal from 'components/GeneralModal'
   import OptionsApiKey from 'components/settings/OptionsApiKey'
+  import OptionsScriptInstallation from 'components/settings/OptionsScriptInstallation'
   import { mapState, mapActions } from 'vuex'
 
   export default {
@@ -44,6 +47,7 @@
     components: {
       GeneralModal,
       OptionsApiKey,
+      OptionsScriptInstallation,
     },
   }
 </script>
@@ -54,6 +58,7 @@
   .settings-modal {
     border-radius: 6px;
     display: flex;
+    padding: 10px 10px 10px 0;
     
     .heading {
       padding: 4px 8px 4px 15px;

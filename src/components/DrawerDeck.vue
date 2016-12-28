@@ -1,8 +1,6 @@
 <template>
   <div :class="['drawer-deck', { closed }]">
-    <span :class="['button', 'button-toggle', { 'left': closed }]" @click="$store.dispatch('toggleProperty', 'drawerOpen')" data-tooltip="Toggle deck list" data-position="left middle">
-      close
-    </span>
+    <span :class="['button', 'button-toggle', { 'left': closed }]" @click="$store.dispatch('toggleProperty', 'drawerOpen')" data-tooltip="Toggle deck list" data-position="left middle"></span>
     <deck-list />
     <div class="btn-group">
       <download-button />
@@ -55,9 +53,17 @@
     > .button-toggle {
       position: absolute;
       left: -25px;
-      top: 20px;
-      transform: rotate(90deg); 
+      top: 4px;
       cursor: pointer;
+      background: $blue;
+
+      &::after {
+        @include font-icon($icon-chevron-right);
+      }
+
+      &.left::after {
+        @include font-icon($icon-chevron-left);
+      }
     }
   }
 
@@ -78,6 +84,7 @@
       font-size: 1.8rem;
       cursor: pointer;
       margin-right: 10px;
+      height: 44px;
 
       &:hover {
         background: lighten($blue, 10%);

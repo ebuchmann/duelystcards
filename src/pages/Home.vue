@@ -69,7 +69,7 @@
   .left-column {
     position: relative;
     padding: 0 40px 0 $width-drawer-filter + 30px;
-    margin-top: 15px;
+    margin-top: 20px;
 
     @include breakpoint(lg) {
       width: calc(100% - #{$width-drawer-deck} - 20px);

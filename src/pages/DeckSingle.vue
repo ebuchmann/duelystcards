@@ -17,7 +17,6 @@
 
 <script>
   import DeckHeader from 'components/deckTracker/DeckHeader'
-  import FactionBarChart from 'components/deckTracker/FactionBarChart'
   import GauntletDeckContainer from 'components/gauntlet/GauntletDeckContainer'
   import VsChart from 'components/deckTracker/VsChart'
   import { mapActions, mapState } from 'vuex'
@@ -65,7 +64,6 @@
 
     components: {
       DeckHeader,
-      FactionBarChart,
       GauntletDeckContainer,
       VsChart,
     },

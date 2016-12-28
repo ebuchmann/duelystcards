@@ -8,7 +8,7 @@
     <import-deck-modal />
     <horizontal-deck />
     <imgur-modal />
-    <settings-modal />
+    <settings-modal v-if="$store.state.user.user" />
     <login-modal />
   </div>
 </template>

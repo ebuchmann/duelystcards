@@ -10,7 +10,7 @@
         <p>As you play ranked games in Duelyst the script will detect when a game is finished and send over the match data to our servers. If a matching deck exists the match will be tracked under that deck, otherwise a new deck will be created. Decks are unique, so even changing out one card will create a new deck so you can track if those recent changes are better than the deck was before.</p>
         <code>const DC_API_KEY = '{{ user.apiKey }}';
 $.getScript('https://duelyst.cards/public/dc_tracker.js');</code>
-        <small>If you need any help just come into our discord channel and we can help</small>
+        <small>If you need any help just come into our <a href="https://discord.gg/MJ9kYK9" target="_blank">discord channel</a> and we can help</small>
       </template>
     </div>
   </div>

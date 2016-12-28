@@ -45,7 +45,7 @@
   .text-search {
     flex: 1;
     position: fixed;
-    top: $height-site-header - 12px;
+    top: $height-site-header - 2px;
     z-index: $z-search;
     min-width: 400px;
     background: $blue-dark;

@@ -208,13 +208,12 @@ export const getGauntletStats = async ({ commit }, id) => {
 export const getDecks = async ({ commit }, username) => {
   const { data } = await api.get(`/decks/${username}`)
 
-  if (data) commit(types.SET_DECKS, data)
+  if (data) commit(types.SET_DECKS, { decks: data, username })
 }
 
 export const getDeck = async ({ commit, dispatch, state}, id) => {
   const { data } = await api.get(`/deck/${id}`)
   const stats = await api.get(`/deck/${id}/stats`)
-  console.log(stats.data)
 
   commit(types.SET_CURRENT_DECK_STATS, stats.data)
 
@@ -226,5 +225,14 @@ export const getDeck = async ({ commit, dispatch, state}, id) => {
     data.cards.forEach(card => {
       dispatch('selectCard', { card: state.cardList.cards.find(c => c.id === card), qty: 1 })
     })
+  }
+}
+
+export const removeDeck = async ({ commit }, id) => {
+  try {
+    await api.delete(`/deck/${id}`)
+    commit(types.REMOVE_DECK, id)
+  } catch (error) {
+    console.log('error!')
   }
 }

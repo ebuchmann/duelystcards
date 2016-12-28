@@ -3,6 +3,7 @@
     <router-link class="previous" :to="{ name: 'deck-overview', params: { username: $route.params.username } }">
       back to decks
     </router-link>
+    <deck-context-menu />
     <div class="sprite">
       <div :class="spriteClass"></div>
     </div>
@@ -11,6 +12,8 @@
 </template>
 
 <script>
+  import DeckContextMenu from 'components/deckTracker/DeckContextMenu'
+
   export default {
     props: ['deck'],
 
@@ -18,6 +21,10 @@
       spriteClass () {
         return `sprite general-lg general-sprite general-hex_${this.deck.generalId}-lg`
       },
+    },
+
+    components: {
+      DeckContextMenu,
     },
   }
 </script>

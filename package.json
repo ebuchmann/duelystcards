@@ -23,7 +23,7 @@
     "perfect-scrollbar": "^0.6.12",
     "raven-js": "^3.7.0",
     "validator": "^6.2.0",
-    "vue": "^2.0.3",
+    "vue": "^2.1.7",
     "vue-router": "^2.0.1",
     "vuex": "^2.0.0",
     "vuex-router-sync": "3.0.0"
@@ -50,7 +50,7 @@
     "style-loader": "^0.13.1",
     "susy": "^2.2.12",
     "vue-html-loader": "^1.2.3",
-    "vue-loader": "^9.5.1",
+    "vue-loader": "^9.9.5",
     "vue-style-loader": "^1.0.0",
     "webpack": "^2.1.0-beta.25",
     "webpack-dev-server": "^2.1.0-beta.8"

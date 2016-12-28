@@ -1,6 +1,6 @@
 <template>
   <div class="deck-page container">
-    <template v-if="loading">
+    <template v-if="loading && lastUsername !== $route.params.username">
       LOADING
     </template>
     <template v-else>
@@ -27,6 +27,7 @@
     computed: {
       ...mapState({
         decks: ({ deckTracker }) => deckTracker.decks,
+        lastUsername: ({ deckTracker }) => deckTracker.lastUsername,
         user: ({ user }) => user.user,
       }),
     },
