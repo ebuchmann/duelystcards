@@ -1,7 +1,5 @@
 <template>
-  <div v-if="loading">
-    <h1>LOADING DATA</h1>
-  </div>
+  <loading-animation v-if="loading" />
   <div v-else class="gauntlet-page container">
     <div class="gauntlet-content">
       <div :class="['inner', background]">
@@ -16,6 +14,7 @@
 </template>
 
 <script>
+  import LoadingAnimation from 'components/common/LoadingAnimation'
   import DeckHeader from 'components/deckTracker/DeckHeader'
   import GauntletDeckContainer from 'components/gauntlet/GauntletDeckContainer'
   import VsChart from 'components/deckTracker/VsChart'
@@ -63,6 +62,7 @@
     },
 
     components: {
+      LoadingAnimation,
       DeckHeader,
       GauntletDeckContainer,
       VsChart,

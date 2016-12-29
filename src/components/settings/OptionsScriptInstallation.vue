@@ -27,12 +27,12 @@
         <li>Save the file and run the client, if it's successful you should start seeing in game notifications about connecting to duelystcards.com</li>
       </ol>
     </div>
-    <code>const DC_API_KEY = '{{ user.apiKey }}';
-$.getScript('https://duelyst.cards/public/dc_tracker.js');</code>
+    <api-code />
   </div>
 </template>
 
 <script>
+  import ApiCode from 'components/common/ApiCode'
   import { mapActions, mapState } from 'vuex'
 
   export default {
@@ -47,6 +47,10 @@ $.getScript('https://duelyst.cards/public/dc_tracker.js');</code>
         user: ({ user }) => user.user,
       }),
     },
+
+    components: {
+      ApiCode,
+    },
   }
 </script>
 
@@ -54,14 +58,6 @@ $.getScript('https://duelyst.cards/public/dc_tracker.js');</code>
   @import '../../css/includes';
 
   .options-script-installation {
-    code {
-      background: $light;
-      color: $dark;
-      padding: 10px;
-      white-space: pre;
-      display: block;
-    }
-
     .tabs {
       cursor: pointer;
       margin-bottom: 10px;

@@ -1,8 +1,6 @@
 <template>
   <div class="deck-page container">
-    <template v-if="loading && lastUsername !== $route.params.username">
-      LOADING
-    </template>
+    <loading-animation v-if="loading && lastUsername !== $route.params.username" />
     <template v-else>
       <div class="deck-card-wrapper" v-if="decks.length">
         <deck-card v-for="deck in decks" :deck="deck" />
@@ -14,6 +12,7 @@
 
 <script>
   import { mapActions, mapState } from 'vuex'
+  import LoadingAnimation from 'components/common/LoadingAnimation'
   import DeckCard from 'components/deckTracker/DeckCard'
   import NoDecks from 'components/deckTracker/NoDecks'
 
@@ -53,6 +52,7 @@
     },
 
     components: {
+      LoadingAnimation,
       DeckCard,
       NoDecks,
     },

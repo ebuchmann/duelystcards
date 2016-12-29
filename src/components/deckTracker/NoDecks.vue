@@ -8,8 +8,7 @@
       <template v-if="user && user.username === username">
         <p>To begin automatically tracking decks you have to add this script to your game file. Your API key is unique to your account and is used to keep data associated with your account.</p>
         <p>As you play ranked games in Duelyst the script will detect when a game is finished and send over the match data to our servers. If a matching deck exists the match will be tracked under that deck, otherwise a new deck will be created. Decks are unique, so even changing out one card will create a new deck so you can track if those recent changes are better than the deck was before.</p>
-        <code>const DC_API_KEY = '{{ user.apiKey }}';
-$.getScript('https://duelyst.cards/public/dc_tracker.js');</code>
+        <api-code />
         <small>If you need any help just come into our <a href="https://discord.gg/MJ9kYK9" target="_blank">discord channel</a> and we can help</small>
       </template>
     </div>
@@ -17,6 +16,7 @@ $.getScript('https://duelyst.cards/public/dc_tracker.js');</code>
 </template>
 
 <script>
+  import ApiCode from 'components/common/ApiCode'
   import { mapState } from 'vuex'
 
   export default {
@@ -25,7 +25,11 @@ $.getScript('https://duelyst.cards/public/dc_tracker.js');</code>
         user: ({ user }) => user.user,
         username: ({ route }) => route.params.username,
       })
-    }
+    },
+
+    components: {
+      ApiCode,
+    },
   }
 </script>
 
