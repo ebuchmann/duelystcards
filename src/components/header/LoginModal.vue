@@ -7,7 +7,7 @@
           <template v-else>Sign up</template>
         </h2>
 
-        <div v-if="errorMsg.length > 0">{{ errorMsg }}</div>
+        <div :class="['msg', `msg-${msgType}`]" v-if="msg.length > 0">{{ msg }}</div>
 
         <label class="label">Username</label>
         <input :class="['input', { error: !validate.username}]" v-model="username" ref="username" />
@@ -51,7 +51,8 @@
         username: '',
         password: '',
         email: '',
-        errorMsg: '',
+        msg: '',
+        msgType: 'success',
         showLogin: true,
         waiting: false,
         validate: {
@@ -102,7 +103,8 @@
           this.closeModal()
         } catch (error) {
           this.waiting = false
-          this.errorMsg = error.message
+          this.msg = error.message
+          this.msgType = 'error'
         }
       },
 
@@ -114,10 +116,12 @@
         try {
           this.waiting = true
           await this.createAccount({ username: this.username, password: this.password, email: this.email })
-          this.resetForm()
+          this.resetForm();
+          this.msg = 'Account created. Please sign in.';
         } catch (error) {
-          this.waiting = false
-          this.errorMsg = error.message
+          this.waiting = false;
+          this.msg = error.message;
+          this.msgType = 'error';
         }
       },
 
@@ -125,7 +129,8 @@
         this.validate.username = true;
         this.validate.password = true;
         this.validate.email = true;
-        this.errorMsg = '';
+        this.msg = '';
+        this.msgType = 'success';
 
         if (this.username.length === 0) this.validate.username = false;
         if (this.password.length < 8) this.validate.password = false;
@@ -160,6 +165,21 @@
       padding: 15px 15px 0;
       display: flex;
       flex-direction: column;
+
+      > .msg {
+        border-width: 2px;
+        border-style: solid;
+        padding: 10px;
+        margin-bottom: 10px;
+
+        &-error {
+          border-color: $color-red;
+        }
+
+        &-success{
+          border-color: $color-green;
+        }
+      }
 
       > .title {
         text-align: center;

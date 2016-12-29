@@ -1,18 +1,20 @@
 <template>
-  <dropdown-wrapper class="deck-context-menu">
-    <div class="menu">Menu</div>
+  <dropdown-wrapper v-if="canRemove" class="deck-context-menu">
+    <div class="menu icon-settings"></div>
     <ul class="options">
-      <li class="item" @click="handleRemoveDeck">Remove deck</li>
+      <li v-if="canRemove" class="item" @click="handleRemoveDeck">Remove deck</li>
     </ul>
   </dropdown-wrapper>
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex'
+  import { mapActions, mapGetters, mapState } from 'vuex'
   import DropdownWrapper from 'components/DropdownWrapper'
 
   export default {
     computed: {
+      ...mapGetters(['currentFaction']),
+
       ...mapState({
         deck: ({ deckTracker }) => deckTracker.currentDeck,
         user: ({ user }) => user.user,
@@ -29,9 +31,13 @@
       ...mapActions(['removeDeck']),
 
       async handleRemoveDeck() {
-        await this.removeDeck(this.deck._id);
-        this.$router.push({ name: 'deck-overview', params: { username: this.$store.state.route.params.username} })
-      }
+        try {
+          await this.removeDeck(this.deck._id);
+          this.$router.push({ name: 'deck-overview', params: { username: this.$store.state.route.params.username} })
+        } catch (error) {
+
+        }
+      },
     },
 
     components: {
@@ -45,8 +51,23 @@
 
   .deck-context-menu {
     position: absolute;
-    right: 0;
+    right: 20px;
     top: 0;
+
+    &:focus > .menu {
+      background: none;
+      color: $blue-light;
+    }
+
+    > .menu {
+      color: darken($light, 20%);
+      font-size: 1.8rem;
+
+      &:hover, &:focus {
+        background: none;
+        color: $blue-light;
+      }
+    }
 
     .options {
       right: 0;

@@ -38,19 +38,23 @@ if (window.innerWidth < 960) {
 }
 
 (async () => {
-  const { data } = await api.get('/get-account')
-  if (data) store.commit('SET_USER', data.user)
+  try {
+    const { data } = await api.get('/get-account')
+    if (data) store.commit('SET_USER', data.user)
+  } catch (error) {
+    // Don't care about a 403 response
+  }
+
+  // Initializes Vue
+  new Vue({
+    router,
+    store,
+    render: h => h(App),
+  }).$mount('#app')
+
+  new Tooltip({
+    theme: 'dark',
+    delay: 25,
+    distance: 5
+  })
 })()
-
-// Initializes Vue
-new Vue({
-  router,
-  store,
-  render: h => h(App),
-}).$mount('#app')
-
-new Tooltip({
-  theme: 'dark',
-  delay: 25,
-  distance: 5
-});

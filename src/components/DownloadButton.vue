@@ -16,10 +16,6 @@
 
   export default {
     computed: {
-      ...mapState({
-        imgurLink: ({ app }) => app.imgurLink,
-        imgurHash: ({ app }) => app.imgurHash,
-      }),
       ...mapGetters(['currentFaction'])
     },
 

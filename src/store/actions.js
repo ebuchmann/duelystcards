@@ -211,7 +211,7 @@ export const getDecks = async ({ commit }, username) => {
   if (data) commit(types.SET_DECKS, { decks: data, username })
 }
 
-export const getDeck = async ({ commit, dispatch, state}, id) => {
+export const getDeck = async ({ commit, dispatch, state }, id) => {
   const { data } = await api.get(`/deck/${id}`)
   const stats = await api.get(`/deck/${id}/stats`)
 
@@ -233,6 +233,6 @@ export const removeDeck = async ({ commit }, id) => {
     await api.delete(`/deck/${id}`)
     commit(types.REMOVE_DECK, id)
   } catch (error) {
-    console.log('error!')
+    throw new Error('Cant remove')
   }
 }
