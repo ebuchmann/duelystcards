@@ -6,6 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const nodeEnv = process.env.NODE_ENV || 'development'
 const isProd = nodeEnv === 'production'
+const isDev = !isProd
 
 console.log(process.env.NODE_ENV)
 
@@ -30,13 +31,24 @@ module.exports = {
     },
   },
   module: {
-    loaders: [
+    rules: [
       { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
       { test: /\.scss$/, loader: 'style!css!sass' },
-      { test: /\.vue$/, loader: 'vue' },
       { test: /\.json$/, loader: 'json' },
       { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file?name=fonts/[hash].[ext]' },
       { test: /\.(jpg|jpeg|png|gif)$/, loader: 'file?name=images/[hash].[ext]' },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: isProd ? {
+          loaders: {
+            sass: ExtractTextPlugin.extract({
+              loader: 'css-loader!sass-loader',
+              fallbackLoader: 'vue-style-loader',
+            }),
+          },
+        } : {},
+      },
     ],
   },
   plugins: getPlugins(),
@@ -54,9 +66,13 @@ function getPlugins () {
         template: path.join(__dirname, 'src', 'index.html'),
       })
     )
+
+    plugins.push(
+      new ExtractTextPlugin('styles.[hash].css')
+    )
   }
 
-  if (!isProd) {
+  if (isDev) {
 
   }
 
