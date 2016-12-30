@@ -41,6 +41,11 @@ button {
   border: none;
   padding: 8px;
   color: $light;
+  cursor: pointer;
+
+  &:hover {
+    background: lighten($blue, 10%);
+  }
 
   &:active, &:focus {
     outline: none;

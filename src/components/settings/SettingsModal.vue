@@ -4,7 +4,6 @@
       <div class="left">
         <h4 class="heading">Settings</h4>
         <ul class="links">
-          <li :class="['link', { 'active': tab === 'account'}]" @click="tab = 'account'">Account</li>
           <li :class="['link', { 'active': tab === 'api'}]" @click="tab = 'api'">API Key</li>
           <li :class="['link', { 'active': tab === 'script'}]" @click="tab = 'script'">Script Installation</li>
         </ul>
@@ -26,7 +25,7 @@
   export default {
     data() {
       return {
-        tab: 'account',
+        tab: 'api',
       };
     },
 
