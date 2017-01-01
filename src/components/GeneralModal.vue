@@ -53,5 +53,6 @@
     border: .2rem solid #000;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     position: relative;
+    display: flex;
   }
 </style>

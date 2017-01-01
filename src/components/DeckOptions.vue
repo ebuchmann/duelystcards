@@ -1,7 +1,10 @@
 <template>
-    <button :class="['option', 'button', { 'active': divideDeck }]" @click="toggleDivideDeck()">
-      <i class="icon icon-divide-list" data-tooltip="Toggle deck divider" data-position="center top"></i>
-    </button>
+    <div>
+      <button :class="['option', 'button', { 'active': divideDeck }]" @click="toggleDivideDeck()">
+        <i class="icon icon-divide-list" data-tooltip="Toggle deck divider" data-position="center top"></i>
+      </button>
+      <button @click="toggleProperty('deckSideboard')" data-tooltip="Tournament sideboard" data-position="center top">Sideboard</button>
+    </div>
 </template>
 
 <script>

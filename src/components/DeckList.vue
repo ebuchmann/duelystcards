@@ -4,14 +4,20 @@
     <deck-counts />
     <deck-general />
     <div ref="scroll" class="cards">
-      <template v-if="divideDeck">
-        <deck-divider :type="currentFaction" :cards="factionCards" />
-        <deck-card v-for="card in factionCards" :card="card"></deck-card>
-        <deck-divider type="Neutral" :cards="neutralCards" />
-        <deck-card v-for="card in neutralCards" :card="card"></deck-card>
+      <template v-if="deckSideboard">
+        <deck-divider type="Sideboard" :cards="sideboardList" />
+        <deck-card v-for="card in sideboardList" :card="card"/>
       </template>
       <template v-else>
-        <deck-card v-for="card in cardList" :card="card"></deck-card>
+        <template v-if="divideDeck">
+          <deck-divider :type="currentFaction" :cards="factionCards" />
+          <deck-card v-for="card in factionCards" :card="card" />
+          <deck-divider type="Neutral" :cards="neutralCards" />
+          <deck-card v-for="card in neutralCards" :card="card" />
+        </template>
+        <template v-else>
+          <deck-card v-for="card in cardList" :card="card" />
+        </template>
       </template>
     </div>
     <div class="vertical-short-url">
@@ -41,10 +47,14 @@
       cardList () {
         return sortBy(this.$store.state.deck.cards, ['cost', 'name'])
       },
+      sideboardList () {
+        return sortBy(this.$store.state.deck.sideboard, ['cost', 'name'])
+      },
       ...mapState({
         saving: ({ app }) => app.savingDeck,
         divideDeck: ({ app }) => app.divideDeck,
         shortUrl: ({ app }) => app.shortUrl,
+        deckSideboard: ({ app }) => app.deckSideboard,
       }),
       ...mapGetters(['currentFaction']),
 

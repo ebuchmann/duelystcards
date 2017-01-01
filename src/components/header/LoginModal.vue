@@ -1,5 +1,5 @@
 <template>
-  <general-modal :show="modal" width="600px" :close="closeModal">
+  <general-modal :show="modal" :close="closeModal">
     <form class="login-modal" @submit.prevent="handleSubmit">
       <div class="login-left">
         <h2 class="title">

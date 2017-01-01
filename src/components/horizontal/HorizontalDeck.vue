@@ -1,5 +1,5 @@
 <template>
-  <general-modal :show="modal" width="800px">
+  <general-modal :show="modal" class="horizontal-deck-modal">
     <div class="horizontal-deck">
       <div class="horizontal-top">
         <div class="horizontal-general">
@@ -13,10 +13,10 @@
         </div>
       </div>
       <div class="sprite-row">
-        <horizontal-spells />
-        <horizontal-artifacts />
+        <horizontal-spells :cards="deckSpells" />
+        <horizontal-artifacts :cards="deckArtifacts" />
       </div>
-      <horizontal-minions />
+      <horizontal-minions :cards="deckMinions" />
       <div class="horizontal-cards">
         <div class="section-header">Spells &amp; Artifacts</div>
         <div class="section-header">Minions</div>
@@ -33,6 +33,7 @@
         {{ url }}
       </div>
     </div>
+    <horizontal-sidebar v-if="hasSideboard" />
   </general-modal>
 </template>
 
@@ -45,6 +46,7 @@
   import HorizontalSpells from 'components/horizontal/HorizontalSpells'
   import HorizontalArtifacts from 'components/horizontal/HorizontalArtifacts'
   import HorizontalMinions from 'components/horizontal/HorizontalMinions'
+  import HorizontalSidebar from 'components/horizontal/HorizontalSidebar'
   import sortBy from 'lodash.sortby'
   import { mapState } from 'vuex'
 
@@ -69,6 +71,22 @@
 
       url () {
         if (this.shortUrl.length) return this.shortUrl.substr(2)
+      },
+
+      deckSpells () {
+        return sortBy(this.$store.state.deck.cards, ['cost', 'name']).filter(card => card.type === 'spell')
+      },
+
+      deckArtifacts () {
+        return sortBy(this.$store.state.deck.cards, ['cost', 'name']).filter(card => card.type === 'artifact')
+      },
+
+      deckMinions () {
+        return sortBy(this.$store.state.deck.cards, ['cost', 'name']).filter(card => card.type === 'minion')
+      },
+
+      hasSideboard () {
+        return !!this.$store.state.deck.sideboard.length
       }
     },
 
@@ -81,6 +99,7 @@
       HorizontalSpells,
       HorizontalArtifacts,
       HorizontalMinions,
+      HorizontalSidebar,
     },
   }
 </script>
@@ -88,9 +107,12 @@
 <style lang="sass">
   @import '../../css/includes';
 
-  .horizontal-deck {
+  .horizontal-deck-modal .modal-wrapper .modal-container {
     background: $blue-dark;
     padding: 5px;
+  }
+
+  .horizontal-deck {
   }
 
   .horizontal-top {

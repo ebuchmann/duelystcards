@@ -1,6 +1,6 @@
 <template>
   <div class="horizontal-minions">
-    <template v-for="card in minions">
+    <template v-for="card in cards">
       <div class="sprite-container">
         <div :class="getClass(card)">
           <span class="qty">x{{ card.qty }}</span>
@@ -14,11 +14,7 @@
   import sortBy from 'lodash.sortby'
 
   export default {
-    computed: {
-      minions () {
-        return sortBy(this.$store.state.deck.cards, ['cost', 'name']).filter(card => card.type === 'minion')
-      },
-    },
+    props: ['cards'],
 
     methods: {
       getClass (card) {

@@ -6,7 +6,7 @@ import credentials from '../../credentials'
 import { api, imgur } from '../api-config'
 
 function getImage (type) {
-  const element = type === 'horizontal' ? document.querySelector('.horizontal-deck') : document.querySelector('.deck-list')
+  const element = type === 'horizontal' ? document.querySelector('.horizontal-deck-modal .modal-wrapper .modal-container') : document.querySelector('.deck-list')
   const options = type === 'horizontal' ? {} : { width: element.offsetWidth + 40, bgcolor: '#0b1c27', style: { padding: '40px 20px 20px 20px' } }
   return domtoimage.toBlob(element, options)
 }

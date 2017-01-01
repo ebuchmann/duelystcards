@@ -81,10 +81,10 @@
     > .button {
       background: $blue;
       padding: 6px;
-      font-size: 1.8rem;
+      font-size: 1.2rem;
       cursor: pointer;
       margin-right: 10px;
-      height: 44px;
+      height: 37px;
 
       &:hover {
         background: lighten($blue, 10%);

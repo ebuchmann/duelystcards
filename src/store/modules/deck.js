@@ -7,11 +7,16 @@ import {
   DECREMENT_CARD,
   CLEAR_DECK,
   SET_FACTION,
+  SELECT_CARD_SIDEBOARD,
+  INCREMENT_CARD_SIDEBOARD,
+  REMOVE_CARD_SIDEBOARD,
+  DECREMENT_CARD_SIDEBOARD,
 } from '../mutation-types'
 
 const state = {
   general: null,
   cards: [],
+  sideboard: [],
   totalCards: 0,
   spirit: 0,
   faction: '',
@@ -65,6 +70,23 @@ const mutations = {
     state.cards = []
     state.totalCards = 0
     state.spirit = 0
+  },
+
+  [SELECT_CARD_SIDEBOARD] (state, { card, qty }) {
+    Vue.set(card, 'qty', qty)
+    state.sideboard.push(card)
+  },
+
+  [INCREMENT_CARD_SIDEBOARD] (state, index) {
+    state.sideboard[index].qty++
+  },
+
+  [REMOVE_CARD_SIDEBOARD] (state, index) {
+    state.sideboard.splice(index, 1)
+  },
+
+  [DECREMENT_CARD_SIDEBOARD] (state, index) {
+    state.sideboard[index].qty--
   }
 }
 

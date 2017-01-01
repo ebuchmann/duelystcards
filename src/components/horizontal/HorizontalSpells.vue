@@ -1,6 +1,6 @@
 <template>
   <div class="horizontal-spells">
-    <template v-for="card in spells">
+    <template v-for="card in cards">
       <div class="sprite-container">
         <div :class="getClass(card)">
           <div class="qty">x{{ card.qty }}</div>
@@ -14,11 +14,7 @@
   import sortBy from 'lodash.sortby'
 
   export default {
-    computed: {
-      spells () {
-        return sortBy(this.$store.state.deck.cards, ['cost', 'name']).filter(card => card.type === 'spell')
-      },
-    },
+    props: ['cards'],
 
     methods: {
       getClass (card) {

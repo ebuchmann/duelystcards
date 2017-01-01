@@ -10,7 +10,12 @@ export const selectGeneral = ({ commit, state }, general) => new Promise(resolve
   resolve()
 })
 
-export const selectCard = ({ commit, state }, { card, qty }) => {
+export const selectCard = ({ commit, dispatch, state }, { card, qty }) => {
+  if (state.app.deckSideboard) {
+    dispatch('selectCardSideboard', { card, qty })
+    return
+  }
+  console.log('selectCard')
   if (state.deck.totalCards >= 40) return
   if (!card) return
 
@@ -24,7 +29,11 @@ export const selectCard = ({ commit, state }, { card, qty }) => {
   }
 }
 
-export const removeCard = ({ commit, state }, card) => {
+export const removeCard = ({ commit, state, dispatch }, card) => {
+  if (state.app.deckSideboard) {
+    dispatch('removeCardSideboard', card)
+    return
+  }
   const cards = state.deck.cards
   const matchingCard = cards.find(c => c.name === card.name)
 
@@ -33,6 +42,32 @@ export const removeCard = ({ commit, state }, card) => {
       commit(types.REMOVE_CARD, cards.indexOf(matchingCard))
     } else {
       commit(types.DECREMENT_CARD, cards.indexOf(matchingCard))
+    }
+  }
+}
+
+export const selectCardSideboard = ({ commit, state }, { card, qty }) => {
+  console.log('selectCardSideboard')
+  const sideboard = state.deck.sideboard
+  const matchingCard = sideboard.find(c => c.name === card.name)
+
+  if (matchingCard) {
+    if (matchingCard.qty < 3 && qty === 1) commit(types.INCREMENT_CARD_SIDEBOARD, sideboard.indexOf(matchingCard))
+  } else {
+    console.log(card)
+    commit(types.SELECT_CARD_SIDEBOARD, { card: Object.assign({}, card), qty })
+  }
+}
+
+export const removeCardSideboard = ({ commit, state }, card) => {
+  const sideboard = state.deck.sideboard
+  const matchingCard = sideboard.find(c => c.name === card.name)
+
+  if (matchingCard) {
+    if (matchingCard.qty === 1) {
+      commit(types.REMOVE_CARD_SIDEBOARD, sideboard.indexOf(matchingCard))
+    } else {
+      commit(types.DECREMENT_CARD_SIDEBOARD, sideboard.indexOf(matchingCard))
     }
   }
 }

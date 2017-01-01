@@ -12,6 +12,7 @@ const state = {
   divideDeck: true,
   settingsModal: false,
   loginModal: false,
+  deckSideboard: false,
 
   // data
   imgurLink: '',

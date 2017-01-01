@@ -1,5 +1,5 @@
 <template>
-  <general-modal :show="modal" width="500px" :close="closeModal">
+  <general-modal :show="modal" :close="closeModal">
     <div class="imgur-modal">
       <h2 class="title">Image ready</h2>
       <a class="link" :href="imgurLink" target="_blank">{{ imgurLink }}</a>
@@ -54,6 +54,7 @@
 
   .imgur-modal {
     text-align: center;
+    padding: 10px;
 
     > .title {
       padding-top: 15px;
