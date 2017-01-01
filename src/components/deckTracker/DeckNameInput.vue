@@ -1,7 +1,7 @@
 <template>
   <div class="deck-name-input">
     <template v-if="editing">
-      <input ref="input" class="input" v-if="editing" v-model="newName" @blur="handleUpdate" />
+      <input ref="input" class="input" v-if="editing" v-model="newName" @keypress.enter="handleUpdate" @blur="handleUpdate" />
     </template>
     <template v-else>
       <p v-if="deck.name && deck.name.length" class="text" @click="handleEditing">{{ deck.name }}</p>
