@@ -164,7 +164,7 @@ export const createAccount = async ({ commit }, payload) => {
   }
 }
 
-export const resetApiKey = async ({ commit }, payload) => {
+export const resetApiKey = async ({ commit }) => {
   try {
     const { data } = await api.post('/users/reset-api-key')
     commit(types.SET_API_KEY, data)
@@ -234,5 +234,14 @@ export const removeDeck = async ({ commit }, id) => {
     commit(types.REMOVE_DECK, id)
   } catch (error) {
     throw new Error('Cant remove')
+  }
+}
+
+export const updateDeck = async ({ commit }, payload) => {
+  try {
+    const { data } = await api.patch(`/deck/${payload.id}`, payload.update)
+    commit(types.SET_CURRENT_DECK, data)
+  } catch (error) {
+    throw new Error('Problem updating')
   }
 }

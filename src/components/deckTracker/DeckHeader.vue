@@ -7,15 +7,24 @@
     <div class="sprite">
       <div :class="spriteClass"></div>
     </div>
+    <deck-name-input :deck="deck" />
     <div class="win-loss">Wins: {{ deck.wins }}, Losses: {{ deck.losses }}</div>
   </div>
 </template>
 
 <script>
   import DeckContextMenu from 'components/deckTracker/DeckContextMenu'
+  import DeckNameInput from 'components/deckTracker/DeckNameInput'
 
   export default {
     props: ['deck'],
+
+    data() {
+      return {
+        name: this.deck.name || '',
+        disabled: false,
+      };
+    },
 
     computed: {
       spriteClass () {
@@ -25,6 +34,7 @@
 
     components: {
       DeckContextMenu,
+      DeckNameInput,
     },
   }
 </script>
@@ -54,28 +64,12 @@
 
     > .win-loss {
       text-align: center;
-      font-size: 3rem;
+      font-size: 2rem;
     }
 
-    > .status {
-      position: absolute;
-      top: 0;
-      right: 0;
-
-      > .circle {
-        border-radius: 50%;
-        width: 10px;
-        height: 10px;
-        display: inline-block;
-      }
-
-      > .active {
-        background: $color-red;
-      }
-
-      > .complete {
-        background: $color-green;
-      }
+    > .name {
+      font-size: 3rem;
+      text-align: center;
     }
   }
 </style>
