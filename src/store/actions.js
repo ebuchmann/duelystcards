@@ -15,7 +15,6 @@ export const selectCard = ({ commit, dispatch, state }, { card, qty }) => {
     dispatch('selectCardSideboard', { card, qty })
     return
   }
-  console.log('selectCard')
   if (state.deck.totalCards >= 40) return
   if (!card) return
 

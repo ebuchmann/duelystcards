@@ -1,8 +1,8 @@
 <template>
-  <dropdown-wrapper v-if="canRemove" class="deck-context-menu">
+  <dropdown-wrapper v-if="canEditDeck" class="deck-context-menu">
     <div class="menu icon-settings"></div>
     <ul class="options">
-      <li v-if="canRemove" class="item" @click="handleRemoveDeck">Remove deck</li>
+      <li v-if="canEditDeck" class="item" @click="handleRemoveDeck">Remove deck</li>
     </ul>
   </dropdown-wrapper>
 </template>
@@ -13,18 +13,12 @@
 
   export default {
     computed: {
-      ...mapGetters(['currentFaction']),
+      ...mapGetters(['currentFaction', 'canEditDeck']),
 
       ...mapState({
         deck: ({ deckTracker }) => deckTracker.currentDeck,
         user: ({ user }) => user.user,
       }),
-
-      canRemove () {
-        if (this.user) return this.deck.user_id === this.user._id
-
-        return false
-      },
     },
 
     methods: {

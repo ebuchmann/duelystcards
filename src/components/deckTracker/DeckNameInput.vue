@@ -4,14 +4,14 @@
       <input ref="input" class="input" v-if="editing" v-model="newName" @keypress.enter="handleUpdate" @blur="handleUpdate" />
     </template>
     <template v-else>
-      <p v-if="deck.name && deck.name.length" class="text" @click="handleEditing">{{ deck.name }}</p>
-      <p v-else class="empty" @click="handleEditing">Deck name</p>
+      <p v-if="deck.name && deck.name.length" :class="['text', { 'editable': canEditDeck }]" @click="handleEditing">{{ deck.name }}</p>
+      <p v-else :class="['empty', { 'editable': canEditDeck }]" @click="handleEditing">Deck name</p>
     </template>
   </div>
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
 
   export default {
     props: ['deck'],
@@ -23,11 +23,16 @@
         disabled: false,
       };
     },
+    
+    computed: {
+      ...mapGetters(['canEditDeck']),
+    },
 
     methods: {
       ...mapActions(['updateDeck']),
 
       handleEditing() {
+        if (!this.canEditDeck) return
         this.editing = true
         this.$nextTick(() => {
           this.$refs.input.focus()
@@ -72,7 +77,10 @@
       text-align: center;
       margin: 1px 0;
       border-bottom: 1px solid transparent;
-      cursor: pointer;
+
+      &.editable {
+        cursor: pointer;
+      }
     }
 
     > .empty {
@@ -80,13 +88,17 @@
       text-align: center;
       margin: 1px 0;
       opacity: .5;
-      cursor: pointer;
-      border-bottom: 1px solid transparent;
 
-      &:hover {
-        opacity: .7;
-        border-bottom: 1px solid lighten($blue-dark, 10%);
+      &.editable {
+        cursor: pointer;
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+          opacity: .7;
+          border-bottom: 1px solid lighten($blue-dark, 10%);
+        }
       }
+
     }
   }
 

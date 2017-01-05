@@ -46,3 +46,7 @@ export const searchText = ({ cardList }) => cardList.textSearch
 export const hasActiveFilters = ({ cardList }) => cardList.typeSelect.length || cardList.raritySelect.length || cardList.factionSelect.length || cardList.manaSelect.length || cardList.tribeSelect.length
 
 export const currentFaction = ({ deck }) => deck.general ? deck.general.faction : null
+
+export const canEditDeck = ({ user, deckTracker}) => {
+  if (user.user && deckTracker.currentDeck) return (user.user._id === deckTracker.currentDeck.user_id)
+}

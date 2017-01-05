@@ -48,6 +48,7 @@
     },
 
     beforeRouteLeave (to, from, next) {
+      this.$store.dispatch('toggleProperty', 'deckSideboard');
       this.$store.dispatch('clearDeck');
       this.$store.dispatch('resetFilters');
       next();
