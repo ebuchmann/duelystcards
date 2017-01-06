@@ -3,8 +3,8 @@
     <div :class="['menu', { 'active': filter.length }]"><i class="icon icon-set"></i></div>
     <span class="tool-tip-right">Faction</span>
     <ul class="options">
-      <li :class="['option', { 'selected': filter.includes('neutral') }]" @click="factionSelect('neutral')">Neutral</li>
-      <li :class="['option', { 'selected': filter.includes(currentFaction) }]" @click="factionSelect(currentFaction)">{{ currentFaction | capitalize }}</li>
+      <li :class="['option', { 'selected': filter.includes('neutral') }]" @click="toggleFilter({ type: 'factionSelect', value: 'neutral' })">Neutral</li>
+      <li :class="['option', { 'selected': filter.includes(currentFaction) }]" @click="toggleFilter({ type: 'factionSelect', value: currentFaction })">{{ currentFaction | capitalize }}</li>
     </ul>
   </dropdown-wrapper>
 </template>
@@ -23,7 +23,7 @@
     },
 
     methods: {
-      ...mapActions('cardList', ['factionSelect'])
+      ...mapActions('cardList', ['toggleFilter'])
     },
 
     components: {

@@ -52,7 +52,7 @@
     }
 
     + .options {
-      top: 48px;
+      top: 48px !important;
       right: 0;
       width: 140px;
       margin: 0;

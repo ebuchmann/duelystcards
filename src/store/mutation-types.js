@@ -14,11 +14,7 @@ export const DECREMENT_CARD_SIDEBOARD = 'DECREMENT_CARD_SIDEBOARD'
 // cardList
 export const SET_CARDS = 'SET_CARDS'
 export const TEXT_SEARCH = 'TEXT_SEARCH'
-export const SELECT_TYPE = 'SELECT_TYPE'
-export const SELECT_RARITY = 'SELECT_RARITY'
-export const SELECT_FACTION = 'SELECT_FACTION'
-export const SELECT_MANA = 'SELECT_MANA'
-export const SELECT_TRIBE = 'SELECT_TRIBE'
+export const SET_FILTERS = 'SET_FILTERS'
 
 // app
 export const SET_PROPERTY = 'SET_PROPERTY'

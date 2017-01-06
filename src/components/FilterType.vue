@@ -3,10 +3,10 @@
     <div :class="['menu', { 'active': filter.length }]"><i class="icon icon-type"></i></div>
     <span class="tool-tip-right">Type</span>
     <ul class="options">
-      <li :class="['option', { 'selected': filter.includes('artifact')}]" @click="typeSelect('artifact')">Artifact</li>
-      <li :class="['option', { 'selected': filter.includes('minion')}]" @click="typeSelect('minion')">Minion</li>
-      <li :class="['option', { 'selected': filter.includes('spell')}]" @click="typeSelect('spell')">Spell</li>
-      <li :class="['option', { 'selected': filter.includes('general')}]" @click="typeSelect('general')">General</li>
+      <li :class="['option', { 'selected': filter.includes('artifact')}]" @click="toggleFilter({ type: 'typeSelect', value: 'artifact' })">Artifact</li>
+      <li :class="['option', { 'selected': filter.includes('minion')}]" @click="toggleFilter({ type: 'typeSelect', value: 'minion' })">Minion</li>
+      <li :class="['option', { 'selected': filter.includes('spell')}]" @click="toggleFilter({ type: 'typeSelect', value: 'spell' })">Spell</li>
+      <li :class="['option', { 'selected': filter.includes('general')}]" @click="toggleFilter({ type: 'typeSelect', value: 'general' })">General</li>
     </ul>
   </dropdown-wrapper>
 </template>
@@ -23,7 +23,7 @@
     },
 
     methods: {
-      ...mapActions('cardList', ['typeSelect'])
+      ...mapActions('cardList', ['toggleFilter'])
     },
 
     components: {

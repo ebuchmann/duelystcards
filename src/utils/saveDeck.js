@@ -1,8 +1,8 @@
-import domtoimage from 'dom-to-image'
-import { saveAs } from 'file-saver'
-import store from 'store/store'
-import credentials from '../../credentials'
-import { api, imgur } from '../api-config'
+import domtoimage from 'dom-to-image';
+import { saveAs } from 'file-saver';
+import store from 'store/store';
+import credentials from '../../credentials';
+import { api, imgur } from '../api-config';
 
 function getImage (type) {
   const element = type === 'horizontal' ? document.querySelector('.horizontal-deck-modal .modal-wrapper .modal-container') : document.querySelector('.deck-list')

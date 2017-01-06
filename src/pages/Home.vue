@@ -51,6 +51,7 @@
       this.$store.dispatch('app/toggleProperty', 'deckSideboard');
       this.$store.dispatch('deck/clearDeck');
       this.$store.dispatch('cardList/resetFilters');
+      this.$store.dispatch('app/setProperty', { property: 'deckSideboard', value: false });
       next();
     },
 

@@ -1,15 +1,14 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { router } from './router-config';
-import store from './store/store';
 import { sync } from 'vuex-router-sync';
-import App from './App';
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
-import credentials from '../credentials';
-import { loadStorage } from 'utils/localStorage';
-import { toggleProperty } from 'store/actions';
 import Tooltip from 'utils/tooltip';
+import { loadStorage } from 'utils/localStorage';
+import store from './store/store';
+import App from './App';
+import credentials from '../credentials';
+import { router } from './router-config';
 import { api } from './api-config';
 
 Vue.use(VueRouter);
@@ -34,7 +33,7 @@ loadStorage();
 
 // Hide deck list if this page is loaded on a smaller device
 if (window.innerWidth < 960) {
-  toggleProperty(store, 'drawerOpen');
+  store.dispatch('app/toggleProperty', 'drawerOpen');
 }
 
 (async () => {
@@ -52,7 +51,7 @@ if (window.innerWidth < 960) {
     render: h => h(App),
   }).$mount('#app');
 
-  new Tooltip({
+  new Tooltip({ // eslint-disable-line
     theme: 'dark',
     delay: 25,
     distance: 5,
