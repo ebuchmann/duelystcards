@@ -24,19 +24,21 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.vue', '.scss'],
     alias: {
-      'components': path.resolve(__dirname, './src/components'),
-      'store': path.resolve(__dirname, './src/store'),
-      'pages': path.resolve(__dirname, './src/pages'),
-      'utils': path.resolve(__dirname, './src/utils'),
+      components: path.resolve(__dirname, './src/components'),
+      comp: path.resolve(__dirname, './src/components'),
+      store: path.resolve(__dirname, './src/store'),
+      pages: path.resolve(__dirname, './src/pages'),
+      utils: path.resolve(__dirname, './src/utils'),
+      base: path.resolve(__dirname, './src'),
     },
   },
   module: {
     rules: [
-      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
-      { test: /\.scss$/, loader: 'style!css!sass' },
-      { test: /\.json$/, loader: 'json' },
-      { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file?name=fonts/[hash].[ext]' },
-      { test: /\.(jpg|jpeg|png|gif)$/, loader: 'file?name=images/[hash].[ext]' },
+      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader' },
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file-loader?name=fonts/[hash].[ext]' },
+      { test: /\.(jpg|jpeg|png|gif)$/, loader: 'file-loader?name=images/[hash].[ext]' },
       {
         test: /\.vue$/,
         loader: 'vue-loader',

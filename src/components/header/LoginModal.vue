@@ -80,7 +80,8 @@
     },
 
     methods: {
-      ...mapActions(['toggleProperty', 'login', 'createAccount']),
+      ...mapActions('app', ['toggleProperty']),
+      ...mapActions('user', ['login', 'createAccount']),
 
       closeModal () {
         this.toggleProperty('loginModal')

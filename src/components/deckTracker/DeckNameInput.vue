@@ -25,11 +25,11 @@
     },
     
     computed: {
-      ...mapGetters(['canEditDeck']),
+      ...mapGetters('deckTracker', ['canEditDeck']),
     },
 
     methods: {
-      ...mapActions(['updateDeck']),
+      ...mapActions('deckTracker', ['updateDeck']),
 
       handleEditing() {
         if (!this.canEditDeck) return

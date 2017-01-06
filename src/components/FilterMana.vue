@@ -29,7 +29,7 @@
     },
 
     methods: {
-      ...mapActions(['manaSelect'])
+      ...mapActions('cardList', ['manaSelect'])
     },
 
     components: {

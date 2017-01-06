@@ -40,13 +40,13 @@
         this.timeout = setTimeout(() => {
           this.flash = false
         }, 200)
-        this.$store.dispatch('selectCard', { card, qty: 1 })
+        this.$store.dispatch('deck/selectCard', { card, qty: 1 })
         updateHash(this.$store.state.deck)
       },
 
       removeCard (card) {
         if (!this.isSelectable) return;
-        this.$store.dispatch('removeCard', card)
+        this.$store.dispatch('deck/removeCard', card)
         updateHash(this.$store.state.deck)
       }
     },

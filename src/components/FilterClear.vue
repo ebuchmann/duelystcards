@@ -11,11 +11,11 @@
 
   export default {
     computed: {
-      ...mapGetters(['hasActiveFilters']),
+      ...mapGetters('cardList', ['hasActiveFilters']),
     },
 
     methods: {
-      ...mapActions(['resetFilters'])
+      ...mapActions('cardList', ['resetFilters'])
     },
 
     components: {

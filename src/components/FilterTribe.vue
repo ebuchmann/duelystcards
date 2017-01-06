@@ -26,7 +26,7 @@
     },
 
     methods: {
-      ...mapActions(['tribeSelect'])
+      ...mapActions('cardList', ['tribeSelect'])
     },
 
     components: {

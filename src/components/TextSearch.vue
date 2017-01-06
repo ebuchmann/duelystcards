@@ -18,11 +18,11 @@
     },
 
     computed: {
-      ...mapGetters(['searchText']),
+      ...mapGetters('cardList', ['searchText']),
     },
 
     methods: {
-      ...mapActions(['textSearch']),
+      ...mapActions('cardList', ['textSearch']),
 
       handleSearch () {
         clearTimeout(this.debounce)

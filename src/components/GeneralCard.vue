@@ -47,7 +47,7 @@
         if (this.inDeck) return
 
         this.flashCard()
-        this.$store.dispatch('selectGeneral', card)
+        this.$store.dispatch('deck/selectGeneral', card)
         updateHash(this.$store.state.deck)
       },
 

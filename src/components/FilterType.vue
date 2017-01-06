@@ -23,7 +23,7 @@
     },
 
     methods: {
-      ...mapActions(['typeSelect'])
+      ...mapActions('cardList', ['typeSelect'])
     },
 
     components: {

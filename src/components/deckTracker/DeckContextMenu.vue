@@ -13,7 +13,8 @@
 
   export default {
     computed: {
-      ...mapGetters(['currentFaction', 'canEditDeck']),
+      ...mapGetters('deck', ['currentFaction']),
+      ...mapGetters('deckTracker', ['canEditDeck']),
 
       ...mapState({
         deck: ({ deckTracker }) => deckTracker.currentDeck,
@@ -22,7 +23,7 @@
     },
 
     methods: {
-      ...mapActions(['removeDeck']),
+      ...mapActions('deckTracker', ['removeDeck']),
 
       async handleRemoveDeck() {
         try {

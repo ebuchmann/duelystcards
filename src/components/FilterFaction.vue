@@ -19,11 +19,11 @@
         return this.$store.state.cardList.factionSelect
       },
 
-      ...mapGetters(['currentFaction']),
+      ...mapGetters('deck', ['currentFaction']),
     },
 
     methods: {
-      ...mapActions(['factionSelect'])
+      ...mapActions('cardList', ['factionSelect'])
     },
 
     components: {

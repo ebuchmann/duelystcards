@@ -23,7 +23,8 @@
     },
 
     methods: {
-      ...mapActions(['logout', 'toggleProperty'])
+      ...mapActions('user', ['logout']),
+      ...mapActions('app', ['toggleProperty']),
     },
 
     components: {

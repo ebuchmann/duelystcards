@@ -16,7 +16,7 @@
 
   export default {
     computed: {
-      ...mapGetters(['currentFaction'])
+      ...mapGetters('deck', ['currentFaction'])
     },
 
     methods: {

@@ -32,7 +32,7 @@
     },
 
     methods: {
-      ...mapActions(['getDecks']),
+      ...mapActions('deckTracker', ['getDecks']),
 
       async fetchData () {
         this.loading = true

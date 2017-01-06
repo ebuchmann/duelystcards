@@ -17,7 +17,7 @@
 
   export default {
     methods: {
-      ...mapActions(['toggleProperty']),
+      ...mapActions('app', ['toggleProperty']),
     },
 
     computed: {

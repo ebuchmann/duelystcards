@@ -51,7 +51,7 @@
         return Math.max.apply(Math, this.curve)
       },
 
-      ...mapGetters(['currentFaction']),
+      ...mapGetters('deck', ['currentFaction']),
     },
   }
 </script>

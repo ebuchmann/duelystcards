@@ -1,12 +1,12 @@
 <template>
   <div :class="['drawer-deck', { closed }]">
-    <span :class="['button', 'button-toggle', { 'left': closed }]" @click="$store.dispatch('toggleProperty', 'drawerOpen')" data-tooltip="Toggle deck list" data-position="left middle"></span>
+    <span :class="['button', 'button-toggle', { 'left': closed }]" @click="$store.dispatch('app/toggleProperty', 'drawerOpen')" data-tooltip="Toggle deck list" data-position="left middle"></span>
     <deck-list />
     <div class="btn-group">
       <download-button />
-      <span class="button" @click="$store.dispatch('toggleProperty', 'importDeck')"><i class="icon icon-upload" data-tooltip="Import deck" data-position="bottom left"></i></span>
+      <span class="button" @click="$store.dispatch('app/toggleProperty', 'importDeck')"><i class="icon icon-upload" data-tooltip="Import deck" data-position="bottom left"></i></span>
       <deck-options />
-      <button class="btn clear-deck" @click="$store.dispatch('resetAll')"><i class="icon icon-clear-deck"></i> Clear</button>
+      <button class="btn clear-deck" @click="$store.dispatch('cardList/resetAll')"><i class="icon icon-clear-deck"></i> Clear</button>
     </div>
   </div>
 </template>

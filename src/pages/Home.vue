@@ -28,29 +28,29 @@
 
       factionCards () {
         const general = this.$store.state.deck.general
-        if (general) return this.$store.getters.filteredCards.filter(card => card.faction === general.faction)
+        if (general) return this.$store.getters['deck/filteredCards'].filter(card => card.faction === general.faction)
       },
 
       neutralCards () {
         const general = this.$store.state.deck.general
-        if (general) return this.$store.getters.filteredCards.filter(card => card.faction === 'neutral')
+        if (general) return this.$store.getters['deck/filteredCards'].filter(card => card.faction === 'neutral')
       },
 
       closed () {
         return !this.$store.state.app.drawerOpen
       },
 
-      ...mapGetters(['visibleCards']),
+      ...mapGetters('deck', ['visibleCards']),
     },
 
     created() {
-      if (this.$store.state.route.hash) this.$store.dispatch('loadDeck', this.$store.state.route.hash.substr(1))
+      if (this.$store.state.route.hash) this.$store.dispatch('deck/loadDeck', this.$store.state.route.hash.substr(1))
     },
 
     beforeRouteLeave (to, from, next) {
-      this.$store.dispatch('toggleProperty', 'deckSideboard');
-      this.$store.dispatch('clearDeck');
-      this.$store.dispatch('resetFilters');
+      this.$store.dispatch('app/toggleProperty', 'deckSideboard');
+      this.$store.dispatch('deck/clearDeck');
+      this.$store.dispatch('cardList/resetFilters');
       next();
     },
 

@@ -52,7 +52,7 @@
 
         this.flashCard()
 
-        this.$store.dispatch('selectCard', { card, qty: 1 })
+        this.$store.dispatch('deck/selectCard', { card, qty: 1 })
         updateHash(this.$store.state.deck)
       },
 
@@ -60,7 +60,7 @@
         if (!this.inDeck) return
 
         this.flashDull()
-        this.$store.dispatch('removeCard', card)
+        this.$store.dispatch('deck/removeCard', card)
         updateHash(this.$store.state.deck)
       },
 

@@ -18,7 +18,6 @@
   import FilterMana from 'components/FilterMana'
   import FilterTribe from 'components/FilterTribe'
   import FilterClear from 'components/FilterClear'
-  import { mapActions, mapGetters } from 'vuex'
 
   export default {
     components: {

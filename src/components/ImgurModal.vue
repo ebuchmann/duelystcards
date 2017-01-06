@@ -30,7 +30,7 @@
     },
 
     methods: {
-      ...mapActions(['toggleProperty']),
+      ...mapActions('app', ['toggleProperty']),
 
       closeModal () {
         this.toggleProperty('imgurModal')

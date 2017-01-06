@@ -24,7 +24,7 @@
         setStorage('divideDeck', this.divideDeck)
       },
 
-      ...mapActions(['toggleProperty'])
+      ...mapActions('app', ['toggleProperty'])
     },
   }
 </script>

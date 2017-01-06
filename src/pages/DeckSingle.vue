@@ -39,7 +39,8 @@
     },
 
     methods: {
-      ...mapActions(['getDeck', 'resetAll']),
+      ...mapActions('deckTracker', ['getDeck']),
+      ...mapActions('cardList', ['resetAll']),
 
       async fetchData () {
         if (this.deck && this.deck._id === this.$route.params.id) this.loading = false

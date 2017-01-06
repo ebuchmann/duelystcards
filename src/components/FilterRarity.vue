@@ -24,7 +24,7 @@
     },
 
     methods: {
-      ...mapActions(['raritySelect'])
+      ...mapActions('cardList', ['raritySelect'])
     },
 
     components: {

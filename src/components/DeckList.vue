@@ -56,7 +56,7 @@
         shortUrl: ({ app }) => app.shortUrl,
         deckSideboard: ({ app }) => app.deckSideboard,
       }),
-      ...mapGetters(['currentFaction']),
+      ...mapGetters('deck', ['currentFaction']),
 
       url () {
         if (this.shortUrl.length) return this.shortUrl.substr(2)

@@ -12,7 +12,6 @@
 </template>
 
 <script>
-  import bus from '../bus'
   import GeneralModal from 'components/GeneralModal'
   import { mapState, mapActions } from 'vuex'
 
@@ -24,7 +23,7 @@
     },
 
     computed: {
-      ...mapState({ modal: state => state.app.importDeck }),
+      ...mapState({ modal: ({ app }) => app.importDeck }),
     },
 
     watch: {
@@ -38,7 +37,7 @@
     },
 
     methods: {
-      ...mapActions(['toggleProperty']),
+      ...mapActions('app', ['toggleProperty']),
 
       closeModal () {
         this.toggleProperty('importDeck')
@@ -54,8 +53,8 @@
 
           const hash = url.split(/(#|build=|deckList=)/).pop()
 
-          await this.$store.dispatch('clearDeck')
-          const faction = await this.$store.dispatch('loadDeck', hash)
+          await this.$store.dispatch('deck/clearDeck')
+          const faction = await this.$store.dispatch('deck/loadDeck', hash)
 
           this.$router.push({ path: `/#${hash}`} )
           this.closeModal()

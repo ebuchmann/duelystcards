@@ -20,7 +20,7 @@
     },
 
     methods: {
-      ...mapActions(['resetApiKey'])
+      ...mapActions('user', ['resetApiKey'])
     },
 
     components: {

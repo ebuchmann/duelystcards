@@ -9,7 +9,7 @@
 
   export default {
     methods: {
-      ...mapActions(['toggleProperty']),
+      ...mapActions('app', ['toggleProperty']),
 
       showSignin() {
         this.toggleProperty('loginModal')

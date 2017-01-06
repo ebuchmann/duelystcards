@@ -40,7 +40,7 @@
         return this.$store.state.deck.spirit
       },
 
-      ...mapGetters(['currentFaction']),
+      ...mapGetters('deck', ['currentFaction']),
     },
   }
 </script>

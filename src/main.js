@@ -1,46 +1,46 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import { router } from './router-config'
-import store from './store/store'
-import { sync } from 'vuex-router-sync'
-import App from './App'
-import Raven from 'raven-js'
-import RavenVue from 'raven-js/plugins/vue'
-import credentials from '../credentials'
-import { loadStorage } from 'utils/localStorage'
-import { toggleProperty } from 'store/actions'
-import Tooltip from 'utils/tooltip'
-import { api } from './api-config'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import { router } from './router-config';
+import store from './store/store';
+import { sync } from 'vuex-router-sync';
+import App from './App';
+import Raven from 'raven-js';
+import RavenVue from 'raven-js/plugins/vue';
+import credentials from '../credentials';
+import { loadStorage } from 'utils/localStorage';
+import { toggleProperty } from 'store/actions';
+import Tooltip from 'utils/tooltip';
+import { api } from './api-config';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-sync(store, router)
+sync(store, router);
 
-Vue.filter('capitalize', word => {
-  if (typeof word !== 'string') return ''
-  return word.charAt(0).toUpperCase() + word.slice(1)
-})
+Vue.filter('capitalize', (word) => {
+  if (typeof word !== 'string') return '';
+  return word.charAt(0).toUpperCase() + word.slice(1);
+});
 
 // Sets up Sentry error reporting
 if (process.env.NODE_ENV === 'production') {
   Raven
     .config(credentials.sentry.url)
     .addPlugin(RavenVue, Vue)
-    .install()
+    .install();
 }
 
 // Initializes any local storage data
-loadStorage()
+loadStorage();
 
 // Hide deck list if this page is loaded on a smaller device
 if (window.innerWidth < 960) {
-  toggleProperty(store, 'drawerOpen')
+  toggleProperty(store, 'drawerOpen');
 }
 
 (async () => {
   try {
-    const { data } = await api.get('/get-account')
-    if (data) store.commit('SET_USER', data.user)
+    const { data } = await api.get('/get-account');
+    if (data) store.commit('user/SET_USER', data.user);
   } catch (error) {
     // Don't care about a 403 response
   }
@@ -50,11 +50,11 @@ if (window.innerWidth < 960) {
     router,
     store,
     render: h => h(App),
-  }).$mount('#app')
+  }).$mount('#app');
 
   new Tooltip({
     theme: 'dark',
     delay: 25,
-    distance: 5
-  })
-})()
+    distance: 5,
+  });
+})();
