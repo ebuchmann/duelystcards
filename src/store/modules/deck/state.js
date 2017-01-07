@@ -5,4 +5,5 @@ module.exports = {
   totalCards: 0,
   spirit: 0,
   faction: '',
+  deckName: '',
 };

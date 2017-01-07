@@ -30,7 +30,8 @@
         </div>
       </div>
       <div class="short-url">
-        {{ url }}
+        <div class="name">{{ deckName }}</div>
+        <div class="url">{{ url }}</div>
       </div>
     </div>
     <horizontal-sidebar v-if="hasSideboard" />
@@ -55,6 +56,7 @@
       ...mapState({
         modal: ({ app }) => app.savingDeck,
         shortUrl: ({ app }) => app.shortUrl,
+        deckName: ({ deck }) => deck.deckName,
       }),
 
       cardList () {
@@ -112,9 +114,6 @@
     padding: 5px;
   }
 
-  .horizontal-deck {
-  }
-
   .horizontal-top {
     display: flex;
     justify-content: space-between;
@@ -125,10 +124,14 @@
 
     .deck-general {
       height: 65px;
-    }
+      
+      .name {
+        font-size: 1.1rem;
+      }
 
-    .name {
-      font-size: 1rem;
+      .count {
+        font-size: .75rem;
+      }
     }
 
     .sprite {
@@ -218,10 +221,17 @@
 
   .short-url {
     background: rgba(25, 25, 25, 0.3);
-    text-align: right;
-    padding: 6px;
     margin: 5px -5px -5px -5px;
-    color: $blue-light;
-    padding-right: 10px;
+    padding: 6px 10px;
+    display: flex;
+
+    > .name {
+      min-width: 600px;
+    }
+
+    > .url {
+      color: $blue-light;
+      margin-left: auto;
+    }
   }
 </style>

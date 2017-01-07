@@ -69,4 +69,8 @@ module.exports = {
   [types.DECREMENT_CARD_SIDEBOARD](state, index) {
     state.sideboard[index].qty--;
   },
+
+  [types.UPDATE_DECK_NAME](state, name) {
+    state.deckName = name;
+  },
 };

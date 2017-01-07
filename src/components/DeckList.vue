@@ -1,5 +1,6 @@
 <template>
   <div :class="['deck-list', { 'saving': saving }]" ref="deck">
+    <deck-name />
     <mana-curve />
     <deck-counts />
     <deck-general />
@@ -27,13 +28,14 @@
 </template>
 
 <script>
-  import ManaCurve from 'components/ManaCurve'
-  import DeckCounts from 'components/DeckCounts'
-  import DeckGeneral from 'components/DeckGeneral'
-  import DeckCard from 'components/DeckCard'
-  import DeckDivider from 'components/DeckDivider'
-  import Ps from 'perfect-scrollbar'
-  import { mapGetters, mapState } from 'vuex'
+  import ManaCurve from 'components/ManaCurve';
+  import DeckCounts from 'components/DeckCounts';
+  import DeckGeneral from 'components/DeckGeneral';
+  import DeckCard from 'components/DeckCard';
+  import DeckDivider from 'components/DeckDivider';
+  import DeckName from 'components/DeckName';
+  import Ps from 'perfect-scrollbar';
+  import { mapGetters, mapState } from 'vuex';
 
   export default {
     computed: {
@@ -67,6 +69,7 @@
       DeckGeneral,
       DeckCard,
       DeckDivider,
+      DeckName,
     },
   }
 </script>
@@ -75,7 +78,6 @@
   @import '../css/includes';
 
   .deck-list {
-    padding-top: 30px;
     height: 100%;
 
     > .cards {
