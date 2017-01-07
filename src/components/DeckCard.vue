@@ -13,7 +13,9 @@
 
   export default {
     props: {
-      card: Object,
+      card: {
+        type: Object
+      },
       isSelectable: {
         type: Boolean,
         default: true,

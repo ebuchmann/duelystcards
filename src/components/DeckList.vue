@@ -5,8 +5,8 @@
     <deck-general />
     <div ref="scroll" class="cards">
       <template v-if="deckSideboard">
-        <deck-divider type="Sideboard" :cards="sideboardList" />
-        <deck-card v-for="card in sideboardList" :card="card"/>
+        <deck-divider type="Sideboard" :cards="sortedSideboard" />
+        <deck-card v-for="card in sortedSideboard" :card="card"/>
       </template>
       <template v-else>
         <template v-if="divideDeck">
@@ -16,7 +16,7 @@
           <deck-card v-for="card in neutralCards" :card="card" />
         </template>
         <template v-else>
-          <deck-card v-for="card in cardList" :card="card" />
+          <deck-card v-for="card in sortedCards" :card="card" />
         </template>
       </template>
     </div>
@@ -32,31 +32,19 @@
   import DeckGeneral from 'components/DeckGeneral'
   import DeckCard from 'components/DeckCard'
   import DeckDivider from 'components/DeckDivider'
-  import sortBy from 'lodash.sortby'
   import Ps from 'perfect-scrollbar'
   import { mapGetters, mapState } from 'vuex'
 
   export default {
     computed: {
-      factionCards () {
-        return sortBy(this.$store.state.deck.cards.filter(card => card.faction !== 'neutral'), ['cost', 'name'])
-      },
-      neutralCards () {
-        return sortBy(this.$store.state.deck.cards.filter(card => card.faction === 'neutral'), ['cost', 'name'])
-      },
-      cardList () {
-        return sortBy(this.$store.state.deck.cards, ['cost', 'name'])
-      },
-      sideboardList () {
-        return sortBy(this.$store.state.deck.sideboard, ['cost', 'name'])
-      },
+      ...mapGetters('deck', ['currentFaction', 'factionCards', 'neutralCards', 'sortedCards', 'sortedSideboard']),
+
       ...mapState({
         saving: ({ app }) => app.savingDeck,
         divideDeck: ({ app }) => app.divideDeck,
         shortUrl: ({ app }) => app.shortUrl,
         deckSideboard: ({ app }) => app.deckSideboard,
       }),
-      ...mapGetters('deck', ['currentFaction']),
 
       url () {
         if (this.shortUrl.length) return this.shortUrl.substr(2)
@@ -64,13 +52,13 @@
     },
 
     watch: {
-      cardList () {
-        Ps.update(this.$refs.scroll)
-      }
+      sortedCards() {
+        Ps.update(this.$refs.scroll);
+      },
     },
 
     mounted () {
-      Ps.initialize(this.$refs.scroll)
+      Ps.initialize(this.$refs.scroll);
     },
 
     components: {

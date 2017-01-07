@@ -1,7 +1,8 @@
+import sortBy from 'lodash.sortby';
 import generals from 'base/cards/generals';
 import allCards from 'base/cards';
 
-const getCardText = (card) => `${card.name} ${card.type} ${card.cost} ${card.rarity} ${card.text} ${card.race} ${card.set} ${card.faction}`.toLowerCase();
+const getCardText = card => `${card.name} ${card.type} ${card.cost} ${card.rarity} ${card.text} ${card.race} ${card.set} ${card.faction}`.toLowerCase();
 
 const filter = (text, searchString) => {
   const regexStr = `(?=.*${searchString.split(/\,|\s/).join(')(?=.*')})`;
@@ -37,7 +38,15 @@ module.exports = {
     return [...allCards[state.general.faction], ...allCards.neutral];
   },
 
-  general: (state) => state.general,
+  general: state => state.general,
 
-  currentFaction: (state) => state.general ? state.general.faction : null,
+  currentFaction: state => state.general ? state.general.faction : null,
+
+  factionCards: state => sortBy(state.cards.filter(card => card.faction !== 'neutral'), ['cost', 'name']),
+
+  neutralCards: state => sortBy(state.cards.filter(card => card.faction === 'neutral'), ['cost', 'name']),
+
+  sortedCards: state => sortBy(state.cards, ['cost', 'name']),
+
+  sortedSideboard: state => sortBy(state.sideboard, ['cost', 'name']),
 };

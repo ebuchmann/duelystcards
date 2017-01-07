@@ -1,3 +1,5 @@
+/* eslint no-param-reassign: 0*/
+
 import Vue from 'vue';
 import * as types from 'store/mutation-types';
 
