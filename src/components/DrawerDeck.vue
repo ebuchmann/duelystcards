@@ -1,7 +1,9 @@
 <template>
   <div :class="['drawer-deck', { closed }]">
     <span :class="['button', 'button-toggle', { 'left': closed }]" @click="$store.dispatch('app/toggleProperty', 'drawerOpen')" data-tooltip="Toggle deck list" data-position="left middle"></span>
-    <deck-list />
+    <div class="scroll-container" v-scroll>
+      <deck-list />
+    </div>
     <div class="btn-group">
       <download-button />
       <span class="button" @click="$store.dispatch('app/toggleProperty', 'importDeck')"><i class="icon icon-upload" data-tooltip="Import deck" data-position="bottom left"></i></span>
@@ -50,12 +52,18 @@
       transform: translateX(315px);
     }
 
+    > .scroll-container {
+      height: calc(100% - 48px);
+      margin-left: -18px;
+    }
+
     > .button-toggle {
       position: absolute;
       left: -25px;
       top: 4px;
       cursor: pointer;
       background: $blue;
+      z-index: $z-deck-toggle;
 
       &::after {
         @include font-icon($icon-chevron-right);

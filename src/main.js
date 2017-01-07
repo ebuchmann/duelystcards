@@ -31,6 +31,9 @@ if (process.env.NODE_ENV === 'production') {
 // Initializes any local storage data
 loadStorage();
 
+// Loads any directives
+require('./directives/scroll');
+
 // Hide deck list if this page is loaded on a smaller device
 if (window.innerWidth < 960) {
   store.dispatch('app/toggleProperty', 'drawerOpen');

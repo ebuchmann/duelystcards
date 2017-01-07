@@ -1,5 +1,5 @@
 <template>
-  <div :class="['gauntlet-deck-container', { closed }]">
+  <div :class="['gauntlet-deck-container', { closed }]" v-scroll>
     <gauntlet-deck />
   </div>
 </template>
@@ -31,7 +31,6 @@
     transition: $all-fast;
     background: $blue-dark;
     z-index: $z-drawer-deck;
-    overflow-y: scroll;
     height: calc(100vh - #{$height-site-header-spacing});
 
     &.closed {

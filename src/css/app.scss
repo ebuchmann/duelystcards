@@ -3,9 +3,9 @@
 
 /* Files */
 @import 'reboot';
-@import '~perfect-scrollbar/dist/css/perfect-scrollbar';
 @import 'iconmoo';
 @import 'tooltip';
+@import '~simple-scrollbar/simple-scrollbar';
 
 /* Sprites */
 @import 'sprites/abyssian';
@@ -73,7 +73,7 @@ button {
 
 .sprite.minion-sm {
   top: -78px;
-  right: -40px;
+  right: -52px;
   z-index: 2;
   transform: scaleX(-0.5) scaleY(0.5);
   width: 160px;
@@ -82,7 +82,7 @@ button {
 
 .sprite.spell-sm, .sprite.artifact-sm {
   top: -26px;
-  right: -10px;
+  right: -22px;
   transform: scale(0.6);
   width: 96px;
   height: 96px;
@@ -98,10 +98,6 @@ button {
 .sprite.general-lg {
   width: 215px;
   height: 245px;
-}
-
-.ps-scrollbar-y-rail {
-  z-index: $perfect-scrollbar
 }
 
 ::-webkit-scrollbar {
@@ -121,4 +117,9 @@ button {
 }
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(150,150,150,0.3);
+}
+
+.ss-scroll {
+  background: rgba(200, 200, 200, 0.3);
+  width: 6px;
 }

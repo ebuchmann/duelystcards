@@ -1,7 +1,7 @@
 <template>
   <div class="deck-name">
-    <input v-if="editing" ref="input" @blur="editing = false" class="input" type="text" v-model="deckName" placeholder="Deck name..." />
-    <div v-else :class="['text', { 'empty': !deckName.length }]" @click="startEditing">{{ deckName || 'Deck name...' }}</div>
+    <input v-if="editing" ref="input" @blur="editing = false" class="input" type="text" v-model="deckName" placeholder="Edit deck name..." />
+    <div v-else :class="['text', { 'empty': !deckName.length }]" @click="startEditing">{{ deckName || 'Edit deck name...' }}</div>
   </div>
 </template>
 
@@ -19,8 +19,8 @@
           return this.$store.state.deck.deckName;
         },
         set (value) {
-          this.$store.commit('deck/UPDATE_DECK_NAME', value)
-        }
+          this.$store.commit('deck/UPDATE_DECK_NAME', value);
+        },
       },
     },
 
@@ -39,7 +39,7 @@
   @import './src/css/includes';
 
   .deck-name {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     font-size: 1.2rem;
     padding: 8px;
 

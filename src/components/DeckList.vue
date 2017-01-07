@@ -4,7 +4,7 @@
     <mana-curve />
     <deck-counts />
     <deck-general />
-    <div ref="scroll" class="cards">
+    <div class="cards">
       <template v-if="deckSideboard">
         <deck-divider type="Sideboard" :cards="sortedSideboard" />
         <deck-card v-for="card in sortedSideboard" :card="card"/>
@@ -34,7 +34,6 @@
   import DeckCard from 'components/DeckCard';
   import DeckDivider from 'components/DeckDivider';
   import DeckName from 'components/DeckName';
-  import Ps from 'perfect-scrollbar';
   import { mapGetters, mapState } from 'vuex';
 
   export default {
@@ -53,16 +52,6 @@
       }
     },
 
-    watch: {
-      sortedCards() {
-        Ps.update(this.$refs.scroll);
-      },
-    },
-
-    mounted () {
-      Ps.initialize(this.$refs.scroll);
-    },
-
     components: {
       ManaCurve,
       DeckCounts,
@@ -78,7 +67,7 @@
   @import '../css/includes';
 
   .deck-list {
-    height: 100%;
+    height: calc(100% - 50px);
 
     > .cards {
       position: relative;
