@@ -37,6 +37,7 @@
     "lodash.sortby": "^4.7.0",
     "node-sass": "^3.9.3",
     "raven-js": "^3.7.0",
+    "sanitize-filename": "^1.6.1",
     "sass-loader": "^4.0.2",
     "simple-scrollbar": "^0.2.1",
     "style-loader": "^0.13.1",

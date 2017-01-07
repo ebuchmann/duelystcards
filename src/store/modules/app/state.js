@@ -14,4 +14,5 @@ module.exports = {
   imgurLink: '',
   imgurHash: '',
   shortUrl: '',
+  saveType: '',
 };

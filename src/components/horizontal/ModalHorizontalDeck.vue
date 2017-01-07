@@ -1,5 +1,5 @@
 <template>
-  <general-modal :show="modal" class="horizontal-deck-modal">
+  <general-modal :show="true" class="horizontal-deck-modal">
     <div class="horizontal-deck">
       <div class="horizontal-top">
         <div class="horizontal-general">
@@ -54,7 +54,6 @@
   export default {
     computed: {
       ...mapState({
-        modal: ({ app }) => app.savingDeck,
         shortUrl: ({ app }) => app.shortUrl,
         deckName: ({ deck }) => deck.deckName,
       }),
@@ -220,6 +219,7 @@
   }
 
   .short-url {
+    border-top: 1px solid $gray;
     background: rgba(25, 25, 25, 0.3);
     margin: 5px -5px -5px -5px;
     padding: 6px 10px;

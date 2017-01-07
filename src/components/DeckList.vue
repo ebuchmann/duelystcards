@@ -1,5 +1,5 @@
 <template>
-  <div :class="['deck-list', { 'saving': saving }]" ref="deck">
+  <div class="deck-list">
     <deck-name />
     <mana-curve />
     <deck-counts />
@@ -21,9 +21,6 @@
         </template>
       </template>
     </div>
-    <div class="vertical-short-url">
-      {{ url }}
-    </div>
   </div>
 </template>
 
@@ -41,15 +38,9 @@
       ...mapGetters('deck', ['currentFaction', 'factionCards', 'neutralCards', 'sortedCards', 'sortedSideboard']),
 
       ...mapState({
-        saving: ({ app }) => app.savingDeck,
         divideDeck: ({ app }) => app.divideDeck,
-        shortUrl: ({ app }) => app.shortUrl,
         deckSideboard: ({ app }) => app.deckSideboard,
       }),
-
-      url () {
-        if (this.shortUrl.length) return this.shortUrl.substr(2)
-      }
     },
 
     components: {
@@ -93,13 +84,5 @@
       padding-top: 2px;
       margin-right: 10px;
     }
-  }
-
-  .vertical-short-url {
-    color: $blue-light;
-    text-align: center;
-    margin-bottom: 40px;
-    margin-top: -25px;
-    display: none;
   }
 </style>
