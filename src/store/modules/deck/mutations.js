@@ -49,8 +49,10 @@ module.exports = {
   [types.CLEAR_DECK](state) {
     state.general = null;
     state.cards = [];
+    state.sideboard = [];
     state.totalCards = 0;
     state.spirit = 0;
+    state.deckName = '';
   },
 
   [types.SELECT_CARD_SIDEBOARD](state, { card, qty }) {
