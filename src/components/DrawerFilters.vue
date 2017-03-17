@@ -7,7 +7,6 @@
     <filter-tribe />
     <filter-type />
     <filter-clear />
-    <a target="_blank" href="http://turn1mystic.weebly.com/"><img class="t1mystic" src="../assets/images/turn1mystic.png" alt="Turn 1 Mystic" data-tooltip="Visit Turn 1 Mystic" data-position="top right" /></a>
   </div>
 </template>
 
@@ -59,13 +58,5 @@
     bottom: 0;
     width: 100%;
     text-align: center;
-  }
-
-  .t1mystic {
-    width: 60px;
-    height: 60px;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
   }
 </style>
