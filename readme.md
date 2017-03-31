@@ -1,21 +1,42 @@
 # Duelyst Deck Builder
-## by ebuchmann
 
 ## Where it can be found
 [duelystcards.com](http://duelystcards.com/)
 
-### TODO
-- Add general spell icon to card
-- Fix mobile breakpoints for card lists so they aren't squished
-- "No cards" for sections without cards (option to clear the filter)
-- Apply filters and search to general list
-- Add a "remove" button on cards
-- Clicking minion sprite in the deck list clicks that card, instead of what the mouse is actually over
-- Deck name, becomes file name / title on imgur
+## Installation
+```console
+yarn install
+```
 
-### Improvements
-- Build your own card screen
-- Deck stats
-  - Minion health / defence / mana cost curves
-  - spell and artifact curves
-  - Ability list (3 provoke, 2 dying wish, etc.)
+## Usage
+Create a `credentials.js` file locally that includes
+```
+const env = process.env.NODE_ENV
+
+const def = {
+  imgur: {
+    clientId: API_ID,
+    clientSecret: API_SECRET,
+  },
+  duelystVersion: CURRENT_VERSION
+}
+
+const config = {
+  development: {
+    api: {
+      url: '//localhost:3000',
+      version: 'api'
+    }
+  }
+}
+
+export default Object.assign({}, def, config[env])
+```
+
+```
+yarn run dev
+```
+
+To bundle the current tree and run a local server for testing.
+
+## Release

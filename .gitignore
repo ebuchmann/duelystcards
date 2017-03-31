@@ -3,3 +3,5 @@
 /assets/
 credentials.js
 .DS_Store
+yarn.lock
+npm-debug.log

@@ -55,6 +55,7 @@
     > .scroll-container {
       height: calc(100% - 48px);
       margin-left: -18px;
+      border-left: 2px solid $blue;
     }
 
     > .button-toggle {

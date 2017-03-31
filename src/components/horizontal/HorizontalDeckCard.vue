@@ -16,7 +16,6 @@
   @import '../../css/includes';
 
   .horizontal-deck-card {
-    background: $dark;
     color: $light;
     margin: 3px 0;
     padding: 3px;

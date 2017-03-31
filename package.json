@@ -1,14 +1,16 @@
 {
   "name": "deckbuilder",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "author": "Eric Buchmann <me@ebuchmann.com>",
+  "authors": [
+    "Eric Buchmann <me@ebuchmann.com>",
+    "Murph Murphy <murph@clurictec.com>"
+  ],
   "scripts": {
     "dev": "webpack && node server.js",
     "test": "eslint src/**/*.{js,vue}",
-    "build": "cross-env NODE_ENV=production webpack -p --devtool source-map",
-    "deploy": "cross-env NODE_ENV=production webpack -p --devtool source-map && surge dist/ --domain duelystcards.com"
+    "build": "cross-env NODE_ENV=production webpack -p --devtool source-map"
   },
   "license": "ISC",
   "dependencies": {

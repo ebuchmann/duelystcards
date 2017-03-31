@@ -123,7 +123,7 @@
 
     .deck-general {
       height: 65px;
-      
+
       .name {
         font-size: 1.1rem;
       }
@@ -156,7 +156,6 @@
   }
 
   .horizontal-mana {
-    background: $dark;
     height: 65px;
     padding: 5px;
     flex: 0 0 34%;

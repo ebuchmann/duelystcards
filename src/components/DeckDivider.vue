@@ -21,7 +21,6 @@
 
   .deck-divider {
     margin-top: 3px;
-    background: $dark;
     padding: 5px;
     font-size: .8rem;
     padding-left: 10px;

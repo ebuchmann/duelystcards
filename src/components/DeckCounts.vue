@@ -2,7 +2,7 @@
   <div class="deck-counts">
     <span class="count">
       <label class="label">Minions</label>
-      <span :class="['value', currentFaction]">{{ minionCount }}</span> 
+      <span :class="['value', currentFaction]">{{ minionCount }}</span>
     </span>
     <span class="count">
       <label class="label">Spells</label>
@@ -55,7 +55,6 @@
 
     > .count {
       flex: 0 0 23%;
-      background: $dark;
       text-align: center;
       font-size: 1.2rem;
 

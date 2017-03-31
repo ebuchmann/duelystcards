@@ -63,7 +63,6 @@
   @import '../css/includes';
 
   .deck-card {
-    background: $dark;
     color: $light;
     height: 43px;
     margin-top: 3px;

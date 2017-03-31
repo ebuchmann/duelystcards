@@ -37,7 +37,6 @@
   .deck-general {
     position: relative;
     height: 100px;
-    background: $dark;
     display: flex;
     align-items: center;
 

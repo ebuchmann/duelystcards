@@ -79,7 +79,6 @@
 
     > .count-container {
       flex: 0 0 40px;
-      background: $dark;
       align-items: center;
       display: flex;
       justify-content: center;
@@ -123,7 +122,6 @@
     > .general-area {
       position: relative;
       flex: 0 0 40px;
-      background: $dark;
 
       > .resizer {
         width: 40px;
