@@ -76,30 +76,37 @@ module.exports = {
   loadDeck: async ({ commit, dispatch, state, rootState }, hash) => {
     try {
       // Splits the hash and removes anything with a blank id
-      const cardList = atob(hash).split(',').map((card) => {
-        const split = card.split(':');
+      const allCards = atob(hash).split(',').map((card) => {
+        const [qty, type, id] = card.split(':');
         return {
-          qty: Number(split[0]),
-          id: Number(split[1]),
+          qty: Number(qty),
+          type,
+          id: Number(id),
         };
       }).filter(card => card.id);
 
-      const generalIds = generals.map(general => general.id);
-      const generalList = cardList.find(card => generalIds.includes(card.id));
-
+      const generalList = allCards.find(card => card.type === 'general');
       if (!generalList) throw Error('General required');
 
-      const general = generals.find(general => general.id === generalList.id);
-
+      const general = generals.find(gen => gen.id === generalList.id);
       if (!general) throw Error('General required');
 
-      // Remove the general from the list
-      cardList.splice(cardList.indexOf(generalList), 1);
+      const mainboard = allCards.filter(card => card.type === 'mainboard');
+      const sideboard = allCards.filter(card => card.type === 'sideboard');
 
       await dispatch('selectGeneral', general);
       await dispatch('cardList/setCardList', [...cards[state.faction], ...cards.neutral], { root: true });
-      cardList.forEach((card) => {
-        dispatch('selectCard', { card: rootState.cardList.cards.find(c => c.id === card.id), qty: card.qty });
+      mainboard.forEach((card) => {
+        dispatch('selectCard', {
+          card: rootState.cardList.cards.find(c => c.id === card.id),
+          qty: card.qty,
+        });
+      });
+      sideboard.forEach((card) => {
+        dispatch('selectCardSideboard', {
+          card: rootState.cardList.cards.find(c => c.id === card.id),
+          qty: card.qty,
+        });
       });
 
       return general.faction;
