@@ -1,3 +1,4 @@
+/* eslint-disable */
 const magmar = [{
   "id": 20111,
   "name": "Dampening Wave",
@@ -20,7 +21,7 @@ const magmar = [{
   "cost": 0,
   "rarity": "rare",
   "faction": "magmar",
-  "text": "The next minion you summon this turn costs 2 less and takes 2 damage.",
+  "text": "If the next card you play this turn is a minion, it costs 2 less and takes 2 damage.",
   "attack": null,
   "health": null,
   "spirit": null
@@ -350,19 +351,6 @@ const magmar = [{
   "health": 4,
   "spirit": 0
 }, {
-  "id": 20218,
-  "name": "Thumping Wave",
-  "set": "shimzar",
-  "type": "spell",
-  "race": "",
-  "cost": 3,
-  "rarity": "rare",
-  "faction": "magmar",
-  "text": "Give a minion +5 Attack. At end of turn, transform it into a 3/3 Kin.",
-  "attack": null,
-  "health": null,
-  "spirit": null
-}, {
   "id": 30017,
   "name": "Twin Fang",
   "set": "core",
@@ -401,19 +389,6 @@ const magmar = [{
   "attack": null,
   "health": null,
   "spirit": 0
-}, {
-  "id": 20124,
-  "name": "Chrysalis Burst",
-  "set": "core",
-  "type": "spell",
-  "race": "",
-  "cost": 4,
-  "rarity": "legendary",
-  "faction": "magmar",
-  "text": "Summon a random Egg in 4 random spaces.",
-  "attack": null,
-  "health": null,
-  "spirit": null
 }, {
   "id": 428,
   "name": "Drogon",
@@ -502,6 +477,19 @@ const magmar = [{
   "rarity": "epic",
   "faction": "magmar",
   "text": "Steal a random minion from your opponent's deck and summon it.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 20218,
+  "name": "Thumping Wave",
+  "set": "shimzar",
+  "type": "spell",
+  "race": "",
+  "cost": 4,
+  "rarity": "rare",
+  "faction": "magmar",
+  "text": "Give a minion +5 Attack. At end of turn, transform it into a 3/3 Kin.",
   "attack": null,
   "health": null,
   "spirit": null
@@ -634,6 +622,19 @@ const magmar = [{
   "text": "Whenever ANY player draws a card, this minion gains +1/+1.",
   "attack": 6,
   "health": 3,
+  "spirit": null
+}, {
+  "id": 20124,
+  "name": "Chrysalis Burst",
+  "set": "core",
+  "type": "spell",
+  "race": "",
+  "cost": 6,
+  "rarity": "legendary",
+  "faction": "magmar",
+  "text": "Summon a random Egg in 4 random spaces.",
+  "attack": null,
+  "health": null,
   "spirit": null
 }, {
   "id": 424,

@@ -5,12 +5,12 @@
     <div class="cards">
       <template v-if="divideDeck">
         <deck-divider :type="currentFaction" :cards="factionCards" />
-        <deck-card v-for="card in factionCards" :is-selectable="false" :card="card"></deck-card>
+        <deck-card v-for="card in factionCards" :key="card.id" :is-selectable="false" :card="card"></deck-card>
         <deck-divider type="Neutral" :cards="neutralCards" />
-        <deck-card v-for="card in neutralCards" :card="card"></deck-card>
+        <deck-card v-for="card in neutralCards" :key="card.id" :card="card"></deck-card>
       </template>
       <template v-else>
-        <deck-card v-for="card in sortedCards" :is-selectable="false" :card="card"></deck-card>
+        <deck-card v-for="card in sortedCards" :key="card.id" :is-selectable="false" :card="card"></deck-card>
       </template>
     </div>
     <div class="vertical-short-url">

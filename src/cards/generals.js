@@ -1,3 +1,4 @@
+/* eslint-disable */
 const generals = [{
   "id": 1,
   "name": "Argeon Highmayne",
@@ -154,6 +155,6 @@ const generals = [{
   "attack": 2,
   "health": 25,
   "spirit": 0
-}]
+}];
 
 export default generals

@@ -7,17 +7,17 @@
     <div class="cards">
       <template v-if="deckSideboard">
         <deck-divider type="Sideboard" :cards="sortedSideboard" />
-        <deck-card v-for="card in sortedSideboard" :card="card"/>
+        <deck-card v-for="card in sortedSideboard" :key="card.id" :card="card"/>
       </template>
       <template v-else>
         <template v-if="divideDeck">
           <deck-divider :type="currentFaction" :cards="factionCards" />
-          <deck-card v-for="card in factionCards" :card="card" />
+          <deck-card v-for="card in factionCards" :key="card.id" :card="card" />
           <deck-divider type="Neutral" :cards="neutralCards" />
-          <deck-card v-for="card in neutralCards" :card="card" />
+          <deck-card v-for="card in neutralCards" :key="card.id" :card="card" />
         </template>
         <template v-else>
-          <deck-card v-for="card in sortedCards" :card="card" />
+          <deck-card v-for="card in sortedCards" :key="card.id" :card="card" />
         </template>
       </template>
     </div>

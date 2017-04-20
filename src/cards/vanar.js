@@ -1,3 +1,4 @@
+/* eslint-disable */
 const vanar = [{
   "id": 20139,
   "name": "Flash Freeze",
@@ -363,19 +364,6 @@ const vanar = [{
   "health": null,
   "spirit": null
 }, {
-  "id": 20229,
-  "name": "Enfeeble",
-  "set": "bloodborn",
-  "type": "spell",
-  "race": "",
-  "cost": 3,
-  "rarity": "epic",
-  "faction": "vanar",
-  "text": "All minions become 1/1.",
-  "attack": null,
-  "health": null,
-  "spirit": 0
-}, {
   "id": 503,
   "name": "Fenrir Warmaster",
   "set": "core",
@@ -621,6 +609,19 @@ const vanar = [{
   "text": "<b>Airdrop</b>",
   "attack": 10,
   "health": 4,
+  "spirit": 0
+}, {
+  "id": 20229,
+  "name": "Enfeeble",
+  "set": "bloodborn",
+  "type": "spell",
+  "race": "",
+  "cost": 5,
+  "rarity": "epic",
+  "faction": "vanar",
+  "text": "All minions become 1/1.",
+  "attack": null,
+  "health": null,
   "spirit": 0
 }, {
   "id": 20207,

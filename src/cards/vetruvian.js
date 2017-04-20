@@ -1,3 +1,4 @@
+/* eslint-disable */
 const vetruvian = [{
   "id": 227,
   "name": "Rae",
@@ -727,19 +728,6 @@ const vetruvian = [{
   "health": null,
   "spirit": null
 }, {
-  "id": 237,
-  "name": "Grandmaster Nosh-Rak",
-  "set": "bloodborn",
-  "type": "minion",
-  "race": "",
-  "cost": 7,
-  "rarity": "legendary",
-  "faction": "vetruvian",
-  "text": "<b>Blast</b>, <b>Flying</b><br>The enemy General takes double damage.",
-  "attack": 4,
-  "health": 7,
-  "spirit": 0
-}, {
   "id": 222,
   "name": "Oserix",
   "set": "core",
@@ -765,6 +753,19 @@ const vetruvian = [{
   "attack": null,
   "health": null,
   "spirit": null
+}, {
+  "id": 237,
+  "name": "Grandmaster Nosh-Rak",
+  "set": "bloodborn",
+  "type": "minion",
+  "race": "",
+  "cost": 8,
+  "rarity": "legendary",
+  "faction": "vetruvian",
+  "text": "<b>Blast</b>, <b>Flying</b><br>The enemy General takes double damage.",
+  "attack": 4,
+  "health": 8,
+  "spirit": 0
 }];
 
 export default vetruvian

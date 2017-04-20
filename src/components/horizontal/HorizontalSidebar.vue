@@ -13,7 +13,7 @@
       </div>
     <div class="horizontal-cards">
       <div class="columns">
-        <horizontal-deck-card v-for="card in allCards" :card="card" />
+        <horizontal-deck-card v-for="card in allCards" :key="card.id" :card="card" />
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@
   import HorizontalSpells from 'components/horizontal/HorizontalSpells'
   import HorizontalMinions from 'components/horizontal/HorizontalMinions'
   import HorizontalDeckCard from 'components/horizontal/HorizontalDeckCard'
-  
+
   export default {
     computed: {
       allCards () {
@@ -39,7 +39,7 @@
         return sortBy(this.$store.state.deck.sideboard, ['cost', 'name']).filter(card => card.type === 'minion')
       }
     },
-    
+
     components: {
       HorizontalSpells,
       HorizontalMinions,

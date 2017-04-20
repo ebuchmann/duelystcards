@@ -23,10 +23,10 @@
       </div>
       <div class="horizontal-cards">
         <div class="columns">
-          <horizontal-deck-card v-for="card in spellsArtifacts" :card="card" />
+          <horizontal-deck-card v-for="card in spellsArtifacts" :key="card.id" :card="card" />
         </div>
         <div class="columns">
-          <horizontal-deck-card v-for="card in minions" :card="card" />
+          <horizontal-deck-card v-for="card in minions" :key="card.id" :card="card" />
         </div>
       </div>
       <div class="short-url">

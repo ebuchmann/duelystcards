@@ -52,7 +52,7 @@
         opacity: .8;
       }
     }
-    
+
     .sprite.minion-sm {
       transform: scaleX(0.5) scaleY(0.5);
     }

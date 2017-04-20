@@ -7,7 +7,7 @@
       <div class="label">wins</div>
       <div class="right">win %</div>
     </div>
-    <vs-bar v-for="stat in stats" :stat="stat" />
+    <vs-bar v-for="stat in stats" :key="stat.id" :stat="stat" />
   </div>
 </template>
 

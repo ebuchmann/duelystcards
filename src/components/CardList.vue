@@ -104,7 +104,7 @@
 
       @include breakpoint(vl) {
         flex: 0 0 20%;
-      } 
+      }
     }
   }
 </style>

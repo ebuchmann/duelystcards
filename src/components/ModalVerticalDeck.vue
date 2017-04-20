@@ -6,16 +6,16 @@
       <deck-general />
       <template v-if="divideDeck">
         <deck-divider :type="currentFaction" :cards="factionCards" />
-        <deck-card v-for="card in factionCards" :card="card" :isSelectable="false" />
+        <deck-card v-for="card in factionCards" :key="card.id" :card="card" :isSelectable="false" />
         <deck-divider type="Neutral" :cards="neutralCards" />
-        <deck-card v-for="card in neutralCards" :card="card" :isSelectable="false" />
+        <deck-card v-for="card in neutralCards" :key="card.id" :card="card" :isSelectable="false" />
       </template>
       <template v-else>
-        <deck-card v-for="card in sortedCards" :card="card" :isSelectable="false" />
+        <deck-card v-for="card in sortedCards" :key="card.id" :card="card" :isSelectable="false" />
       </template>
       <template v-if="sortedSideboard.length">
         <deck-divider type="Sideboard" :cards="sortedSideboard" />
-        <deck-card v-for="card in sortedSideboard" :card="card" :isSelectable="false" />
+        <deck-card v-for="card in sortedSideboard" :key="card.id" :card="card" :isSelectable="false" />
       </template>
       <div class="bottom">
         <p class="name" v-show="deckName">{{ deckName }}</p>

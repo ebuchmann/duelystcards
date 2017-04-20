@@ -3,7 +3,7 @@
     <loading-animation v-if="loading && lastUsername !== $route.params.username" />
     <template v-else>
       <div class="deck-card-wrapper" v-if="decks.length">
-        <deck-card v-for="deck in decks" :deck="deck" />
+        <deck-card v-for="deck in decks" :key="deck._id" :deck="deck" />
       </div>
       <no-decks v-else />
     </template>

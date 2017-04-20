@@ -1,3 +1,4 @@
+/* eslint-disable */
 const songhai = [{
   "id": 20129,
   "name": "Juxtaposition",

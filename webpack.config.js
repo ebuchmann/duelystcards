@@ -12,8 +12,7 @@ console.log(process.env.NODE_ENV)
 
 module.exports = {
   entry: {
-    app: './src/main.js',
-    // vendor: ['vue', 'vue-router', 'vuex', 'vuex-router-sync'],
+    app: './src/main.js'
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -45,8 +44,8 @@ module.exports = {
         options: isProd ? {
           loaders: {
             sass: ExtractTextPlugin.extract({
-              loader: 'css-loader!sass-loader',
-              fallbackLoader: 'vue-style-loader',
+              use: 'css-loader!sass-loader',
+              fallback: 'vue-style-loader',
             }),
           },
         } : {},

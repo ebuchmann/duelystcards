@@ -1,3 +1,4 @@
+/* eslint-disable */
 const neutral = [{
   "id": 19052,
   "name": "Bloodtear Alchemist",
@@ -2157,19 +2158,6 @@ const neutral = [{
   "health": 6,
   "spirit": null
 }, {
-  "id": 11089,
-  "name": "Meltdown",
-  "set": "bloodborn",
-  "type": "minion",
-  "race": "",
-  "cost": 7,
-  "rarity": "legendary",
-  "faction": "neutral",
-  "text": "<b>Blood Surge</b>: Deal 7 damage to a random enemy.",
-  "attack": 7,
-  "health": 7,
-  "spirit": 0
-}, {
   "id": 10997,
   "name": "Paddo",
   "set": "core",
@@ -2273,6 +2261,19 @@ const neutral = [{
   "attack": 5,
   "health": 12,
   "spirit": null
+}, {
+  "id": 11089,
+  "name": "Meltdown",
+  "set": "bloodborn",
+  "type": "minion",
+  "race": "",
+  "cost": 8,
+  "rarity": "legendary",
+  "faction": "neutral",
+  "text": "<b>Blood Surge</b>: Deal 6 damage to a random enemy.",
+  "attack": 6,
+  "health": 6,
+  "spirit": 0
 }, {
   "id": 11044,
   "name": "Blood Taura",

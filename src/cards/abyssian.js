@@ -1,3 +1,4 @@
+/* eslint-disable */
 const abyssian = [{
   "id": 20059,
   "name": "Darkfire Sacrifice",
@@ -567,8 +568,8 @@ const abyssian = [{
   "rarity": "legendary",
   "faction": "abyssian",
   "text": "Whenever an enemy minion or General takes damage, restore 1 Health to your General.",
-  "attack": 2,
-  "health": 5,
+  "attack": 3,
+  "health": 3,
   "spirit": 0
 }, {
   "id": 321,
@@ -765,6 +766,6 @@ const abyssian = [{
   "attack": null,
   "health": null,
   "spirit": null
-}]
+}];
 
 export default abyssian

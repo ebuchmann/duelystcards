@@ -1,3 +1,4 @@
+/* eslint-disable */
 const lyonar = [{
   "id": 20109,
   "name": "Beam Shock",
@@ -345,7 +346,7 @@ const lyonar = [{
   "cost": 2,
   "rarity": "basic",
   "faction": "lyonar",
-  "text": "<b>Zeal</b>: Gains +2 Attack.",
+  "text": "<b>Zeal</b>: Gains +1 Attack.",
   "attack": 2,
   "health": 3,
   "spirit": 0
@@ -765,6 +766,6 @@ const lyonar = [{
   "attack": null,
   "health": null,
   "spirit": null
-}]
+}];
 
 export default lyonar
