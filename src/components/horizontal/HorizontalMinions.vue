@@ -18,7 +18,7 @@
 
     methods: {
       getClass (card) {
-        return `sprite minion-sm ${card.faction}-sprite ${card.faction}-${card.id}`
+        return `sprite minion-sm ${card.faction}-sprite sprite-${card.id}`
       },
     },
   }
