@@ -8,7 +8,7 @@ const generals = [{
   "cost": 0,
   "rarity": "basic",
   "faction": "lyonar",
-  "text": "<b>Bloodborn Spell:</b> Give a friendly minion nearby your General +2 Attack.",
+  "text": "<b>Bloodbound Spell:</b> Give a friendly minion nearby your General +2 Attack.",
   "attack": 2,
   "health": 25,
   "spirit": 0
@@ -21,7 +21,7 @@ const generals = [{
   "cost": 0,
   "rarity": "basic",
   "faction": "abyssian",
-  "text": "<b>Bloodborn Spell:</b> Deal 1 damage to a minion. If it dies this turn, the space turns into Shadow Creep.",
+  "text": "<b>Bloodbound Spell:</b> Deal 1 damage to a minion. If it dies this turn, the space turns into Shadow Creep.",
   "attack": 2,
   "health": 25,
   "spirit": 0
@@ -34,7 +34,7 @@ const generals = [{
   "cost": 0,
   "rarity": "basic",
   "faction": "vanar",
-  "text": "<b>Bloodborn Spell:</b> Deal 2 damage to all enemies in the enemy General's Column.",
+  "text": "<b>Bloodbound Spell:</b> Deal 2 damage to all enemies in the enemy General's Column.",
   "attack": 2,
   "health": 25,
   "spirit": 0
@@ -47,7 +47,7 @@ const generals = [{
   "cost": 0,
   "rarity": "basic",
   "faction": "songhai",
-  "text": "<b>Bloodborn Spell:</b> Teleport a friendly minion up to 2 spaces.",
+  "text": "<b>Bloodbound Spell:</b> Teleport a friendly minion up to 2 spaces.",
   "attack": 2,
   "health": 25,
   "spirit": 0
@@ -60,7 +60,7 @@ const generals = [{
   "cost": 0,
   "rarity": "basic",
   "faction": "vanar",
-  "text": "<b>Bloodborn Spell:</b> Friendly minions summoned this turn gain +1/+1.",
+  "text": "<b>Bloodbound Spell:</b> Friendly minions summoned this turn gain +1/+1.",
   "attack": 2,
   "health": 25,
   "spirit": 0
@@ -73,7 +73,7 @@ const generals = [{
   "cost": 0,
   "rarity": "basic",
   "faction": "abyssian",
-  "text": "<b>Bloodborn Spell:</b> Summon 2 Wraithlings nearby your General.",
+  "text": "<b>Bloodbound Spell:</b> Summon 2 Wraithlings nearby your General.",
   "attack": 2,
   "health": 25,
   "spirit": 0
@@ -86,7 +86,7 @@ const generals = [{
   "cost": 0,
   "rarity": "basic",
   "faction": "songhai",
-  "text": "<b>Bloodborn Spell:</b> Summon a Heartseeker nearby your General.",
+  "text": "<b>Bloodbound Spell:</b> Summon a Heartseeker nearby your General.",
   "attack": 2,
   "health": 25,
   "spirit": 0
@@ -99,7 +99,7 @@ const generals = [{
   "cost": 0,
   "rarity": "basic",
   "faction": "vetruvian",
-  "text": "<b>Bloodborn Spell:</b> Your General deals double damage to minions this turn.",
+  "text": "<b>Bloodbound Spell:</b> Your General deals double damage to minions this turn.",
   "attack": 2,
   "health": 25,
   "spirit": 0
@@ -112,7 +112,7 @@ const generals = [{
   "cost": 0,
   "rarity": "basic",
   "faction": "magmar",
-  "text": "<b>Bloodborn Spell:</b> Both players draw a card.",
+  "text": "<b>Bloodbound Spell:</b> Both players draw a card.",
   "attack": 2,
   "health": 25,
   "spirit": 0
@@ -125,7 +125,7 @@ const generals = [{
   "cost": 0,
   "rarity": "basic",
   "faction": "magmar",
-  "text": "<b>Bloodborn Spell:</b> Give your General +1 Attack.",
+  "text": "<b>Bloodbound Spell:</b> Give your General +1 Attack.",
   "attack": 2,
   "health": 25,
   "spirit": 0
@@ -138,7 +138,7 @@ const generals = [{
   "cost": 0,
   "rarity": "basic",
   "faction": "lyonar",
-  "text": "<b>Bloodborn Spell:</b> Restore 3 Health to any Minion.",
+  "text": "<b>Bloodbound Spell:</b> Restore 3 Health to any Minion.",
   "attack": 2,
   "health": 25,
   "spirit": 0
@@ -151,7 +151,7 @@ const generals = [{
   "cost": 0,
   "rarity": "basic",
   "faction": "vetruvian",
-  "text": "<b>Bloodborn Spell:</b> Summon a 2/2 Iron Dervish on a random space nearby your General.",
+  "text": "<b>Bloodbound Spell:</b> Summon a 2/2 Iron Dervish on a random space nearby your General.",
   "attack": 2,
   "health": 25,
   "spirit": 0

@@ -67,7 +67,7 @@ const lyonar = [{
 }, {
   "id": 20233,
   "name": "Draining Wave",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 1,
@@ -87,6 +87,19 @@ const lyonar = [{
   "rarity": "epic",
   "faction": "lyonar",
   "text": "Give all friendly minions +1 Health. Put a random Battle Pet into your action bar.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 20287,
+  "name": "Fortified Assault",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 1,
+  "rarity": "rare",
+  "faction": "lyonar",
+  "text": "Turn an enemy minion's space into <b>Hallowed Ground</b>. Deal it 1 damage for each friendly <b>Hallowed Ground</b>.",
   "attack": null,
   "health": null,
   "spirit": null
@@ -113,6 +126,19 @@ const lyonar = [{
   "rarity": "rare",
   "faction": "lyonar",
   "text": "Pull ANY minion to the space in front of your General.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 20280,
+  "name": "Sanctify",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 1,
+  "rarity": "common",
+  "faction": "lyonar",
+  "text": "Give a friendly minion +1/+1 and turn its space into <b>Hallowed Ground</b>.",
   "attack": null,
   "health": null,
   "spirit": null
@@ -156,6 +182,19 @@ const lyonar = [{
   "health": null,
   "spirit": null
 }, {
+  "id": 38,
+  "name": "Sunrise Cleric",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 1,
+  "rarity": "common",
+  "faction": "lyonar",
+  "text": "<b>Opening Gambit</b>: Turn a nearby space into <b>Hallowed Ground</b>.",
+  "attack": 1,
+  "health": 3,
+  "spirit": null
+}, {
   "id": 20066,
   "name": "True Strike",
   "set": "core",
@@ -180,6 +219,19 @@ const lyonar = [{
   "text": "<b>Celerity</b>",
   "attack": 2,
   "health": 3,
+  "spirit": null
+}, {
+  "id": 20281,
+  "name": "Channeled Breath",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 2,
+  "rarity": "common",
+  "faction": "lyonar",
+  "text": "Restore 2 Health to your General for each friendly minion.",
+  "attack": null,
+  "health": null,
   "spirit": null
 }, {
   "id": 25,
@@ -249,7 +301,7 @@ const lyonar = [{
 }, {
   "id": 20235,
   "name": "Prism Barrier",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 2,
@@ -259,6 +311,19 @@ const lyonar = [{
   "attack": null,
   "health": null,
   "spirit": 0
+}, {
+  "id": 37,
+  "name": "Pureblade Enforcer",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 2,
+  "rarity": "common",
+  "faction": "lyonar",
+  "text": "Whenever your opponent casts a spell, this minion gains +1/+1.",
+  "attack": 1,
+  "health": 3,
+  "spirit": null
 }, {
   "id": 20064,
   "name": "Sun Bloom",
@@ -311,6 +376,19 @@ const lyonar = [{
   "attack": null,
   "health": null,
   "spirit": 0
+}, {
+  "id": 20285,
+  "name": "Vale Ascension",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 2,
+  "rarity": "epic",
+  "faction": "lyonar",
+  "text": "Summon a friendly non-token minion destroyed this game onto friendly <b>Hallowed Ground</b>.",
+  "attack": null,
+  "health": null,
+  "spirit": null
 }, {
   "id": 20047,
   "name": "War Surge",
@@ -377,6 +455,19 @@ const lyonar = [{
   "health": 4,
   "spirit": null
 }, {
+  "id": 40,
+  "name": "Auroara",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "epic",
+  "faction": "lyonar",
+  "text": "Whenever you summon a minion with 2 or less Attack, this minion gains +2 Attack.",
+  "attack": 1,
+  "health": 5,
+  "spirit": null
+}, {
   "id": 20068,
   "name": "Divine Bond",
   "set": "core",
@@ -389,6 +480,19 @@ const lyonar = [{
   "attack": null,
   "health": null,
   "spirit": 0
+}, {
+  "id": 20274,
+  "name": "Empyreal Congregation",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 3,
+  "rarity": "epic",
+  "faction": "lyonar",
+  "text": "Give friendly minions in a 2x2 area +2/+2.",
+  "attack": null,
+  "health": null,
+  "spirit": null
 }, {
   "id": 20249,
   "name": "Life Coil",
@@ -431,7 +535,7 @@ const lyonar = [{
 }, {
   "id": 32,
   "name": "Scintilla",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 3,
@@ -572,6 +676,19 @@ const lyonar = [{
   "health": 4,
   "spirit": 0
 }, {
+  "id": 39,
+  "name": "Solpiercer",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 4,
+  "rarity": "rare",
+  "faction": "lyonar",
+  "text": "<b>Zeal</b>: <b>Ranged</b>",
+  "attack": 3,
+  "health": 4,
+  "spirit": null
+}, {
   "id": 24,
   "name": "Sun Sister Sterope",
   "set": "core",
@@ -587,13 +704,13 @@ const lyonar = [{
 }, {
   "id": 31,
   "name": "Sunbreaker",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 4,
   "rarity": "rare",
   "faction": "lyonar",
-  "text": "<b>Forcefield</b><br>Your Bloodborn Spell is Tempest.",
+  "text": "<b>Forcefield</b><br>Your Bloodbound Spell is Tempest.",
   "attack": 2,
   "health": 4,
   "spirit": 0
@@ -626,7 +743,7 @@ const lyonar = [{
 }, {
   "id": 20232,
   "name": "Trinity Oath",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 4,
@@ -637,6 +754,19 @@ const lyonar = [{
   "health": null,
   "spirit": 0
 }, {
+  "id": 41,
+  "name": "War Judicator",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 4,
+  "rarity": "rare",
+  "faction": "lyonar",
+  "text": "Nearby friendly minions cannot be targeted by enemy spells.",
+  "attack": 4,
+  "health": 5,
+  "spirit": null
+}, {
   "id": 20104,
   "name": "Circle of Life",
   "set": "core",
@@ -646,6 +776,19 @@ const lyonar = [{
   "rarity": "epic",
   "faction": "lyonar",
   "text": "Deal 5 damage to an enemy minion. Restore 5 Health to your General.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 30032,
+  "name": "Halo Bulwark",
+  "set": "unearthed prophecy",
+  "type": "artifact",
+  "race": "",
+  "cost": 5,
+  "rarity": "legendary",
+  "faction": "lyonar",
+  "text": "Friendly minions nearby your General have <b>Forcefield</b>.",
   "attack": null,
   "health": null,
   "spirit": null
@@ -715,6 +858,32 @@ const lyonar = [{
   "health": 3,
   "spirit": null
 }, {
+  "id": 42,
+  "name": "Alabaster Titan",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 7,
+  "rarity": "legendary",
+  "faction": "lyonar",
+  "text": "<b>Opening Gambit</b>: If you have no spells in your deck, equip a full set of equipment.",
+  "attack": 5,
+  "health": 7,
+  "spirit": null
+}, {
+  "id": 20282,
+  "name": "Aperion's Claim",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 7,
+  "rarity": "legendary",
+  "faction": "lyonar",
+  "text": "Destroy ALL minions in a 3x3 area and turn their spaces into <b>Hallowed Ground</b>.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 20,
   "name": "Grandmaster Z'ir",
   "set": "core",
@@ -743,7 +912,7 @@ const lyonar = [{
 }, {
   "id": 33,
   "name": "Excelsious",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 8,

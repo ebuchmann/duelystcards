@@ -27,8 +27,8 @@ const abyssian = [{
   "spirit": 0
 }, {
   "id": 331,
-  "name": "Furosa",
-  "set": "bloodborn",
+  "name": "Furiosa",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 1,
@@ -65,6 +65,32 @@ const abyssian = [{
   "health": null,
   "spirit": 0
 }, {
+  "id": 20272,
+  "name": "Inkling Surge",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 1,
+  "rarity": "common",
+  "faction": "abyssian",
+  "text": "Summon a 1/1 Wraithling. If you have another Wraithling, draw a card.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 20269,
+  "name": "Nethermeld",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 1,
+  "rarity": "epic",
+  "faction": "abyssian",
+  "text": "Teleport ANY minion to friendly <b>Shadow Creep</b>.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 20201,
   "name": "Sphere of Darkness",
   "set": "shimzar",
@@ -93,7 +119,7 @@ const abyssian = [{
 }, {
   "id": 20226,
   "name": "Aphotic Drain",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 2,
@@ -115,6 +141,19 @@ const abyssian = [{
   "text": "<b>Opening Gambit</b>: Give a nearby enemy -2 attack this turn.",
   "attack": 3,
   "health": 2,
+  "spirit": null
+}, {
+  "id": 20271,
+  "name": "Choking Tendrils",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 2,
+  "rarity": "common",
+  "faction": "abyssian",
+  "text": "Destroy an enemy minion on friendly <b>Shadow Creep</b>.",
+  "attack": null,
+  "health": null,
   "spirit": null
 }, {
   "id": 20166,
@@ -247,9 +286,22 @@ const abyssian = [{
   "health": 3,
   "spirit": null
 }, {
+  "id": 339,
+  "name": "Phantasm",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 2,
+  "rarity": "common",
+  "faction": "abyssian",
+  "text": "Whenever your opponent summons a minion, give a minion in your action bar +2 Attack.",
+  "attack": 3,
+  "health": 2,
+  "spirit": null
+}, {
   "id": 20243,
   "name": "Punish",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 2,
@@ -259,6 +311,19 @@ const abyssian = [{
   "attack": null,
   "health": null,
   "spirit": 0
+}, {
+  "id": 20273,
+  "name": "Shadowstalk",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 2,
+  "rarity": "rare",
+  "faction": "abyssian",
+  "text": "Summon a Wraithling behind each enemy.",
+  "attack": null,
+  "health": null,
+  "spirit": null
 }, {
   "id": 20071,
   "name": "Soulshatter Pact",
@@ -312,6 +377,19 @@ const abyssian = [{
   "health": null,
   "spirit": 0
 }, {
+  "id": 344,
+  "name": "Bound Tormentor",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "common",
+  "faction": "abyssian",
+  "text": "<b>Sentinel</b>: Minion summoned.<br/>Put a copy of the minion that transformed this into your action bar. It costs 2 less.",
+  "attack": 2,
+  "health": 3,
+  "spirit": null
+}, {
   "id": 20133,
   "name": "Deathfire Crescendo",
   "set": "core",
@@ -327,7 +405,7 @@ const abyssian = [{
 }, {
   "id": 334,
   "name": "Horror Burster",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 3,
@@ -337,6 +415,19 @@ const abyssian = [{
   "attack": 4,
   "health": 1,
   "spirit": 0
+}, {
+  "id": 30034,
+  "name": "Mindlathe",
+  "set": "unearthed prophecy",
+  "type": "artifact",
+  "race": "",
+  "cost": 3,
+  "rarity": "legendary",
+  "faction": "abyssian",
+  "text": "After your General damages a minion, reactivate and take control of it until the end of your turn.",
+  "attack": null,
+  "health": null,
+  "spirit": null
 }, {
   "id": 319,
   "name": "Nightsorrow Assassin",
@@ -389,6 +480,19 @@ const abyssian = [{
   "attack": 2,
   "health": 2,
   "spirit": 0
+}, {
+  "id": 343,
+  "name": "Skullprophet",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "rare",
+  "faction": "abyssian",
+  "text": "<b>Sentinel</b>: General attacks.<br/>The enemy General has -1 Attack.",
+  "attack": 3,
+  "health": 3,
+  "spirit": null
 }, {
   "id": 30002,
   "name": "Soul Grimwar",
@@ -455,6 +559,19 @@ const abyssian = [{
   "health": null,
   "spirit": 0
 }, {
+  "id": 345,
+  "name": "Xerroloth",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "rare",
+  "faction": "abyssian",
+  "text": "<b>Sentinel</b>: Spell cast.<br/>Whenever your opponent casts a spell, put a 4/4 Fiend into your action bar.",
+  "attack": 3,
+  "health": 2,
+  "spirit": null
+}, {
   "id": 309,
   "name": "Abyssal Juggernaut",
   "set": "core",
@@ -469,7 +586,7 @@ const abyssian = [{
   "spirit": null
 }, {
   "id": 310,
-  "name": "Bloodmoon Priestess",
+  "name": "Bloodtide Priestess",
   "set": "core",
   "type": "minion",
   "race": "",
@@ -520,6 +637,19 @@ const abyssian = [{
   "health": 4,
   "spirit": null
 }, {
+  "id": 341,
+  "name": "Desolator",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 4,
+  "rarity": "legendary",
+  "faction": "abyssian",
+  "text": "<b>Opening Gambit</b>: Steal 2 Health from the enemy General.<br/><b>Dying Wish</b>: Return Desolator to your action bar.",
+  "attack": 3,
+  "health": 1,
+  "spirit": null
+}, {
   "id": 30020,
   "name": "Ghost Azalea",
   "set": "shimzar",
@@ -531,6 +661,19 @@ const abyssian = [{
   "text": "Your General gains +1 Attack for each friendly <b>Shadow Creep</b>.",
   "attack": null,
   "health": null,
+  "spirit": null
+}, {
+  "id": 340,
+  "name": "Nekomata",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 4,
+  "rarity": "epic",
+  "faction": "abyssian",
+  "text": "<b>Dying Wish</b>: Draw two minions with <b>Dying Wish</b> from your deck.",
+  "attack": 4,
+  "health": 2,
   "spirit": null
 }, {
   "id": 336,
@@ -583,6 +726,19 @@ const abyssian = [{
   "text": "Whenever you summon a Wraithling, this gains +2 Attack.",
   "attack": 4,
   "health": 7,
+  "spirit": null
+}, {
+  "id": 20284,
+  "name": "Corporeal Cadence",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 5,
+  "rarity": "epic",
+  "faction": "abyssian",
+  "text": "Destroy a friendly minion to deal its Attack to the enemy General.",
+  "attack": null,
+  "health": null,
   "spirit": null
 }, {
   "id": 20061,
@@ -665,7 +821,7 @@ const abyssian = [{
 }, {
   "id": 20227,
   "name": "Necrotic Sphere",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 6,
@@ -743,13 +899,13 @@ const abyssian = [{
 }, {
   "id": 333,
   "name": "Grandmaster Variax",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 8,
   "rarity": "legendary",
   "faction": "abyssian",
-  "text": "<b>Opening Gambit</b>: Your Bloodborn Spell costs 3 and is now AWESOME.",
+  "text": "<b>Opening Gambit</b>: Your Bloodbound Spell costs 3 and is now AWESOME.",
   "attack": 8,
   "health": 8,
   "spirit": 0
@@ -763,6 +919,19 @@ const abyssian = [{
   "rarity": "legendary",
   "faction": "abyssian",
   "text": "Destroy all friendly <b>Shadow Creep</b> to deal that much damage to all enemies.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 20264,
+  "name": "Doom",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 9,
+  "rarity": "legendary",
+  "faction": "abyssian",
+  "text": "The enemy General is DOOMED and will die after three turns.",
   "attack": null,
   "health": null,
   "spirit": null
