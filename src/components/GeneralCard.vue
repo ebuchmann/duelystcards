@@ -38,7 +38,7 @@
       },
 
       spriteClass () {
-        return `${this.card.type} ${this.card.type}-sprite ${this.card.type}-${this.card.id}`
+        return `${this.card.type} sprite-${this.card.id}`
       }
     },
 

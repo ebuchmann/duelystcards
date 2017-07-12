@@ -23,7 +23,7 @@ const downloadSpritesForSet = (cards, set) => {
   
   setIds.forEach(id => {
     const outputFile = fs.createWriteStream(`${folderBase}/${id}.gif`);
-    const request = https.get(`https://cards.duelyst.com/img/cards/${setSlug}/${id}_active.gif`, (response) => {
+    const request = https.get(`https://cards.duelyst.com/img/cards/${setSlug}/${id}_idle.gif`, (response) => {
       response.pipe(outputFile);
     });
   });
@@ -34,7 +34,7 @@ const slugForSet = (set) => {
     case 'core':
     case 'shimzar':
       return set;
-    case 'bloobound':
+    case 'bloodbound':
       return 'bloodstorm';
     case 'ancient bonds':
       return 'unity';

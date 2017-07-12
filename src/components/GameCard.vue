@@ -42,7 +42,7 @@
       },
 
       spriteClass () {
-        return `${this.card.type} ${this.card.faction}-sprite ${this.card.faction}-${this.card.id}`
+        return `${this.card.type} ${this.card.faction}-sprite sprite-${this.card.id}`
       }
     },
 
@@ -109,6 +109,7 @@
 
   .game-card .sprite {
     transition: filter .4s ease-out;
+    transform: scale(2);
   }
 
   .game-card:hover .sprite {
@@ -177,12 +178,14 @@
     height: 160px;
 
     > .general, > .minion {
-      top: -25px;
+      left: 45px;
+      top: 15px;
       position: relative;
     }
 
     > .spell, > .artifact {
-      top: 40px;
+      bottom: 10%;
+      left: 38px;
       position: relative;
     }
   }
