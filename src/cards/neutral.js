@@ -208,6 +208,19 @@ const neutral = [{
   "health": 1,
   "spirit": null
 }, {
+  "id": 11102,
+  "name": "Carcynus",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 2,
+  "rarity": "common",
+  "faction": "neutral",
+  "text": "",
+  "attack": 1,
+  "health": 5,
+  "spirit": null
+}, {
   "id": 11098,
   "name": "Celebrant",
   "set": "ancient bonds",
@@ -223,13 +236,13 @@ const neutral = [{
 }, {
   "id": 11088,
   "name": "Cryptographer",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 2,
   "rarity": "common",
   "faction": "neutral",
-  "text": "<b>Opening Gambit</b>: Refresh your Bloodborn Spell.",
+  "text": "<b>Opening Gambit</b>: Refresh your Bloodbound Spell.",
   "attack": 2,
   "health": 2,
   "spirit": 0
@@ -320,7 +333,7 @@ const neutral = [{
   "cost": 2,
   "rarity": "rare",
   "faction": "neutral",
-  "text": "The first non-Bloodborn spell you cast each turn costs 1 less.",
+  "text": "The first non-Bloodbound spell you cast each turn costs 1 less.",
   "attack": 1,
   "health": 3,
   "spirit": null
@@ -401,6 +414,19 @@ const neutral = [{
   "text": "At the end of your turn, give each nearby friendly minion +1 Attack.",
   "attack": 1,
   "health": 4,
+  "spirit": null
+}, {
+  "id": 11109,
+  "name": "Sinister Silhouette",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 2,
+  "rarity": "rare",
+  "faction": "neutral",
+  "text": "Cannot be attacked.",
+  "attack": 1,
+  "health": 2,
   "spirit": null
 }, {
   "id": 19048,
@@ -689,6 +715,19 @@ const neutral = [{
   "health": 3,
   "spirit": null
 }, {
+  "id": 11103,
+  "name": "Komodo Hunter",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "common",
+  "faction": "neutral",
+  "text": "<b>Opening Gambit</b>: Your opponent summons two Komodo Chargers nearby their General.",
+  "attack": 5,
+  "health": 6,
+  "spirit": null
+}, {
   "id": 10987,
   "name": "Lady Locke",
   "set": "core",
@@ -766,6 +805,19 @@ const neutral = [{
   "attack": 2,
   "health": 2,
   "spirit": 0
+}, {
+  "id": 11108,
+  "name": "Rokadoptera",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "common",
+  "faction": "neutral",
+  "text": "<b>Opening Gambit</b>: Put a Boulder Hurl into your action bar.",
+  "attack": 2,
+  "health": 3,
+  "spirit": null
 }, {
   "id": 10012,
   "name": "Saberspine Tiger",
@@ -962,6 +1014,19 @@ const neutral = [{
   "health": 2,
   "spirit": null
 }, {
+  "id": 11105,
+  "name": "Wild Tahr",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "common",
+  "faction": "neutral",
+  "text": "<b>Frenzy</b><br/>Whenever an enemy attacks, this minion gains +3 Attack until the end of your turn.",
+  "attack": 2,
+  "health": 4,
+  "spirit": null
+}, {
   "id": 11007,
   "name": "Wind Runner",
   "set": "core",
@@ -1077,6 +1142,19 @@ const neutral = [{
   "text": "<b>Opening Gambit</b>: Deal 1 damage to everything (including itself).",
   "attack": 4,
   "health": 5,
+  "spirit": null
+}, {
+  "id": 11122,
+  "name": "Bloodsworn Gambler",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 4,
+  "rarity": "epic",
+  "faction": "neutral",
+  "text": "<b>Ranged</b><br/>Each time this minion attacks, it has a 50% chance to attack again, attacking a random enemy.",
+  "attack": 2,
+  "health": 3,
   "spirit": null
 }, {
   "id": 10989,
@@ -1235,6 +1313,19 @@ const neutral = [{
   "health": 5,
   "spirit": 0
 }, {
+  "id": 11110,
+  "name": "Matter Shaper",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 4,
+  "rarity": "rare",
+  "faction": "neutral",
+  "text": "<b>Opening Gambit</b>: Destroy an enemy artifact to put a random artifact from your faction into your action bar.",
+  "attack": 5,
+  "health": 4,
+  "spirit": null
+}, {
   "id": 10965,
   "name": "Mindwarper",
   "set": "core",
@@ -1313,15 +1404,28 @@ const neutral = [{
   "health": 4,
   "spirit": null
 }, {
+  "id": 11106,
+  "name": "Razorcrag Golem",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "Golem",
+  "cost": 4,
+  "rarity": "common",
+  "faction": "neutral",
+  "text": "",
+  "attack": 10,
+  "health": 3,
+  "spirit": null
+}, {
   "id": 11087,
   "name": "Sanguinar",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 4,
   "rarity": "rare",
   "faction": "neutral",
-  "text": "Your Bloodborn Spell costs 1 less to activate.",
+  "text": "Your Bloodbound Spell costs 1 less to activate.",
   "attack": 5,
   "health": 4,
   "spirit": 0
@@ -1430,6 +1534,19 @@ const neutral = [{
   "health": 4,
   "spirit": 0
 }, {
+  "id": 11115,
+  "name": "Thunderhorn",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 4,
+  "rarity": "epic",
+  "faction": "neutral",
+  "text": "Whenever this minion damages an enemy, it also damages all joined enemies.",
+  "attack": 4,
+  "health": 5,
+  "spirit": null
+}, {
   "id": 11036,
   "name": "Unseven",
   "set": "core",
@@ -1496,7 +1613,7 @@ const neutral = [{
   "spirit": null
 }, {
   "id": 11054,
-  "name": "Beastmaster",
+  "name": "Beastbound Savage",
   "set": "shimzar",
   "type": "minion",
   "race": "",
@@ -1711,9 +1828,22 @@ const neutral = [{
   "cost": 5,
   "rarity": "legendary",
   "faction": "neutral",
-  "text": "<b>Opening Gambit</b>: Summon a random friendly non-token minion destroyed this game nearby.",
+  "text": "<b>Opening Gambit</b>: Summon a friendly non-token minion destroyed this game nearby.",
   "attack": 3,
   "health": 4,
+  "spirit": null
+}, {
+  "id": 11112,
+  "name": "Letigress",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 5,
+  "rarity": "legendary",
+  "faction": "neutral",
+  "text": "<b>Ranged</b><br/>Whenever your General attacks, a cub joins the pack.",
+  "attack": 2,
+  "health": 6,
   "spirit": null
 }, {
   "id": 10973,
@@ -1741,6 +1871,19 @@ const neutral = [{
   "attack": 5,
   "health": 4,
   "spirit": 0
+}, {
+  "id": 11111,
+  "name": "Quahog",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 5,
+  "rarity": "rare",
+  "faction": "neutral",
+  "text": "Enemy minions destroyed by this are returned to their action bar.",
+  "attack": 7,
+  "health": 7,
+  "spirit": null
 }, {
   "id": 11060,
   "name": "Rawr",
@@ -1807,6 +1950,19 @@ const neutral = [{
   "health": 3,
   "spirit": null
 }, {
+  "id": 11114,
+  "name": "Theobule",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 5,
+  "rarity": "legendary",
+  "faction": "neutral",
+  "text": "<b>Opening Gambit</b>: Replace each card in your action bar.",
+  "attack": 5,
+  "health": 6,
+  "spirit": null
+}, {
   "id": 11097,
   "name": "Trinity Wing",
   "set": "ancient bonds",
@@ -1841,23 +1997,10 @@ const neutral = [{
   "cost": 6,
   "rarity": "legendary",
   "faction": "neutral",
-  "text": "Your opponent's non-Bloodborn spells cost 1 more to cast.",
+  "text": "Your opponent's non-Bloodbound spells cost 1 more to cast.",
   "attack": 7,
   "health": 7,
   "spirit": null
-}, {
-  "id": 11032,
-  "name": "Bloodletter",
-  "set": "core",
-  "type": "minion",
-  "race": "",
-  "cost": 6,
-  "rarity": "basic",
-  "faction": "neutral",
-  "text": "Deals double damage to Generals.",
-  "attack": 4,
-  "health": 6,
-  "spirit": 0
 }, {
   "id": 11023,
   "name": "Bonereaper",
@@ -1924,6 +2067,19 @@ const neutral = [{
   "health": 7,
   "spirit": null
 }, {
+  "id": 11032,
+  "name": "Facestriker",
+  "set": "core",
+  "type": "minion",
+  "race": "",
+  "cost": 6,
+  "rarity": "basic",
+  "faction": "neutral",
+  "text": "Deals double damage to Generals.",
+  "attack": 4,
+  "health": 6,
+  "spirit": 0
+}, {
   "id": 10984,
   "name": "First Sword of Akrane",
   "set": "core",
@@ -1976,6 +2132,19 @@ const neutral = [{
   "health": 1,
   "spirit": null
 }, {
+  "id": 11107,
+  "name": "Magesworn",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "Arcanyst",
+  "cost": 6,
+  "rarity": "legendary",
+  "faction": "neutral",
+  "text": "BOTH players cannot cast spells that cost 2 or less.",
+  "attack": 3,
+  "health": 8,
+  "spirit": null
+}, {
   "id": 11081,
   "name": "Quartermaster Gauj",
   "set": "core",
@@ -2026,6 +2195,19 @@ const neutral = [{
   "text": "",
   "attack": 6,
   "health": 9,
+  "spirit": null
+}, {
+  "id": 11116,
+  "name": "Spriggin",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 6,
+  "rarity": "epic",
+  "faction": "neutral",
+  "text": "<b>Provoke</b><br/><b>Opening Gambit</b>: Each player summons three Spriggin Kin nearby their General.",
+  "attack": 6,
+  "health": 6,
   "spirit": null
 }, {
   "id": 19035,
@@ -2107,7 +2289,7 @@ const neutral = [{
   "spirit": null
 }, {
   "id": 10206,
-  "name": "Dragonbone Golem",
+  "name": "Drybone Golem",
   "set": "core",
   "type": "minion",
   "race": "Golem",
@@ -2130,6 +2312,19 @@ const neutral = [{
   "text": "<b>Forcefield</b><br>Whenever this minion attacks or is attacked, draw a card.",
   "attack": 5,
   "health": 5,
+  "spirit": null
+}, {
+  "id": 11104,
+  "name": "Emberwyrm",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 7,
+  "rarity": "common",
+  "faction": "neutral",
+  "text": "<b>Flying</b>",
+  "attack": 10,
+  "health": 7,
   "spirit": null
 }, {
   "id": 11093,
@@ -2249,6 +2444,19 @@ const neutral = [{
   "health": 7,
   "spirit": null
 }, {
+  "id": 11121,
+  "name": "Dagona",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 8,
+  "rarity": "legendary",
+  "faction": "neutral",
+  "text": "<b>Opening Gambit</b>: Devour ANY minion, anywhere.<br/><b>Dying Wish</b>: Spit out the devoured minion on this space.",
+  "attack": 8,
+  "health": 8,
+  "spirit": null
+}, {
   "id": 11013,
   "name": "Khymera",
   "set": "core",
@@ -2264,7 +2472,7 @@ const neutral = [{
 }, {
   "id": 11089,
   "name": "Meltdown",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 8,

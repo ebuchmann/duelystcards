@@ -52,6 +52,19 @@ const magmar = [{
   "health": null,
   "spirit": 0
 }, {
+  "id": 30037,
+  "name": "Eternal Heart",
+  "set": "unearthed prophecy",
+  "type": "artifact",
+  "race": "",
+  "cost": 1,
+  "rarity": "legendary",
+  "faction": "magmar",
+  "text": "Your General cannot die.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 30028,
   "name": "Godhammer",
   "set": "ancient bonds",
@@ -145,7 +158,7 @@ const magmar = [{
 }, {
   "id": 20225,
   "name": "Entropic Gaze",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 2,
@@ -221,9 +234,22 @@ const magmar = [{
   "health": 1,
   "spirit": 0
 }, {
+  "id": 20268,
+  "name": "Primal Ballast",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 2,
+  "rarity": "rare",
+  "faction": "magmar",
+  "text": "Dispel a space. If there is a minion on that space, give it +2/+2.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 430,
   "name": "Rancour",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 2,
@@ -247,6 +273,32 @@ const magmar = [{
   "health": null,
   "spirit": null
 }, {
+  "id": 20288,
+  "name": "Vaath's Brutality",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 2,
+  "rarity": "common",
+  "faction": "magmar",
+  "text": "<b>Stun</b> an enemy minion. Give your General +1 Attack.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 438,
+  "name": "Warpup",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 2,
+  "rarity": "rare",
+  "faction": "magmar",
+  "text": "<b>Forcefield</b>, <b>Frenzy</b>",
+  "attack": 1,
+  "health": 1,
+  "spirit": null
+}, {
   "id": 412,
   "name": "Young Silithar",
   "set": "core",
@@ -258,6 +310,19 @@ const magmar = [{
   "text": "<b>Rebirth</b>",
   "attack": 2,
   "health": 3,
+  "spirit": null
+}, {
+  "id": 439,
+  "name": "Catalyst Quillbeast",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "common",
+  "faction": "magmar",
+  "text": "Whenever you cast a spell, deal 1 damage to ALL minions.",
+  "attack": 3,
+  "health": 4,
   "spirit": null
 }, {
   "id": 402,
@@ -272,6 +337,19 @@ const magmar = [{
   "attack": 3,
   "health": 3,
   "spirit": 0
+}, {
+  "id": 20291,
+  "name": "Endure the Beastlands",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 3,
+  "rarity": "epic",
+  "faction": "magmar",
+  "text": "Turn a 2x2 area into <b>Primal Flourish</b>.",
+  "attack": null,
+  "health": null,
+  "spirit": null
 }, {
   "id": 20162,
   "name": "Kinetic Equilibrium",
@@ -327,7 +405,7 @@ const magmar = [{
 }, {
   "id": 20234,
   "name": "Tectonic Spikes",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 3,
@@ -338,9 +416,22 @@ const magmar = [{
   "health": null,
   "spirit": 0
 }, {
+  "id": 437,
+  "name": "Terradon",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "common",
+  "faction": "magmar",
+  "text": "",
+  "attack": 2,
+  "health": 8,
+  "spirit": null
+}, {
   "id": 429,
   "name": "Thraex",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 3,
@@ -390,9 +481,22 @@ const magmar = [{
   "health": null,
   "spirit": 0
 }, {
+  "id": 20297,
+  "name": "Blood Rage",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 4,
+  "rarity": "common",
+  "faction": "magmar",
+  "text": "Give a friendly minion +1/+1 for each time damage was dealt this turn.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 428,
   "name": "Drogon",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 4,
@@ -481,6 +585,32 @@ const magmar = [{
   "health": null,
   "spirit": null
 }, {
+  "id": 440,
+  "name": "Omniseer",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 4,
+  "rarity": "rare",
+  "faction": "magmar",
+  "text": "<b>Opening Gambit</b>: Turn a nearby friendly minion's space into <b>Primal Flourish</b>.",
+  "attack": 4,
+  "health": 5,
+  "spirit": null
+}, {
+  "id": 435,
+  "name": "Rizen",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 4,
+  "rarity": "epic",
+  "faction": "magmar",
+  "text": "Whenever your opponent summons a minion, this minion summons an Egg of itself nearby.",
+  "attack": 3,
+  "health": 2,
+  "spirit": null
+}, {
   "id": 20218,
   "name": "Thumping Wave",
   "set": "shimzar",
@@ -496,7 +626,7 @@ const magmar = [{
 }, {
   "id": 20245,
   "name": "Valknu's Seal",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 4,
@@ -506,6 +636,19 @@ const magmar = [{
   "attack": null,
   "health": null,
   "spirit": 0
+}, {
+  "id": 20296,
+  "name": "Verdant Fulmination",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 4,
+  "rarity": "epic",
+  "faction": "magmar",
+  "text": "Your minions on friendly <b>Primal Flourish</b> grow. Turn your other minions' spaces into <b>Primal Flourish</b>.",
+  "attack": null,
+  "health": null,
+  "spirit": null
 }, {
   "id": 413,
   "name": "Veteran Silithar",
@@ -702,6 +845,19 @@ const magmar = [{
   "health": null,
   "spirit": null
 }, {
+  "id": 20292,
+  "name": "Evolutionary Apex",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 7,
+  "rarity": "legendary",
+  "faction": "magmar",
+  "text": "BOTH players put all minions in their action bars onto the battlefield nearby their General.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 414,
   "name": "Silithar Elder",
   "set": "core",
@@ -753,6 +909,19 @@ const magmar = [{
   "attack": 4,
   "health": 10,
   "spirit": 0
+}, {
+  "id": 436,
+  "name": "Grandmaster Kraigon",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 9,
+  "rarity": "legendary",
+  "faction": "magmar",
+  "text": "<b>Forcefield</b>, <b>Frenzy</b>, <b>Grow</b>: +7/+7.<br/>Your General has:<br/><b>Forcefield</b>, <b>Frenzy</b>, <b>Grow</b>: +7/+7.",
+  "attack": 7,
+  "health": 7,
+  "spirit": null
 }, {
   "id": 425,
   "name": "Mandrake",

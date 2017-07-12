@@ -27,7 +27,7 @@ const vanar = [{
   "spirit": null
 }, {
   "id": 20144,
-  "name": "Aspect of the Fox",
+  "name": "Aspect of the Ravager",
   "set": "core",
   "type": "spell",
   "race": "",
@@ -105,7 +105,7 @@ const vanar = [{
   "spirit": null
 }, {
   "id": 20214,
-  "name": "Altered Beast",
+  "name": "Aspect of Shim'Zar",
   "set": "shimzar",
   "type": "spell",
   "race": "",
@@ -192,7 +192,7 @@ const vanar = [{
   "faction": "vanar",
   "text": "Whenever you cast a spell, add a 2/1 Illusion to your action bar.",
   "attack": 1,
-  "health": 3,
+  "health": 1,
   "spirit": 0
 }, {
   "id": 30016,
@@ -210,7 +210,7 @@ const vanar = [{
 }, {
   "id": 20228,
   "name": "Concealing Shroud",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 2,
@@ -220,6 +220,19 @@ const vanar = [{
   "attack": null,
   "health": null,
   "spirit": 0
+}, {
+  "id": 550,
+  "name": "Crystal Arbiter",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "Vespyr",
+  "cost": 2,
+  "rarity": "common",
+  "faction": "vanar",
+  "text": "This minion has +3 Attack on your opponent's turn.",
+  "attack": 1,
+  "health": 4,
+  "spirit": null
 }, {
   "id": 505,
   "name": "Crystal Cloaker",
@@ -249,7 +262,7 @@ const vanar = [{
 }, {
   "id": 20237,
   "name": "Frigid Corona",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 2,
@@ -351,6 +364,19 @@ const vanar = [{
   "health": null,
   "spirit": null
 }, {
+  "id": 545,
+  "name": "Shivers",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "Vespyr",
+  "cost": 2,
+  "rarity": "epic",
+  "faction": "vanar",
+  "text": "<b>Flying</b><br/><b>Infiltrate</b>: When this minion attacks, permanently gain 1 mana crystal.",
+  "attack": 2,
+  "health": 1,
+  "spirit": null
+}, {
   "id": 20148,
   "name": "Blazing Spines",
   "set": "core",
@@ -362,6 +388,19 @@ const vanar = [{
   "text": "Summon two joined 3/3 Walls that can attack.",
   "attack": null,
   "health": null,
+  "spirit": null
+}, {
+  "id": 548,
+  "name": "Drake Dowager",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "rare",
+  "faction": "vanar",
+  "text": "<b>Sentinel</b>: General attacks.<br/><b>Ranged</b><br/>Whenever this attacks, summon a 4/4 Flying Drake nearby.",
+  "attack": 1,
+  "health": 3,
   "spirit": null
 }, {
   "id": 503,
@@ -377,6 +416,19 @@ const vanar = [{
   "health": 2,
   "spirit": 0
 }, {
+  "id": 547,
+  "name": "Freeblade",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "common",
+  "faction": "vanar",
+  "text": "<b>Sentinel</b>: Minion summoned.<br/>This switches positions with the minion that transformed it.",
+  "attack": 3,
+  "health": 5,
+  "spirit": null
+}, {
   "id": 519,
   "name": "Glacial Elemental",
   "set": "core",
@@ -388,6 +440,19 @@ const vanar = [{
   "text": "Whenever you summon a Vespyr minion, deal 2 damage to a random enemy minion.",
   "attack": 2,
   "health": 3,
+  "spirit": null
+}, {
+  "id": 20266,
+  "name": "Glacial Fissure",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 3,
+  "rarity": "epic",
+  "faction": "vanar",
+  "text": "Deal 8 damage to EVERYTHING in the center column.",
+  "attack": null,
+  "health": null,
   "spirit": null
 }, {
   "id": 533,
@@ -416,9 +481,22 @@ const vanar = [{
   "health": 3,
   "spirit": 0
 }, {
+  "id": 549,
+  "name": "Moonlit Basilysk",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "rare",
+  "faction": "vanar",
+  "text": "<b>Sentinel</b>: Spell cast.<br/>Whenever your opponent casts a spell, this minion gains +3/+3.",
+  "attack": 2,
+  "health": 2,
+  "spirit": null
+}, {
   "id": 536,
   "name": "Myriad",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "Vespyr",
   "cost": 3,
@@ -455,6 +533,19 @@ const vanar = [{
   "health": null,
   "spirit": 0
 }, {
+  "id": 30035,
+  "name": "The Dredger",
+  "set": "unearthed prophecy",
+  "type": "artifact",
+  "race": "",
+  "cost": 3,
+  "rarity": "legendary",
+  "faction": "vanar",
+  "text": "Whenever your General damages an enemy, randomly teleport them to your starting side of the battlefield.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 511,
   "name": "Wolfraven",
   "set": "core",
@@ -469,7 +560,7 @@ const vanar = [{
   "spirit": null
 }, {
   "id": 20145,
-  "name": "Aspect of the Drake",
+  "name": "Aspect of the Wyrm",
   "set": "core",
   "type": "spell",
   "race": "",
@@ -493,6 +584,19 @@ const vanar = [{
   "attack": null,
   "health": null,
   "spirit": 0
+}, {
+  "id": 20298,
+  "name": "Blinding Snowstorm",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 4,
+  "rarity": "common",
+  "faction": "vanar",
+  "text": "Deal 1 damage to all enemies. Those enemies can only move 1 space next turn.",
+  "attack": null,
+  "health": null,
+  "spirit": null
 }, {
   "id": 20165,
   "name": "Cryogenesis",
@@ -522,7 +626,7 @@ const vanar = [{
 }, {
   "id": 537,
   "name": "Sleet Dasher",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 4,
@@ -613,7 +717,7 @@ const vanar = [{
 }, {
   "id": 20229,
   "name": "Enfeeble",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 5,
@@ -676,6 +780,19 @@ const vanar = [{
   "health": 4,
   "spirit": null
 }, {
+  "id": 20276,
+  "name": "Luminous Charge",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 5,
+  "rarity": "rare",
+  "faction": "vanar",
+  "text": "Summon five joined 0/1 Walls that deal 2 damage to nearby enemies when destroyed.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 20163,
   "name": "Spirit of the Wild",
   "set": "core",
@@ -685,6 +802,19 @@ const vanar = [{
   "rarity": "epic",
   "faction": "vanar",
   "text": "Reactivate friendly minions on your opponent's starting side of the battlefield.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 20289,
+  "name": "Vespyrian Might",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 5,
+  "rarity": "common",
+  "faction": "vanar",
+  "text": "Give a Vespyr minion +2/+2 for each friendly Vespyr.",
   "attack": null,
   "health": null,
   "spirit": null
@@ -715,6 +845,19 @@ const vanar = [{
   "health": 8,
   "spirit": null
 }, {
+  "id": 20295,
+  "name": "Icebreak Ambush",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 6,
+  "rarity": "epic",
+  "faction": "vanar",
+  "text": "Summon an ambush of <b>Infiltrate</b> minions on your opponent's starting side of the battlefield.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 514,
   "name": "Ancient Grove",
   "set": "core",
@@ -726,6 +869,19 @@ const vanar = [{
   "text": "<b>Provoke</b><br><b>Opening Gambit</b>: Your minions gain \"<b>Dying Wish</b>: Summon a 1/1 Treant with <b>Provoke</b>\".",
   "attack": 7,
   "health": 7,
+  "spirit": null
+}, {
+  "id": 20293,
+  "name": "Flawless Reflection",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 7,
+  "rarity": "legendary",
+  "faction": "vanar",
+  "text": "Choose a minion. Transform ALL nearby minions into copies of it.",
+  "attack": null,
+  "health": null,
   "spirit": null
 }, {
   "id": 541,
@@ -743,7 +899,7 @@ const vanar = [{
 }, {
   "id": 538,
   "name": "Grandmaster Embla",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 8,
@@ -753,6 +909,19 @@ const vanar = [{
   "attack": 5,
   "health": 5,
   "spirit": 0
+}, {
+  "id": 543,
+  "name": "Matron Elveiti",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 8,
+  "rarity": "legendary",
+  "faction": "vanar",
+  "text": "Minions cannot attack your General.",
+  "attack": 7,
+  "health": 5,
+  "spirit": null
 }, {
   "id": 20212,
   "name": "Winter's Wake",

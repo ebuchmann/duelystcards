@@ -31,7 +31,7 @@
 
     computed: {
       spriteClass () {
-        return `sprite ${this.card.type}-sm ${this.card.faction}-sprite ${this.card.faction}-${this.card.id}`
+        return `sprite ${this.card.type}-sm ${this.card.faction}-sprite sprite-${this.card.id}`
       },
     },
 
@@ -82,6 +82,8 @@
 
     > .qty {
       font-size: .9rem;
+      left: 60px;
+      position: relative;
     }
   }
 </style>

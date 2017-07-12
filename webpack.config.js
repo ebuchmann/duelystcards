@@ -37,7 +37,8 @@ module.exports = {
       { test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader' },
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file-loader?name=fonts/[hash].[ext]' },
-      { test: /\.(jpg|jpeg|png|gif)$/, loader: 'file-loader?name=images/[hash].[ext]' },
+      { test: /\.(jpg|jpeg|png)$/, loader: 'file-loader?name=images/[hash].[ext]' },
+      { test: /\.(gif)$/, loader: 'file-loader?name=images/[name].[ext]' },
       {
         test: /\.vue$/,
         loader: 'vue-loader',

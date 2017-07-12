@@ -8,14 +8,8 @@
 @import '~simple-scrollbar/simple-scrollbar';
 
 /* Sprites */
-@import 'sprites/abyssian';
+@import 'sprites/sprites';
 @import 'sprites/generals';
-@import 'sprites/lyonar';
-@import 'sprites/songhai';
-@import 'sprites/magmar';
-@import 'sprites/neutral';
-@import 'sprites/vanar';
-@import 'sprites/vetruvian';
 
 @font-face {
   font-family: LatoRegular;
@@ -57,6 +51,7 @@ button {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: -moz-crisp-edges;
   image-rendering: pixelated;
+  background-repeat: no-repeat;
 }
 
 .sprite.minion, .sprite.general {
@@ -67,25 +62,26 @@ button {
 
 .sprite.spell, .sprite.artifact {
   margin: 0 auto;
-  width: 96px;
-  height: 96px;
-}
-
-.sprite.minion-sm {
-  top: -78px;
-  right: -52px;
-  z-index: 2;
-  transform: scaleX(-0.5) scaleY(0.5);
   width: 160px;
   height: 160px;
 }
 
+.sprite.minion-sm {
+  bottom: 6px;
+  left: 40px;
+  transform: scaleX(-1.0) scaleY(1.0);
+  width: 160px;
+  height: 160px;
+  position: relative;
+}
+
 .sprite.spell-sm, .sprite.artifact-sm {
-  top: -26px;
-  right: -22px;
-  transform: scale(0.6);
-  width: 96px;
-  height: 96px;
+  bottom: 20px;
+  left: 30px;
+  position: relative;
+  transform: scale(1.2);
+  width: 160px;
+  height: 160px;
 }
 
 .sprite.general-md {
