@@ -78,6 +78,19 @@ const songhai = [{
   "health": null,
   "spirit": 0
 }, {
+  "id": 20275,
+  "name": "Gotatsu",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 1,
+  "rarity": "common",
+  "faction": "songhai",
+  "text": "Deal 1 damage to a minion. Draw a card at end of turn.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 108,
   "name": "Heartseeker",
   "set": "core",
@@ -158,7 +171,7 @@ const songhai = [{
 }, {
   "id": 20241,
   "name": "Obscuring Blow",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 1,
@@ -178,6 +191,19 @@ const songhai = [{
   "rarity": "common",
   "faction": "songhai",
   "text": "Lower the cost of all minions with <b>Backstab</b> in your action bar by 1 and give them +1/+1.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 20294,
+  "name": "Spiral Counter",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 1,
+  "rarity": "common",
+  "faction": "songhai",
+  "text": "Deal 8 damage to an enemy minion that attacked last turn.",
   "attack": null,
   "health": null,
   "spirit": null
@@ -249,7 +275,7 @@ const songhai = [{
 }, {
   "id": 20231,
   "name": "Ethereal Blades",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 2,
@@ -324,6 +350,19 @@ const songhai = [{
   "attack": null,
   "health": null,
   "spirit": 0
+}, {
+  "id": 140,
+  "name": "Scroll Bandit",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "Arcanyst",
+  "cost": 2,
+  "rarity": "epic",
+  "faction": "songhai",
+  "text": "<b>Backstab</b>: (1).<br/>Whenever this backstabs, steal a spell from your opponent's deck.",
+  "attack": 1,
+  "health": 3,
+  "spirit": null
 }, {
   "id": 121,
   "name": "Tusk Boar",
@@ -403,6 +442,19 @@ const songhai = [{
   "health": null,
   "spirit": null
 }, {
+  "id": 20283,
+  "name": "Flicker",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 3,
+  "rarity": "epic",
+  "faction": "songhai",
+  "text": "Teleport your General to a space behind an enemy.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 112,
   "name": "Gore Horn",
   "set": "core",
@@ -414,6 +466,19 @@ const songhai = [{
   "text": "<b>Backstab</b>: (2).<br>After this minion attacks, it gains +1/+1.",
   "attack": 3,
   "health": 3,
+  "spirit": null
+}, {
+  "id": 142,
+  "name": "Hundred-Handed Rakushi",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "common",
+  "faction": "songhai",
+  "text": "<b>Sentinel</b>: Minion summoned.<br/>Deal 2 damage to the minion that transformed this.",
+  "attack": 3,
+  "health": 4,
   "spirit": null
 }, {
   "id": 114,
@@ -468,6 +533,32 @@ const songhai = [{
   "health": 3,
   "spirit": null
 }, {
+  "id": 144,
+  "name": "Mind-Cage Oni",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "rare",
+  "faction": "songhai",
+  "text": "<b>Sentinel</b>: Spell cast.<br/>Whenever your opponent casts a spell, put a copy of that spell into your action bar.",
+  "attack": 4,
+  "health": 3,
+  "spirit": null
+}, {
+  "id": 143,
+  "name": "Mizuchi",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "rare",
+  "faction": "songhai",
+  "text": "<b>Sentinel</b>: General attacks.<br/><b>Flying</b><br/><b>Backstab</b>: (2).",
+  "attack": 2,
+  "health": 5,
+  "spirit": null
+}, {
   "id": 20087,
   "name": "Onyx Bear Seal",
   "set": "core",
@@ -496,7 +587,7 @@ const songhai = [{
 }, {
   "id": 132,
   "name": "Twilight Fox",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 3,
@@ -520,9 +611,22 @@ const songhai = [{
   "health": null,
   "spirit": null
 }, {
+  "id": 30033,
+  "name": "Unbounded Energy Amulet",
+  "set": "unearthed prophecy",
+  "type": "artifact",
+  "race": "",
+  "cost": 3,
+  "rarity": "legendary",
+  "faction": "songhai",
+  "text": "Your General gains +1 Attack.<br/>Your General may move an additional space.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 134,
   "name": "Whiplash",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 3,
@@ -561,7 +665,7 @@ const songhai = [{
 }, {
   "id": 20240,
   "name": "Cobra Strike",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 4,
@@ -571,6 +675,19 @@ const songhai = [{
   "attack": null,
   "health": null,
   "spirit": 0
+}, {
+  "id": 138,
+  "name": "Flamewreath",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 4,
+  "rarity": "common",
+  "faction": "songhai",
+  "text": "Whenever this minion is moved for any reason, it deals 2 damage to all enemies around it.",
+  "attack": 2,
+  "health": 4,
+  "spirit": null
 }, {
   "id": 116,
   "name": "Four Winds Magi",
@@ -639,13 +756,13 @@ const songhai = [{
 }, {
   "id": 133,
   "name": "Geomancer",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 5,
   "rarity": "rare",
   "faction": "songhai",
-  "text": "<b>Opening Gambit</b>: Your Bloodborn Spell is Phoenix Fire.",
+  "text": "<b>Opening Gambit</b>: Your Bloodbound Spell is Phoenix Fire.",
   "attack": 5,
   "health": 4,
   "spirit": 0
@@ -700,6 +817,58 @@ const songhai = [{
   "text": "<b>Flying</b><br><b>Backstab</b>: (4).",
   "attack": 2,
   "health": 5,
+  "spirit": null
+}, {
+  "id": 20267,
+  "name": "Twilight Reiki",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 5,
+  "rarity": "legendary",
+  "faction": "songhai",
+  "text": "Put 3 random Songhai minions into your action bar. They cost 1 less.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 20279,
+  "name": "Bombard",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 6,
+  "rarity": "rare",
+  "faction": "songhai",
+  "text": "Reactivate your minions with <b>Ranged</b>.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 139,
+  "name": "Eternity Painter",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 6,
+  "rarity": "legendary",
+  "faction": "songhai",
+  "text": "At the end of your turn, transform all nearby enemy minions into 0/2 Panddos that cannot be attacked.",
+  "attack": 3,
+  "health": 4,
+  "spirit": null
+}, {
+  "id": 20290,
+  "name": "Firestorm Mantra",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 6,
+  "rarity": "epic",
+  "faction": "songhai",
+  "text": "Steal Health from the enemy General equal to twice the number of spells cast this turn.",
+  "attack": null,
+  "health": null,
   "spirit": null
 }, {
   "id": 131,

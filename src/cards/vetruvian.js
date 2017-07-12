@@ -1,5 +1,18 @@
 /* eslint-disable */
 const vetruvian = [{
+  "id": 20286,
+  "name": "Azure Summoning",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 0,
+  "rarity": "epic",
+  "faction": "vetruvian",
+  "text": "Whenever you summon a minion with <b>Flying</b> from your action bar this turn, draw a minion with <b>Flying</b> from your deck.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 227,
   "name": "Rae",
   "set": "shimzar",
@@ -22,6 +35,19 @@ const vetruvian = [{
   "rarity": "common",
   "faction": "vetruvian",
   "text": "Dispel an enemy minion nearby your General.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 20255,
+  "name": "Arid Unmaking",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 1,
+  "rarity": "common",
+  "faction": "vetruvian",
+  "text": "Destroy a friendly minion to turn its space into <b>Exhuming Sand</b>.",
   "attack": null,
   "health": null,
   "spirit": null
@@ -52,6 +78,32 @@ const vetruvian = [{
   "health": null,
   "spirit": 0
 }, {
+  "id": 20300,
+  "name": "Droplift",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 1,
+  "rarity": "rare",
+  "faction": "vetruvian",
+  "text": "Steal a random artifact from the enemy General and equip it.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 30036,
+  "name": "Oblivion Sickle",
+  "set": "unearthed prophecy",
+  "type": "artifact",
+  "race": "",
+  "cost": 1,
+  "rarity": "legendary",
+  "faction": "vetruvian",
+  "text": "Whenever your General destroys an enemy, turn that space into <b>Exhuming Sand</b>.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 20095,
   "name": "Scion's First Wish",
   "set": "core",
@@ -67,7 +119,7 @@ const vetruvian = [{
 }, {
   "id": 20246,
   "name": "Stone To Spears",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 1,
@@ -130,6 +182,19 @@ const vetruvian = [{
   "health": 1,
   "spirit": null
 }, {
+  "id": 241,
+  "name": "Duskweaver",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "Dervish",
+  "cost": 2,
+  "rarity": "common",
+  "faction": "vetruvian",
+  "text": "<b>Dying Wish</b>: Put a random Scion's Wish spell into your action bar.",
+  "attack": 1,
+  "health": 1,
+  "spirit": null
+}, {
   "id": 214,
   "name": "Ethereal Obelysk",
   "set": "core",
@@ -154,6 +219,19 @@ const vetruvian = [{
   "text": "Fully heal all friendly minions.",
   "attack": null,
   "health": null,
+  "spirit": null
+}, {
+  "id": 243,
+  "name": "Lavastorm Obelysk",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "Structure",
+  "cost": 2,
+  "rarity": "rare",
+  "faction": "vetruvian",
+  "text": "<b>Summon Dervish</b><br/>At the start of your turn, deal 6 damage to all enemy minions in this row.",
+  "attack": 0,
+  "health": 4,
   "spirit": null
 }, {
   "id": 228,
@@ -191,6 +269,19 @@ const vetruvian = [{
   "rarity": "epic",
   "faction": "vetruvian",
   "text": "Destroy a random artifact on the enemy General. Summon a Wind Dervish with <b>Rush</b> near them.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
+  "id": 20265,
+  "name": "Reassemble",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 2,
+  "rarity": "common",
+  "faction": "vetruvian",
+  "text": "Return a friendly Obelysk to your action bar and reduce its cost to 0. Draw a card.",
   "attack": null,
   "health": null,
   "spirit": null
@@ -288,7 +379,7 @@ const vetruvian = [{
 }, {
   "id": 20242,
   "name": "Divine Spark",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 3,
@@ -309,6 +400,19 @@ const vetruvian = [{
   "faction": "vetruvian",
   "text": "<b>Opening Gambit</b>: Your General gains +2 Attack and takes no damage this turn.",
   "attack": 3,
+  "health": 3,
+  "spirit": null
+}, {
+  "id": 245,
+  "name": "Fate Watcher",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 3,
+  "rarity": "common",
+  "faction": "vetruvian",
+  "text": "Whenever your opponent draws a card, this minion gains a random keyword ability.",
+  "attack": 2,
   "health": 3,
   "spirit": null
 }, {
@@ -385,7 +489,7 @@ const vetruvian = [{
   "cost": 3,
   "rarity": "rare",
   "faction": "vetruvian",
-  "text": "Take control of an enemy minion with 2 or less Attack until end of turn.",
+  "text": "Reactivate and take control of an enemy minion with 2 or less Attack until end of turn.",
   "attack": null,
   "health": null,
   "spirit": null
@@ -457,7 +561,7 @@ const vetruvian = [{
 }, {
   "id": 235,
   "name": "Zephyr",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 3,
@@ -546,6 +650,32 @@ const vetruvian = [{
   "health": null,
   "spirit": 0
 }, {
+  "id": 242,
+  "name": "Trygon Obelysk",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "Structure",
+  "cost": 4,
+  "rarity": "legendary",
+  "faction": "vetruvian",
+  "text": "<b>Summon Dervish</b><br/><b>Summon Dervish</b><br/><b>Summon Dervish</b>",
+  "attack": 0,
+  "health": 9,
+  "spirit": null
+}, {
+  "id": 244,
+  "name": "Wasteland Wraith",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 4,
+  "rarity": "epic",
+  "faction": "vetruvian",
+  "text": "At the start of your turn, destroy this and all enemy minions.",
+  "attack": 1,
+  "health": 5,
+  "spirit": null
+}, {
   "id": 208,
   "name": "Wind Shrike",
   "set": "core",
@@ -600,7 +730,7 @@ const vetruvian = [{
 }, {
   "id": 236,
   "name": "Incinera",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 5,
@@ -622,6 +752,19 @@ const vetruvian = [{
   "text": "Whenever this minion takes damage, summon a Soulburn Obelysk nearby.",
   "attack": 3,
   "health": 8,
+  "spirit": null
+}, {
+  "id": 246,
+  "name": "Sandswirl Reader",
+  "set": "unearthed prophecy",
+  "type": "minion",
+  "race": "",
+  "cost": 5,
+  "rarity": "rare",
+  "faction": "vetruvian",
+  "text": "<b>Opening Gambit</b>: Return a nearby minion to its action bar. Turn that space into <b>Exhuming Sand</b>.",
+  "attack": 3,
+  "health": 4,
   "spirit": null
 }, {
   "id": 240,
@@ -676,9 +819,22 @@ const vetruvian = [{
   "health": null,
   "spirit": null
 }, {
+  "id": 20299,
+  "name": "Superior Mirage",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 5,
+  "rarity": "epic",
+  "faction": "vetruvian",
+  "text": "Summon three copies of an enemy minion nearby it. They disappear when attacked.",
+  "attack": null,
+  "health": null,
+  "spirit": null
+}, {
   "id": 20244,
   "name": "Autarch's Gifts",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "spell",
   "race": "",
   "cost": 6,
@@ -700,6 +856,19 @@ const vetruvian = [{
   "text": "<b>Provoke</b><br><b>Dying Wish</b>: Deal 5 damage to the enemy General. Restore 5 Health to your General.",
   "attack": 5,
   "health": 5,
+  "spirit": null
+}, {
+  "id": 20262,
+  "name": "Cataclysmic Fault",
+  "set": "unearthed prophecy",
+  "type": "spell",
+  "race": "",
+  "cost": 6,
+  "rarity": "legendary",
+  "faction": "vetruvian",
+  "text": "Turn the entire center column into <b>Exhuming Sand</b>.",
+  "attack": null,
+  "health": null,
   "spirit": null
 }, {
   "id": 233,
@@ -756,7 +925,7 @@ const vetruvian = [{
 }, {
   "id": 237,
   "name": "Grandmaster Nosh-Rak",
-  "set": "bloodborn",
+  "set": "bloodbound",
   "type": "minion",
   "race": "",
   "cost": 8,
