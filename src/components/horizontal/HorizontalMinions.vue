@@ -33,28 +33,29 @@
     position: relative;
 
     > .sprite-container {
-      width: 80px;
+      width: 75px;
       position: relative;
 
       > .sprite.minion-sm {
-        top: -66px;
+        bottom: 50px;
+        left: 0px;
       }
 
       > .sprite > .qty {
         text-align: center;
-        bottom: -30px;
-        font-size: 1.5rem;
+        top: 100px;
+        font-size: .8rem;
         width: 30px;
         position: absolute;
         border-radius: 12px;
-        background: $blue-dark;
-        left: 87px;
+        background: #172127;
+        left: 60px;
         opacity: .8;
       }
     }
 
     .sprite.minion-sm {
-      transform: scaleX(0.5) scaleY(0.5);
+      transform: scaleX(1) scaleY(1);
     }
   }
 
