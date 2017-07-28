@@ -18,7 +18,7 @@
 
     methods: {
       getClass (card) {
-        return `sprite artifact-sm ${card.faction}-sprite ${card.faction}-${card.id}`
+        return `sprite artifact-sm ${card.faction}-sprite sprite-${card.id}`
       },
     },
   }
@@ -38,15 +38,20 @@
       float: left;
 
       > .sprite {
+        bottom: 80px;
+        width: 120px;
+        left: -25px;
+        height: 120px;
+
         > .qty {
-          font-size: 1.2rem;
+          font-size: .7rem;
           text-align: center;
           position: absolute;
-          top: 66px;
-          background: $blue-dark;
-          width: 25px;
+          top: 104px;
+          background: #172127;
+          width: 20px;
           opacity: .8;
-          right: 0;
+          left: 68px;
           border-radius: 12px;
         }
       }
