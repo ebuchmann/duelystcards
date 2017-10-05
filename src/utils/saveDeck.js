@@ -42,11 +42,16 @@ export const saveToImgur = async (type) => {
     const reader = new FileReader();
     reader.readAsDataURL(image);
     reader.onloadend = async () => {
-      const imgurData = await imgur.post('/3/image', { image: reader.result.split(',')[1], type: 'base64' });
-      store.dispatch('app/setProperty', { property: 'imgurLink', value: imgurData.data.data.link });
-      store.dispatch('app/setProperty', { property: 'imgurHash', value: window.location.hash });
-      store.dispatch('app/toggleProperty', 'imgurModal');
-      store.dispatch('app/toggleProperty', 'savingDeck');
+      try {
+        const imgurData = await imgur.post('/3/image', { image: reader.result.split(',')[1], type: 'base64' });
+        store.dispatch('app/setProperty', { property: 'imgurLink', value: imgurData.data.data.link });
+        store.dispatch('app/setProperty', { property: 'imgurHash', value: window.location.hash });
+        store.dispatch('app/toggleProperty', 'imgurModal');
+        store.dispatch('app/toggleProperty', 'savingDeck');
+      } catch (e) {
+        store.dispatch('app/toggleProperty', 'imgurModal');
+        store.dispatch('app/toggleProperty', 'savingDeck');
+      }
     };
   } catch (error) {
     store.dispatch('app/toggleProperty', 'savingDeck');
