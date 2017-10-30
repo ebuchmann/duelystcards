@@ -4,6 +4,7 @@ const generals = [
     id: 1,
     name: 'Argeon Highmayne',
     set: 'core',
+    type: 'general',
     race: '',
     cost: 0,
     rarity: 'basic',
@@ -18,6 +19,7 @@ const generals = [
     id: 51,
     name: 'Brome Warcrest',
     set: 'core',
+    type: 'general',
     race: '',
     cost: 0,
     rarity: 'basic',
@@ -32,6 +34,7 @@ const generals = [
     id: 323,
     name: 'Cassyva Soulreaper',
     set: 'core',
+    type: 'general',
     race: '',
     cost: 0,
     rarity: 'basic',
@@ -46,6 +49,7 @@ const generals = [
     id: 254,
     name: 'Ciphyron Ascendant',
     set: 'core',
+    type: 'general',
     race: '',
     cost: 0,
     rarity: 'basic',
@@ -63,6 +67,7 @@ const generals = [
     race: '',
     cost: 0,
     rarity: 'basic',
+    type: 'general',
     faction: 'vanar',
     text:
       "Bloodbound Spell: Deal 2 damage to all enemies in the enemy General's Column.",
@@ -73,6 +78,7 @@ const generals = [
   {
     id: 558,
     name: 'Ilena Cryobyte',
+    type: 'general',
     set: 'core',
     race: '',
     cost: 0,
@@ -86,6 +92,7 @@ const generals = [
   {
     id: 101,
     name: 'Kaleos Xaan',
+    type: 'general',
     set: 'core',
     race: '',
     cost: 0,
@@ -100,6 +107,7 @@ const generals = [
     id: 527,
     name: 'Kara Winterblade',
     set: 'core',
+    type: 'general',
     race: '',
     cost: 0,
     rarity: 'basic',
@@ -113,6 +121,7 @@ const generals = [
     id: 301,
     name: 'Lilithe Blightchaser',
     set: 'core',
+    type: 'general',
     race: '',
     cost: 0,
     rarity: 'basic',
@@ -125,6 +134,7 @@ const generals = [
   {
     id: 355,
     name: 'Maehv Skinsolder',
+    type: 'general',
     set: 'core',
     race: '',
     cost: 0,
@@ -140,6 +150,7 @@ const generals = [
     id: 449,
     name: 'Ragnora the Relentless',
     set: 'core',
+    type: 'general',
     race: '',
     cost: 0,
     rarity: 'basic',
@@ -152,6 +163,7 @@ const generals = [
   {
     id: 123,
     name: 'Reva Eventide',
+    type: 'general',
     set: 'core',
     race: '',
     cost: 0,
@@ -165,6 +177,7 @@ const generals = [
   {
     id: 223,
     name: 'Scioness Sajj',
+    type: 'general',
     set: 'core',
     race: '',
     cost: 0,
@@ -179,6 +192,7 @@ const generals = [
   {
     id: 152,
     name: 'Shidai Stormblossom',
+    type: 'general',
     set: 'core',
     race: '',
     cost: 0,
@@ -193,6 +207,7 @@ const generals = [
   {
     id: 418,
     name: 'Starhorn the Seeker',
+    type: 'general',
     set: 'core',
     race: '',
     cost: 0,
@@ -206,6 +221,7 @@ const generals = [
   {
     id: 401,
     name: 'Vaath the Immortal',
+    type: 'general',
     set: 'core',
     race: '',
     cost: 0,
@@ -219,6 +235,7 @@ const generals = [
   {
     id: 23,
     name: "Zir'An Sunforge",
+    type: 'general',
     set: 'core',
     race: '',
     cost: 0,
@@ -232,6 +249,7 @@ const generals = [
   {
     id: 201,
     name: 'Zirix Starstrider',
+    type: 'general',
     set: 'core',
     race: '',
     cost: 0,
