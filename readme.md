@@ -45,8 +45,6 @@ Bundle the static files for production, then copy them up to the server so they 
 
 ```console
 yarn run build
-scp -r dist/* SERVER:~/VERSION
+scp -r dist/* SERVER:~/duelystcards-versions/VERSION
+rm -rf /var/www/duelystcards.com/* && cp -r ~/duelystcards-versions/VERSION/* /var/www/duelystcards.com/ <-- on server
 ```
-
-Now you'll need to log into the server, make a backup copy of the currently deployed version in
-(`cp -r /var/www/duelystcards ~/OLD_VERSION`),and then replace the contents of that directory with your new `~/VERSION` files.
