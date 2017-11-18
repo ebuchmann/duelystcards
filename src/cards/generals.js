@@ -1,4 +1,3 @@
-/* eslint-disable */
 const generals = [
   {
     id: 1,

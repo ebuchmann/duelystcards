@@ -2,6 +2,7 @@
 const cards = require('./cards/index');
 const fs = require('fs');
 const https = require('https');
+
 const folderBase = 'sprites';
 
 const main = () => {
@@ -13,21 +14,32 @@ const main = () => {
   downloadSpritesForSet(cards, 'core');
   downloadSpritesForSet(cards, 'shimzar');
   downloadSpritesForSet(cards, 'bloodbound');
-  downloadSpritesForSet(cards, 'ancient bonds');
-  downloadSpritesForSet(cards, 'unearthed prophecy');
-}
+  downloadSpritesForSet(cards, 'ancients');
+  downloadSpritesForSet(cards, 'unearthed');
+  downloadSpritesForSet(cards, 'immortal');
+};
 
 const downloadSpritesForSet = (cards, set) => {
-  const setIds = getAllFactionSetIds(cards, set)
-  const setSlug = slugForSet(set);  
-  
-  setIds.forEach(id => {
+  const setIds = getAllFactionSetIds(cards, set);
+  const setSlug = slugForSet(set);
+
+  setIds.forEach((id) => {
     const outputFile = fs.createWriteStream(`${folderBase}/${id}.gif`);
-    const request = https.get(`https://cards.duelyst.com/img/cards/${setSlug}/${id}_idle.gif`, (response) => {
-      response.pipe(outputFile);
+    const request = https.get(
+      `https://cards.duelyst.com/img/cards/${setSlug}/${id}_idle.gif`,
+      (response) => {
+        if (response.statusCode === 404) {
+          console.error(`Failed to DL ${setSlug}-${id}.`);
+        }
+        response.pipe(outputFile);
+      },
+    );
+
+    request.on('error', (error) => {
+      console.error(error.message);
     });
   });
-}
+};
 
 const slugForSet = (set) => {
   switch (set) {
@@ -36,29 +48,28 @@ const slugForSet = (set) => {
       return set;
     case 'bloodbound':
       return 'bloodstorm';
-    case 'ancient bonds':
+    case 'ancients':
       return 'unity';
-    case 'unearthed prophecy':
+    case 'unearthed':
       return 'unearthed-prophecy';
-  };
-}
-
-const getAllFactionSetIds = (cards, set) => {
-  return [
-    ...getFactionSetIds(cards.abyssian, set),
-    ...getFactionSetIds(cards.generals, set),
-    ...getFactionSetIds(cards.lyonar, set),
-    ...getFactionSetIds(cards.magmar, set),
-    ...getFactionSetIds(cards.neutral, set),
-    ...getFactionSetIds(cards.songhai, set),
-    ...getFactionSetIds(cards.vanar, set),
-    ...getFactionSetIds(cards.vetruvian, set)
-  ];
+    case 'immortal':
+      return 'wartech';
+  }
 };
 
-const getFactionSetIds = (faction, set) => {
-  return faction.filter(o => o.set === set).map(o => o.id);
-};
+const getAllFactionSetIds = (cards, set) => [
+  ...getFactionSetIds(cards.abyssian, set),
+  ...getFactionSetIds(cards.generals, set),
+  ...getFactionSetIds(cards.lyonar, set),
+  ...getFactionSetIds(cards.magmar, set),
+  ...getFactionSetIds(cards.neutral, set),
+  ...getFactionSetIds(cards.songhai, set),
+  ...getFactionSetIds(cards.vanar, set),
+  ...getFactionSetIds(cards.vetruvian, set),
+];
+
+const getFactionSetIds = (faction, set) =>
+  faction.filter(o => o.set === set).map(o => o.id);
 
 if (require.main === module) {
   main();
