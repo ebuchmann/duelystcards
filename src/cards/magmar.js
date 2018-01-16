@@ -11,7 +11,7 @@ const magmar = [
     text: 'Choose an enemy minion. It can no longer counterattack.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20112,
@@ -26,7 +26,7 @@ const magmar = [
       'If the next card you play this turn is a minion, it costs 2 less and takes 2 damage.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20119,
@@ -40,7 +40,7 @@ const magmar = [
     text: 'Give a friendly damaged minion +2 Attack and +4 Health.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20115,
@@ -54,7 +54,7 @@ const magmar = [
     text: 'Whenever a friendly minion dies this turn, draw a card.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 30037,
@@ -68,7 +68,7 @@ const magmar = [
     text: 'Your General cannot die.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30028,
@@ -82,7 +82,7 @@ const magmar = [
     text: 'Your minions have "Grow: +1/+1."',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20116,
@@ -96,7 +96,7 @@ const magmar = [
     text: 'Give a friendly minion +2/+2.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20203,
@@ -111,7 +111,7 @@ const magmar = [
       'Deal 2 damage to a minion. If you have an Egg, deal 4 damage instead.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30049,
@@ -126,7 +126,7 @@ const magmar = [
       'Your General gains +1 Attack.<br/>Whenever your General destroys an enemy, summon a Ripper Egg on that space.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20202,
@@ -141,7 +141,7 @@ const magmar = [
       'Give all friendly minions +1 Attack. Put a random Battle Pet into your action bar.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 421,
@@ -155,7 +155,7 @@ const magmar = [
     text: '<b>Rebirth</b>',
     attack: 3,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 444,
@@ -169,7 +169,7 @@ const magmar = [
     text: '<b>Build</b>: (3).',
     attack: 10,
     health: 10,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20258,
@@ -184,7 +184,7 @@ const magmar = [
       'Destroy a friendly minion to summon a random Magmar minion that costs 1 more.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20113,
@@ -198,7 +198,7 @@ const magmar = [
     text: 'Give a friendly minion +1 Attack and <b>Frenzy</b>.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20312,
@@ -212,7 +212,7 @@ const magmar = [
     text: 'If you have an Egg, draw 2 cards.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20225,
@@ -226,7 +226,7 @@ const magmar = [
     text: 'Deal 2 damage to the enemy General. Both players draw a card.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 420,
@@ -240,7 +240,7 @@ const magmar = [
     text: '<b>Grow</b>: +1/+1',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30013,
@@ -254,7 +254,7 @@ const magmar = [
     text: 'Your General gains <b>Frenzy</b>.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 409,
@@ -269,7 +269,7 @@ const magmar = [
       'Your minions cost 1 less to summon and take 1 damage when summoned from your action bar.',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20125,
@@ -284,7 +284,7 @@ const magmar = [
       'Destroy ANY minion with the lowest Attack or tied for the lowest Attack.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 406,
@@ -298,7 +298,7 @@ const magmar = [
     text: '',
     attack: 6,
     health: 1,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20268,
@@ -312,7 +312,7 @@ const magmar = [
     text: 'Dispel a space. If there is a minion on that space, give it +2/+2.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 430,
@@ -327,7 +327,7 @@ const magmar = [
       'Whenever your General takes damage, this minion gains that much attack. ',
     attack: 1,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 446,
@@ -342,7 +342,7 @@ const magmar = [
       'Whenever you summon a Mech minion from your action bar, both players draw a card.',
     attack: 3,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20114,
@@ -356,7 +356,7 @@ const magmar = [
     text: '<b>Stun</b> enemy minions in a 2x2 area.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20288,
@@ -370,7 +370,7 @@ const magmar = [
     text: '<b>Stun</b> an enemy minion. Give your General +1 Attack.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 438,
@@ -384,7 +384,7 @@ const magmar = [
     text: '<b>Forcefield</b>, <b>Frenzy</b>',
     attack: 1,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 412,
@@ -398,7 +398,7 @@ const magmar = [
     text: '<b>Rebirth</b>',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 439,
@@ -412,7 +412,7 @@ const magmar = [
     text: 'Whenever you cast a spell, deal 1 damage to ALL minions.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 402,
@@ -426,7 +426,7 @@ const magmar = [
     text: '<b>Grow</b>: +1/+1',
     attack: 3,
     health: 3,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20346,
@@ -440,7 +440,7 @@ const magmar = [
     text: "Give a friendly minion +Attack equal to your General's Attack.",
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20291,
@@ -454,7 +454,7 @@ const magmar = [
     text: 'Turn a 2x2 area into <b>Primal Flourish</b>.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 448,
@@ -469,21 +469,7 @@ const magmar = [
       '<b>Rebirth</b><br/>After this minion attacks or counterattacks, turn it into an Egg.',
     attack: 5,
     health: 5,
-    spirit: null,
-  },
-  {
-    id: 20344,
-    name: 'Homeostatic Rebuke',
-    set: 'immortal',
-    type: 'spell',
-    race: '',
-    cost: 3,
-    rarity: 'epic',
-    faction: 'magmar',
-    text: 'ALL minions attack themselves.',
-    attack: null,
-    health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20162,
@@ -498,7 +484,7 @@ const magmar = [
       'Deal 2 damage to ALL minions in a 3x3 area. Friendly minions in the area also gain +2 Attack.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 423,
@@ -513,7 +499,7 @@ const magmar = [
       "<b>Grow</b>: +1/+1<br/>Friendly minions grow at the start of BOTH player's turns.",
     attack: 1,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 410,
@@ -527,7 +513,7 @@ const magmar = [
     text: '<b>Opening Gambit</b>: Give a nearby friendly minion +2/+2.',
     attack: 2,
     health: 2,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 432,
@@ -541,7 +527,7 @@ const magmar = [
     text: '<b>Rebirth</b><br/><b>Bond</b>: Restore 3 Health to your General.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20234,
@@ -555,7 +541,7 @@ const magmar = [
     text: 'Both players draw 3 cards. Deal 3 damage to both Generals.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 437,
@@ -569,7 +555,7 @@ const magmar = [
     text: '',
     attack: 2,
     health: 8,
-    spirit: null,
+    spirit: null
   },
   {
     id: 429,
@@ -584,7 +570,7 @@ const magmar = [
       '<b>Blood Surge</b>: All friendly minions gain +1 Attack (including itself).',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30017,
@@ -599,7 +585,7 @@ const magmar = [
       'Whenever a friendly minion or your General takes damage, your General gains +2 Attack.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20338,
@@ -614,7 +600,7 @@ const magmar = [
       "Deal 1 damage to an enemy minion for each card in your opponent's action bar.",
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 417,
@@ -628,7 +614,7 @@ const magmar = [
     text: 'Whenever your opponent draws a card, this minion gains +2/+2.',
     attack: 1,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30012,
@@ -642,7 +628,7 @@ const magmar = [
     text: 'Your General gains +4 Attack.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20297,
@@ -657,7 +643,7 @@ const magmar = [
       'Give a friendly minion +1/+1 for each time damage was dealt this turn.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 428,
@@ -671,7 +657,7 @@ const magmar = [
     text: "<b>Blood Surge</b>: Double your General's Attack this turn.",
     attack: 5,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 419,
@@ -686,7 +672,7 @@ const magmar = [
       'Whenever this minion takes damage, deal that much damage to all nearby enemies.',
     attack: 3,
     health: 4,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20117,
@@ -700,7 +686,7 @@ const magmar = [
     text: 'Restore 8 Health to your General.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20157,
@@ -714,7 +700,7 @@ const magmar = [
     text: 'Turn a non-Egg minion into an Egg, or hatch an Egg.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 407,
@@ -729,7 +715,7 @@ const magmar = [
       '<b>Rush</b><br/><b>Opening Gambit</b>: Deal 4 damage to your General.',
     attack: 5,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 445,
@@ -744,7 +730,7 @@ const magmar = [
       '<b>Build</b>: (2).<br/>Whenever this minion attacks, other friendly minions gain +3/+3.',
     attack: 7,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 403,
@@ -758,7 +744,21 @@ const magmar = [
     text: '<b>Grow</b>: +2/+2',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 20344,
+    name: 'Homeostatic Rebuke',
+    set: 'immortal',
+    type: 'spell',
+    race: '',
+    cost: 4,
+    rarity: 'epic',
+    faction: 'magmar',
+    text: 'ALL minions attack themselves.',
+    attack: null,
+    health: null,
+    spirit: null
   },
   {
     id: 20156,
@@ -772,7 +772,7 @@ const magmar = [
     text: "Steal a random minion from your opponent's deck and summon it.",
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 440,
@@ -787,7 +787,7 @@ const magmar = [
       "<b>Opening Gambit</b>: Turn a nearby friendly minion's space into <b>Primal Flourish</b>.",
     attack: 4,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 441,
@@ -802,7 +802,7 @@ const magmar = [
       '<b>Opening Gambit</b>: Each of your other non-Egg minions summon an Egg of itself behind itself.',
     attack: 5,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20319,
@@ -816,7 +816,7 @@ const magmar = [
     text: 'Destroy a friendly Egg to deal 4 damage to enemies around it.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 435,
@@ -831,7 +831,7 @@ const magmar = [
       'Whenever your opponent summons a minion, this minion summons an Egg of itself nearby.',
     attack: 3,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20218,
@@ -846,7 +846,7 @@ const magmar = [
       'Give a minion +5 Attack. At end of turn, transform it into a 3/3 Kin.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20245,
@@ -860,7 +860,7 @@ const magmar = [
     text: 'Summon an Egg that hatches into a copy of your General.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20296,
@@ -875,7 +875,7 @@ const magmar = [
       "Your minions on friendly <b>Primal Flourish</b> grow. Turn your other minions' spaces into <b>Primal Flourish</b>.",
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 413,
@@ -889,7 +889,7 @@ const magmar = [
     text: '<b>Rebirth</b>',
     attack: 4,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 422,
@@ -903,7 +903,7 @@ const magmar = [
     text: 'Opening Gambit: Hatch a friendly Egg.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 404,
@@ -917,7 +917,7 @@ const magmar = [
     text: '<b>Grow</b>: +4/+4',
     attack: 1,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 433,
@@ -930,8 +930,8 @@ const magmar = [
     faction: 'magmar',
     text: '<b>Opening Gambit</b>: This minion fights a nearby enemy minion.',
     attack: 4,
-    health: 9,
-    spirit: null,
+    health: 7,
+    spirit: null
   },
   {
     id: 30025,
@@ -946,7 +946,7 @@ const magmar = [
       'Your General gains +3 Attack. Whenever your General deals damage, hatch all friendly Eggs.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20206,
@@ -960,7 +960,7 @@ const magmar = [
     text: 'Summon four copies of a random Battle Pet in a 2x2 area.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20122,
@@ -974,7 +974,7 @@ const magmar = [
     text: 'Destroy ALL minions with 3 or less Attack.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 415,
@@ -988,7 +988,7 @@ const magmar = [
     text: 'At the end of your turn, deal 1 damage to ALL other minions.',
     attack: 5,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 426,
@@ -1002,7 +1002,7 @@ const magmar = [
     text: 'Whenever ANY player draws a card, this minion gains +1/+1.',
     attack: 6,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 447,
@@ -1016,7 +1016,7 @@ const magmar = [
     text: '<b>Blood Surge</b>: Deal 5 damage to the closest enemy.',
     attack: 5,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20124,
@@ -1030,7 +1030,7 @@ const magmar = [
     text: 'Summon a random Egg in 4 random spaces.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 424,
@@ -1044,7 +1044,7 @@ const magmar = [
     text: '<b>Rebirth</b><br/>Egg minions you summon gain +2/+2.',
     attack: 4,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20063,
@@ -1058,7 +1058,7 @@ const magmar = [
     text: 'Summon two copies of a friendly minion nearby that minion.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 405,
@@ -1072,7 +1072,7 @@ const magmar = [
     text: '<b>Frenzy</b><br/><b>Rush</b>',
     attack: 4,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20121,
@@ -1087,7 +1087,7 @@ const magmar = [
       "Transform all enemy minions into 1/1 Magma with no abilities until the end of your opponent's turn.",
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20118,
@@ -1101,7 +1101,7 @@ const magmar = [
     text: 'Your General becomes 10/10.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20292,
@@ -1116,22 +1116,7 @@ const magmar = [
       'BOTH players put all minions in their action bars onto the battlefield nearby their General.',
     attack: null,
     health: null,
-    spirit: null,
-  },
-  {
-    id: 20339,
-    name: 'Saurian Finality',
-    set: 'immortal',
-    type: 'spell',
-    race: '',
-    cost: 7,
-    rarity: 'legendary',
-    faction: 'magmar',
-    text:
-      '<b>Stun</b> the enemy General.<br/>Your General gains +2 Attack.<br/>Both players lose 3 mana.<br/>Restore 10 Health to your General.',
-    attack: null,
-    health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 414,
@@ -1146,7 +1131,7 @@ const magmar = [
       '<b>Rebirth</b><br/>At the end of your turn, summon a Silithar Elder Egg nearby.',
     attack: 6,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 408,
@@ -1161,7 +1146,7 @@ const magmar = [
       'At the start of your turn, deal 4 damage to a random minion or General.',
     attack: 11,
     health: 11,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20219,
@@ -1175,7 +1160,7 @@ const magmar = [
     text: 'Deal 5 damage to ALL non-Egg minions and Generals.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 434,
@@ -1190,7 +1175,22 @@ const magmar = [
       '<b>Grow</b>: +5/+5<br/>Whenever this minion takes damage, summon that many random Golem Eggs nearby.',
     attack: 4,
     health: 10,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 20339,
+    name: 'Saurian Finality',
+    set: 'immortal',
+    type: 'spell',
+    race: '',
+    cost: 8,
+    rarity: 'legendary',
+    faction: 'magmar',
+    text:
+      '<b>Stun</b> the enemy General.<br/>Your General gains +3 Attack.<br/>Both players lose 3 mana.<br/>Restore 10 Health to your General.',
+    attack: null,
+    health: null,
+    spirit: null
   },
   {
     id: 436,
@@ -1205,7 +1205,7 @@ const magmar = [
       '<b>Forcefield</b>, <b>Frenzy</b>, <b>Grow</b>: +7/+7.<br/>Your General has:<br/><b>Forcefield</b>, <b>Frenzy</b>, <b>Grow</b>: +7/+7.',
     attack: 7,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 425,
@@ -1220,8 +1220,8 @@ const magmar = [
       "Costs 1 less for each minion summoned from ANY player's action bar this game.",
     attack: 6,
     health: 6,
-    spirit: null,
-  },
+    spirit: null
+  }
 ];
 
 export default magmar;

@@ -11,7 +11,7 @@ const songhai = [
     text: 'Switch positions between ANY two minions.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20085,
@@ -25,7 +25,7 @@ const songhai = [
     text: 'The next spell you cast this turn costs 1 less.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 126,
@@ -39,7 +39,7 @@ const songhai = [
     text: '<b>Ranged</b>',
     attack: 1,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20323,
@@ -54,7 +54,7 @@ const songhai = [
       'Reactivate an exhausted friendly minion. It cannot damage or attack Generals this turn.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30023,
@@ -69,7 +69,7 @@ const songhai = [
       'Your General gains +1 Attack. Spells you cast that deal damage deal +1 damage.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20088,
@@ -83,7 +83,7 @@ const songhai = [
     text: 'Deal 1 damage to all enemy minions.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20275,
@@ -97,7 +97,7 @@ const songhai = [
     text: 'Deal 1 damage to a minion. Draw a card at end of turn.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 108,
@@ -111,7 +111,7 @@ const songhai = [
     text: '<b>Ranged</b>',
     attack: 1,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20086,
@@ -125,7 +125,7 @@ const songhai = [
     text: 'Reactivate an exhausted friendly minion with 3 or less Attack.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20256,
@@ -139,7 +139,7 @@ const songhai = [
     text: "Each player steals a random card from their opponent's deck.",
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 129,
@@ -153,7 +153,7 @@ const songhai = [
     text: '<b>Backstab</b>: (3).',
     attack: 1,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20168,
@@ -167,7 +167,7 @@ const songhai = [
     text: 'Give a friendly minion +1/+1 and teleport it anywhere.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20167,
@@ -181,7 +181,7 @@ const songhai = [
     text: 'Teleport your General up to 2 spaces.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20241,
@@ -195,7 +195,7 @@ const songhai = [
     text: 'Give a friendly minion or General <b>Backstab</b> (2).',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20192,
@@ -210,7 +210,7 @@ const songhai = [
       'Lower the cost of all minions with <b>Backstab</b> in your action bar by 1 and give them +1/+1.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20294,
@@ -224,7 +224,7 @@ const songhai = [
     text: 'Deal 8 damage to an enemy minion that attacked last turn.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20106,
@@ -238,7 +238,7 @@ const songhai = [
     text: 'Destroy all artifacts on the enemy General.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30010,
@@ -252,7 +252,7 @@ const songhai = [
     text: 'Whenever you cast a spell, deal 1 damage to the enemy General.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 115,
@@ -266,7 +266,7 @@ const songhai = [
     text: 'Whenever you cast a spell, this minion gains +1/+1',
     attack: 1,
     health: 2,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20191,
@@ -280,7 +280,7 @@ const songhai = [
     text: 'Deal 2 damage to a minion. Activate your Battle Pets.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20094,
@@ -295,7 +295,7 @@ const songhai = [
       'Give a friendly minion, "Destroy any minion damaged by this minion."',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20143,
@@ -309,7 +309,7 @@ const songhai = [
     text: 'Spells you cast this turn that deal damage deal +2 damage.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20231,
@@ -323,7 +323,7 @@ const songhai = [
     text: 'Give a friendly minion AND your General +2 Attack this turn.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 110,
@@ -337,7 +337,7 @@ const songhai = [
     text: '<b>Backstab</b>: (1).',
     attack: 2,
     health: 3,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 30007,
@@ -351,7 +351,7 @@ const songhai = [
     text: 'Your General gains <b>Backstab</b> (4).',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20341,
@@ -365,7 +365,7 @@ const songhai = [
     text: 'Give all friendly minions Flying this turn.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20194,
@@ -379,7 +379,7 @@ const songhai = [
     text: 'Summon a copy of a friendly minion that costs 2 or less nearby.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20081,
@@ -393,7 +393,7 @@ const songhai = [
     text: 'Deal 3 damage to anything.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20080,
@@ -407,7 +407,7 @@ const songhai = [
     text: 'Give a minion or General +3 Attack this turn.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 140,
@@ -422,7 +422,7 @@ const songhai = [
       "<b>Backstab</b>: (1).<br/>Whenever this backstabs, steal a spell from your opponent's deck.",
     attack: 1,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 145,
@@ -437,7 +437,7 @@ const songhai = [
       'Whenever you cast a spell, this minion gains +1 Attack until your next turn.',
     attack: 1,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 121,
@@ -452,7 +452,7 @@ const songhai = [
       '<b>Rush</b><br/>Return this minion to your action bar at the beginning of your turn.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 125,
@@ -467,7 +467,7 @@ const songhai = [
       '<b>Dying Wish</b>: Put a random Songhai spell into your action bar. It costs 1 less.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20327,
@@ -482,7 +482,7 @@ const songhai = [
       'Transform a nearby enemy minion into a 0/2 Panddo. If it is already a Panddo, instead destroy it and draw to fill your action bar.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30027,
@@ -496,7 +496,7 @@ const songhai = [
     text: 'Your General has <b>Celerity</b>.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 130,
@@ -510,7 +510,7 @@ const songhai = [
     text: 'Whenever this minion takes damage, deal 1 damage to all enemies.',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 117,
@@ -524,7 +524,7 @@ const songhai = [
     text: 'Destroy any minion damaged by this minion.',
     attack: 1,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30009,
@@ -538,7 +538,7 @@ const songhai = [
     text: 'Your General gains <b>Ranged</b>.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 151,
@@ -553,7 +553,7 @@ const songhai = [
       '<b>Backstab</b>: (2).<br/>Whenever this backstabs, put a MECHAZ0R Progression into your action bar.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20283,
@@ -567,7 +567,7 @@ const songhai = [
     text: 'Teleport your General to a space behind an enemy.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 112,
@@ -581,7 +581,7 @@ const songhai = [
     text: '<b>Backstab</b>: (2)<br/>After this minion attacks, it gains +1/+1.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 142,
@@ -596,7 +596,7 @@ const songhai = [
       '<b>Sentinel</b>: Minion summoned.<br/>Deal 2 damage to the minion that transformed this.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 114,
@@ -611,7 +611,7 @@ const songhai = [
       'Whenever this minion takes damage, deal 1 damage to a random enemy minion.',
     attack: 4,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 128,
@@ -626,7 +626,7 @@ const songhai = [
       '<b>Ranged</b><br/><b>Opening Gambit</b>: An enemy minion cannot move next turn.',
     attack: 3,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20102,
@@ -641,7 +641,7 @@ const songhai = [
       'Give a friendly minion +4/+2. If that minion has <b>Backstab</b>, draw a card at end of turn.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 122,
@@ -656,7 +656,7 @@ const songhai = [
       'Whenever this minion takes damage, put a Phoenix Fire into your action bar.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 144,
@@ -671,7 +671,7 @@ const songhai = [
       '<b>Sentinel</b>: Spell cast.<br/>Whenever your opponent casts a spell, put a copy of that spell into your action bar.',
     attack: 4,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 143,
@@ -686,7 +686,7 @@ const songhai = [
       '<b>Sentinel</b>: General attacks.<br/><b>Flying</b><br/><b>Backstab</b>: (2).',
     attack: 2,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20087,
@@ -701,7 +701,7 @@ const songhai = [
       'Transform an enemy minion into a 0/2 Panddo that cannot be attacked.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 149,
@@ -716,7 +716,7 @@ const songhai = [
       '<b>Build</b>: (2).<br/><b>Backstab</b>: (2).<br/>Whenever this backstabs, transform it into a building with <b>Build</b> (1).',
     attack: 3,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 135,
@@ -730,7 +730,7 @@ const songhai = [
     text: '<b>Bond</b>: Put a Mist Dragon Seal into your action bar.',
     attack: 3,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20328,
@@ -744,7 +744,7 @@ const songhai = [
     text: 'Switch positions between a friendly minion and your General.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20314,
@@ -758,7 +758,7 @@ const songhai = [
     text: 'Deal 3 damage to an enemy and 1 damage to all enemies around it.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 132,
@@ -773,7 +773,7 @@ const songhai = [
       '<b>Blood Surge</b>: Teleport a random enemy to the space behind your General.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20082,
@@ -788,7 +788,7 @@ const songhai = [
       'Deal 2 damage to exactly two random enemy minions. Draw a card at end of turn.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30033,
@@ -803,7 +803,7 @@ const songhai = [
       'Your General gains +1 Attack.<br/>Your General may move an additional space.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 134,
@@ -817,7 +817,7 @@ const songhai = [
     text: '<b>Blood Surge</b>: Deal 2 damage to the enemy General.',
     attack: 4,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 109,
@@ -831,7 +831,7 @@ const songhai = [
     text: '<b>Ranged</b>',
     attack: 2,
     health: 3,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20100,
@@ -845,7 +845,7 @@ const songhai = [
     text: 'Draw a card for each friendly minion.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20240,
@@ -859,7 +859,7 @@ const songhai = [
     text: 'Deal 3 damage to an enemy minion AND the enemy General.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 138,
@@ -874,7 +874,7 @@ const songhai = [
       'Whenever this minion is moved for any reason, it deals 2 damage to all enemies around it.',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 116,
@@ -889,7 +889,7 @@ const songhai = [
       'Whenever you cast a spell, deal 1 damage to enemy General and restore 1 Health to your General',
     attack: 4,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 120,
@@ -904,7 +904,7 @@ const songhai = [
       "<b>Opening Gambit</b>: Next turn, opponent's spells cost 2 more to cast",
     attack: 5,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 136,
@@ -918,7 +918,7 @@ const songhai = [
     text: 'Whenever you cast a spell, your Arcanyst minions gain +1 Attack.',
     attack: 3,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 148,
@@ -933,7 +933,7 @@ const songhai = [
       '<b>Build</b>: (2).<br/>When this minion is built, gain +2 mana this turn.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20193,
@@ -948,7 +948,7 @@ const songhai = [
       'Transform ALL minions into 0/2 Panddo that cannot be attacked until end of turn.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 124,
@@ -962,7 +962,7 @@ const songhai = [
     text: 'Spells you cast that deal damage deal +1 damage.',
     attack: 3,
     health: 5,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 150,
@@ -976,7 +976,7 @@ const songhai = [
     text: '<b>Blood Surge</b>: Put an Eight Gates into your action bar.',
     attack: 3,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 133,
@@ -990,7 +990,7 @@ const songhai = [
     text: '<b>Opening Gambit</b>: Your Bloodbound Spell is Phoenix Fire.',
     attack: 5,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 119,
@@ -1004,7 +1004,7 @@ const songhai = [
     text: 'At the start of your turn, deal 2 damage to your General.',
     attack: 8,
     health: 8,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20155,
@@ -1018,7 +1018,7 @@ const songhai = [
     text: 'Draw 3 spell cards from your deck.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 127,
@@ -1032,7 +1032,7 @@ const songhai = [
     text: 'Whenever a friendly unit is moved for any reason, it gains +1/+1.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 111,
@@ -1046,7 +1046,7 @@ const songhai = [
     text: '<b>Flying</b><br/><b>Backstab</b>: (4).',
     attack: 2,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20326,
@@ -1061,7 +1061,7 @@ const songhai = [
       'Summon a Heartseeker in each nearby space diagonal from your General.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20267,
@@ -1076,7 +1076,7 @@ const songhai = [
       'Put 3 random Songhai minions into your action bar. They cost 1 less.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20279,
@@ -1090,7 +1090,7 @@ const songhai = [
     text: 'Reactivate your minions with <b>Ranged</b>.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 139,
@@ -1105,7 +1105,7 @@ const songhai = [
       'At the end of your turn, transform all nearby enemy minions into 0/2 Panddos that cannot be attacked.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20290,
@@ -1120,7 +1120,7 @@ const songhai = [
       'Steal Health from the enemy General equal to twice the number of spells cast this turn.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 131,
@@ -1134,7 +1134,7 @@ const songhai = [
     text: 'The enemy General moves and attacks automatically.',
     attack: 4,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30038,
@@ -1148,7 +1148,7 @@ const songhai = [
     text: 'Whenever you cast a spell, draw a card.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 137,
@@ -1163,7 +1163,7 @@ const songhai = [
       '<b>Rush</b><br/>Whenever this minion attacks, put three Songhai spells into your action bar at end of turn.',
     attack: 3,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 146,
@@ -1177,7 +1177,7 @@ const songhai = [
     text: 'Your spells cost 2 less.',
     attack: 4,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 118,
@@ -1192,7 +1192,7 @@ const songhai = [
       'Whenever one of your spells deals damage, put a Kage Lightning in your action bar.',
     attack: 5,
     health: 10,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20217,
@@ -1207,7 +1207,7 @@ const songhai = [
       'Transform all minions in your action bar and deck into 0-cost Gore Horns. Draw 3 cards.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20084,
@@ -1221,8 +1221,8 @@ const songhai = [
     text: 'Deal 8 damage to anything.',
     attack: null,
     health: null,
-    spirit: null,
-  },
+    spirit: null
+  }
 ];
 
 export default songhai;

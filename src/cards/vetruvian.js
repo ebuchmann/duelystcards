@@ -11,7 +11,7 @@ const vetruvian = [
     text: 'Deal 3 damage to your General to draw a card.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 227,
@@ -25,7 +25,7 @@ const vetruvian = [
     text: '<b>Dying Wish</b>: Dispel the nearest enemy minion.',
     attack: 1,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20073,
@@ -39,7 +39,7 @@ const vetruvian = [
     text: 'Dispel an enemy minion nearby your General.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20255,
@@ -54,7 +54,7 @@ const vetruvian = [
       'Destroy a friendly minion to turn its space into <b>Exhuming Sand</b>.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20132,
@@ -69,7 +69,7 @@ const vetruvian = [
       'This turn, your General gains +2 Attack for every equipped artifact.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20286,
@@ -84,7 +84,7 @@ const vetruvian = [
       'Whenever you summon a minion with <b>Flying</b> from your action bar this turn, draw a minion with <b>Flying</b> from your deck.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20075,
@@ -98,7 +98,7 @@ const vetruvian = [
     text: "Lower a minion's Attack to 0 until your next turn.",
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20300,
@@ -112,7 +112,7 @@ const vetruvian = [
     text: 'Steal a random artifact from the enemy General and equip it.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20313,
@@ -126,7 +126,7 @@ const vetruvian = [
     text: 'Give a minion Blast. It can no longer move.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30036,
@@ -141,7 +141,7 @@ const vetruvian = [
       'Whenever your General destroys an enemy, turn that space into <b>Exhuming Sand</b>.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20095,
@@ -155,7 +155,7 @@ const vetruvian = [
     text: 'Give a friendly minion +1/+1. Draw a card.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20246,
@@ -170,7 +170,7 @@ const vetruvian = [
       'A friendly Obelysk gains +3 Attack and may move and attack this turn if able.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20151,
@@ -185,7 +185,7 @@ const vetruvian = [
       'Deal 2 damage to the enemy General and all enemy minions around them.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20074,
@@ -199,7 +199,7 @@ const vetruvian = [
     text: 'Give a friendly minion +1/+3 and <b>Provoke</b>.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 238,
@@ -213,7 +213,7 @@ const vetruvian = [
     text: '<b>Bond</b>: Draw two cards.',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 211,
@@ -228,7 +228,7 @@ const vetruvian = [
       '<b>Opening Gambit</b>: Give +2/+2 to a friendly Dervish. If it is a Wind Dervish, it no longer disappears.',
     attack: 2,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 241,
@@ -243,7 +243,7 @@ const vetruvian = [
       "<b>Dying Wish</b>: Put a random Scion's Wish spell into your action bar.",
     attack: 1,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20336,
@@ -257,7 +257,7 @@ const vetruvian = [
     text: "ANY minion's Health becomes equal to its Attack.",
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 214,
@@ -271,7 +271,7 @@ const vetruvian = [
     text: '<b>Summon Dervish</b>',
     attack: 0,
     health: 6,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20152,
@@ -285,7 +285,7 @@ const vetruvian = [
     text: 'Fully heal all friendly minions.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30050,
@@ -299,7 +299,7 @@ const vetruvian = [
     text: 'Your General takes no damage during your turn.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 243,
@@ -314,7 +314,7 @@ const vetruvian = [
       '<b>Summon Dervish</b><br/>At the start of your turn, deal 6 damage to all enemy minions in this row.',
     attack: 0,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20350,
@@ -328,7 +328,7 @@ const vetruvian = [
     text: 'Your General gains all keywords of friendly minions this turn.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 228,
@@ -342,7 +342,7 @@ const vetruvian = [
     text: '<b>Dying Wish</b>: Summon two 2/2 Iron Dervishes nearby.',
     attack: 2,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 213,
@@ -356,7 +356,7 @@ const vetruvian = [
     text: '<b>Blast</b>',
     attack: 2,
     health: 1,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20099,
@@ -371,7 +371,7 @@ const vetruvian = [
       'Destroy a random artifact on the enemy General. Summon a Wind Dervish with <b>Rush</b> near them.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20265,
@@ -386,7 +386,7 @@ const vetruvian = [
       'Return a friendly Obelysk to your action bar and reduce its cost to 0. Draw a card.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20093,
@@ -400,7 +400,7 @@ const vetruvian = [
     text: 'Choose an enemy minion.  It can no longer move.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20096,
@@ -414,7 +414,7 @@ const vetruvian = [
     text: 'Give a friendly minion +2/+2. It takes no damage from Generals.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 30006,
@@ -428,7 +428,7 @@ const vetruvian = [
     text: 'Your General gains +2 Attack.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 20196,
@@ -442,7 +442,7 @@ const vetruvian = [
     text: 'Summon a Wind Dervish nearby each friendly Obelysk. Draw a card.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 229,
@@ -457,7 +457,7 @@ const vetruvian = [
       '<b>Opening Gambit</b>: Lower the cost of all Structure minions in your action bar by 1.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20195,
@@ -471,7 +471,7 @@ const vetruvian = [
     text: 'Put 3 random Battle Pets into your action bar.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20076,
@@ -485,7 +485,7 @@ const vetruvian = [
     text: 'Give a friendly minion +5 Health and <b>Flying</b>.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20242,
@@ -499,7 +499,7 @@ const vetruvian = [
     text: 'Draw two cards.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 226,
@@ -514,7 +514,7 @@ const vetruvian = [
       '<b>Opening Gambit</b>: Your General gains +2 Attack and takes no damage this turn.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 245,
@@ -529,7 +529,7 @@ const vetruvian = [
       'Whenever your opponent draws a card, this minion gains a random keyword ability.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 215,
@@ -543,7 +543,7 @@ const vetruvian = [
     text: '<b>Summon Dervish</b><br/>Your dervishes have +1 Attack.',
     attack: 0,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 218,
@@ -558,7 +558,7 @@ const vetruvian = [
       '<b>Opening Gambit</b>: Repair all of your artifacts to full durability.',
     attack: 2,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20153,
@@ -572,7 +572,7 @@ const vetruvian = [
     text: 'Give all friendly minions +3 Health. Draw a card.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 212,
@@ -587,7 +587,7 @@ const vetruvian = [
       '<b>Opening Gambit</b>: Summon a copy of this minion on a nearby space.',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 221,
@@ -602,7 +602,7 @@ const vetruvian = [
       '<b>Frenzy</b><br/>Whenever you summon a minion, this minion gains +1 Attack.',
     attack: 0,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20197,
@@ -617,7 +617,7 @@ const vetruvian = [
       'Reactivate and take control of an enemy minion with 2 or less Attack until end of turn.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 210,
@@ -631,7 +631,7 @@ const vetruvian = [
     text: 'Cannot be targeted by enemy spells.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20097,
@@ -645,7 +645,7 @@ const vetruvian = [
     text: 'Give a friendly Dervish minion +3/+3 and <b>Flying</b>.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 253,
@@ -660,7 +660,7 @@ const vetruvian = [
       '<b>Build</b>: (2).<br/><b>Summon Dervish</b><br/>When this minion is built, start building another on a nearby space.',
     attack: 0,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 251,
@@ -675,7 +675,7 @@ const vetruvian = [
       "<b>Dying Wish</b>: Put a random legendary artifact from your opponent's Faction into your action bar.",
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20078,
@@ -689,7 +689,7 @@ const vetruvian = [
     text: 'Reactivate your General.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30008,
@@ -703,7 +703,7 @@ const vetruvian = [
     text: 'Your General gains <b>Blast</b>.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 216,
@@ -717,7 +717,7 @@ const vetruvian = [
     text: '<b>Summon Dervish</b><br/>Your dervishes have +1 Health.',
     attack: 0,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 235,
@@ -731,7 +731,7 @@ const vetruvian = [
     text: '<b>Blood Surge</b>: Your General gains <b>Frenzy</b> this turn.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 231,
@@ -745,7 +745,7 @@ const vetruvian = [
     text: '<b>Dying Wish</b>: Summon a random Obelysk on this space.',
     attack: 4,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 249,
@@ -759,7 +759,7 @@ const vetruvian = [
     text: '<b>Build</b>: (2).<br/><b>Blast</b>',
     attack: 5,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20077,
@@ -773,7 +773,7 @@ const vetruvian = [
     text: 'Destroy an enemy minion nearby your General.',
     attack: null,
     health: null,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 30011,
@@ -788,7 +788,7 @@ const vetruvian = [
       'Your General gains +3 Attack. Whenever your General damages an enemy minion, its Attack becomes 1.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20342,
@@ -802,7 +802,7 @@ const vetruvian = [
     text: 'Deal 6 damage to enemies that are not nearby another enemy.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 219,
@@ -817,7 +817,7 @@ const vetruvian = [
       '<b>Opening Gambit</b>: This minion transforms into a copy of an enemy minion.',
     attack: 1,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 224,
@@ -831,7 +831,7 @@ const vetruvian = [
     text: 'Your General has +1 Attack.',
     attack: 3,
     health: 4,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 30029,
@@ -845,7 +845,7 @@ const vetruvian = [
     text: 'When your General destroys a minion, summon a copy of it nearby.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 242,
@@ -860,7 +860,7 @@ const vetruvian = [
       '<b>Summon Dervish</b><br/><b>Summon Dervish</b><br/><b>Summon Dervish</b>',
     attack: 0,
     health: 9,
-    spirit: null,
+    spirit: null
   },
   {
     id: 244,
@@ -874,7 +874,7 @@ const vetruvian = [
     text: 'At the start of your turn, destroy this and all enemy minions.',
     attack: 1,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 208,
@@ -888,7 +888,7 @@ const vetruvian = [
     text: '<b>Flying</b>. <b>Dying Wish</b>: Draw a card.',
     attack: 4,
     health: 3,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 239,
@@ -903,7 +903,7 @@ const vetruvian = [
       "<b>Flying</b><br/><b>Opening Gambit</b>: Equip a Staff of Y'kir to your General.",
     attack: 1,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20254,
@@ -917,7 +917,7 @@ const vetruvian = [
     text: 'Transform an enemy minion into a friendly Wind Dervish.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20198,
@@ -932,7 +932,7 @@ const vetruvian = [
       'Summon all friendly minions with Dying Wish destroyed since your last turn on random spaces.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 247,
@@ -946,7 +946,7 @@ const vetruvian = [
     text: '<b>Blood Surge</b>: Summon two Wind Dervishes nearby.',
     attack: 3,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 236,
@@ -960,7 +960,7 @@ const vetruvian = [
     text: 'Your General may move 2 additional spaces.',
     attack: 5,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 232,
@@ -975,7 +975,7 @@ const vetruvian = [
       'Whenever this minion takes damage, summon a 0/4 Soulburn Obelysk nearby.',
     attack: 3,
     health: 8,
-    spirit: null,
+    spirit: null
   },
   {
     id: 246,
@@ -990,7 +990,7 @@ const vetruvian = [
       '<b>Opening Gambit</b>: Return a nearby minion to its action bar. Turn that space into <b>Exhuming Sand</b>.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 250,
@@ -1004,7 +1004,7 @@ const vetruvian = [
     text: '<b>Opening Gambit</b>: Progresses MECHAZ0R build by +40%.',
     attack: 4,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 240,
@@ -1019,7 +1019,7 @@ const vetruvian = [
       "<b>Opening Gambit</b>: Summon a Skyrock Golem on random spaces for each other Golem you've summoned this game.",
     attack: 4,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 30022,
@@ -1034,7 +1034,7 @@ const vetruvian = [
       'Your General gains +1 Attack. Enemy minions destroyed by your General summon a Bloodfire Totem on that space.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20105,
@@ -1049,7 +1049,7 @@ const vetruvian = [
       'Summon a Wind Dervish with <b>Rush</b> in front of each enemy minion and General.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 209,
@@ -1063,7 +1063,7 @@ const vetruvian = [
     text: '<b>Blast</b>',
     attack: 4,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20299,
@@ -1078,7 +1078,7 @@ const vetruvian = [
       'Summon three copies of an enemy minion nearby it. They disappear when attacked.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20244,
@@ -1092,7 +1092,7 @@ const vetruvian = [
     text: 'Equip 2 random Vetruvian artifacts.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 220,
@@ -1107,7 +1107,7 @@ const vetruvian = [
       '<b>Provoke</b><br/><b>Dying Wish</b>: Deal 5 damage to the enemy General. Restore 5 Health to your General.',
     attack: 5,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20262,
@@ -1121,7 +1121,7 @@ const vetruvian = [
     text: 'Turn the entire center column into <b>Exhuming Sand</b>.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 252,
@@ -1136,7 +1136,7 @@ const vetruvian = [
       '<b>Opening Gambit</b>: Take control of enemy minions with 2 or less Attack on this row.',
     attack: 5,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 233,
@@ -1150,7 +1150,7 @@ const vetruvian = [
     text: "Costs 0 if you've cast all three Scion's Wish spells this game.",
     attack: 6,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20028,
@@ -1164,7 +1164,7 @@ const vetruvian = [
     text: 'Take control of an enemy minion nearby your General.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 222,
@@ -1179,7 +1179,7 @@ const vetruvian = [
       '<b>Flying</b><br/><b>Dying Wish</b>: Equip 2 random artifacts from your deck.',
     attack: 8,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20216,
@@ -1193,7 +1193,7 @@ const vetruvian = [
     text: 'Destroy ALL non-Structure minions.',
     attack: null,
     health: null,
-    spirit: null,
+    spirit: null
   },
   {
     id: 237,
@@ -1208,7 +1208,7 @@ const vetruvian = [
       '<b>Blast</b><br/><b>Flying</b><br/>The enemy General takes double damage.',
     attack: 4,
     health: 8,
-    spirit: null,
+    spirit: null
   },
   {
     id: 20322,
@@ -1223,8 +1223,8 @@ const vetruvian = [
       'Transform your action bar into six random Vetruvian cards that cost 4 less.',
     attack: null,
     health: null,
-    spirit: null,
-  },
+    spirit: null
+  }
 ];
 
 export default vetruvian;
