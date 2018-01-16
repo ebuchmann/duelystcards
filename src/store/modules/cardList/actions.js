@@ -2,10 +2,11 @@ import * as types from 'store/mutation-types';
 import updateHash from 'utils/updateHash';
 
 module.exports = {
-  setCardList: ({ commit }, cards) => new Promise((resolve) => {
-    commit(types.SET_CARDS, cards);
-    resolve();
-  }),
+  setCardList: ({ commit }, cards) =>
+    new Promise((resolve) => {
+      commit(types.SET_CARDS, cards);
+      resolve();
+    }),
 
   textSearch: ({ commit }, text) => {
     commit(types.TEXT_SEARCH, text);
@@ -32,5 +33,5 @@ module.exports = {
     commit(types.TEXT_SEARCH, '');
     commit(`deck/${types.CLEAR_DECK}`, null, { root: true });
     updateHash(state);
-  },
+  }
 };

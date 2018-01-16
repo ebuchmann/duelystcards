@@ -8,5 +8,5 @@ module.exports = {
   actions,
   getters,
   state,
-  mutations,
+  mutations
 };

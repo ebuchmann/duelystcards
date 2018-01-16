@@ -5,5 +5,5 @@ module.exports = {
   raritySelect: [],
   factionSelect: [],
   manaSelect: [],
-  tribeSelect: [],
+  tribeSelect: []
 };

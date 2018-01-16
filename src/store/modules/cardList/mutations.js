@@ -14,5 +14,5 @@ module.exports = {
   [types.SET_FILTERS](state, payload) {
     const { type, value } = payload;
     state[type] = value;
-  },
+  }
 };
