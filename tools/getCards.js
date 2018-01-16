@@ -2,7 +2,7 @@
   const cardTypes = {
     3: 'minion',
     4: 'spell',
-    6: 'artifact',
+    6: 'artifact'
   };
 
   const searchFaction = '';
@@ -15,7 +15,7 @@
         !card.attributes.isHiddenInCollection &&
         String(card.id).length < 6 &&
         card.attributes.factionName !== 'Boss' &&
-        card.attributes.factionName !== 'Tutorial Teacher',
+        card.attributes.factionName !== 'Tutorial Teacher'
     )
     .filter(card => [3, 4, 6].includes(card.attributes.type))
     .map((card) => {
@@ -33,7 +33,7 @@
         text: a.description,
         attack: a.atk,
         health: a.hp,
-        spirit: a.isCraftable ? null : 0,
+        spirit: a.isCraftable ? null : 0
       };
     })
     .filter(c => c.faction === searchFaction); // remove this if generating generals.js

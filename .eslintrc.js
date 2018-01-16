@@ -10,13 +10,12 @@ module.exports = {
     btoa: true,
     FileReader: true,
     ga: true,
-    localStorage: true,
+    localStorage: true
   },
   rules: {
     'no-underscore-dangle': [0],
-    'max-len': [0],
+    'comma-dangle': ['error', 'never'],
+    'max-len': [0]
   },
-  plugins: [
-    'vue',
-  ],
+  plugins: ['vue']
 };

@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 import { sync } from 'vuex-router-sync';
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
+import mixpanel from 'mixpanel-browser';
+
 import Tooltip from 'utils/tooltip';
 import { loadStorage } from 'utils/localStorage';
 import store from './store/store';
@@ -12,6 +14,8 @@ import { router } from './router-config';
 import { api } from './api-config';
 
 Vue.use(VueRouter);
+mixpanel.init('9e637feaa213f3a2a081f135f34b060e');
+mixpanel.track('App init');
 
 sync(store, router);
 
@@ -22,8 +26,7 @@ Vue.filter('capitalize', (word) => {
 
 // Sets up Sentry error reporting
 if (process.env.NODE_ENV === 'production') {
-  Raven
-    .config(credentials.sentry.url)
+  Raven.config(credentials.sentry.url)
     .addPlugin(RavenVue, Vue)
     .install();
 }
@@ -51,12 +54,13 @@ if (window.innerWidth < 960) {
   new Vue({
     router,
     store,
-    render: h => h(App),
+    render: h => h(App)
   }).$mount('#app');
 
-  new Tooltip({ // eslint-disable-line
+  new Tooltip({
+    // eslint-disable-line
     theme: 'dark',
     delay: 25,
-    distance: 5,
+    distance: 5
   });
 })();
