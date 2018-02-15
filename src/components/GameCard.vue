@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import updateHash from 'utils/updateHash'
+  import { updateHash } from 'utils/hashing'
   import CardCost from 'components/CardCost'
 
   export default {

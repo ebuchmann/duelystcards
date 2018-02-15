@@ -9,7 +9,7 @@
 
 <script>
   import CardCost from 'components/CardCost'
-  import updateHash from 'utils/updateHash'
+  import { updateHash } from 'utils/hashing'
 
   export default {
     props: {

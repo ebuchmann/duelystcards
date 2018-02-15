@@ -1,5 +1,5 @@
 import * as types from 'store/mutation-types';
-import updateHash from 'utils/updateHash';
+import { updateHash } from 'utils/hashing';
 
 module.exports = {
   setCardList: ({ commit }, cards) =>

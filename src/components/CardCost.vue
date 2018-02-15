@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import updateHash from 'utils/updateHash'
+  import { updateHash } from 'utils/hashing'
 
   export default {
     props: ['card'],

@@ -1,7 +1,10 @@
 module.exports = {
   // state toggles
   drawerOpen: true,
-  importDeck: false,
+  importDuelystcardsDeck: false,
+  exportDuelystcardsDeck: false,
+  importDuelystDeck: false,
+  exportDuelystDeck: false,
   saveDeck: false,
   savingDeck: false,
   imgurModal: false,
@@ -14,5 +17,5 @@ module.exports = {
   imgurLink: '',
   imgurHash: '',
   shortUrl: '',
-  saveType: '',
+  saveType: ''
 };

@@ -5,7 +5,10 @@
       <router-view />
     </div>
 
-    <import-deck-modal />
+    <import-duelystcards-deck-modal />
+    <export-duelystcards-deck-modal />
+    <import-duelyst-deck-modal />
+    <export-duelyst-deck-modal />
     <imgur-modal />
     <settings-modal v-if="$store.state.user.user" />
     <login-modal />
@@ -16,34 +19,40 @@
 </template>
 
 <script>
-  import SiteHeader from 'components/header/SiteHeader';
-  import ImportDeckModal from 'components/ImportDeckModal';
-  import ImgurModal from 'components/ImgurModal';
-  import ModalHorizontalDeck from 'components/horizontal/ModalHorizontalDeck';
-  import SettingsModal from 'components/settings/SettingsModal';
-  import LoginModal from 'components/header/LoginModal';
-  import ModalVerticalDeck from 'components/ModalVerticalDeck';
+import SiteHeader from 'components/header/SiteHeader';
+import ImportDuelystcardsDeckModal from 'components/ImportDuelystcardsDeckModal';
+import ExportDuelystcardsDeckModal from 'components/ExportDuelystcardsDeckModal';
+import ImportDuelystDeckModal from 'components/ImportDuelystDeckModal';
+import ExportDuelystDeckModal from 'components/ExportDuelystDeckModal';
+import ImgurModal from 'components/ImgurModal';
+import ModalHorizontalDeck from 'components/horizontal/ModalHorizontalDeck';
+import SettingsModal from 'components/settings/SettingsModal';
+import LoginModal from 'components/header/LoginModal';
+import ModalVerticalDeck from 'components/ModalVerticalDeck';
 
-  import { mapState } from 'vuex';
+import { mapState } from 'vuex';
 
-  export default {
-    computed: {
-      ...mapState({
-        modal: ({ app }) => app.savingDeck,
-        saveType: ({ app }) => app.saveType,
-      })
-    },
+export default {
+  computed: {
+    ...mapState({
+      modal: ({ app }) => app.savingDeck,
+      saveType: ({ app }) => app.saveType
+    })
+  },
 
-    components: {
-      SiteHeader,
-      ImportDeckModal,
-      ImgurModal,
-      ModalHorizontalDeck,
-      SettingsModal,
-      LoginModal,
-      ModalVerticalDeck,
-    },
+  components: {
+    SiteHeader,
+    ImportDuelystcardsDeckModal,
+    ExportDuelystcardsDeckModal,
+    ImportDuelystDeckModal,
+    ExportDuelystDeckModal,
+    ImgurModal,
+    ModalHorizontalDeck,
+    SettingsModal,
+    LoginModal,
+    ModalVerticalDeck
   }
+};
 </script>
 
 <style lang="sass">

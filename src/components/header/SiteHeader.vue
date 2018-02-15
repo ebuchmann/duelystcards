@@ -2,8 +2,10 @@
   <div class="site-header">
     <div class="container">
       <span class="site-logo">
-        Duelystcards
+        DUELYSTCARDS
       </span>
+
+      <a href="https://discord.gg/CdXDWJM" target="_blank"><img class="discord-logo" src="../../assets/images/discord-logo.png" /></a>
 
       <span class="site-navigation">
         <router-link :to="{ name: 'deckbuilder' }" exact>
@@ -24,22 +26,22 @@
 </template>
 
 <script>
-  import SigninButton from 'components/header/SigninButton'
-  import AccountButton from 'components/header/AccountButton'
-  import { mapActions, mapState } from 'vuex'
+import SigninButton from 'components/header/SigninButton';
+import AccountButton from 'components/header/AccountButton';
+import { mapActions, mapState } from 'vuex';
 
-  export default {
-    computed: {
-      ...mapState({
-        user: ({ user }) => user.user,
-      })
-    },
+export default {
+  computed: {
+    ...mapState({
+      user: ({ user }) => user.user
+    })
+  },
 
-    components: {
-      SigninButton,
-      AccountButton,
-    }
+  components: {
+    SigninButton,
+    AccountButton
   }
+};
 </script>
 
 <style lang="sass">
@@ -59,6 +61,11 @@
       border-bottom: 2px solid $blue;
       align-items: center;
     }
+  }
+
+  .discord-logo {
+    display: flex;
+    height: 42px;
   }
 
   .site-logo {

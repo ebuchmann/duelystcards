@@ -6,7 +6,7 @@
     </div>
     <div class="btn-group">
       <download-button />
-      <span class="button" @click="$store.dispatch('app/toggleProperty', 'importDeck')"><i class="icon icon-upload" data-tooltip="Import deck" data-position="bottom left"></i></span>
+      <import-export-button />
       <deck-options />
       <button class="btn clear-deck" @click="$store.dispatch('cardList/resetAll')"><i class="icon icon-clear-deck"></i> Clear</button>
     </div>
@@ -14,23 +14,25 @@
 </template>
 
 <script>
-  import DeckList from 'components/DeckList'
-  import DeckOptions from 'components/DeckOptions'
-  import DownloadButton from 'components/DownloadButton'
+import DeckList from 'components/DeckList';
+import DeckOptions from 'components/DeckOptions';
+import DownloadButton from 'components/DownloadButton';
+import ImportExportButton from 'components/ImportExportButton';
 
-  export default {
-    computed: {
-      closed () {
-        return !this.$store.state.app.drawerOpen
-      },
-    },
+export default {
+  computed: {
+    closed() {
+      return !this.$store.state.app.drawerOpen;
+    }
+  },
 
-    components: {
-      DeckList,
-      DeckOptions,
-      DownloadButton,
-    },
+  components: {
+    DeckList,
+    DeckOptions,
+    DownloadButton,
+    ImportExportButton
   }
+};
 </script>
 
 <style lang="sass">
