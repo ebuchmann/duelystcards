@@ -29,6 +29,20 @@ const abyssian = [
     spirit: 0
   },
   {
+    id: 20376,
+    name: 'Demonic Conversion',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 1,
+    rarity: 'common',
+    faction: 'abyssian',
+    text: "Draw a minion from your opponent's deck. It gains +1/+1.",
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 331,
     name: 'Furiosa',
     set: 'ancients',
@@ -102,6 +116,21 @@ const abyssian = [
     spirit: null
   },
   {
+    id: 20356,
+    name: 'Painful Pluck',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 1,
+    rarity: 'common',
+    faction: 'abyssian',
+    text:
+      '<b>Intensify</b>: Turn 1 random space into <b>Shadow Creep</b>, prioritizing spaces under enemy minions.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20201,
     name: 'Sphere of Darkness',
     set: 'shimzar',
@@ -155,6 +184,21 @@ const abyssian = [
     text: '<b>Opening Gambit</b>: Give a nearby enemy -2 attack this turn.',
     attack: 3,
     health: 2,
+    spirit: null
+  },
+  {
+    id: 359,
+    name: 'Carrion Collector',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 2,
+    rarity: 'epic',
+    faction: 'abyssian',
+    text:
+      '<b>Dying Wish</b>: Lower the cost of all minions with <b>Dying Wish</b> in your deck and action bar by 1.',
+    attack: 1,
+    health: 1,
     spirit: null
   },
   {
@@ -241,6 +285,21 @@ const abyssian = [
     text: 'Transform ALL minions that cost 2 or less into 1/1 Wraithlings.',
     attack: null,
     health: null,
+    spirit: null
+  },
+  {
+    id: 363,
+    name: 'Gibbet',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 2,
+    rarity: 'rare',
+    faction: 'abyssian',
+    text:
+      'Whenever this attacks an enemy minion, destroy that minion and summon a Gibbet on that space.',
+    attack: 1,
+    health: 2,
     spirit: null
   },
   {
@@ -418,6 +477,20 @@ const abyssian = [
     spirit: null
   },
   {
+    id: 20367,
+    name: 'Yielding Depths',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 2,
+    rarity: 'rare',
+    faction: 'abyssian',
+    text: 'If you have three or more <b>Shadow Creep</b>, draw 2 cards.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20348,
     name: 'Abhorrent Unbirth',
     set: 'immortal',
@@ -462,6 +535,20 @@ const abyssian = [
     spirit: null
   },
   {
+    id: 361,
+    name: 'Bonecrusher',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'common',
+    faction: 'abyssian',
+    text: '<b>Intensify</b>: This minion gains +5 Attack.',
+    attack: 0,
+    health: 3,
+    spirit: null
+  },
+  {
     id: 344,
     name: 'Bound Tormentor',
     set: 'unearthed',
@@ -473,6 +560,21 @@ const abyssian = [
     text:
       '<b>Sentinel</b>: Minion summoned.<br/>Put a copy of the minion that transformed this into your action bar. It costs 2 less.',
     attack: 2,
+    health: 3,
+    spirit: null
+  },
+  {
+    id: 362,
+    name: 'Chittering Tiller',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'common',
+    faction: 'abyssian',
+    text:
+      '<b>Frenzy</b><br/><b>Opening Gambit</b>: Teleport the enemy General one space forward.',
+    attack: 4,
     health: 3,
     spirit: null
   },
@@ -545,6 +647,21 @@ const abyssian = [
     faction: 'abyssian',
     text:
       'After your General damages a minion, reactivate and take control of it until the end of your turn.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 20374,
+    name: 'Munch',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 3,
+    rarity: 'rare',
+    faction: 'abyssian',
+    text:
+      'Steal Health from an enemy minion for each friendly Shadow Creep (but not more than its Health).',
     attack: null,
     health: null,
     spirit: null
@@ -926,6 +1043,20 @@ const abyssian = [
     spirit: null
   },
   {
+    id: 30051,
+    name: 'Wraithcrown',
+    set: 'mythron',
+    type: 'artifact',
+    race: '',
+    cost: 4,
+    rarity: 'epic',
+    faction: 'abyssian',
+    text: 'Friendly Wraithlings have +2/+2.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 321,
     name: 'Black Solus',
     set: 'core',
@@ -979,6 +1110,21 @@ const abyssian = [
     text: 'Friendly minions gain +2 Attack and <b>Frenzy</b>.',
     attack: null,
     health: null,
+    spirit: null
+  },
+  {
+    id: 358,
+    name: 'Hexclaw',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 5,
+    rarity: 'legendary',
+    faction: 'abyssian',
+    text:
+      '<b>Dying Wish</b>: The enemy General gains, "At the start of your turn, take 1 damage."',
+    attack: 7,
+    health: 2,
     spirit: null
   },
   {
@@ -1039,6 +1185,21 @@ const abyssian = [
       '<b>Deathwatch</b>: Deal 1 damage to the enemy General, and restore 1 Health to your General.',
     attack: 4,
     health: 4,
+    spirit: null
+  },
+  {
+    id: 360,
+    name: 'Abyssal Tormentor',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 6,
+    rarity: 'legendary',
+    faction: 'abyssian',
+    text:
+      '<b>Provoke</b><br/>Your <b>Shadow Creep</b> deals damage equal to the number of friendly <b>Shadow Creep</b>.',
+    attack: 6,
+    health: 6,
     spirit: null
   },
   {
@@ -1109,6 +1270,35 @@ const abyssian = [
     rarity: 'epic',
     faction: 'abyssian',
     text: 'Draw to fill your action bar.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 357,
+    name: "Underlord Xor'Xuul",
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 6,
+    rarity: 'mythron',
+    faction: 'abyssian',
+    text:
+      '<b>Trial</b>: Cast 6 spells that destroy a friendly minion.<br/><b>Destiny</b>: Whenever a friendly minion dies, re-summon it on a random space.',
+    attack: 6,
+    health: 1,
+    spirit: null
+  },
+  {
+    id: 20373,
+    name: 'Unfathomable Rite',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 6,
+    rarity: 'epic',
+    faction: 'abyssian',
+    text: "Draw cards from your opponent's deck to fill your action bar.",
     attack: null,
     health: null,
     spirit: null
@@ -1215,6 +1405,21 @@ const abyssian = [
       '<b>Rush</b><br/>Whenever this damages an enemy minion, deal 4 damage to the enemy General.',
     attack: 6,
     health: 6,
+    spirit: null
+  },
+  {
+    id: 20380,
+    name: 'Unleash the Evil',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 8,
+    rarity: 'legendary',
+    faction: 'abyssian',
+    text:
+      'Summon a copy of the minion your opponent most recently summoned from their action bar. It gains <b>Rush</b> and <b>Flying</b>.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {

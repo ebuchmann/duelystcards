@@ -129,6 +129,21 @@ const lyonar = [
     spirit: null
   },
   {
+    id: 20361,
+    name: 'Lifestream',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 1,
+    rarity: 'common',
+    faction: 'lyonar',
+    text:
+      'Fully heal a friendly minion, then draw a copy of it from your deck.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20062,
     name: 'Lionheart Blessing',
     set: 'core',
@@ -258,6 +273,20 @@ const lyonar = [
     spirit: null
   },
   {
+    id: 20315,
+    name: 'Bolster',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 2,
+    rarity: 'common',
+    faction: 'lyonar',
+    text: '<b>Intensify</b>: Give friendly minions +2 Health.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20281,
     name: 'Channeled Breath',
     set: 'unearthed',
@@ -353,6 +382,21 @@ const lyonar = [
     faction: 'lyonar',
     text:
       'Deal 2 damage to an enemy. If anything was healed this turn, deal 4 damage instead.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 20366,
+    name: 'Marching Orders',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 2,
+    rarity: 'rare',
+    faction: 'lyonar',
+    text:
+      'Give friendly minions directly in front of and behind your General +2/+2.  If they have <b>Zeal</b>, they cannot be targeted by enemy spells.',
     attack: null,
     health: null,
     spirit: null
@@ -615,6 +659,35 @@ const lyonar = [
     spirit: null
   },
   {
+    id: 54,
+    name: 'Gryphon Fledgling',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'rare',
+    faction: 'lyonar',
+    text: '<b>Zeal</b>: <b>Flying</b>',
+    attack: 5,
+    health: 3,
+    spirit: null
+  },
+  {
+    id: 53,
+    name: 'Legion',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'common',
+    faction: 'lyonar',
+    text:
+      '<b>Intensify</b>: Put 1 Crestfallen into your action bar. Shuffle a copy of this minion into your deck.',
+    attack: 3,
+    health: 2,
+    spirit: null
+  },
+  {
     id: 20249,
     name: 'Life Coil',
     set: 'ancients',
@@ -651,7 +724,7 @@ const lyonar = [
     cost: 3,
     rarity: 'rare',
     faction: 'lyonar',
-    text: 'At the end of your turn, give a friendly minon +1 Health.',
+    text: 'At the end of your turn, give a friendly minion +1 Health.',
     attack: 3,
     health: 4,
     spirit: null
@@ -986,6 +1059,21 @@ const lyonar = [
     spirit: null
   },
   {
+    id: 56,
+    name: 'Windcliffe Alarmist',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'common',
+    faction: 'lyonar',
+    text:
+      '<b>Opening Gambit</b>: Summon a 5/5 Windcliffe Protector with <b>Provoke</b> from your deck.',
+    attack: 2,
+    health: 2,
+    spirit: null
+  },
+  {
     id: 20104,
     name: 'Circle of Life',
     set: 'core',
@@ -997,6 +1085,21 @@ const lyonar = [
     text: 'Deal 5 damage to an enemy minion. Restore 5 Health to your General.',
     attack: null,
     health: null,
+    spirit: null
+  },
+  {
+    id: 57,
+    name: 'Grand Strategos',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 5,
+    rarity: 'mythron',
+    faction: 'lyonar',
+    text:
+      '<b>Trial</b>: Summon 10 minions with 1 or less Attack.<br/><b>Destiny</b>: Promote other friendly minions at the end of your turn.',
+    attack: 5,
+    health: 5,
     spirit: null
   },
   {
@@ -1025,6 +1128,21 @@ const lyonar = [
     text: '<b>Airdrop</b><br/><b>Provoke</b>',
     attack: 3,
     health: 10,
+    spirit: null
+  },
+  {
+    id: 20384,
+    name: 'Lionize',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 5,
+    rarity: 'epic',
+    faction: 'lyonar',
+    text:
+      'Give <b>Celerity</b> to a friendly minion directly behind your General.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {
@@ -1057,6 +1175,36 @@ const lyonar = [
     spirit: null
   },
   {
+    id: 59,
+    name: 'War Exorcist',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 5,
+    rarity: 'legendary',
+    faction: 'lyonar',
+    text:
+      '<b>Provoke</b><br/>At the start of your turn, Holy Immolation your damaged minions.',
+    attack: 3,
+    health: 8,
+    spirit: null
+  },
+  {
+    id: 55,
+    name: 'Windcliffe Protector',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 5,
+    rarity: 'epic',
+    faction: 'lyonar',
+    text:
+      '<b>Provoke</b><br/>When a friendly Windcliffe Alarmist dies, transform this minion into a Windcliffe Alarmist.',
+    attack: 5,
+    health: 5,
+    spirit: null
+  },
+  {
     id: 30024,
     name: "Dawn's Eye",
     set: 'shimzar',
@@ -1067,6 +1215,20 @@ const lyonar = [
     faction: 'lyonar',
     text:
       'Your General gains +4 Attack. At the end of your turn, repair all of your artifacts to full durability.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 20360,
+    name: 'Divine Liturgy',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 6,
+    rarity: 'rare',
+    faction: 'lyonar',
+    text: 'Give all friendly minions +Attack equal to their Health.',
     attack: null,
     health: null,
     spirit: null
@@ -1099,6 +1261,21 @@ const lyonar = [
       '<b>Blood Surge</b>: Summon a Silverguard Knight nearby your General.',
     attack: 4,
     health: 7,
+    spirit: null
+  },
+  {
+    id: 30053,
+    name: 'Radiant Standard',
+    set: 'mythron',
+    type: 'artifact',
+    race: '',
+    cost: 6,
+    rarity: 'epic',
+    faction: 'lyonar',
+    text:
+      'Your General has +3 Attack.<br/>When your General attacks, summon a minion that costs 3 from your deck nearby.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {
@@ -1174,6 +1351,20 @@ const lyonar = [
     spirit: null
   },
   {
+    id: 58,
+    name: 'Indominus',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 7,
+    rarity: 'legendary',
+    faction: 'lyonar',
+    text: 'Your General is <b>Invulnerable</b> BUT cannot move or attack.',
+    attack: 7,
+    health: 9,
+    spirit: null
+  },
+  {
     id: 36,
     name: 'Peacekeeper',
     set: 'ancients',
@@ -1213,6 +1404,21 @@ const lyonar = [
     rarity: 'legendary',
     faction: 'lyonar',
     text: 'Summon three Silverguard Knights nearby your General.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 20392,
+    name: 'Amaranthine Vow',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 9,
+    rarity: 'legendary',
+    faction: 'lyonar',
+    text:
+      'Summon around your General all friendly minions with <b>Provoke</b> that died this game.',
     attack: null,
     health: null,
     spirit: null

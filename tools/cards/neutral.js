@@ -11,7 +11,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Deal 1 damage to an enemy.',
     attack: 2,
     health: 1,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 10001,
@@ -25,7 +25,7 @@ const neutral = [
     text: '<b>Flying</b>',
     attack: 2,
     health: 1,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 11022,
@@ -40,7 +40,7 @@ const neutral = [
       'When you replace this card, summon it on a random nearby space. Your General takes 2 damage.',
     attack: 1,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19002,
@@ -54,7 +54,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Progresses MECHAZ0R build by +20%.',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11053,
@@ -68,7 +68,7 @@ const neutral = [
     text: 'This minion takes no damage from Generals.',
     attack: 3,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10018,
@@ -82,7 +82,22 @@ const neutral = [
     text: '',
     attack: 1,
     health: 3,
-    spirit: 0,
+    spirit: 0
+  },
+  {
+    id: 11141,
+    name: 'Mirrorrim',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 1,
+    rarity: 'common',
+    faction: 'neutral',
+    text:
+      '<b>Opening Gambit</b>: Shuffle three copies of a friendly minion into your deck.',
+    attack: 2,
+    health: 1,
+    spirit: null
   },
   {
     id: 10019,
@@ -96,7 +111,7 @@ const neutral = [
     text: '<b>Airdrop</b>',
     attack: 2,
     health: 1,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 11016,
@@ -111,7 +126,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Prevent ALL spell damage until your next turn.',
     attack: 1,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19025,
@@ -125,7 +140,7 @@ const neutral = [
     text: '<b>Provoke</b>',
     attack: 0,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11083,
@@ -140,7 +155,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Summon a copy of this minion on a random nearby space.',
     attack: 1,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10993,
@@ -154,7 +169,7 @@ const neutral = [
     text: 'You may replace an additional card each turn.',
     attack: 1,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11001,
@@ -168,7 +183,7 @@ const neutral = [
     text: '',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11017,
@@ -183,7 +198,22 @@ const neutral = [
       'Whenever you summon a minion with Opening Gambit from your action bar, gain +2 Attack.',
     attack: 1,
     health: 3,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 11152,
+    name: 'Araras Prophet',
+    set: 'mythron',
+    type: 'minion',
+    race: 'Arcanyst',
+    cost: 2,
+    rarity: 'rare',
+    faction: 'neutral',
+    text:
+      'Whenever you replace a card, shuffle a Brilliant Plume into your deck.',
+    attack: 1,
+    health: 3,
+    spirit: null
   },
   {
     id: 11084,
@@ -197,7 +227,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Restore 3 Health to your General.',
     attack: 1,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19050,
@@ -211,7 +241,7 @@ const neutral = [
     text: '<b>Dying Wish</b>: Give +4 Health to friendly minions around it.',
     attack: 1,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19029,
@@ -225,7 +255,7 @@ const neutral = [
     text: 'Deals double damage to minions.',
     attack: 3,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11102,
@@ -239,7 +269,7 @@ const neutral = [
     text: '',
     attack: 1,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11098,
@@ -253,7 +283,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Create a mana spring tile nearby.',
     attack: 1,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11088,
@@ -267,7 +297,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Refresh your Bloodbound Spell.',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10020,
@@ -281,7 +311,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Dispel 1 nearby space.',
     attack: 1,
     health: 1,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 19051,
@@ -295,7 +325,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Deal 3 damage to BOTH Generals.',
     attack: 3,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11009,
@@ -309,7 +339,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Teleport a nearby minion to a random space.',
     attack: 2,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19038,
@@ -323,7 +353,7 @@ const neutral = [
     text: 'The first Golem you summon each turn costs 1 less.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10981,
@@ -337,7 +367,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Restore 2 Health to anything.',
     attack: 2,
     health: 3,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 11014,
@@ -351,7 +381,7 @@ const neutral = [
     text: '<b>Dying Wish</b>: Summon a 1/1 Ranged Mini-Jax in a random corner.',
     attack: 1,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11124,
@@ -365,7 +395,7 @@ const neutral = [
     text: 'The first artifact you equip each turn costs 1 less.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10302,
@@ -379,7 +409,7 @@ const neutral = [
     text: 'The first non-Bloodbound spell you cast each turn costs 1 less.',
     attack: 1,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10979,
@@ -393,7 +423,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Deal 2 damage to a nearby enemy minion.',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11123,
@@ -407,7 +437,7 @@ const neutral = [
     text: 'If you have another Mech minion, this minion has <b>Rush</b>.',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19040,
@@ -421,7 +451,7 @@ const neutral = [
     text: '<b>Frenzy</b>',
     attack: 2,
     health: 2,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 19037,
@@ -436,7 +466,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Give a nearby friendly minion +2 Attack this turn.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11135,
@@ -450,7 +480,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Teleport ANY minion one space randomly.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11126,
@@ -464,7 +494,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Draw another Replicant from your deck.',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11137,
@@ -479,7 +509,7 @@ const neutral = [
       '<b>Build</b>: (2).<br/>When this minion is built, restore 5 Health to your General.',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19026,
@@ -493,7 +523,7 @@ const neutral = [
     text: '<b>Provoke</b>',
     attack: 1,
     health: 4,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 10957,
@@ -508,7 +538,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Destroy a random artifact on the enemy General.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11046,
@@ -523,7 +553,7 @@ const neutral = [
       'At the end of your turn, give each nearby friendly minion +1 Attack.',
     attack: 1,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11109,
@@ -537,7 +567,7 @@ const neutral = [
     text: 'Cannot be attacked.',
     attack: 1,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19048,
@@ -551,7 +581,7 @@ const neutral = [
     text: '',
     attack: 3,
     health: 2,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 11066,
@@ -565,7 +595,7 @@ const neutral = [
     text: 'Opening Gambit: Activate a friendly Battle Pet.',
     attack: 1,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10021,
@@ -579,7 +609,7 @@ const neutral = [
     text: '<b>Ranged</b>',
     attack: 1,
     health: 2,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 19003,
@@ -594,7 +624,7 @@ const neutral = [
       '<b>Airdrop</b><br/><b>Opening Gambit</b>: Progresses MECHAZ0R build by +20%.',
     attack: 1,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11075,
@@ -609,7 +639,7 @@ const neutral = [
       '<b>Provoke</b><br/><b>Opening Gambit</b>: Give a nearby friendly minion <b>Provoke</b>.',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11061,
@@ -623,7 +653,7 @@ const neutral = [
     text: '<b>Dying Wish</b>: Put a random MECH minion into your action bar.',
     attack: 2,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11039,
@@ -638,7 +668,22 @@ const neutral = [
       '<b>Opening Gambit</b>: Lower the cost of all spells in your action bar by 1.',
     attack: 3,
     health: 1,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 11142,
+    name: 'Aer Pridebeak',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'common',
+    faction: 'neutral',
+    text:
+      'Whenever your opponent casts a spell, restore 1 Health to your General.',
+    attack: 3,
+    health: 4,
+    spirit: null
   },
   {
     id: 10304,
@@ -653,7 +698,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Put a copy of the most recently cast spell into your action bar.',
     attack: 3,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11138,
@@ -668,7 +713,7 @@ const neutral = [
       '<b>Build</b>: (1).<br/>Whenever this or another friendly minion is built, draw a card.',
     attack: 1,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11038,
@@ -682,7 +727,7 @@ const neutral = [
     text: 'At the end of your turn, give all friendly minions +1 health.',
     attack: 0,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10013,
@@ -696,7 +741,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Both players draw a card.',
     attack: 4,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11125,
@@ -711,7 +756,7 @@ const neutral = [
       '<b>Blood Surge</b>: Put a copy of your Bloodbound Spell into your action bar.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10205,
@@ -725,7 +770,7 @@ const neutral = [
     text: '',
     attack: 4,
     health: 3,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 19004,
@@ -740,7 +785,7 @@ const neutral = [
       '<b>Ranged</b><br/><b>Opening Gambit</b>: Progresses MECHAZ0R build by +20%.',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10962,
@@ -754,7 +799,7 @@ const neutral = [
     text: 'Whenever this minion takes damage, it randomly teleports.',
     attack: 4,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19030,
@@ -768,7 +813,7 @@ const neutral = [
     text: 'Whenever opponent summons a minion, this minion gains +1/+1',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10953,
@@ -782,7 +827,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Destroy an enemy minion with Ranged.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11079,
@@ -797,7 +842,7 @@ const neutral = [
       'Whenever a friendly minion attacks, restore 1 Health to your General.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11076,
@@ -811,7 +856,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Gain two random keywords.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11090,
@@ -825,7 +870,7 @@ const neutral = [
     text: 'This minion is from every tribe.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11056,
@@ -840,7 +885,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Put a random Battle Pet into your action bar.',
     attack: 4,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19039,
@@ -854,7 +899,7 @@ const neutral = [
     text: '<b>Provoke</b><br/>Your other Golem minions have <b>Provoke</b>.',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11052,
@@ -868,7 +913,7 @@ const neutral = [
     text: 'Whenever a friendly Battle Pet dies, draw a card.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11051,
@@ -882,7 +927,7 @@ const neutral = [
     text: '<b>Ranged</b><br/>Deals double damage to Generals.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11103,
@@ -897,7 +942,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Your opponent summons two Komodo Chargers nearby their General.',
     attack: 5,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10987,
@@ -912,7 +957,7 @@ const neutral = [
       '<b>Provoke</b><br/><b>Opening Gambit</b>: Other minions you summon this turn gain +1/+1 and gain <b>Provoke</b>.',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19047,
@@ -926,7 +971,7 @@ const neutral = [
     text: 'Friendly minions summoned nearby this minion gain +1/+1.',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11008,
@@ -940,7 +985,22 @@ const neutral = [
     text: 'After this moves, draw a card.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 11145,
+    name: 'Orbo the Ostentatious',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'legendary',
+    faction: 'neutral',
+    text:
+      '<b>Opening Gambit</b>: Transform the cards in your action bar into random prismatic legendary cards.',
+    attack: 3,
+    health: 4,
+    spirit: null
   },
   {
     id: 10303,
@@ -955,7 +1015,21 @@ const neutral = [
       'Whenever you cast a spell, summon a 2/1 Illusion on a random nearby space.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 11148,
+    name: 'Prongbok',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'common',
+    faction: 'neutral',
+    text: 'May move an additional space.',
+    attack: 2,
+    health: 5,
+    spirit: null
   },
   {
     id: 19033,
@@ -969,7 +1043,7 @@ const neutral = [
     text: '<b>Flying</b>',
     attack: 2,
     health: 4,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 11131,
@@ -983,7 +1057,7 @@ const neutral = [
     text: '<b>Blood Surge</b>: Gains +2/+2.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10016,
@@ -997,7 +1071,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Push a nearby enemy minion to any space.',
     attack: 2,
     health: 2,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 11108,
@@ -1011,7 +1085,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Put a Boulder Hurl into your action bar.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10014,
@@ -1025,7 +1099,7 @@ const neutral = [
     text: 'When this minion survives damage, it returns to your action bar.',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11027,
@@ -1039,7 +1113,7 @@ const neutral = [
     text: '<b>Forcefield</b>',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19045,
@@ -1053,7 +1127,36 @@ const neutral = [
     text: '<b>Dying Wish</b>: Re-summon this minion on a random space.',
     attack: 1,
     health: 1,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 11157,
+    name: 'Scarzig',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'legendary',
+    faction: 'neutral',
+    text:
+      'If this minion destroys an enemy and survives, friendly Scarzig ANYWHERE transform into Feather Knights.',
+    attack: 1,
+    health: 2,
+    spirit: null
+  },
+  {
+    id: 11146,
+    name: 'Sellsoul',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'rare',
+    faction: 'neutral',
+    text: '<b>Dying Wish</b>: Deal 4 damage to YOUR General.',
+    attack: 4,
+    health: 5,
+    spirit: null
   },
   {
     id: 10009,
@@ -1067,7 +1170,7 @@ const neutral = [
     text: 'Takes no damage from Generals.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11035,
@@ -1082,7 +1185,7 @@ const neutral = [
       '<b>Flying</b><br/>Your other minions with <b>Flying</b> cost 1 less.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11058,
@@ -1096,7 +1199,7 @@ const neutral = [
     text: 'Whenever this damages a neutral minion, destroy that minion.',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19049,
@@ -1110,7 +1213,7 @@ const neutral = [
     text: 'Whenever this minion deals damage, draw a card.',
     attack: 1,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10992,
@@ -1124,7 +1227,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Give a nearby friendly minion +1/+1.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10301,
@@ -1135,10 +1238,11 @@ const neutral = [
     cost: 3,
     rarity: 'common',
     faction: 'neutral',
-    text: 'Whenever this minion deals damage, restore 2 Heath to your General.',
+    text:
+      'Whenever this minion deals damage, restore 2 Health to your General.',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19005,
@@ -1153,7 +1257,7 @@ const neutral = [
       '<b>Frenzy</b><br/><b>Opening Gambit</b>: Progresses MECHAZ0R build by +20%.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10954,
@@ -1168,7 +1272,7 @@ const neutral = [
       '<b>Ranged</b><br/>Whenever your General takes damage, this minion gains +1 Attack.',
     attack: 1,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10974,
@@ -1183,7 +1287,7 @@ const neutral = [
       '<b>Ranged</b><br/>Minions damaged by Syvrel are pulled in front of him.',
     attack: 1,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10960,
@@ -1198,7 +1302,7 @@ const neutral = [
       'Whenever your opponent summons a minion, deal 1 damage to the enemy General.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10982,
@@ -1212,7 +1316,7 @@ const neutral = [
     text: '<b>Dying Wish</b>: Draw a card.',
     attack: 4,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11105,
@@ -1227,7 +1331,7 @@ const neutral = [
       '<b>Frenzy</b><br/>Whenever an enemy attacks, this minion gains +3 Attack until the end of your turn.',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11007,
@@ -1241,7 +1345,7 @@ const neutral = [
     text: 'After this minion moves, give all friendly minions around it +1/+1.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19010,
@@ -1255,7 +1359,7 @@ const neutral = [
     text: 'Ranged attackers must attack this minion first.',
     attack: 1,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11020,
@@ -1270,7 +1374,7 @@ const neutral = [
       '<b>Flying</b><br/>Whenever you replace a card, this minion gains +2 Attack this turn.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11004,
@@ -1284,7 +1388,7 @@ const neutral = [
     text: '',
     attack: 5,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11059,
@@ -1298,7 +1402,7 @@ const neutral = [
     text: 'You control your Battle Pets.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11033,
@@ -1313,7 +1417,7 @@ const neutral = [
       '<b>Ranged</b><br/>Your other minions with <b>Ranged</b> get +1 Attack.',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10961,
@@ -1327,7 +1431,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Draw a random artifact from your deck.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11006,
@@ -1342,7 +1446,7 @@ const neutral = [
       '<b>Flying</b><br/>After this minion moves, summon a Black Locust nearby.',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11043,
@@ -1357,7 +1461,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Deal 1 damage to everything (including itself).',
     attack: 4,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11122,
@@ -1372,7 +1476,7 @@ const neutral = [
       '<b>Ranged</b><br/>Each time this minion attacks, it has a 50% chance to attack again, attacking a random enemy.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10989,
@@ -1387,7 +1491,7 @@ const neutral = [
       '<b>Ranged</b><br/>Whenever this minion deals damage, restore that much Health to it. ',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19006,
@@ -1402,22 +1506,7 @@ const neutral = [
       '<b>Forcefield</b><br/><b>Opening Gambit</b>: Progresses MECHAZ0R build by +20%.',
     attack: 2,
     health: 4,
-    spirit: null,
-  },
-  {
-    id: 11128,
-    name: 'DECEPTIB0T',
-    set: 'immortal',
-    type: 'minion',
-    race: 'Mech',
-    cost: 4,
-    rarity: 'epic',
-    faction: 'neutral',
-    text:
-      'Whenever this minion destroys an enemy, summon a different Mech minion from your deck nearby.',
-    attack: 4,
-    health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11086,
@@ -1432,7 +1521,7 @@ const neutral = [
       'Whenever your opponent draws a card, deal 2 damage to the enemy General.',
     attack: 4,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10976,
@@ -1447,7 +1536,7 @@ const neutral = [
       '<b>Dying Wish</b>: Summon a 0/10 Tombstone minion with Provoke near your General.',
     attack: 5,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10995,
@@ -1461,7 +1550,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Restore 4 Health to BOTH Generals.',
     attack: 4,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11091,
@@ -1475,7 +1564,7 @@ const neutral = [
     text: 'Friendly minions from any tribe have +1/+1.',
     attack: 4,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10017,
@@ -1489,7 +1578,22 @@ const neutral = [
     text: '<b>Ranged</b>',
     attack: 3,
     health: 2,
-    spirit: 0,
+    spirit: 0
+  },
+  {
+    id: 11151,
+    name: 'Fizzling Mystic',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'common',
+    faction: 'neutral',
+    text:
+      '<b>Opening Gambit</b>: Deal 2 damage to an enemy OR restore 2 Health to a friendly minion or General.',
+    attack: 3,
+    health: 3,
+    spirit: null
   },
   {
     id: 19042,
@@ -1503,7 +1607,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Deal 2 damage to everything around it.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11057,
@@ -1518,7 +1622,7 @@ const neutral = [
       '<b>Dying Wish</b>: This minion deals 3 damage to all enemies around it.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10978,
@@ -1532,7 +1636,22 @@ const neutral = [
     text: '',
     attack: 4,
     health: 6,
-    spirit: 0,
+    spirit: 0
+  },
+  {
+    id: 11159,
+    name: 'Hsuku',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'epic',
+    faction: 'neutral',
+    text:
+      "At the end of any player's turn, give one of their minions a random buff and keyword (excluding Hsuku).",
+    attack: 2,
+    health: 6,
+    spirit: null
   },
   {
     id: 10306,
@@ -1546,7 +1665,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Dispel ALL spaces around it.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11096,
@@ -1560,7 +1679,7 @@ const neutral = [
     text: 'Whenever you draw a spell, put a copy of it into your action bar.',
     attack: 2,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11110,
@@ -1575,7 +1694,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Destroy an enemy artifact to put a random artifact from your faction into your action bar.',
     attack: 5,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10965,
@@ -1590,7 +1709,7 @@ const neutral = [
       "<b>Opening Gambit</b>: Gain a copy of a random spell from your opponent's action bar.",
     attack: 4,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10988,
@@ -1605,7 +1724,7 @@ const neutral = [
       'At the start of your turn, fully heal this minion and switch its Attack and Health.',
     attack: 3,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11080,
@@ -1620,7 +1739,7 @@ const neutral = [
       '<b>Forcefield</b><br/>Whenever ANY player summons a minion with <b>Rush</b>, exhaust it.',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10305,
@@ -1634,7 +1753,7 @@ const neutral = [
     text: 'Whenever you cast a spell, your Arcanyst minions gain +2 Health.',
     attack: 4,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19027,
@@ -1648,7 +1767,7 @@ const neutral = [
     text: '<b>Provoke</b>',
     attack: 3,
     health: 6,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 10991,
@@ -1663,7 +1782,7 @@ const neutral = [
       'Whenever this minion deals damage, either deal 3 damage to the enemy General OR restore 3 Health to your General.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11106,
@@ -1677,7 +1796,22 @@ const neutral = [
     text: '',
     attack: 10,
     health: 3,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 11150,
+    name: 'Riftwalker',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'rare',
+    faction: 'neutral',
+    text:
+      '<b>Airdrop</b><br/><b>Intensify</b>: Deal 1 damage to everything around it.',
+    attack: 3,
+    health: 3,
+    spirit: null
   },
   {
     id: 10012,
@@ -1691,7 +1825,7 @@ const neutral = [
     text: '<b>Rush</b>',
     attack: 3,
     health: 2,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 11087,
@@ -1705,7 +1839,7 @@ const neutral = [
     text: 'Your Bloodbound Spell costs 1 less to activate.',
     attack: 5,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19044,
@@ -1719,7 +1853,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Teleport your General up to 3 spaces.',
     attack: 2,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10975,
@@ -1733,7 +1867,7 @@ const neutral = [
     text: 'Each player draws an additional card at the end of their turns.',
     attack: 3,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11078,
@@ -1747,7 +1881,7 @@ const neutral = [
     text: "<b>Opening Gambit</b>: Put a Riddle in your opponent's action bar.",
     attack: 5,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11015,
@@ -1761,7 +1895,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Give two random friendly minions +2 Health.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11028,
@@ -1775,7 +1909,7 @@ const neutral = [
     text: '<b>Forcefield</b>',
     attack: 4,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11041,
@@ -1790,7 +1924,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Add 2 random cards from your Faction to your action bar.',
     attack: 2,
     health: 4,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 11025,
@@ -1804,7 +1938,7 @@ const neutral = [
     text: '<b>Provoke</b><br/>Dispel any minion that deals damage to this one.',
     attack: 1,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19031,
@@ -1818,7 +1952,7 @@ const neutral = [
     text: '',
     attack: 6,
     health: 4,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 11115,
@@ -1833,7 +1967,7 @@ const neutral = [
       'Whenever this minion damages an enemy, it also damages all joined enemies.',
     attack: 4,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11139,
@@ -1847,7 +1981,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Your buildings progress by 1 turn.',
     attack: 2,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11036,
@@ -1862,7 +1996,7 @@ const neutral = [
       '<b>Dying Wish</b>: Summon a minion with <b>Dying Wish</b> from your action bar.',
     attack: 2,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11019,
@@ -1876,7 +2010,7 @@ const neutral = [
     text: 'Whenever you replace a card, deal 2 damage to a random enemy.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19034,
@@ -1890,7 +2024,22 @@ const neutral = [
     text: '<b>Flying</b>.',
     attack: 5,
     health: 4,
-    spirit: 0,
+    spirit: 0
+  },
+  {
+    id: 11144,
+    name: 'Alcuin Fugitive',
+    set: 'mythron',
+    type: 'minion',
+    race: 'Arcanyst',
+    cost: 5,
+    rarity: 'legendary',
+    faction: 'neutral',
+    text:
+      'At the end of any turn you cast a spell, put a copy of the most recently cast spell into your action bar.',
+    attack: 2,
+    health: 5,
+    spirit: null
   },
   {
     id: 11040,
@@ -1904,7 +2053,7 @@ const neutral = [
     text: 'Whenever you summon MECHAZ0R, put a MECHAZ0R in your action bar.',
     attack: 4,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10983,
@@ -1919,7 +2068,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Summon two copies of this minion on random spaces.',
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11054,
@@ -1933,7 +2082,7 @@ const neutral = [
     text: '<b>Frenzy</b><br/><b>Celerity</b>',
     attack: 2,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11094,
@@ -1948,7 +2097,7 @@ const neutral = [
       'Whenever you cast a spell, put a random Arcanyst into your action bar.',
     attack: 4,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11092,
@@ -1962,7 +2111,7 @@ const neutral = [
     text: "<b>Bond</b>: Enemies can't counterattack this turn.",
     attack: 5,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10204,
@@ -1976,7 +2125,7 @@ const neutral = [
     text: '',
     attack: 4,
     health: 9,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 11063,
@@ -1991,7 +2140,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Gain the combined Attack and Health of all Battle Pets in your action bar.',
     attack: 1,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11134,
@@ -2006,7 +2155,7 @@ const neutral = [
       'Whenever a friendly minion is destroyed, your opponent takes control of this minion.',
     attack: 9,
     health: 9,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11042,
@@ -2021,7 +2170,22 @@ const neutral = [
       "This minion costs 2 less if your General took damage on opponent's last turn.",
     attack: 5,
     health: 5,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 11154,
+    name: 'Chirpuka',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 5,
+    rarity: 'epic',
+    faction: 'neutral',
+    text:
+      'Whenever your opponent summons a minion, summon a 2/1 Puka with <b>Provoke</b> in front of it.',
+    attack: 3,
+    health: 6,
+    spirit: null
   },
   {
     id: 10958,
@@ -2035,7 +2199,7 @@ const neutral = [
     text: '<b>Celerity</b>',
     attack: 2,
     health: 8,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10959,
@@ -2050,7 +2214,22 @@ const neutral = [
       '<b>Opening Gambit</b>: Deal 3 damage to ANY minion in front of this.',
     attack: 4,
     health: 6,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 11128,
+    name: 'DECEPTIB0T',
+    set: 'immortal',
+    type: 'minion',
+    race: 'Mech',
+    cost: 5,
+    rarity: 'epic',
+    faction: 'neutral',
+    text:
+      'Whenever this minion destroys an enemy, summon a different Mech minion from your deck nearby.',
+    attack: 5,
+    health: 5,
+    spirit: null
   },
   {
     id: 11048,
@@ -2065,7 +2244,7 @@ const neutral = [
       'Whenever this minion damages an enemy, teleport that enemy to a random corner.',
     attack: 3,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19028,
@@ -2079,7 +2258,7 @@ const neutral = [
     text: '<b>Provoke</b>',
     attack: 5,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11011,
@@ -2094,7 +2273,7 @@ const neutral = [
       'Whenever you cast a spell, summon a 1/1 Spellspark with <b>Rush</b> on a random nearby space.',
     attack: 3,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11034,
@@ -2109,7 +2288,7 @@ const neutral = [
       '<b>Provoke</b><br/>Your other minions with <b>Provoke</b> can move two additional spaces.',
     attack: 4,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11049,
@@ -2124,7 +2303,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Add a random artifact to your action bar. It costs 2 less.',
     attack: 5,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11024,
@@ -2139,7 +2318,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Destroy ANY nearby minion with Provoke or Frenzy. If you do, this minion gains Provoke and Frenzy.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11133,
@@ -2154,7 +2333,7 @@ const neutral = [
       '<b>Provoke</b><br/>Whenever this minion is attacked, it gains +2 Attack.',
     attack: 1,
     health: 10,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11064,
@@ -2169,7 +2348,7 @@ const neutral = [
       '<b>Provoke</b><br/>Whenever you replace a card, summon a 2/2 Prisoner with a random ability nearby.',
     attack: 4,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11085,
@@ -2183,7 +2362,7 @@ const neutral = [
     text: '<b>Dying Wish</b>: Dispel all enemy minions.',
     attack: 4,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11018,
@@ -2198,7 +2377,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Summon a random friendly minion destroyed this game nearby this minion.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11112,
@@ -2213,7 +2392,7 @@ const neutral = [
       '<b>Ranged</b><br/>Whenever your General attacks, a cub joins the pack.',
     attack: 2,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10973,
@@ -2228,7 +2407,7 @@ const neutral = [
       '<b>Ranged</b><br/>At the end of your turn, restore 2 Health to all nearby friendly minions. ',
     attack: 2,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11031,
@@ -2242,7 +2421,7 @@ const neutral = [
     text: '<b>Dying Wish</b>: Draw a card.',
     attack: 5,
     health: 4,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 11111,
@@ -2256,7 +2435,7 @@ const neutral = [
     text: 'Enemy minions destroyed by this are returned to their action bar.',
     attack: 7,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11060,
@@ -2271,7 +2450,7 @@ const neutral = [
       'Whenever this minion takes damage, summon a random Battle Pet nearby.',
     attack: 3,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19032,
@@ -2285,7 +2464,7 @@ const neutral = [
     text: '<b>Ranged</b>',
     attack: 4,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11030,
@@ -2300,7 +2479,7 @@ const neutral = [
       '<b>Opening Gambit</b>: ALL nearby minions deal damage to themselves equal to their Attack.',
     attack: 3,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10955,
@@ -2314,7 +2493,7 @@ const neutral = [
     text: 'Whenever your General takes damage, fully heal this minion.',
     attack: 4,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10985,
@@ -2329,7 +2508,7 @@ const neutral = [
       "<b>Opening Gambit</b>: Gains +1/+1 for each card in your opponent's action bar.",
     attack: 2,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11114,
@@ -2343,7 +2522,7 @@ const neutral = [
     text: '<b>Opening Gambit</b>: Replace each card in your action bar.',
     attack: 5,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11097,
@@ -2358,7 +2537,7 @@ const neutral = [
       '<b>Flying</b><br/><b>Bond</b>: Put the three Teachings of the Dragon into your action bar.',
     attack: 4,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10022,
@@ -2373,7 +2552,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Put a copy of a random spell you cast this game into your action bar.',
     attack: 3,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19043,
@@ -2387,7 +2566,7 @@ const neutral = [
     text: "Your opponent's non-Bloodbound spells cost 1 more to cast.",
     attack: 7,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11023,
@@ -2402,7 +2581,7 @@ const neutral = [
       '<b>Provoke</b><br/>At the end of your turn, deal 2 damage to each enemy minion around this one.',
     attack: 2,
     health: 9,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10980,
@@ -2417,7 +2596,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Deal 3 damage to all enemy minions around it.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11037,
@@ -2431,7 +2610,7 @@ const neutral = [
     text: '',
     attack: 5,
     health: 11,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11082,
@@ -2446,7 +2625,7 @@ const neutral = [
       '<b>Flying</b><br/><b>Opening Gambit</b>: Deal 3 damage to all enemies in front of this minion.',
     attack: 3,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10986,
@@ -2461,7 +2640,7 @@ const neutral = [
       'Whenever this minion takes damage, it deals that much damage to the enemy General.',
     attack: 3,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11032,
@@ -2475,7 +2654,7 @@ const neutral = [
     text: 'Deals double damage to Generals.',
     attack: 4,
     health: 6,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 10984,
@@ -2489,7 +2668,7 @@ const neutral = [
     text: 'Your other minions have +1 Attack.',
     attack: 7,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11095,
@@ -2504,7 +2683,7 @@ const neutral = [
       '<b>Opening Gambit</b> and <b>Dying Wish</b>: Summon a random minion from any tribe nearby.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11077,
@@ -2519,7 +2698,7 @@ const neutral = [
       'While this minion is on the battlefield, your General has <b>Forcefield</b>.',
     attack: 5,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10963,
@@ -2534,7 +2713,22 @@ const neutral = [
       '<b>Ranged</b><br/><b>Opening Gambit</b>: Summon a 1/1 <b>Ranged</b> Mini-Jax in each corner.',
     attack: 1,
     health: 1,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 11153,
+    name: 'Lodestar',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 6,
+    rarity: 'epic',
+    faction: 'neutral',
+    text:
+      "<b>Airdrop</b>, <b>Forcefield</b><br/>At the end of BOTH players' turns, pull some things to this minion.",
+    attack: 4,
+    health: 4,
+    spirit: null
   },
   {
     id: 11107,
@@ -2548,7 +2742,22 @@ const neutral = [
     text: 'BOTH players cannot cast spells that cost 2 or less.',
     attack: 3,
     health: 8,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 11149,
+    name: 'Mythron Wanderer',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 6,
+    rarity: 'mythron',
+    faction: 'neutral',
+    text:
+      '<b>Trial</b>: Have no duplicate cards in your deck.<br/><b>Destiny</b>: Your minions have +1/+1.',
+    attack: 6,
+    health: 6,
+    spirit: null
   },
   {
     id: 11127,
@@ -2563,7 +2772,7 @@ const neutral = [
       'This minion gains +2/+2 for each other Mech minion you summoned this game.',
     attack: 1,
     health: 1,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11132,
@@ -2578,7 +2787,7 @@ const neutral = [
       "<b>Opening Gambit</b>: Remove all minions that cost 2 or less from each player's deck.",
     attack: 6,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11081,
@@ -2592,7 +2801,7 @@ const neutral = [
     text: 'Takes no damage from minions or Generals.',
     attack: 5,
     health: 2,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11045,
@@ -2607,7 +2816,7 @@ const neutral = [
       'Whenever your General takes damage, draw a card and give this minion +2 Attack.',
     attack: 4,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11129,
@@ -2622,7 +2831,7 @@ const neutral = [
       'Whenever you summon this or another Mech, friendly Mechs gain all keywords of other friendly Mechs.',
     attack: 7,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10307,
@@ -2636,7 +2845,7 @@ const neutral = [
     text: '<b>Frenzy</b>',
     attack: 7,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11055,
@@ -2650,7 +2859,7 @@ const neutral = [
     text: '',
     attack: 6,
     health: 9,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11116,
@@ -2665,7 +2874,7 @@ const neutral = [
       '<b>Provoke</b><br/><b>Opening Gambit</b>: Each player summons three Spriggin Kin nearby their General.',
     attack: 6,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19035,
@@ -2679,7 +2888,7 @@ const neutral = [
     text: '<b>Flying</b>',
     attack: 6,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10207,
@@ -2693,7 +2902,7 @@ const neutral = [
     text: '',
     attack: 8,
     health: 8,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 11047,
@@ -2708,7 +2917,7 @@ const neutral = [
       'Whenever you play a spell that targets a friendly minion, draw a card.',
     attack: 6,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10994,
@@ -2723,7 +2932,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Take control of a nearby enemy minion with 2 or less Attack.',
     attack: 4,
     health: 4,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11021,
@@ -2737,7 +2946,7 @@ const neutral = [
     text: 'Whenever you replace this card, it costs 1 less and gains +1/+1.',
     attack: 7,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19046,
@@ -2752,7 +2961,7 @@ const neutral = [
       'At the start of your turn, deal 4 damage to the enemy General and this minion gains +4 Attack.',
     attack: 4,
     health: 10,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10206,
@@ -2766,7 +2975,7 @@ const neutral = [
     text: '',
     attack: 10,
     health: 10,
-    spirit: 0,
+    spirit: 0
   },
   {
     id: 11029,
@@ -2781,7 +2990,7 @@ const neutral = [
       '<b>Forcefield</b><br/>Whenever this minion attacks or is attacked, draw a card.',
     attack: 5,
     health: 5,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11104,
@@ -2795,7 +3004,7 @@ const neutral = [
     text: '<b>Flying</b>',
     attack: 10,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11093,
@@ -2810,7 +3019,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Dispel ALL minions and Generals, and destroy ALL artifacts.',
     attack: 9,
     health: 9,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11010,
@@ -2825,7 +3034,22 @@ const neutral = [
       'Whenever you summon a minion, this minion gains a random keyword ability.',
     attack: 6,
     health: 6,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 11156,
+    name: 'Mnemovore',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 7,
+    rarity: 'legendary',
+    faction: 'neutral',
+    text:
+      "Whenever you summon a minion, burn three cards from your opponent's deck.",
+    attack: 7,
+    health: 7,
+    spirit: null
   },
   {
     id: 10997,
@@ -2840,7 +3064,7 @@ const neutral = [
       '<b>Airdrop</b><br/><b>Opening Gambit</b>: Push ALL nearby minions and Generals to random spaces.',
     attack: 12,
     health: 6,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10966,
@@ -2855,7 +3079,7 @@ const neutral = [
       'At the end of your turn, summon a 3/3 Spirit Wolf with a random ability into a nearby space.',
     attack: 3,
     health: 10,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10956,
@@ -2870,7 +3094,7 @@ const neutral = [
       'Whenever your General takes damage, deal 7 damage to a random nearby enemy minion.',
     attack: 7,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11136,
@@ -2885,7 +3109,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Forge a friendly minion into a Faction artifact with equal Attack.',
     attack: 3,
     health: 3,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10990,
@@ -2900,7 +3124,21 @@ const neutral = [
       'At the end of your turn, this minion gains a random Faction ability.',
     attack: 5,
     health: 5,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 11143,
+    name: 'Saberspine Alpha',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 7,
+    rarity: 'common',
+    faction: 'neutral',
+    text: '<b>Rush</b>',
+    attack: 5,
+    health: 5,
+    spirit: null
   },
   {
     id: 11026,
@@ -2914,7 +3152,7 @@ const neutral = [
     text: '<b>Frenzy</b><br/><b>Provoke</b>',
     attack: 4,
     health: 9,
-    spirit: null,
+    spirit: null
   },
   {
     id: 19036,
@@ -2928,7 +3166,7 @@ const neutral = [
     text: '<b>Provoke</b>',
     attack: 2,
     health: 15,
-    spirit: null,
+    spirit: null
   },
   {
     id: 10996,
@@ -2943,7 +3181,7 @@ const neutral = [
       "<b>Opening Gambit</b>: Summon all non-token friendly minions destroyed on your opponent's last turn on a random space.",
     attack: 4,
     health: 7,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11121,
@@ -2958,7 +3196,7 @@ const neutral = [
       '<b>Opening Gambit</b>: Devour ANY minion, anywhere.<br/><b>Dying Wish</b>: Spit out the devoured minion on this space.',
     attack: 8,
     health: 8,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11013,
@@ -2973,7 +3211,7 @@ const neutral = [
       'Whenever this minion takes damage, summon a random token minion nearby.',
     attack: 5,
     health: 12,
-    spirit: null,
+    spirit: null
   },
   {
     id: 11089,
@@ -2987,7 +3225,21 @@ const neutral = [
     text: '<b>Blood Surge</b>: Deal 6 damage to a random enemy.',
     attack: 6,
     health: 6,
-    spirit: null,
+    spirit: null
+  },
+  {
+    id: 11147,
+    name: 'Worldcore Golem',
+    set: 'mythron',
+    type: 'minion',
+    race: 'Golem',
+    cost: 9,
+    rarity: 'common',
+    faction: 'neutral',
+    text: '',
+    attack: 25,
+    health: 25,
+    spirit: null
   },
   {
     id: 11044,
@@ -3001,8 +3253,8 @@ const neutral = [
     text: "<b>Provoke</b><br/>This minion's cost is your General's health.",
     attack: 12,
     health: 12,
-    spirit: null,
-  },
+    spirit: null
+  }
 ];
 
 module.exports = neutral;

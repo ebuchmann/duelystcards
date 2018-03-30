@@ -5,18 +5,36 @@ const https = require('https');
 
 const folderBase = 'sprites';
 
-const main = () => {
-  if (fs.existsSync(folderBase)) {
-    fs.rmdirSync(folderBase);
-  }
-  fs.mkdirSync(folderBase);
+const getFactionSetIds = (faction, set) =>
+  faction.filter(o => o.set === set).map(o => o.id);
 
-  downloadSpritesForSet(cards, 'core');
-  downloadSpritesForSet(cards, 'shimzar');
-  downloadSpritesForSet(cards, 'bloodbound');
-  downloadSpritesForSet(cards, 'ancients');
-  downloadSpritesForSet(cards, 'unearthed');
-  downloadSpritesForSet(cards, 'immortal');
+const getAllFactionSetIds = (cards, set) => [
+  ...getFactionSetIds(cards.abyssian, set),
+  ...getFactionSetIds(cards.generals, set),
+  ...getFactionSetIds(cards.lyonar, set),
+  ...getFactionSetIds(cards.magmar, set),
+  ...getFactionSetIds(cards.neutral, set),
+  ...getFactionSetIds(cards.songhai, set),
+  ...getFactionSetIds(cards.vanar, set),
+  ...getFactionSetIds(cards.vetruvian, set)
+];
+
+const slugForSet = (set) => {
+  switch (set) {
+    case 'core':
+    case 'shimzar':
+      return set;
+    case 'bloodbound':
+      return 'bloodstorm';
+    case 'ancients':
+      return 'unity';
+    case 'unearthed':
+      return 'unearthed-prophecy';
+    case 'immortal':
+      return 'wartech';
+    case 'mythron':
+      return 'coreshatter';
+  }
 };
 
 const downloadSpritesForSet = (cards, set) => {
@@ -32,7 +50,7 @@ const downloadSpritesForSet = (cards, set) => {
           console.error(`Failed to DL ${setSlug}-${id}.`);
         }
         response.pipe(outputFile);
-      },
+      }
     );
 
     request.on('error', (error) => {
@@ -41,35 +59,20 @@ const downloadSpritesForSet = (cards, set) => {
   });
 };
 
-const slugForSet = (set) => {
-  switch (set) {
-    case 'core':
-    case 'shimzar':
-      return set;
-    case 'bloodbound':
-      return 'bloodstorm';
-    case 'ancients':
-      return 'unity';
-    case 'unearthed':
-      return 'unearthed-prophecy';
-    case 'immortal':
-      return 'wartech';
+const main = () => {
+  if (fs.existsSync(folderBase)) {
+    fs.rmdirSync(folderBase);
   }
+  fs.mkdirSync(folderBase);
+
+  downloadSpritesForSet(cards, 'core');
+  downloadSpritesForSet(cards, 'shimzar');
+  downloadSpritesForSet(cards, 'bloodbound');
+  downloadSpritesForSet(cards, 'ancients');
+  downloadSpritesForSet(cards, 'unearthed');
+  downloadSpritesForSet(cards, 'immortal');
+  downloadSpritesForSet(cards, 'mythron');
 };
-
-const getAllFactionSetIds = (cards, set) => [
-  ...getFactionSetIds(cards.abyssian, set),
-  ...getFactionSetIds(cards.generals, set),
-  ...getFactionSetIds(cards.lyonar, set),
-  ...getFactionSetIds(cards.magmar, set),
-  ...getFactionSetIds(cards.neutral, set),
-  ...getFactionSetIds(cards.songhai, set),
-  ...getFactionSetIds(cards.vanar, set),
-  ...getFactionSetIds(cards.vetruvian, set),
-];
-
-const getFactionSetIds = (faction, set) =>
-  faction.filter(o => o.set === set).map(o => o.id);
 
 if (require.main === module) {
   main();

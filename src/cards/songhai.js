@@ -1,5 +1,20 @@
 const songhai = [
   {
+    id: 154,
+    name: 'Hideatsu the Ebon Ox',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 0,
+    rarity: 'mythron',
+    faction: 'songhai',
+    text:
+      '<b>Trial</b>: Summon 7 minions from your action bar with different costs.<br/><b>Destiny</b>: Summon friendly minions to deal their cost as damage to an enemy.',
+    attack: 5,
+    health: 5,
+    spirit: null
+  },
+  {
     id: 20129,
     name: 'Juxtaposition',
     set: 'core',
@@ -23,6 +38,21 @@ const songhai = [
     rarity: 'rare',
     faction: 'songhai',
     text: 'The next spell you cast this turn costs 1 less.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 20355,
+    name: 'Meditate',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 0,
+    rarity: 'rare',
+    faction: 'songhai',
+    text:
+      'Shuffle five copies of the spell you cast most recently into your deck.',
     attack: null,
     health: null,
     spirit: null
@@ -114,6 +144,21 @@ const songhai = [
     spirit: null
   },
   {
+    id: 30052,
+    name: 'Horned Mask',
+    set: 'mythron',
+    type: 'artifact',
+    race: '',
+    cost: 1,
+    rarity: 'epic',
+    faction: 'songhai',
+    text:
+      'Your General gains +1 Attack.<br/>After a friendly minion with <b>Backstab</b> attacks, it gains +1/+1.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20086,
     name: 'Inner Focus',
     set: 'core',
@@ -153,6 +198,20 @@ const songhai = [
     text: '<b>Backstab</b>: (3).',
     attack: 1,
     health: 3,
+    spirit: null
+  },
+  {
+    id: 20354,
+    name: 'Knucklestorm',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 1,
+    rarity: 'common',
+    faction: 'songhai',
+    text: '<b>Intensify</b>: Deal 1 damage to an enemy.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {
@@ -425,6 +484,20 @@ const songhai = [
     spirit: null
   },
   {
+    id: 20365,
+    name: 'Second Self',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 2,
+    rarity: 'rare',
+    faction: 'songhai',
+    text: 'Put an EXACT copy of a friendly minion into your action bar.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 145,
     name: 'Suzumebachi',
     set: 'immortal',
@@ -614,6 +687,21 @@ const songhai = [
     spirit: null
   },
   {
+    id: 156,
+    name: 'Kaido Expert',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'rare',
+    faction: 'songhai',
+    text:
+      '<b>Backstab</b>: (1).<br/>Whenever this minion backstabs, summon a minion with <b>Backstab</b> that costs 2 or less from your deck nearby.',
+    attack: 2,
+    health: 2,
+    spirit: null
+  },
+  {
     id: 128,
     name: 'Ki Beholder',
     set: 'shimzar',
@@ -699,6 +787,35 @@ const songhai = [
     faction: 'songhai',
     text:
       'Transform an enemy minion into a 0/2 Panddo that cannot be attacked.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 158,
+    name: 'Orizuru',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'common',
+    faction: 'songhai',
+    text: '<b>Flying</b>',
+    attack: 3,
+    health: 4,
+    spirit: null
+  },
+  {
+    id: 20385,
+    name: 'Pandatentiary',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 3,
+    rarity: 'epic',
+    faction: 'songhai',
+    text:
+      'Surround the enemy General with friendly Panddo that disappear at the start of your next turn.',
     attack: null,
     health: null,
     spirit: null
@@ -848,6 +965,35 @@ const songhai = [
     spirit: null
   },
   {
+    id: 155,
+    name: 'Bakezori',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'epic',
+    faction: 'songhai',
+    text: 'Whenever this minion is moved for any reason, draw a card.',
+    attack: 2,
+    health: 6,
+    spirit: null
+  },
+  {
+    id: 160,
+    name: 'Coalfist',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'common',
+    faction: 'songhai',
+    text:
+      '<b>Intensify</b>: Give a random nearby friendly minion +2 Attack this turn.',
+    attack: 4,
+    health: 4,
+    spirit: null
+  },
+  {
     id: 20240,
     name: 'Cobra Strike',
     set: 'ancients',
@@ -933,6 +1079,21 @@ const songhai = [
       '<b>Build</b>: (2).<br/>When this minion is built, gain +2 mana this turn.',
     attack: 3,
     health: 3,
+    spirit: null
+  },
+  {
+    id: 157,
+    name: 'Massacre Artist',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'legendary',
+    faction: 'songhai',
+    text:
+      '<b>Backstab</b>: (2).<br/>After this minion attacks and backstabs, all attacks are backstabs this turn.',
+    attack: 2,
+    health: 5,
     spirit: null
   },
   {
@@ -1035,6 +1196,21 @@ const songhai = [
     spirit: null
   },
   {
+    id: 20389,
+    name: 'Phoenix Barrage',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 5,
+    rarity: 'common',
+    faction: 'songhai',
+    text:
+      'Deal 3 damage to anything.<br/>Put a Phoenix Fire into your action bar.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 111,
     name: 'Scarlet Viper',
     set: 'core',
@@ -1076,6 +1252,21 @@ const songhai = [
       'Put 3 random Songhai minions into your action bar. They cost 1 less.',
     attack: null,
     health: null,
+    spirit: null
+  },
+  {
+    id: 159,
+    name: 'Xenkai Cannoneer',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 5,
+    rarity: 'legendary',
+    faction: 'songhai',
+    text:
+      '<b>Ranged</b><br/>Whenever you summon a minion with <b>Ranged</b>, that minion gains <b>Rush</b>.',
+    attack: 4,
+    health: 4,
     spirit: null
   },
   {
@@ -1219,6 +1410,21 @@ const songhai = [
     rarity: 'epic',
     faction: 'songhai',
     text: 'Deal 8 damage to anything.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 20377,
+    name: 'Kensho Vortex',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 11,
+    rarity: 'legendary',
+    faction: 'songhai',
+    text:
+      'Costs 1 less for each spell you cast this game. Whenever you cast a spell this turn, summon a minion that costs up to 2 more nearby your General.',
     attack: null,
     health: null,
     spirit: null

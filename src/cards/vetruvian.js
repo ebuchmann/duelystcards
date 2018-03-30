@@ -144,6 +144,20 @@ const vetruvian = [
     spirit: null
   },
   {
+    id: 20378,
+    name: 'Planar Foundry',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 1,
+    rarity: 'common',
+    faction: 'vetruvian',
+    text: 'Draw an artifact from your deck.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20095,
     name: "Scion's First Wish",
     set: 'core',
@@ -246,6 +260,21 @@ const vetruvian = [
     spirit: null
   },
   {
+    id: 258,
+    name: 'Dustdrinker',
+    set: 'mythron',
+    type: 'minion',
+    race: 'Dervish',
+    cost: 2,
+    rarity: 'common',
+    faction: 'vetruvian',
+    text:
+      '<b>Intensify</b>: Deal 1 damage to the enemy General and this minion gains +1 Health.',
+    attack: 2,
+    health: 1,
+    spirit: null
+  },
+  {
     id: 20336,
     name: 'Equality Constraint',
     set: 'immortal',
@@ -317,6 +346,20 @@ const vetruvian = [
     spirit: null
   },
   {
+    id: 20386,
+    name: 'Metalmeld',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 2,
+    rarity: 'rare',
+    faction: 'vetruvian',
+    text: 'Equip a friendly artifact that was destroyed this game.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20350,
     name: 'Neurolink',
     set: 'immortal',
@@ -328,6 +371,36 @@ const vetruvian = [
     text: 'Your General gains all keywords of friendly minions this turn.',
     attack: null,
     health: null,
+    spirit: null
+  },
+  {
+    id: 30054,
+    name: 'Obdurator',
+    set: 'mythron',
+    type: 'artifact',
+    race: '',
+    cost: 2,
+    rarity: 'epic',
+    faction: 'vetruvian',
+    text:
+      'Your General gains +1 Attack.<br/>At the start of your turn, repair all of your artifacts by 1 durability.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 256,
+    name: 'Orbrider',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 2,
+    rarity: 'common',
+    faction: 'vetruvian',
+    text:
+      '<b>Opening Gambit</b>: Return a nearby friendly minion to your action bar.',
+    attack: 2,
+    health: 2,
     spirit: null
   },
   {
@@ -485,6 +558,21 @@ const vetruvian = [
     text: 'Give a friendly minion +5 Health and <b>Flying</b>.',
     attack: null,
     health: null,
+    spirit: null
+  },
+  {
+    id: 263,
+    name: 'Atom Klinger',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'rare',
+    faction: 'vetruvian',
+    text:
+      "Whenever you equip an artifact, this minion gains +Attack equal to the artifact's cost.",
+    attack: 1,
+    health: 5,
     spirit: null
   },
   {
@@ -720,6 +808,20 @@ const vetruvian = [
     spirit: null
   },
   {
+    id: 20362,
+    name: 'Wither',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 3,
+    rarity: 'rare',
+    faction: 'vetruvian',
+    text: 'An enemy minion disappears at the start of your next turn.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 235,
     name: 'Zephyr',
     set: 'ancients',
@@ -731,6 +833,20 @@ const vetruvian = [
     text: '<b>Blood Surge</b>: Your General gains <b>Frenzy</b> this turn.',
     attack: 3,
     health: 3,
+    spirit: null
+  },
+  {
+    id: 20357,
+    name: 'Accumulonimbus',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 4,
+    rarity: 'common',
+    faction: 'vetruvian',
+    text: '<b>Intensify</b>: Summon 2 Wind Dervishes nearby your General.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {
@@ -834,6 +950,21 @@ const vetruvian = [
     spirit: 0
   },
   {
+    id: 20381,
+    name: 'Synaptic Arbitrage',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 4,
+    rarity: 'epic',
+    faction: 'vetruvian',
+    text:
+      'Give your opponent a minion to take control of nearby enemy minions with less Attack.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 30029,
     name: 'Thunderclap',
     set: 'ancients',
@@ -885,7 +1016,7 @@ const vetruvian = [
     cost: 4,
     rarity: 'basic',
     faction: 'vetruvian',
-    text: '<b>Flying</b>. <b>Dying Wish</b>: Draw a card.',
+    text: '<b>Flying</b><br/><b>Dying Wish</b>: Draw a card.',
     attack: 4,
     health: 3,
     spirit: 0
@@ -935,6 +1066,20 @@ const vetruvian = [
     spirit: null
   },
   {
+    id: 257,
+    name: 'Fifth Canopic',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 5,
+    rarity: 'epic',
+    faction: 'vetruvian',
+    text: 'The enemy General cannot cast their Bloodbound Spell.',
+    attack: 4,
+    health: 8,
+    spirit: null
+  },
+  {
     id: 247,
     name: 'Gust',
     set: 'immortal',
@@ -963,6 +1108,21 @@ const vetruvian = [
     spirit: null
   },
   {
+    id: 260,
+    name: 'Khanuum-ka',
+    set: 'mythron',
+    type: 'minion',
+    race: 'Dervish',
+    cost: 5,
+    rarity: 'legendary',
+    faction: 'vetruvian',
+    text:
+      '<b>Flying</b>, <b>Rush</b><br/><b>Dying Wish</b>: A random friendly Dervish disappears, summoning a Khanuum-ka in its place.',
+    attack: 3,
+    health: 3,
+    spirit: null
+  },
+  {
     id: 232,
     name: 'Nimbus',
     set: 'shimzar',
@@ -975,6 +1135,21 @@ const vetruvian = [
       'Whenever this minion takes damage, summon a 0/4 Soulburn Obelysk nearby.',
     attack: 3,
     health: 8,
+    spirit: null
+  },
+  {
+    id: 259,
+    name: 'Notion of Starless Eternity',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 5,
+    rarity: 'mythron',
+    faction: 'vetruvian',
+    text:
+      '<b>Trial</b>: General reaches the other edge of the battlefield with an equipped artifact.<br/><b>Destiny</b>: Each equipped artifact gives your General a tier of ascension.',
+    attack: 3,
+    health: 3,
     spirit: null
   },
   {
@@ -1153,6 +1328,21 @@ const vetruvian = [
     spirit: null
   },
   {
+    id: 261,
+    name: 'Swarmking Scarab',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 6,
+    rarity: 'legendary',
+    faction: 'vetruvian',
+    text:
+      '<b>Blast</b><br/>Whenever this minion blasts, summon 1/1 Scarabyte with <b>Flying</b> and <b>Rush</b> in those spaces.',
+    attack: 5,
+    health: 7,
+    spirit: null
+  },
+  {
     id: 20028,
     name: 'Dominate Will',
     set: 'core',
@@ -1208,6 +1398,20 @@ const vetruvian = [
       '<b>Blast</b><br/><b>Flying</b><br/>The enemy General takes double damage.',
     attack: 4,
     health: 8,
+    spirit: null
+  },
+  {
+    id: 20363,
+    name: 'Circle of Fabrication',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 9,
+    rarity: 'legendary',
+    faction: 'vetruvian',
+    text: 'Summon one of each Obelysk from your deck on random spaces.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {

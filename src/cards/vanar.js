@@ -28,6 +28,20 @@ const vanar = [
     spirit: null
   },
   {
+    id: 20393,
+    name: 'Aspect of Ego',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 1,
+    rarity: 'rare',
+    faction: 'vanar',
+    text: 'Transform ANY minion into a random minion of the same cost.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20329,
     name: 'Essence Sculpt',
     set: 'immortal',
@@ -112,6 +126,21 @@ const vanar = [
     faction: 'vanar',
     text:
       'Put a random Vespyr minion into your action bar. It costs 1 less and has +1/+1.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 20375,
+    name: 'Wanderlust',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 1,
+    rarity: 'common',
+    faction: 'vanar',
+    text:
+      '<b>Intensify</b>: Teleport 1 random enemy minion to a space on your starting side of the battlefield.',
     attack: null,
     health: null,
     spirit: null
@@ -460,6 +489,21 @@ const vanar = [
     spirit: null
   },
   {
+    id: 30056,
+    name: 'Resonance Scythe',
+    set: 'mythron',
+    type: 'artifact',
+    race: '',
+    cost: 2,
+    rarity: 'epic',
+    faction: 'vanar',
+    text:
+      'Your General has +1 Attack.<br/>Reactivate your General whenever they destroy a <b>Stunned</b> enemy.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20337,
     name: 'Shatter',
     set: 'immortal',
@@ -489,6 +533,20 @@ const vanar = [
     spirit: null
   },
   {
+    id: 567,
+    name: 'Thicket Augur',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 2,
+    rarity: 'common',
+    faction: 'vanar',
+    text: '<b>Intensify</b>: Summon 1 Treant with <b>Provoke</b> nearby.',
+    attack: 1,
+    health: 1,
+    spirit: null
+  },
+  {
     id: 20148,
     name: 'Blazing Spines',
     set: 'core',
@@ -498,6 +556,20 @@ const vanar = [
     rarity: 'rare',
     faction: 'vanar',
     text: 'Summon two joined 3/3 Walls that can attack.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 20371,
+    name: 'Cryonic Potential',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 3,
+    rarity: 'common',
+    faction: 'vanar',
+    text: 'Give an exhausted friendly minion +6/+6.',
     attack: null,
     health: null,
     spirit: null
@@ -514,6 +586,21 @@ const vanar = [
     text: 'Double the Attack and Health buffs of friendly minions.',
     attack: null,
     health: null,
+    spirit: null
+  },
+  {
+    id: 565,
+    name: 'Disciple of Yggdra',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'legendary',
+    faction: 'vanar',
+    text:
+      "When an enemy is <b>Stunned</b>, transform this minion into Yggdra's Voracity.",
+    attack: 2,
+    health: 3,
     spirit: null
   },
   {
@@ -645,6 +732,21 @@ const vanar = [
     text: '<b>Blood Surge</b>: Summon a random Wall nearby.',
     attack: 3,
     health: 3,
+    spirit: null
+  },
+  {
+    id: 20394,
+    name: 'Permafrost',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 3,
+    rarity: 'epic',
+    faction: 'vanar',
+    text:
+      '<b>Stun</b> an enemy minion.<br/><b><b>Stun</b>ned</b> enemy minions <b>Stun</b> a nearby enemy.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {
@@ -780,6 +882,21 @@ const vanar = [
     spirit: null
   },
   {
+    id: 20391,
+    name: 'Endless Hunt',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 4,
+    rarity: 'rare',
+    faction: 'vanar',
+    text:
+      'Summon a 3/3 Vespyr Night Howler.<br/>Put an Endless Hunt into your action bar.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 542,
     name: 'Hydrogarm',
     set: 'immortal',
@@ -792,6 +909,35 @@ const vanar = [
       '<b>Blood Surge</b>: Deal 1 damage to enemy minions in this row and <b>Stun</b> them.',
     attack: 3,
     health: 3,
+    spirit: null
+  },
+  {
+    id: 561,
+    name: 'Malicious Wisp',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'epic',
+    faction: 'vanar',
+    text:
+      '<b>Opening Gambit</b>: Take a mana crystal from your opponent.<br/><b>Dying Wish</b>: Give back the mana crystal.',
+    attack: 4,
+    health: 3,
+    spirit: null
+  },
+  {
+    id: 563,
+    name: 'Meltwater Moose',
+    set: 'mythron',
+    type: 'minion',
+    race: 'Vespyr',
+    cost: 4,
+    rarity: 'common',
+    faction: 'vanar',
+    text: 'When this minion is summoned, <b>Stun</b> it.',
+    attack: 6,
+    health: 7,
     spirit: null
   },
   {
@@ -877,7 +1023,8 @@ const vanar = [
     cost: 4,
     rarity: 'legendary',
     faction: 'vanar',
-    text: 'Whenever you summon a minon with <b>Infiltrate</b>, it gains +1/+1.',
+    text:
+      'Whenever you summon a minion with <b>Infiltrate</b>, it gains +1/+1.',
     attack: 4,
     health: 5,
     spirit: 0
@@ -956,6 +1103,21 @@ const vanar = [
     spirit: null
   },
   {
+    id: 560,
+    name: 'Cloudcaller',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 5,
+    rarity: 'legendary',
+    faction: 'vanar',
+    text:
+      '<b>Opening Gambit</b>: Your Bloodbound Spell refreshes and is Lesser Waterball this turn.',
+    attack: 4,
+    health: 5,
+    spirit: null
+  },
+  {
     id: 20229,
     name: 'Enfeeble',
     set: 'ancients',
@@ -967,6 +1129,20 @@ const vanar = [
     text: 'All minions become 1/1.',
     attack: null,
     health: null,
+    spirit: null
+  },
+  {
+    id: 562,
+    name: 'Fenrir Berserker',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 5,
+    rarity: 'rare',
+    faction: 'vanar',
+    text: '<b>Dying Wish</b>: Summon a Fenrir Warmaster on this space.',
+    attack: 4,
+    health: 3,
     spirit: null
   },
   {
@@ -1145,6 +1321,21 @@ const vanar = [
     spirit: null
   },
   {
+    id: 564,
+    name: 'Oak in the Nemeton',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 6,
+    rarity: 'mythron',
+    faction: 'vanar',
+    text:
+      '<b>Trial</b>: Have 5 token minions with different names.<br/><b>Destiny</b>: Friendly token minions have +4/+4.',
+    attack: 6,
+    health: 6,
+    spirit: null
+  },
+  {
     id: 514,
     name: 'Ancient Grove',
     set: 'core',
@@ -1185,6 +1376,20 @@ const vanar = [
     text: 'The first spell you cast each turn costs 5 less.',
     attack: 8,
     health: 9,
+    spirit: null
+  },
+  {
+    id: 20359,
+    name: 'Ice Age',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 7,
+    rarity: 'legendary',
+    faction: 'vanar',
+    text: 'Summon Blazing Spines along the outside of the battlefield.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {

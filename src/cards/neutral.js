@@ -85,6 +85,21 @@ const neutral = [
     spirit: 0
   },
   {
+    id: 11141,
+    name: 'Mirrorrim',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 1,
+    rarity: 'common',
+    faction: 'neutral',
+    text:
+      '<b>Opening Gambit</b>: Shuffle three copies of a friendly minion into your deck.',
+    attack: 2,
+    health: 1,
+    spirit: null
+  },
+  {
     id: 10019,
     name: 'Planar Scout',
     set: 'core',
@@ -181,6 +196,21 @@ const neutral = [
     faction: 'neutral',
     text:
       'Whenever you summon a minion with Opening Gambit from your action bar, gain +2 Attack.',
+    attack: 1,
+    health: 3,
+    spirit: null
+  },
+  {
+    id: 11152,
+    name: 'Araras Prophet',
+    set: 'mythron',
+    type: 'minion',
+    race: 'Arcanyst',
+    cost: 2,
+    rarity: 'rare',
+    faction: 'neutral',
+    text:
+      'Whenever you replace a card, shuffle a Brilliant Plume into your deck.',
     attack: 1,
     health: 3,
     spirit: null
@@ -641,6 +671,21 @@ const neutral = [
     spirit: null
   },
   {
+    id: 11142,
+    name: 'Aer Pridebeak',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'common',
+    faction: 'neutral',
+    text:
+      'Whenever your opponent casts a spell, restore 1 Health to your General.',
+    attack: 3,
+    health: 4,
+    spirit: null
+  },
+  {
     id: 10304,
     name: 'Alcuin Loremaster',
     set: 'core',
@@ -943,6 +988,21 @@ const neutral = [
     spirit: null
   },
   {
+    id: 11145,
+    name: 'Orbo the Ostentatious',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'legendary',
+    faction: 'neutral',
+    text:
+      '<b>Opening Gambit</b>: Transform the cards in your action bar into random prismatic legendary cards.',
+    attack: 3,
+    health: 4,
+    spirit: null
+  },
+  {
     id: 10303,
     name: 'Prismatic Illusionist',
     set: 'core',
@@ -955,6 +1015,20 @@ const neutral = [
       'Whenever you cast a spell, summon a 2/1 Illusion on a random nearby space.',
     attack: 2,
     health: 3,
+    spirit: null
+  },
+  {
+    id: 11148,
+    name: 'Prongbok',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'common',
+    faction: 'neutral',
+    text: 'May move an additional space.',
+    attack: 2,
+    health: 5,
     spirit: null
   },
   {
@@ -1053,6 +1127,35 @@ const neutral = [
     text: '<b>Dying Wish</b>: Re-summon this minion on a random space.',
     attack: 1,
     health: 1,
+    spirit: null
+  },
+  {
+    id: 11157,
+    name: 'Scarzig',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'legendary',
+    faction: 'neutral',
+    text:
+      'If this minion destroys an enemy and survives, friendly Scarzig ANYWHERE transform into Feather Knights.',
+    attack: 1,
+    health: 2,
+    spirit: null
+  },
+  {
+    id: 11146,
+    name: 'Sellsoul',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'rare',
+    faction: 'neutral',
+    text: '<b>Dying Wish</b>: Deal 4 damage to YOUR General.',
+    attack: 4,
+    health: 5,
     spirit: null
   },
   {
@@ -1478,6 +1581,21 @@ const neutral = [
     spirit: 0
   },
   {
+    id: 11151,
+    name: 'Fizzling Mystic',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'common',
+    faction: 'neutral',
+    text:
+      '<b>Opening Gambit</b>: Deal 2 damage to an enemy OR restore 2 Health to a friendly minion or General.',
+    attack: 3,
+    health: 3,
+    spirit: null
+  },
+  {
     id: 19042,
     name: 'Frostbone Naga',
     set: 'core',
@@ -1519,6 +1637,21 @@ const neutral = [
     attack: 4,
     health: 6,
     spirit: 0
+  },
+  {
+    id: 11159,
+    name: 'Hsuku',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'epic',
+    faction: 'neutral',
+    text:
+      "At the end of any player's turn, give one of their minions a random buff and keyword (excluding Hsuku).",
+    attack: 2,
+    health: 6,
+    spirit: null
   },
   {
     id: 10306,
@@ -1662,6 +1795,21 @@ const neutral = [
     faction: 'neutral',
     text: '',
     attack: 10,
+    health: 3,
+    spirit: null
+  },
+  {
+    id: 11150,
+    name: 'Riftwalker',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'rare',
+    faction: 'neutral',
+    text:
+      '<b>Airdrop</b><br/><b>Intensify</b>: Deal 1 damage to everything around it.',
+    attack: 3,
     health: 3,
     spirit: null
   },
@@ -1879,6 +2027,21 @@ const neutral = [
     spirit: 0
   },
   {
+    id: 11144,
+    name: 'Alcuin Fugitive',
+    set: 'mythron',
+    type: 'minion',
+    race: 'Arcanyst',
+    cost: 5,
+    rarity: 'legendary',
+    faction: 'neutral',
+    text:
+      'At the end of any turn you cast a spell, put a copy of the most recently cast spell into your action bar.',
+    attack: 2,
+    health: 5,
+    spirit: null
+  },
+  {
     id: 11040,
     name: 'Alter Rexx',
     set: 'core',
@@ -2007,6 +2170,21 @@ const neutral = [
       "This minion costs 2 less if your General took damage on opponent's last turn.",
     attack: 5,
     health: 5,
+    spirit: null
+  },
+  {
+    id: 11154,
+    name: 'Chirpuka',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 5,
+    rarity: 'epic',
+    faction: 'neutral',
+    text:
+      'Whenever your opponent summons a minion, summon a 2/1 Puka with <b>Provoke</b> in front of it.',
+    attack: 3,
+    health: 6,
     spirit: null
   },
   {
@@ -2538,6 +2716,21 @@ const neutral = [
     spirit: null
   },
   {
+    id: 11153,
+    name: 'Lodestar',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 6,
+    rarity: 'epic',
+    faction: 'neutral',
+    text:
+      "<b>Airdrop</b>, <b>Forcefield</b><br/>At the end of BOTH players' turns, pull some things to this minion.",
+    attack: 4,
+    health: 4,
+    spirit: null
+  },
+  {
     id: 11107,
     name: 'Magesworn',
     set: 'unearthed',
@@ -2549,6 +2742,21 @@ const neutral = [
     text: 'BOTH players cannot cast spells that cost 2 or less.',
     attack: 3,
     health: 8,
+    spirit: null
+  },
+  {
+    id: 11149,
+    name: 'Mythron Wanderer',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 6,
+    rarity: 'mythron',
+    faction: 'neutral',
+    text:
+      '<b>Trial</b>: Have no duplicate cards in your deck.<br/><b>Destiny</b>: Your minions have +1/+1.',
+    attack: 6,
+    health: 6,
     spirit: null
   },
   {
@@ -2829,6 +3037,21 @@ const neutral = [
     spirit: null
   },
   {
+    id: 11156,
+    name: 'Mnemovore',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 7,
+    rarity: 'legendary',
+    faction: 'neutral',
+    text:
+      "Whenever you summon a minion, burn three cards from your opponent's deck.",
+    attack: 7,
+    health: 7,
+    spirit: null
+  },
+  {
     id: 10997,
     name: 'Paddo',
     set: 'core',
@@ -2899,6 +3122,20 @@ const neutral = [
     faction: 'neutral',
     text:
       'At the end of your turn, this minion gains a random Faction ability.',
+    attack: 5,
+    health: 5,
+    spirit: null
+  },
+  {
+    id: 11143,
+    name: 'Saberspine Alpha',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 7,
+    rarity: 'common',
+    faction: 'neutral',
+    text: '<b>Rush</b>',
     attack: 5,
     health: 5,
     spirit: null
@@ -2988,6 +3225,20 @@ const neutral = [
     text: '<b>Blood Surge</b>: Deal 6 damage to a random enemy.',
     attack: 6,
     health: 6,
+    spirit: null
+  },
+  {
+    id: 11147,
+    name: 'Worldcore Golem',
+    set: 'mythron',
+    type: 'minion',
+    race: 'Golem',
+    cost: 9,
+    rarity: 'common',
+    faction: 'neutral',
+    text: '',
+    attack: 25,
+    health: 25,
     spirit: null
   },
   {

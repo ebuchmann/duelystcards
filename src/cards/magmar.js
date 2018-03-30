@@ -158,6 +158,20 @@ const magmar = [
     spirit: null
   },
   {
+    id: 451,
+    name: 'Angered Okkadok',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 2,
+    rarity: 'common',
+    faction: 'magmar',
+    text: '<b>Intensify</b>: This minion gains +1/+1.',
+    attack: 1,
+    health: 2,
+    spirit: null
+  },
+  {
     id: 444,
     name: 'Biomimetic Hulk',
     set: 'immortal',
@@ -182,6 +196,20 @@ const magmar = [
     faction: 'magmar',
     text:
       'Destroy a friendly minion to summon a random Magmar minion that costs 1 more.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 20369,
+    name: 'Deep Impact',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 2,
+    rarity: 'rare',
+    faction: 'magmar',
+    text: 'Deal damage to a minion to reduce its Health to 1.',
     attack: null,
     health: null,
     spirit: null
@@ -243,6 +271,20 @@ const magmar = [
     spirit: null
   },
   {
+    id: 20358,
+    name: 'Invigoration',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 2,
+    rarity: 'common',
+    faction: 'magmar',
+    text: '<b>Intensify</b>: Restore 3 Health to your General.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 30013,
     name: 'Iridium Scale',
     set: 'core',
@@ -269,6 +311,21 @@ const magmar = [
       'Your minions cost 1 less to summon and take 1 damage when summoned from your action bar.',
     attack: 2,
     health: 2,
+    spirit: null
+  },
+  {
+    id: 20382,
+    name: 'Mitotic Induction',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 2,
+    rarity: 'epic',
+    faction: 'magmar',
+    text:
+      'Summon an Egg of the minion most recently summoned from your action bar.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {
@@ -401,6 +458,35 @@ const magmar = [
     spirit: null
   },
   {
+    id: 30055,
+    name: 'Zoetic Charm',
+    set: 'mythron',
+    type: 'artifact',
+    race: '',
+    cost: 2,
+    rarity: 'epic',
+    faction: 'magmar',
+    text: 'Your General has +1 Attack.<br/>Your Eggs have <b>Forcefield</b>.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 20390,
+    name: 'Bellow',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 3,
+    rarity: 'common',
+    faction: 'magmar',
+    text:
+      'Give a friendly minion +3 Attack.<br/><b>Stun</b> enemy minions around it.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 439,
     name: 'Catalyst Quillbeast',
     set: 'unearthed',
@@ -487,6 +573,21 @@ const magmar = [
     spirit: null
   },
   {
+    id: 455,
+    name: 'Krater',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'common',
+    faction: 'magmar',
+    text:
+      '<b>Opening Gambit</b>: Deal 1 damage to everything (including itself).',
+    attack: 2,
+    health: 4,
+    spirit: null
+  },
+  {
     id: 423,
     name: 'Moloki Huntress',
     set: 'shimzar',
@@ -499,6 +600,21 @@ const magmar = [
       "<b>Grow</b>: +1/+1<br/>Friendly minions grow at the start of BOTH player's turns.",
     attack: 1,
     health: 2,
+    spirit: null
+  },
+  {
+    id: 454,
+    name: 'Oropsisaur',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 3,
+    rarity: 'legendary',
+    faction: 'magmar',
+    text:
+      '<b>Grow</b>: +1/+1.<br/>Whenever another friendly minion with <b>Grow</b> survives damage, that minion grows.',
+    attack: 2,
+    health: 5,
     spirit: null
   },
   {
@@ -631,6 +747,20 @@ const magmar = [
     spirit: 0
   },
   {
+    id: 453,
+    name: 'Beastclad Hunter',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'rare',
+    faction: 'magmar',
+    text: 'Takes no damage from minions with less Attack.',
+    attack: 3,
+    health: 6,
+    spirit: null
+  },
+  {
     id: 20297,
     name: 'Blood Rage',
     set: 'unearthed',
@@ -718,6 +848,20 @@ const magmar = [
     spirit: null
   },
   {
+    id: 20370,
+    name: 'Gargantuan Growth',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 4,
+    rarity: 'rare',
+    faction: 'magmar',
+    text: 'Give a minion, "Grow: +8/+8."',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 445,
     name: 'Gigaloth',
     set: 'immortal',
@@ -743,6 +887,35 @@ const magmar = [
     faction: 'magmar',
     text: '<b>Grow</b>: +2/+2',
     attack: 3,
+    health: 4,
+    spirit: null
+  },
+  {
+    id: 458,
+    name: 'Haruspex',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'legendary',
+    faction: 'magmar',
+    text: 'Whenever this minion takes damage, your opponent draws a card.',
+    attack: 7,
+    health: 6,
+    spirit: null
+  },
+  {
+    id: 456,
+    name: 'Hatefurnace',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'mythron',
+    faction: 'magmar',
+    text:
+      '<b>Trial</b>: Cast 5 spells that give a minion +Attack.<br/><b>Destiny</b>: Minions summoned from your action bar gain <b>Rush</b> and <b>Frenzy</b>.',
+    attack: 5,
     health: 4,
     spirit: null
   },
@@ -900,7 +1073,7 @@ const magmar = [
     cost: 4,
     rarity: 'common',
     faction: 'magmar',
-    text: 'Opening Gambit: Hatch a friendly Egg.',
+    text: '<b>Opening Gambit</b>: Hatch a friendly Egg.',
     attack: 3,
     health: 3,
     spirit: null
@@ -946,6 +1119,21 @@ const magmar = [
       'Your General gains +3 Attack. Whenever your General deals damage, hatch all friendly Eggs.',
     attack: null,
     health: null,
+    spirit: null
+  },
+  {
+    id: 452,
+    name: 'Mortar-maw',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 5,
+    rarity: 'epic',
+    faction: 'magmar',
+    text:
+      '<b>Ranged</b><br/>Whenever this minion attacks, it also damages enemies around its target.',
+    attack: 4,
+    health: 4,
     spirit: null
   },
   {
@@ -1146,6 +1334,20 @@ const magmar = [
       'At the start of your turn, deal 4 damage to a random minion or General.',
     attack: 11,
     health: 11,
+    spirit: null
+  },
+  {
+    id: 20383,
+    name: 'Extinction Event',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 8,
+    rarity: 'legendary',
+    faction: 'magmar',
+    text: 'Each of your Eggs hatches into a Katastrophosaurus.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {
