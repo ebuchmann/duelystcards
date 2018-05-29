@@ -1,5 +1,20 @@
 const vanar = [
   {
+    id: 20329,
+    name: 'Essence Sculpt',
+    set: 'immortal',
+    type: 'spell',
+    race: '',
+    cost: 0,
+    rarity: 'rare',
+    faction: 'vanar',
+    text:
+      'Choose a <b>Stunned</b> minion. Put a copy of that card into your action bar.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20139,
     name: 'Flash Freeze',
     set: 'core',
@@ -42,21 +57,6 @@ const vanar = [
     spirit: null
   },
   {
-    id: 20329,
-    name: 'Essence Sculpt',
-    set: 'immortal',
-    type: 'spell',
-    race: '',
-    cost: 1,
-    rarity: 'rare',
-    faction: 'vanar',
-    text:
-      'Choose a <b>Stunned</b> minion. Put a copy of that card into your action bar.',
-    attack: null,
-    health: null,
-    spirit: null
-  },
-  {
     id: 30031,
     name: 'Iceshatter Gauntlet',
     set: 'ancients',
@@ -67,21 +67,6 @@ const vanar = [
     faction: 'vanar',
     text:
       'Whenever your General attacks a <b>Stunned</b> minion, destroy it instantly.',
-    attack: null,
-    health: null,
-    spirit: null
-  },
-  {
-    id: 20261,
-    name: 'Mana Deathgrip',
-    set: 'ancients',
-    type: 'spell',
-    race: '',
-    cost: 1,
-    rarity: 'common',
-    faction: 'vanar',
-    text:
-      'Deal 1 damage to an enemy minion. If it dies this turn, permanently gain 1 mana crystal.',
     attack: null,
     health: null,
     spirit: null
@@ -116,6 +101,21 @@ const vanar = [
     spirit: null
   },
   {
+    id: 30035,
+    name: 'The Dredger',
+    set: 'unearthed',
+    type: 'artifact',
+    race: '',
+    cost: 1,
+    rarity: 'legendary',
+    faction: 'vanar',
+    text:
+      'Whenever your General damages an enemy, randomly teleport them to your starting side of the battlefield.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20209,
     name: 'Vespyric Call',
     set: 'shimzar',
@@ -141,20 +141,6 @@ const vanar = [
     faction: 'vanar',
     text:
       '<b>Intensify</b>: Teleport 1 random enemy minion to a space on your starting side of the battlefield.',
-    attack: null,
-    health: null,
-    spirit: null
-  },
-  {
-    id: 20214,
-    name: "Aspect of Shim'Zar",
-    set: 'shimzar',
-    type: 'spell',
-    race: '',
-    cost: 2,
-    rarity: 'common',
-    faction: 'vanar',
-    text: 'Transform ANY minion into a random Battle Pet.',
     attack: null,
     health: null,
     spirit: null
@@ -369,7 +355,7 @@ const vanar = [
     cost: 2,
     rarity: 'common',
     faction: 'vanar',
-    text: '<b>Stun</b> an enemy. Draw a card.',
+    text: '<b>Stun</b> an enemy minion. Draw a card.',
     attack: null,
     health: null,
     spirit: null
@@ -461,6 +447,21 @@ const vanar = [
     spirit: null
   },
   {
+    id: 20261,
+    name: 'Mana Deathgrip',
+    set: 'ancients',
+    type: 'spell',
+    race: '',
+    cost: 2,
+    rarity: 'common',
+    faction: 'vanar',
+    text:
+      'Deal 1 damage to an enemy minion. If it dies this turn, permanently gain 1 mana crystal.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20140,
     name: 'Mark of Solitude',
     set: 'core',
@@ -544,6 +545,20 @@ const vanar = [
     text: '<b>Intensify</b>: Summon 1 Treant with <b>Provoke</b> nearby.',
     attack: 1,
     health: 1,
+    spirit: null
+  },
+  {
+    id: 20214,
+    name: "Aspect of Shim'Zar",
+    set: 'shimzar',
+    type: 'spell',
+    race: '',
+    cost: 3,
+    rarity: 'common',
+    faction: 'vanar',
+    text: 'Transform ANY minion into a random Battle Pet.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {
@@ -779,21 +794,6 @@ const vanar = [
     spirit: 0
   },
   {
-    id: 30035,
-    name: 'The Dredger',
-    set: 'unearthed',
-    type: 'artifact',
-    race: '',
-    cost: 3,
-    rarity: 'legendary',
-    faction: 'vanar',
-    text:
-      'Whenever your General damages an enemy, randomly teleport them to your starting side of the battlefield.',
-    attack: null,
-    health: null,
-    spirit: null
-  },
-  {
     id: 511,
     name: 'Wolfraven',
     set: 'core',
@@ -1023,8 +1023,7 @@ const vanar = [
     cost: 4,
     rarity: 'legendary',
     faction: 'vanar',
-    text:
-      'Whenever you summon a minion with <b>Infiltrate</b>, it gains +1/+1.',
+    text: 'Friendly minions with <b>Infiltrate</b> have +1/+1.',
     attack: 4,
     health: 5,
     spirit: 0
@@ -1379,20 +1378,6 @@ const vanar = [
     spirit: null
   },
   {
-    id: 20359,
-    name: 'Ice Age',
-    set: 'mythron',
-    type: 'spell',
-    race: '',
-    cost: 7,
-    rarity: 'legendary',
-    faction: 'vanar',
-    text: 'Summon Blazing Spines along the outside of the battlefield.',
-    attack: null,
-    health: null,
-    spirit: null
-  },
-  {
     id: 538,
     name: 'Grandmaster Embla',
     set: 'core',
@@ -1405,6 +1390,20 @@ const vanar = [
       '<b>Opening Gambit</b>: Surround the enemy General with random Walls.',
     attack: 5,
     health: 5,
+    spirit: null
+  },
+  {
+    id: 20359,
+    name: 'Ice Age',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 8,
+    rarity: 'legendary',
+    faction: 'vanar',
+    text: 'Summon Blazing Spines along the outside of the battlefield.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {

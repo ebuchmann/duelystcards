@@ -143,21 +143,6 @@ const neutral = [
     spirit: null
   },
   {
-    id: 11083,
-    name: 'Zyx',
-    set: 'core',
-    type: 'minion',
-    race: '',
-    cost: 1,
-    rarity: 'rare',
-    faction: 'neutral',
-    text:
-      '<b>Opening Gambit</b>: Summon a copy of this minion on a random nearby space.',
-    attack: 1,
-    health: 2,
-    spirit: null
-  },
-  {
     id: 10993,
     name: 'Aethermaster',
     set: 'core',
@@ -656,6 +641,21 @@ const neutral = [
     spirit: null
   },
   {
+    id: 11083,
+    name: 'Zyx',
+    set: 'core',
+    type: 'minion',
+    race: '',
+    cost: 2,
+    rarity: 'rare',
+    faction: 'neutral',
+    text:
+      '<b>Opening Gambit</b>: Summon a copy of this minion on a random nearby space.',
+    attack: 1,
+    health: 2,
+    spirit: null
+  },
+  {
     id: 11039,
     name: 'Abjudicator',
     set: 'core',
@@ -712,7 +712,7 @@ const neutral = [
     text:
       '<b>Build</b>: (1).<br/>Whenever this or another friendly minion is built, draw a card.',
     attack: 1,
-    health: 4,
+    health: 5,
     spirit: null
   },
   {
@@ -912,7 +912,7 @@ const neutral = [
     faction: 'neutral',
     text: 'Whenever a friendly Battle Pet dies, draw a card.',
     attack: 3,
-    health: 3,
+    health: 4,
     spirit: null
   },
   {
@@ -956,7 +956,7 @@ const neutral = [
     text:
       '<b>Provoke</b><br/><b>Opening Gambit</b>: Other minions you summon this turn gain +1/+1 and gain <b>Provoke</b>.',
     attack: 2,
-    health: 2,
+    health: 3,
     spirit: null
   },
   {
@@ -1197,7 +1197,7 @@ const neutral = [
     rarity: 'epic',
     faction: 'neutral',
     text: 'Whenever this damages a neutral minion, destroy that minion.',
-    attack: 2,
+    attack: 3,
     health: 4,
     spirit: null
   },
@@ -1430,7 +1430,7 @@ const neutral = [
     faction: 'neutral',
     text: '<b>Opening Gambit</b>: Draw a random artifact from your deck.',
     attack: 3,
-    health: 3,
+    health: 4,
     spirit: null
   },
   {
@@ -1476,6 +1476,21 @@ const neutral = [
       '<b>Ranged</b><br/>Each time this minion attacks, it has a 50% chance to attack again, attacking a random enemy.',
     attack: 2,
     health: 3,
+    spirit: null
+  },
+  {
+    id: 11063,
+    name: 'Calculator',
+    set: 'shimzar',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'epic',
+    faction: 'neutral',
+    text:
+      '<b>Opening Gambit</b>: Gain the combined Attack and Health of all Battle Pets in your action bar.',
+    attack: 1,
+    health: 1,
     spirit: null
   },
   {
@@ -1533,7 +1548,7 @@ const neutral = [
     rarity: 'epic',
     faction: 'neutral',
     text:
-      '<b>Dying Wish</b>: Summon a 0/10 Tombstone minion with Provoke near your General.',
+      '<b>Dying Wish</b>: Summon a 0/8 Tombstone minion with Provoke near your General.',
     attack: 5,
     health: 3,
     spirit: null
@@ -1781,7 +1796,7 @@ const neutral = [
     text:
       'Whenever this minion deals damage, either deal 3 damage to the enemy General OR restore 3 Health to your General.',
     attack: 3,
-    health: 4,
+    health: 5,
     spirit: null
   },
   {
@@ -1836,7 +1851,7 @@ const neutral = [
     cost: 4,
     rarity: 'rare',
     faction: 'neutral',
-    text: 'Your Bloodbound Spell costs 1 less to activate.',
+    text: 'Your Bloodbound Spell costs 0.',
     attack: 5,
     health: 4,
     spirit: null
@@ -1907,7 +1922,7 @@ const neutral = [
     rarity: 'rare',
     faction: 'neutral',
     text: '<b>Forcefield</b>',
-    attack: 4,
+    attack: 3,
     health: 3,
     spirit: null
   },
@@ -1966,7 +1981,7 @@ const neutral = [
     text:
       'Whenever this minion damages an enemy, it also damages all joined enemies.',
     attack: 4,
-    health: 5,
+    health: 4,
     spirit: null
   },
   {
@@ -2051,8 +2066,8 @@ const neutral = [
     rarity: 'legendary',
     faction: 'neutral',
     text: 'Whenever you summon MECHAZ0R, put a MECHAZ0R in your action bar.',
-    attack: 4,
-    health: 4,
+    attack: 5,
+    health: 5,
     spirit: null
   },
   {
@@ -2126,21 +2141,6 @@ const neutral = [
     attack: 4,
     health: 9,
     spirit: 0
-  },
-  {
-    id: 11063,
-    name: 'Calculator',
-    set: 'shimzar',
-    type: 'minion',
-    race: '',
-    cost: 5,
-    rarity: 'epic',
-    faction: 'neutral',
-    text:
-      '<b>Opening Gambit</b>: Gain the combined Attack and Health of all Battle Pets in your action bar.',
-    attack: 1,
-    health: 1,
-    spirit: null
   },
   {
     id: 11134,
@@ -2243,7 +2243,7 @@ const neutral = [
     text:
       'Whenever this minion damages an enemy, teleport that enemy to a random corner.',
     attack: 3,
-    health: 7,
+    health: 10,
     spirit: null
   },
   {
@@ -2300,7 +2300,7 @@ const neutral = [
     rarity: 'rare',
     faction: 'neutral',
     text:
-      '<b>Opening Gambit</b>: Add a random artifact to your action bar. It costs 2 less.',
+      '<b>Opening Gambit</b>: Add a random artifact to your action bar. It costs 3 less.',
     attack: 5,
     health: 4,
     spirit: null
@@ -2347,7 +2347,7 @@ const neutral = [
     text:
       '<b>Provoke</b><br/>Whenever you replace a card, summon a 2/2 Prisoner with a random ability nearby.',
     attack: 4,
-    health: 4,
+    health: 5,
     spirit: null
   },
   {
@@ -2872,8 +2872,8 @@ const neutral = [
     faction: 'neutral',
     text:
       '<b>Provoke</b><br/><b>Opening Gambit</b>: Each player summons three Spriggin Kin nearby their General.',
-    attack: 6,
-    health: 6,
+    attack: 8,
+    health: 8,
     spirit: null
   },
   {
@@ -2943,7 +2943,7 @@ const neutral = [
     cost: 7,
     rarity: 'legendary',
     faction: 'neutral',
-    text: 'Whenever you replace this card, it costs 1 less and gains +1/+1.',
+    text: 'Whenever you replace this card, it costs 3 less and gains +3/+3.',
     attack: 7,
     health: 6,
     spirit: null
@@ -3017,8 +3017,8 @@ const neutral = [
     faction: 'neutral',
     text:
       '<b>Opening Gambit</b>: Dispel ALL minions and Generals, and destroy ALL artifacts.',
-    attack: 9,
-    health: 9,
+    attack: 7,
+    health: 7,
     spirit: null
   },
   {

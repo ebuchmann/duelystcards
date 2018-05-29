@@ -158,6 +158,20 @@ const magmar = [
     spirit: null
   },
   {
+    id: 20114,
+    name: 'Tremor',
+    set: 'core',
+    type: 'spell',
+    race: '',
+    cost: 1,
+    rarity: 'common',
+    faction: 'magmar',
+    text: '<b>Stun</b> enemy minions in a 2x2 area.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 451,
     name: 'Angered Okkadok',
     set: 'mythron',
@@ -399,20 +413,6 @@ const magmar = [
       'Whenever you summon a Mech minion from your action bar, both players draw a card.',
     attack: 3,
     health: 1,
-    spirit: null
-  },
-  {
-    id: 20114,
-    name: 'Tremor',
-    set: 'core',
-    type: 'spell',
-    race: '',
-    cost: 2,
-    rarity: 'common',
-    faction: 'magmar',
-    text: '<b>Stun</b> enemy minions in a 2x2 area.',
-    attack: null,
-    health: null,
     spirit: null
   },
   {
@@ -719,6 +719,21 @@ const magmar = [
     spirit: null
   },
   {
+    id: 20296,
+    name: 'Verdant Fulmination',
+    set: 'unearthed',
+    type: 'spell',
+    race: '',
+    cost: 3,
+    rarity: 'epic',
+    faction: 'magmar',
+    text:
+      "Your minions on friendly <b>Primal Flourish</b> grow. Turn your other minions' spaces into <b>Primal Flourish</b>.",
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 417,
     name: 'Vindicator',
     set: 'core',
@@ -914,7 +929,7 @@ const magmar = [
     rarity: 'mythron',
     faction: 'magmar',
     text:
-      '<b>Trial</b>: Cast 5 spells that give a minion +Attack.<br/><b>Destiny</b>: Minions summoned from your action bar gain <b>Rush</b> and <b>Frenzy</b>.',
+      '<b>Trial</b>: Cast 7 spells that cause a minion to gain +Attack.<br/><b>Destiny</b>: Minions summoned from your action bar gain <b>Rush</b> and <b>Frenzy</b>.',
     attack: 5,
     health: 4,
     spirit: null
@@ -957,7 +972,7 @@ const magmar = [
     rarity: 'rare',
     faction: 'magmar',
     text:
-      "<b>Opening Gambit</b>: Turn a nearby friendly minion's space into <b>Primal Flourish</b>.",
+      '<b>Opening Gambit</b>: Turn a nearby space into <b>Primal Flourish</b>.',
     attack: 4,
     health: 5,
     spirit: null
@@ -1036,21 +1051,6 @@ const magmar = [
     spirit: null
   },
   {
-    id: 20296,
-    name: 'Verdant Fulmination',
-    set: 'unearthed',
-    type: 'spell',
-    race: '',
-    cost: 4,
-    rarity: 'epic',
-    faction: 'magmar',
-    text:
-      "Your minions on friendly <b>Primal Flourish</b> grow. Turn your other minions' spaces into <b>Primal Flourish</b>.",
-    attack: null,
-    health: null,
-    spirit: null
-  },
-  {
     id: 413,
     name: 'Veteran Silithar',
     set: 'core',
@@ -1061,7 +1061,7 @@ const magmar = [
     faction: 'magmar',
     text: '<b>Rebirth</b>',
     attack: 4,
-    health: 3,
+    health: 4,
     spirit: null
   },
   {
@@ -1104,21 +1104,6 @@ const magmar = [
     text: '<b>Opening Gambit</b>: This minion fights a nearby enemy minion.',
     attack: 4,
     health: 7,
-    spirit: null
-  },
-  {
-    id: 30025,
-    name: 'Morin-Khur',
-    set: 'shimzar',
-    type: 'artifact',
-    race: '',
-    cost: 5,
-    rarity: 'legendary',
-    faction: 'magmar',
-    text:
-      'Your General gains +3 Attack. Whenever your General deals damage, hatch all friendly Eggs.',
-    attack: null,
-    health: null,
     spirit: null
   },
   {
@@ -1188,8 +1173,8 @@ const magmar = [
     rarity: 'epic',
     faction: 'magmar',
     text: 'Whenever ANY player draws a card, this minion gains +1/+1.',
-    attack: 6,
-    health: 3,
+    attack: 5,
+    health: 6,
     spirit: null
   },
   {
@@ -1231,7 +1216,7 @@ const magmar = [
     faction: 'magmar',
     text: '<b>Rebirth</b><br/>Egg minions you summon gain +2/+2.',
     attack: 4,
-    health: 6,
+    health: 7,
     spirit: null
   },
   {
@@ -1278,6 +1263,21 @@ const magmar = [
     spirit: null
   },
   {
+    id: 30025,
+    name: 'Morin-Khur',
+    set: 'shimzar',
+    type: 'artifact',
+    race: '',
+    cost: 6,
+    rarity: 'legendary',
+    faction: 'magmar',
+    text:
+      'Your General gains +3 Attack. Whenever your General deals damage, hatch all friendly Eggs.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20118,
     name: 'Bounded Lifeforce',
     set: 'core',
@@ -1317,8 +1317,8 @@ const magmar = [
     faction: 'magmar',
     text:
       '<b>Rebirth</b><br/>At the end of your turn, summon a Silithar Elder Egg nearby.',
-    attack: 6,
-    health: 6,
+    attack: 7,
+    health: 7,
     spirit: null
   },
   {
@@ -1359,7 +1359,7 @@ const magmar = [
     cost: 8,
     rarity: 'legendary',
     faction: 'magmar',
-    text: 'Deal 5 damage to ALL non-Egg minions and Generals.',
+    text: 'Deal 8 damage to ALL non-Egg minions and Generals.',
     attack: null,
     health: null,
     spirit: null

@@ -29,6 +29,20 @@ const abyssian = [
     spirit: 0
   },
   {
+    id: 20226,
+    name: 'Aphotic Drain',
+    set: 'ancients',
+    type: 'spell',
+    race: '',
+    cost: 1,
+    rarity: 'common',
+    faction: 'abyssian',
+    text: 'Destroy a friendly minion to restore 5 Health to your General.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20376,
     name: 'Demonic Conversion',
     set: 'mythron',
@@ -131,20 +145,6 @@ const abyssian = [
     spirit: null
   },
   {
-    id: 20201,
-    name: 'Sphere of Darkness',
-    set: 'shimzar',
-    type: 'spell',
-    race: '',
-    cost: 1,
-    rarity: 'common',
-    faction: 'abyssian',
-    text: 'Turn a space into <b>Shadow Creep</b>. Draw a card.',
-    attack: null,
-    health: null,
-    spirit: null
-  },
-  {
     id: 20052,
     name: 'Void Pulse',
     set: 'core',
@@ -154,20 +154,6 @@ const abyssian = [
     rarity: 'common',
     faction: 'abyssian',
     text: 'Deal 2 damage to enemy General. Restore 3 Health to your General.',
-    attack: null,
-    health: null,
-    spirit: null
-  },
-  {
-    id: 20226,
-    name: 'Aphotic Drain',
-    set: 'ancients',
-    type: 'spell',
-    race: '',
-    cost: 2,
-    rarity: 'common',
-    faction: 'abyssian',
-    text: 'Destroy a friendly minion to restore 5 Health to your General.',
     attack: null,
     health: null,
     spirit: null
@@ -477,6 +463,35 @@ const abyssian = [
     spirit: null
   },
   {
+    id: 20201,
+    name: 'Sphere of Darkness',
+    set: 'shimzar',
+    type: 'spell',
+    race: '',
+    cost: 2,
+    rarity: 'common',
+    faction: 'abyssian',
+    text: "Turn an enemy minion's space into <b>Shadow Creep</b>. Draw a card.",
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
+    id: 30030,
+    name: 'The Releaser',
+    set: 'ancients',
+    type: 'artifact',
+    race: '',
+    cost: 2,
+    rarity: 'rare',
+    faction: 'abyssian',
+    text:
+      'When this artifact breaks, summon a random friendly non-token minion destroyed this game nearby.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20367,
     name: 'Yielding Depths',
     set: 'mythron',
@@ -601,7 +616,7 @@ const abyssian = [
     cost: 3,
     rarity: 'common',
     faction: 'abyssian',
-    text: 'Give all enemy minions -3 Attack until your next turn.',
+    text: 'Give all enemy minions -4 Attack until your next turn.',
     attack: null,
     health: null,
     spirit: null
@@ -734,8 +749,8 @@ const abyssian = [
     faction: 'abyssian',
     text:
       '<b>Sentinel</b>: General attacks.<br/>The enemy General has -1 Attack.',
-    attack: 3,
-    health: 3,
+    attack: 2,
+    health: 4,
     spirit: null
   },
   {
@@ -748,21 +763,6 @@ const abyssian = [
     rarity: 'legendary',
     faction: 'abyssian',
     text: 'Your General gains, "<b>Deathwatch</b>: Gains +2 Attack."',
-    attack: null,
-    health: null,
-    spirit: null
-  },
-  {
-    id: 30030,
-    name: 'The Releaser',
-    set: 'ancients',
-    type: 'artifact',
-    race: '',
-    cost: 3,
-    rarity: 'rare',
-    faction: 'abyssian',
-    text:
-      'When this artifact breaks, summon a random friendly non-token minion destroyed this game nearby.',
     attack: null,
     health: null,
     spirit: null
@@ -937,7 +937,7 @@ const abyssian = [
     faction: 'abyssian',
     text:
       '<b>Opening Gambit</b>: Steal 2 Health from the enemy General.<br/><b>Dying Wish</b>: Return Desolator to your action bar.',
-    attack: 3,
+    attack: 2,
     health: 1,
     spirit: null
   },
@@ -1153,8 +1153,8 @@ const abyssian = [
     faction: 'abyssian',
     text:
       '<b>Opening Gambit</b>: Deal 2 damage to each enemy on or near friendly <b>Shadow Creep</b>.',
-    attack: 3,
-    health: 3,
+    attack: 4,
+    health: 4,
     spirit: null
   },
   {

@@ -1088,6 +1088,21 @@ const lyonar = [
     spirit: null
   },
   {
+    id: 30024,
+    name: "Dawn's Eye",
+    set: 'shimzar',
+    type: 'artifact',
+    race: '',
+    cost: 5,
+    rarity: 'legendary',
+    faction: 'lyonar',
+    text:
+      'Your General gains +4 Attack. At the end of your turn, repair all of your artifacts to full durability.',
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 57,
     name: 'Grand Strategos',
     set: 'mythron',
@@ -1097,7 +1112,7 @@ const lyonar = [
     rarity: 'mythron',
     faction: 'lyonar',
     text:
-      '<b>Trial</b>: Summon 10 minions with 1 or less Attack.<br/><b>Destiny</b>: Promote other friendly minions at the end of your turn.',
+      '<b>Trial</b>: Summon 12 minions with 1 or less Attack.<br/><b>Destiny</b>: Promote other friendly minions at the end of your turn.',
     attack: 5,
     health: 5,
     spirit: null
@@ -1175,6 +1190,20 @@ const lyonar = [
     spirit: null
   },
   {
+    id: 30,
+    name: 'Solarius',
+    set: 'shimzar',
+    type: 'minion',
+    race: '',
+    cost: 5,
+    rarity: 'legendary',
+    faction: 'lyonar',
+    text: '<b>Zeal</b>: Draw 2 additional cards at the end of your turn.',
+    attack: 3,
+    health: 2,
+    spirit: null
+  },
+  {
     id: 59,
     name: 'War Exorcist',
     set: 'mythron',
@@ -1202,21 +1231,6 @@ const lyonar = [
       '<b>Provoke</b><br/>When a friendly Windcliffe Alarmist dies, transform this minion into a Windcliffe Alarmist.',
     attack: 5,
     health: 5,
-    spirit: null
-  },
-  {
-    id: 30024,
-    name: "Dawn's Eye",
-    set: 'shimzar',
-    type: 'artifact',
-    race: '',
-    cost: 6,
-    rarity: 'legendary',
-    faction: 'lyonar',
-    text:
-      'Your General gains +4 Attack. At the end of your turn, repair all of your artifacts to full durability.',
-    attack: null,
-    health: null,
     spirit: null
   },
   {
@@ -1276,20 +1290,6 @@ const lyonar = [
       'Your General has +3 Attack.<br/>When your General attacks, summon a minion that costs 3 from your deck nearby.',
     attack: null,
     health: null,
-    spirit: null
-  },
-  {
-    id: 30,
-    name: 'Solarius',
-    set: 'shimzar',
-    type: 'minion',
-    race: '',
-    cost: 6,
-    rarity: 'legendary',
-    faction: 'lyonar',
-    text: '<b>Zeal</b>: Draw 2 additional cards at the end of your turn.',
-    attack: 3,
-    health: 3,
     spirit: null
   },
   {
@@ -1375,8 +1375,8 @@ const lyonar = [
     faction: 'lyonar',
     text:
       '<b>Airdrop</b>, <b>Forcefield</b>, <b>Frenzy</b>, <b>Provoke</b>, <b>Celerity</b>',
-    attack: 5,
-    health: 5,
+    attack: 6,
+    health: 6,
     spirit: null
   },
   {

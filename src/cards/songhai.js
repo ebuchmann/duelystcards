@@ -52,7 +52,7 @@ const songhai = [
     rarity: 'rare',
     faction: 'songhai',
     text:
-      'Shuffle five copies of the spell you cast most recently into your deck.',
+      'Shuffle five copies of the spell you cast most recently into your deck (excluding Meditate).',
     attack: null,
     health: null,
     spirit: null
@@ -195,7 +195,7 @@ const songhai = [
     cost: 1,
     rarity: 'common',
     faction: 'songhai',
-    text: '<b>Backstab</b>: (3).',
+    text: '<b>Backstab</b>: (1).',
     attack: 1,
     health: 3,
     spirit: null
@@ -407,7 +407,8 @@ const songhai = [
     cost: 2,
     rarity: 'legendary',
     faction: 'songhai',
-    text: 'Your General gains <b>Backstab</b> (4).',
+    text:
+      'Your General gains +1 Attack.<br/>Your General gains <b>Backstab</b> (4).',
     attack: null,
     health: null,
     spirit: null
@@ -509,7 +510,7 @@ const songhai = [
     text:
       'Whenever you cast a spell, this minion gains +1 Attack until your next turn.',
     attack: 1,
-    health: 3,
+    health: 4,
     spirit: null
   },
   {
@@ -624,7 +625,7 @@ const songhai = [
     faction: 'songhai',
     text:
       '<b>Backstab</b>: (2).<br/>Whenever this backstabs, put a MECHAZ0R Progression into your action bar.',
-    attack: 2,
+    attack: 3,
     health: 3,
     spirit: null
   },
@@ -757,8 +758,8 @@ const songhai = [
     faction: 'songhai',
     text:
       '<b>Sentinel</b>: Spell cast.<br/>Whenever your opponent casts a spell, put a copy of that spell into your action bar.',
-    attack: 4,
-    health: 3,
+    attack: 3,
+    health: 2,
     spirit: null
   },
   {
@@ -831,7 +832,7 @@ const songhai = [
     faction: 'songhai',
     text:
       '<b>Build</b>: (2).<br/><b>Backstab</b>: (2).<br/>Whenever this backstabs, transform it into a building with <b>Build</b> (1).',
-    attack: 3,
+    attack: 4,
     health: 1,
     spirit: null
   },
@@ -846,7 +847,7 @@ const songhai = [
     faction: 'songhai',
     text: '<b>Bond</b>: Put a Mist Dragon Seal into your action bar.',
     attack: 3,
-    health: 2,
+    health: 3,
     spirit: null
   },
   {
@@ -889,7 +890,7 @@ const songhai = [
     text:
       '<b>Blood Surge</b>: Teleport a random enemy to the space behind your General.',
     attack: 3,
-    health: 3,
+    health: 4,
     spirit: null
   },
   {
@@ -989,7 +990,7 @@ const songhai = [
     faction: 'songhai',
     text:
       '<b>Intensify</b>: Give a random nearby friendly minion +2 Attack this turn.',
-    attack: 4,
+    attack: 5,
     health: 4,
     spirit: null
   },
@@ -1077,8 +1078,8 @@ const songhai = [
     faction: 'songhai',
     text:
       '<b>Build</b>: (2).<br/>When this minion is built, gain +2 mana this turn.',
-    attack: 3,
-    health: 3,
+    attack: 5,
+    health: 5,
     spirit: null
   },
   {
@@ -1137,6 +1138,20 @@ const songhai = [
     text: '<b>Blood Surge</b>: Put an Eight Gates into your action bar.',
     attack: 3,
     health: 5,
+    spirit: null
+  },
+  {
+    id: 20279,
+    name: 'Bombard',
+    set: 'unearthed',
+    type: 'spell',
+    race: '',
+    cost: 5,
+    rarity: 'rare',
+    faction: 'songhai',
+    text: 'Reactivate your minions with <b>Ranged</b>.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {
@@ -1270,20 +1285,6 @@ const songhai = [
     spirit: null
   },
   {
-    id: 20279,
-    name: 'Bombard',
-    set: 'unearthed',
-    type: 'spell',
-    race: '',
-    cost: 6,
-    rarity: 'rare',
-    faction: 'songhai',
-    text: 'Reactivate your minions with <b>Ranged</b>.',
-    attack: null,
-    health: null,
-    spirit: null
-  },
-  {
     id: 139,
     name: 'Eternity Painter',
     set: 'unearthed',
@@ -1323,7 +1324,7 @@ const songhai = [
     rarity: 'legendary',
     faction: 'songhai',
     text: 'The enemy General moves and attacks automatically.',
-    attack: 4,
+    attack: 3,
     health: 6,
     spirit: null
   },
@@ -1351,7 +1352,7 @@ const songhai = [
     rarity: 'legendary',
     faction: 'songhai',
     text:
-      '<b>Rush</b><br/>Whenever this minion attacks, put three Songhai spells into your action bar at end of turn.',
+      '<b>Rush</b><br/>Whenever this minion attacks, put three Songhai spells into your action bar.',
     attack: 3,
     health: 7,
     spirit: null

@@ -115,6 +115,20 @@ const vetruvian = [
     spirit: null
   },
   {
+    id: 20336,
+    name: 'Equality Constraint',
+    set: 'immortal',
+    type: 'spell',
+    race: '',
+    cost: 1,
+    rarity: 'common',
+    faction: 'vetruvian',
+    text: "ANY minion's Health becomes equal to its Attack.",
+    attack: null,
+    health: null,
+    spirit: null
+  },
+  {
     id: 20313,
     name: 'Kinematic Projection',
     set: 'immortal',
@@ -255,7 +269,7 @@ const vetruvian = [
     faction: 'vetruvian',
     text:
       "<b>Dying Wish</b>: Put a random Scion's Wish spell into your action bar.",
-    attack: 1,
+    attack: 2,
     health: 1,
     spirit: null
   },
@@ -272,20 +286,6 @@ const vetruvian = [
       '<b>Intensify</b>: Deal 1 damage to the enemy General and this minion gains +1 Health.',
     attack: 2,
     health: 1,
-    spirit: null
-  },
-  {
-    id: 20336,
-    name: 'Equality Constraint',
-    set: 'immortal',
-    type: 'spell',
-    race: '',
-    cost: 2,
-    rarity: 'common',
-    faction: 'vetruvian',
-    text: "ANY minion's Health becomes equal to its Attack.",
-    attack: null,
-    health: null,
     spirit: null
   },
   {
@@ -512,7 +512,7 @@ const vetruvian = [
     cost: 2,
     rarity: 'common',
     faction: 'vetruvian',
-    text: 'Summon a Wind Dervish nearby each friendly Obelysk. Draw a card.',
+    text: 'Summon a Wind Dervish nearby each friendly Obelysk.',
     attack: null,
     health: null,
     spirit: null
@@ -530,6 +530,20 @@ const vetruvian = [
       '<b>Opening Gambit</b>: Lower the cost of all Structure minions in your action bar by 1.',
     attack: 2,
     health: 3,
+    spirit: null
+  },
+  {
+    id: 216,
+    name: 'Windstorm Obelysk',
+    set: 'core',
+    type: 'minion',
+    race: 'Structure',
+    cost: 2,
+    rarity: 'common',
+    faction: 'vetruvian',
+    text: '<b>Summon Dervish</b><br/>Your dervishes have +1 Health.',
+    attack: 0,
+    health: 4,
     spirit: null
   },
   {
@@ -587,21 +601,6 @@ const vetruvian = [
     text: 'Draw two cards.',
     attack: null,
     health: null,
-    spirit: null
-  },
-  {
-    id: 226,
-    name: 'Falcius',
-    set: 'shimzar',
-    type: 'minion',
-    race: '',
-    cost: 3,
-    rarity: 'common',
-    faction: 'vetruvian',
-    text:
-      '<b>Opening Gambit</b>: Your General gains +2 Attack and takes no damage this turn.',
-    attack: 3,
-    health: 3,
     spirit: null
   },
   {
@@ -689,7 +688,7 @@ const vetruvian = [
     text:
       '<b>Frenzy</b><br/>Whenever you summon a minion, this minion gains +1 Attack.',
     attack: 0,
-    health: 6,
+    health: 8,
     spirit: null
   },
   {
@@ -794,20 +793,6 @@ const vetruvian = [
     spirit: null
   },
   {
-    id: 216,
-    name: 'Windstorm Obelysk',
-    set: 'core',
-    type: 'minion',
-    race: 'Structure',
-    cost: 3,
-    rarity: 'common',
-    faction: 'vetruvian',
-    text: '<b>Summon Dervish</b><br/>Your dervishes have +1 Health.',
-    attack: 0,
-    health: 6,
-    spirit: null
-  },
-  {
     id: 20362,
     name: 'Wither',
     set: 'mythron',
@@ -833,20 +818,6 @@ const vetruvian = [
     text: '<b>Blood Surge</b>: Your General gains <b>Frenzy</b> this turn.',
     attack: 3,
     health: 3,
-    spirit: null
-  },
-  {
-    id: 20357,
-    name: 'Accumulonimbus',
-    set: 'mythron',
-    type: 'spell',
-    race: '',
-    cost: 4,
-    rarity: 'common',
-    faction: 'vetruvian',
-    text: '<b>Intensify</b>: Summon 2 Wind Dervishes nearby your General.',
-    attack: null,
-    health: null,
     spirit: null
   },
   {
@@ -892,6 +863,21 @@ const vetruvian = [
     spirit: 0
   },
   {
+    id: 226,
+    name: 'Falcius',
+    set: 'shimzar',
+    type: 'minion',
+    race: '',
+    cost: 4,
+    rarity: 'common',
+    faction: 'vetruvian',
+    text:
+      '<b>Opening Gambit</b>: Your General gains +2 Attack and takes no damage this turn.',
+    attack: 3,
+    health: 3,
+    spirit: null
+  },
+  {
     id: 30011,
     name: 'Hexblade',
     set: 'core',
@@ -915,7 +901,7 @@ const vetruvian = [
     cost: 4,
     rarity: 'epic',
     faction: 'vetruvian',
-    text: 'Deal 6 damage to enemies that are not nearby another enemy.',
+    text: 'Deal 5 damage to enemies that are not nearby another enemy.',
     attack: null,
     health: null,
     spirit: null
@@ -945,7 +931,7 @@ const vetruvian = [
     rarity: 'legendary',
     faction: 'vetruvian',
     text: 'Your General has +1 Attack.',
-    attack: 3,
+    attack: 4,
     health: 4,
     spirit: 0
   },
@@ -1034,6 +1020,20 @@ const vetruvian = [
       "<b>Flying</b><br/><b>Opening Gambit</b>: Equip a Staff of Y'kir to your General.",
     attack: 1,
     health: 4,
+    spirit: null
+  },
+  {
+    id: 20357,
+    name: 'Accumulonimbus',
+    set: 'mythron',
+    type: 'spell',
+    race: '',
+    cost: 5,
+    rarity: 'common',
+    faction: 'vetruvian',
+    text: '<b>Intensify</b>: Summon 2 Wind Dervishes nearby your General.',
+    attack: null,
+    health: null,
     spirit: null
   },
   {
@@ -1138,21 +1138,6 @@ const vetruvian = [
     spirit: null
   },
   {
-    id: 259,
-    name: 'Notion of Starless Eternity',
-    set: 'mythron',
-    type: 'minion',
-    race: '',
-    cost: 5,
-    rarity: 'mythron',
-    faction: 'vetruvian',
-    text:
-      '<b>Trial</b>: General reaches the other edge of the battlefield with an equipped artifact.<br/><b>Destiny</b>: Each equipped artifact gives your General a tier of ascension.',
-    attack: 3,
-    health: 3,
-    spirit: null
-  },
-  {
     id: 246,
     name: 'Sandswirl Reader',
     set: 'unearthed',
@@ -1164,7 +1149,7 @@ const vetruvian = [
     text:
       '<b>Opening Gambit</b>: Return a nearby minion to its action bar. Turn that space into <b>Exhuming Sand</b>.',
     attack: 3,
-    health: 4,
+    health: 3,
     spirit: null
   },
   {
@@ -1314,6 +1299,36 @@ const vetruvian = [
     spirit: null
   },
   {
+    id: 259,
+    name: 'Notion of Starless Eternity',
+    set: 'mythron',
+    type: 'minion',
+    race: '',
+    cost: 6,
+    rarity: 'mythron',
+    faction: 'vetruvian',
+    text:
+      '<b>Trial</b>: General reaches the other edge of the battlefield with an equipped artifact.<br/><b>Destiny</b>: Each equipped artifact gives your General a tier of ascension.',
+    attack: 3,
+    health: 3,
+    spirit: null
+  },
+  {
+    id: 222,
+    name: 'Oserix',
+    set: 'core',
+    type: 'minion',
+    race: '',
+    cost: 6,
+    rarity: 'legendary',
+    faction: 'vetruvian',
+    text:
+      '<b>Flying</b><br/><b>Dying Wish</b>: Equip 2 random artifacts from your deck.',
+    attack: 6,
+    health: 5,
+    spirit: null
+  },
+  {
     id: 233,
     name: 'Pantheran',
     set: 'shimzar',
@@ -1323,8 +1338,8 @@ const vetruvian = [
     rarity: 'epic',
     faction: 'vetruvian',
     text: "Costs 0 if you've cast all three Scion's Wish spells this game.",
-    attack: 6,
-    health: 6,
+    attack: 8,
+    health: 8,
     spirit: null
   },
   {
@@ -1354,21 +1369,6 @@ const vetruvian = [
     text: 'Take control of an enemy minion nearby your General.',
     attack: null,
     health: null,
-    spirit: null
-  },
-  {
-    id: 222,
-    name: 'Oserix',
-    set: 'core',
-    type: 'minion',
-    race: '',
-    cost: 7,
-    rarity: 'legendary',
-    faction: 'vetruvian',
-    text:
-      '<b>Flying</b><br/><b>Dying Wish</b>: Equip 2 random artifacts from your deck.',
-    attack: 8,
-    health: 6,
     spirit: null
   },
   {
